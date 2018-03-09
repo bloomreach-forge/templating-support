@@ -1,0 +1,146 @@
+/content/documents/templatingsupportdemo/events:
+  .meta:order-before: content
+  jcr:primaryType: hippostd:folder
+  jcr:mixinTypes: ['hippotranslation:translated', 'mix:referenceable']
+  jcr:uuid: d3d4c75e-6886-443d-8ee1-eb228038d6f1
+  hippostd:foldertype: [new-events-document, new-events-folder]
+  hippotranslation:id: 1a65f2b4-45c7-40c9-b3d6-f90b24a501b5
+  hippotranslation:locale: en
+  /2018:
+    jcr:primaryType: hippostd:folder
+    jcr:mixinTypes: ['hippotranslation:translated', 'mix:referenceable']
+    jcr:uuid: eaf81444-4251-42f0-8473-78528a9d4cbf
+    hippostd:foldertype: [new-events-document, new-events-folder]
+    hippotranslation:id: 4d123e98-db8f-4ea2-b005-e837484099b1
+    hippotranslation:locale: en
+    /03:
+      jcr:primaryType: hippostd:folder
+      jcr:mixinTypes: ['hippotranslation:translated', 'mix:referenceable']
+      jcr:uuid: 3981c003-86b4-4a99-92f1-7f06e4d49d65
+      hippostd:foldertype: [new-events-document, new-events-folder]
+      hippotranslation:id: e697db5a-3b7f-45f7-a12c-04683192b62d
+      hippotranslation:locale: en
+      /breakfast:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+        jcr:uuid: b8f5eb45-7200-452a-b26e-3118a0dc60b8
+        hippo:name: Breakfast
+        /breakfast:
+          jcr:primaryType: templatingsupportdemo:eventsdocument
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: c60de5e3-67ba-48ed-b8cd-1d94e6cb0bde
+          hippo:availability: [live, preview]
+          hippostd:holder: admin
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2013-11-12T11:00:00+01:00
+          hippostdpubwf:lastModificationDate: 2013-11-12T11:11:00+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2013-11-12T12:16:00+01:00
+          hippotranslation:id: 34ff2bab-6e65-4a83-8ed5-b8938cc436b9
+          hippotranslation:locale: en
+          templatingsupportdemo:date: 2013-11-12T08:00:00+01:00
+          templatingsupportdemo:documenttype: event
+          templatingsupportdemo:enddate: 2019-03-09T13:38:00-05:00
+          templatingsupportdemo:introduction: Start the day with a nice breakfast.
+          templatingsupportdemo:location: Room 101
+          templatingsupportdemo:title: Breakfast
+          /templatingsupportdemo:content:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <html>
+                        <body>
+
+                        <p>Breakfast is served starting from 8:00 until 9:30.</p>
+
+                        </body>
+                        </html>
+          /templatingsupportdemo:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: c8f03498-56eb-46c9-83b2-cf014f2e03d7
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+      /introduction-speech:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+        jcr:uuid: 18e36c35-429d-4fee-b76e-eeabcbfc08bb
+        hippo:name: Introduction speech
+        /introduction-speech:
+          jcr:primaryType: templatingsupportdemo:eventsdocument
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 55a24f5e-3a6f-426b-9980-e838417369df
+          hippo:availability: [live, preview]
+          hippostd:holder: admin
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2013-11-12T11:02:00+01:00
+          hippostdpubwf:lastModificationDate: 2013-11-12T11:16:00+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2013-11-12T12:16:00+01:00
+          hippotranslation:id: 9c8633f5-117a-487f-999e-a414fc8ce6a7
+          hippotranslation:locale: en
+          templatingsupportdemo:date: 2013-11-12T10:00:00+01:00
+          templatingsupportdemo:documenttype: event
+          templatingsupportdemo:enddate: 2019-03-09T13:38:00-05:00
+          templatingsupportdemo:introduction: After breakfast there will be an introductory
+            speech.
+          templatingsupportdemo:location: Room 400
+          templatingsupportdemo:title: Introduction speech
+          /templatingsupportdemo:content:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <html>
+                        <body>
+
+                        <p>Speech will be about the workshop.</p>
+
+                        </body>
+                        </html>
+          /templatingsupportdemo:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 9f32434e-84e3-4150-a6f2-d89a67be2fb1
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+      /workshop:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 7a29ec60-2689-48b2-aca2-49696c5c23eb
+        /workshop:
+          jcr:primaryType: templatingsupportdemo:eventsdocument
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: ab4bcc35-4b59-4503-8238-d5253f5a59db
+          hippo:availability: [live, preview]
+          hippostd:holder: admin
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2013-11-12T11:16:00+01:00
+          hippostdpubwf:lastModificationDate: 2013-11-12T11:18:00+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2013-11-12T12:16:00+01:00
+          hippotranslation:id: 59d0e2d8-e2e9-4b5e-875c-a40cae9696df
+          hippotranslation:locale: en
+          templatingsupportdemo:date: 2013-11-12T13:00:00+01:00
+          templatingsupportdemo:documenttype: event
+          templatingsupportdemo:enddate: 2019-03-09T13:38:00-05:00
+          templatingsupportdemo:introduction: Workshop starts at 1:00
+          templatingsupportdemo:location: Room 600
+          templatingsupportdemo:title: Workshop
+          /templatingsupportdemo:content:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <html>
+                        <body>
+                        <strong>Everybody </strong>
+                        <p>can join the workshop and start practicing what they learned during the last
+                        week.</p>
+
+                        </body>
+                        </html>
+          /templatingsupportdemo:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: d035387b-f9ce-49f6-bcb0-9ab6915a2d5f
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []

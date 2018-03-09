@@ -1,0 +1,9 @@
+/content/documents/templatingsupportdemo:
+  .meta:order-before: administration
+  jcr:primaryType: hippostd:folder
+  jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:referenceable']
+  jcr:uuid: acce0450-8f56-4585-bd3a-72b6e9029f53
+  hippo:name: Templating Support Demo
+  hippostd:foldertype: [new-translated-folder, new-document]
+  hippotranslation:id: 996bcac5-86cf-49b5-a7a3-16a74863e814
+  hippotranslation:locale: en
