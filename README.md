@@ -11,7 +11,8 @@ Therefore please respect the volunteers when asking questions or asking for help
 This project consists of the following submodules:
 
 - [core](core) : The core APIs, Utilities and base classes which make it easier to implement a specific templating technology specific servlet.
-- [handlebars](handlebars) : View templating servlet implementations based on [core](core) submodule.
+- [handlebars](handlebars) : View templating servlet implementations for Handlebars based on [core](core) submodule.
+- [thymeleaf](thymeleaf) : View templating servlet implementations for Thymeleaf based on [core](core) submodule.
 - ... (other submodules will come for other view templating technologies. e.g, Velocity, Thymeleaf, etc.)
 
 ## [core](core) submodule
@@ -25,6 +26,7 @@ Features supported at the moment:
 TODOs:
 - Add JavaDocs.
 - Add Project Site documentation.
+- Utility Classes to use JSTL tag libraries and functions? And those can be easily used in each template technologies as models, etc.
 - ...
 
 ## [handlebars](handlebars) submodule
