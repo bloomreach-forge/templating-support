@@ -138,6 +138,17 @@
     -->
     <load-on-startup>200</load-on-startup>
   </servlet>
+
+  <servlet>
+    <servlet-name>handlebars</servlet-name>
+    <servlet-class>org.onehippo.forge.templating.support.handlebars.servlet.HandlebarsHstTemplateServlet</servlet-class>
+    <init-param>
+      <param-name>cache.enabled</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <load-on-startup>200</load-on-startup>
+  </servlet>
+
   <servlet>
     <servlet-name>TemplateComposerResourceServlet</servlet-name>
     <servlet-class>org.onehippo.cms7.utilities.servlet.ResourceServlet</servlet-class>
@@ -183,6 +194,11 @@
   <servlet-mapping>
     <servlet-name>freemarker</servlet-name>
     <url-pattern>*.ftl</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>handlebars</servlet-name>
+    <url-pattern>*.hbs</url-pattern>
   </servlet-mapping>
 
   <servlet-mapping>

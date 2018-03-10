@@ -10,7 +10,7 @@ definitions:
         hst:renderpath: webfile:/freemarker/templatingsupportdemo/base-top-menu.ftl
       /base-footer:
         jcr:primaryType: hst:template
-        hst:renderpath: webfile:/freemarker/templatingsupportdemo/base-footer.ftl
+        hst:renderpath: webfile:/hbs/templatingsupportdemo/base-footer.hbs
       /homepage-main:
         jcr:primaryType: hst:template
         hst:renderpath: webfile:/freemarker/templatingsupportdemo/homepage-main.ftl

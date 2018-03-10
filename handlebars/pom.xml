@@ -36,6 +36,18 @@
     </dependency>
 
     <dependency>
+      <groupId>javax.jcr</groupId>
+      <artifactId>jcr</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.onehippo.cms7</groupId>
+      <artifactId>hippo-repository-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
       <groupId>org.onehippo.forge.templating-support</groupId>
       <artifactId>templating-support-core</artifactId>
       <version>${project.version}</version>
@@ -45,6 +57,18 @@
       <groupId>com.github.jknack</groupId>
       <artifactId>handlebars</artifactId>
       <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>org.onehippo.cms7.hst</groupId>
+      <artifactId>hst-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.onehippo.cms7.hst</groupId>
+      <artifactId>hst-commons</artifactId>
+      <scope>provided</scope>
     </dependency>
 
     <dependency>
