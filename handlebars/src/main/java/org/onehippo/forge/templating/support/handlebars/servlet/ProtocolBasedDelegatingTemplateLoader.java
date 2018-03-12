@@ -25,13 +25,31 @@ import org.slf4j.LoggerFactory;
 import com.github.jknack.handlebars.io.TemplateLoader;
 import com.github.jknack.handlebars.io.TemplateSource;
 
+/**
+ * Protocol based delegating {@link TemplateLoader} implementation.
+ * For example, if a given template path is "webfile:/a/b/c.hbs", then "webfile:" is regardes as its protocol.
+ */
 public class ProtocolBasedDelegatingTemplateLoader implements TemplateLoader {
 
     private static Logger log = LoggerFactory.getLogger(ProtocolBasedDelegatingTemplateLoader.class);
 
+    /**
+     * Protocols array, which must be paired with {@link #templateLoaders} with the same size and in the same order.
+     */
     private final String[] protocols;
+
+    /**
+     * Delegating {@link TemplateLoader} instances array, which must be paired with {@link #protocols} with the
+     * same size and in the same order.
+     */
     private final TemplateLoader[] templateLoaders;
 
+    /**
+     * Construct a delegating {@link TemplateLoader} based on the given map with pairs of protocol and corresponding
+     * delegating {@link TemplateLoader} instance
+     * @param protocolTemplateLoadersMap map with pairs of protocol and corresponding delegating {@link TemplateLoader}
+     * instance.
+     */
     public ProtocolBasedDelegatingTemplateLoader(final Map<String, TemplateLoader> protocolTemplateLoadersMap) {
         if (protocolTemplateLoadersMap == null) {
             throw new IllegalArgumentException("protocolTemplateLoadersMap shouldn't be null.");

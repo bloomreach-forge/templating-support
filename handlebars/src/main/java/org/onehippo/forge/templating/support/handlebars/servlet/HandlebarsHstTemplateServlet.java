@@ -37,15 +37,28 @@ import com.github.jknack.handlebars.io.ClassPathTemplateLoader;
 import com.github.jknack.handlebars.io.ServletContextTemplateLoader;
 import com.github.jknack.handlebars.io.TemplateLoader;
 
+/**
+ * Handlebars specific Templating Support Servlet for Hippo CMS Delivery tier web application.
+ */
 public class HandlebarsHstTemplateServlet extends AbstractHstTemplateServlet {
 
     public static final long serialVersionUID = 1L;
 
-    private static final String PARAM_CACHE_ENABLED = "cache.enabled";
+    /**
+     * Servlet context init param name for whether or not the template cache should be enabled.
+     */
+    public static final String PARAM_CACHE_ENABLED = "cache.enabled";
 
     private static Logger log = LoggerFactory.getLogger(HandlebarsHstTemplateServlet.class);
 
+    /**
+     * Handlebars instance.
+     */
     private Handlebars handlebars;
+
+    /**
+     * Template cache.
+     */
     private TemplateCache templateCache;
 
     @Override
@@ -78,6 +91,17 @@ public class HandlebarsHstTemplateServlet extends AbstractHstTemplateServlet {
         }
     }
 
+    /**
+     * Create a template loader. This method is invoked by {@link #initializeTemplateEngine(ServletConfig)} during
+     * the initialization phase.
+     * <p>
+     * By default, this method instantiates an {@link ProtocolBasedDelegatingTemplateLoader} which should be able
+     * to handle webfiles or classpath or servlet path based templates by delegating based on the protocol used in
+     * the template path.
+     * @param config ServletConfig instance
+     * @return Handlebars' {@link TemplateLoader} instance.
+     * @throws ServletException if servlet exception occurs.
+     */
     protected TemplateLoader createTemplateLoader(ServletConfig config) throws ServletException {
         final Map<String, TemplateLoader> prefixTemplateLoadersMap = new LinkedHashMap<>();
         prefixTemplateLoadersMap.put(WEB_FILE_TEMPLATE_PROTOCOL, new WebfileTemplateLoader(""));
@@ -88,6 +112,16 @@ public class HandlebarsHstTemplateServlet extends AbstractHstTemplateServlet {
         return templateLoader;
     }
 
+    /**
+     * Create a Handlebars' {@link TemplateCache} instance. This method is invoked by {@link #initializeTemplateEngine(ServletConfig)}
+     * during the initialization phase.
+     * <p>
+     * By default, this method simply instantiates a {@link ConcurrentMapTemplateCache} if {@link #PARAM_CACHE_ENABLED}
+     * servlet init parameter is set to "true".
+     * @param config ServletConfig instance
+     * @return Handlebars' {@link TemplateCache} instance.
+     * @throws ServletException if servlet exception occurs.
+     */
     protected TemplateCache createTemplateCache(ServletConfig config) throws ServletException {
         if (BooleanUtils.toBoolean(config.getInitParameter(PARAM_CACHE_ENABLED))) {
             return new ConcurrentMapTemplateCache();

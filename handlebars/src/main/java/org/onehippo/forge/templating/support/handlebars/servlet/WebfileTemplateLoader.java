@@ -27,12 +27,22 @@ import com.github.jknack.handlebars.io.AbstractTemplateLoader;
 import com.github.jknack.handlebars.io.StringTemplateSource;
 import com.github.jknack.handlebars.io.TemplateSource;
 
+/**
+ * Hippo CMS' webfile template loader implementation.
+ */
 public class WebfileTemplateLoader extends AbstractTemplateLoader {
 
     private static Logger log = LoggerFactory.getLogger(WebfileTemplateLoader.class);
 
+    /**
+     * Suffix that should be appended to the given template path when resolving the webfile's JCR path.
+     */
     private final String suffix;
 
+    /**
+     * Construct WebfileTemplateLoader with the suffix.
+     * @param suffix Suffix that should be appended to the given template path when resolving the webfile's JCR path
+     */
     public WebfileTemplateLoader(final String suffix) {
         this.suffix = suffix;
     }

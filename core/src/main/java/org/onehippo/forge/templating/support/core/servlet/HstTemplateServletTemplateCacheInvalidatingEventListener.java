@@ -26,11 +26,21 @@ import org.hippoecm.hst.core.jcr.GenericEventListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Generic JCR Observation Event Listener implementation, listening on HST template configuration changes
+ * and webfiles changes, which looks up all the servlet instances extending {@link AbstractHstTemplateServlet}
+ * from the servlet context attribute and invokes {@link AbstractHstTemplateServlet#clearTemplateCache()} operations
+ * to give the templating engine specific servlet implementations a chance to clear their own template caches if
+ * needed.
+ */
 public class HstTemplateServletTemplateCacheInvalidatingEventListener extends GenericEventListener
         implements ComponentManagerAware {
 
     private static Logger log = LoggerFactory.getLogger(HstTemplateServletTemplateCacheInvalidatingEventListener.class);
 
+    /**
+     * HST ComponentManager.
+     */
     private ComponentManager componentManager;
 
     @Override

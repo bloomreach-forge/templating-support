@@ -39,16 +39,31 @@ import org.onehippo.repository.util.JcrConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Various utilities to handle template sources stored in JCR.
+ */
 public class JcrTemplateSourceUtils {
 
     private static Logger log = LoggerFactory.getLogger(JcrTemplateSourceUtils.class);
 
+    /**
+     * An allowed template source binary data's mime type in Hippo Repository.
+     */
     private final static String TEMPLATE_BINARY_MIMETYPE = "application/octet-stream";
+
+    /**
+     * An allowed template source binary data's mime type in Hippo Repository.
+     */
     private final static String HTML_TEMPLATE_MIMETYPE = "text/html";
 
     private JcrTemplateSourceUtils() {
     }
 
+    /**
+     * Convert the given logical {@code templateLocation} to a JCR webfile node path.
+     * @param templateLocation logical template location
+     * @return A JCR webfile node path converted from the given logical {@code templateLocation}
+     */
     public static String getWebFileJcrPath(final String templateLocation) {
         if (templateLocation == null) {
             return null;
@@ -62,6 +77,12 @@ public class JcrTemplateSourceUtils {
                 + PathUtils.normalizePath(templateLocation);
     }
 
+    /**
+     * Read the JCR node or property designated by the given {@code jcrTemplatePath} and return its content as string.
+     * @param jcrTemplatePath JCR template node or property path
+     * @return String content from the JCR node or property designated by the given {@code jcrTemplatePath}
+     * @throws RepositoryException if repository exception occurs
+     */
     public static String getTemplateSourceContent(final String jcrTemplatePath) throws RepositoryException {
         Session session = null;
 
@@ -83,6 +104,12 @@ public class JcrTemplateSourceUtils {
         return null;
     }
 
+    /**
+     * Read the JCR node or property, {@code templateItem}, and return its content as string.
+     * @param templateItem the JCR node or property containing the template content
+     * @return String content from the JCR node or property containing the template content
+     * @throws RepositoryException if repository exception occurs
+     */
     public static String getTemplateSourceContent(final Item templateItem) throws RepositoryException {
         if (templateItem.isNode()) {
             final Node templateNode = (Node) templateItem;
