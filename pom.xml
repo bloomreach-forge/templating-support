@@ -70,6 +70,7 @@
 
     <extension.wagon-svn.version>1.9</extension.wagon-svn.version>
 
+    <thymeleaf.version>3.0.9.RELEASE</thymeleaf.version>
   </properties>
 
   <licenses>
@@ -183,6 +184,13 @@
         <groupId>com.github.jknack</groupId>
         <artifactId>handlebars</artifactId>
         <version>${handlebars.version}</version>
+        <optional>true</optional>
+      </dependency>
+
+      <dependency>
+        <groupId>org.thymeleaf</groupId>
+        <artifactId>thymeleaf</artifactId>
+        <version>${thymeleaf.version}</version>
         <optional>true</optional>
       </dependency>
 
