@@ -25,6 +25,8 @@ import org.thymeleaf.templateresolver.TemplateResolution;
 import javax.servlet.ServletConfig;
 import java.util.Map;
 
+import static org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet.*;
+
 public class WebfilesTemplateResolver implements ITemplateResolver {
 
 
@@ -44,6 +46,11 @@ public class WebfilesTemplateResolver implements ITemplateResolver {
 
     @Override
     public TemplateResolution resolveTemplate(final IEngineConfiguration configuration, final String ownerTemplate, final String template, final Map<String, Object> templateResolutionAttributes) {
-        return new TemplateResolution(new WebfileTemplateResource(configuration, template), TemplateMode.HTML, CACHED);
+        if (template.startsWith(WEB_FILE_TEMPLATE_PROTOCOL) ) {
+            return new TemplateResolution(new WebfileTemplateResource(configuration, template), TemplateMode.HTML, CACHED);
+        }
+        //TODO check owner template
+        
+        return null;
     }
 }
