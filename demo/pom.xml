@@ -96,7 +96,11 @@
         <artifactId>templating-support-handlebars</artifactId>
         <version>${forge.templating-support.version}</version>
       </dependency>
-
+      <dependency>
+        <groupId>org.onehippo.forge.templating-support</groupId>
+        <artifactId>templating-support-thymeleaf</artifactId>
+        <version>${forge.templating-support.version}</version>
+      </dependency>
       <dependency>
         <groupId>com.github.jknack</groupId>
         <artifactId>handlebars</artifactId>

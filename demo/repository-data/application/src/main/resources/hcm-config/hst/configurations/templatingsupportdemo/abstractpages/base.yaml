@@ -14,7 +14,8 @@ definitions:
         hst:referencecomponent: base/top
       /footer:
         jcr:primaryType: hst:component
-        hst:template: base-footer
+        hst:template: base-footer-thymeleaf
+        hst:componentclassname: org.onehippo.forge.templating.support.demo.components.DemoDataComponent
         /container:
           jcr:primaryType: hst:containercomponentreference
           hst:referencecomponent: base/footer

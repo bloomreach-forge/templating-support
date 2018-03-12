@@ -67,6 +67,7 @@ public class HstTemplateServletTemplateCacheInvalidatingEventListener extends Ge
             return;
         }
 
+        @SuppressWarnings("unchecked")
         Map<String, AbstractHstTemplateServlet> templatingServletMap = (Map<String, AbstractHstTemplateServlet>) componentManager
                 .getServletContext().getAttribute(AbstractHstTemplateServlet.CONTEXT_ATTRIBUTE_TEMPLATING_SERVLET_MAP);
 

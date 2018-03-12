@@ -280,6 +280,7 @@
   <modules>
     <module>core</module>
     <module>handlebars</module>
+    <module>thymeleaf</module>
   </modules>
 
   <reporting>
