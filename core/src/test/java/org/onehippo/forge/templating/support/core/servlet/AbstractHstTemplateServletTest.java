@@ -18,7 +18,6 @@ package org.onehippo.forge.templating.support.core.servlet;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.jcr.observation.Event;
 import javax.jcr.observation.EventIterator;
@@ -46,17 +45,15 @@ public class AbstractHstTemplateServletTest {
     private MockServletContext servletContext;
     private AbstractHstTemplateServlet servlet1;
     private AbstractHstTemplateServlet servlet2;
-    private Map<String, Boolean> servletNameTemplateEngineInitMap;
+    private Map<String, Boolean> servletNameTemplateEngineInitMap = new HashMap<>();
 
     private HstTemplateServletTemplateCacheInvalidatingEventListener eventListener;
     private ComponentManager componentManager;
-    private AtomicInteger clearTemplateCacheInvocationCount = new AtomicInteger();
+    private Map<String, Boolean> servletNameClearTemplateCacheMap = new HashMap<>();
 
     @Before
     public void setUp() throws Exception {
         servletContext = new MockServletContext();
-
-        servletNameTemplateEngineInitMap = new HashMap<>();
 
         servlet1 = new MyExampleHstTemplateServlet();
 
@@ -129,8 +126,6 @@ public class AbstractHstTemplateServletTest {
 
     @Test
     public void testHstTemplateServletTemplateCacheInvalidatingEventListener() throws Exception {
-        clearTemplateCacheInvocationCount.set(0);
-
         Event event = EasyMock.createNiceMock(Event.class);
         EasyMock.replay(event);
         int eventItCount = 0;
@@ -141,7 +136,10 @@ public class AbstractHstTemplateServletTest {
         EasyMock.replay(eventIt);
 
         eventListener.onEvent(eventIt);
-        assertEquals(2, clearTemplateCacheInvocationCount.get());
+
+        assertEquals(2, servletNameClearTemplateCacheMap.size());
+        assertTrue(servletNameClearTemplateCacheMap.get("servlet-1"));
+        assertTrue(servletNameClearTemplateCacheMap.get("servlet-2"));
     }
 
     private class MyExampleHstTemplateServlet extends AbstractHstTemplateServlet {
@@ -167,7 +165,7 @@ public class AbstractHstTemplateServletTest {
 
         @Override
         protected void clearTemplateCache() {
-            clearTemplateCacheInvocationCount.incrementAndGet();
+            servletNameClearTemplateCacheMap.put(getServletConfig().getServletName(), Boolean.TRUE);
         }
     }
 }
