@@ -21,7 +21,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.IContext;
-import org.thymeleaf.context.WebContext;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
 import javax.servlet.ServletConfig;
@@ -37,6 +36,7 @@ public class ThymeleafHstTemplateServlet extends AbstractHstTemplateServlet {
 
     private TemplateEngine engine;
     private String webResourcePrefix;
+
     @Override
     protected void initializeTemplateEngine(final ServletConfig config) {
         engine = new TemplateEngine();
@@ -55,7 +55,7 @@ public class ThymeleafHstTemplateServlet extends AbstractHstTemplateServlet {
 
     @Override
     protected Object createTemplateContext(final HttpServletRequest request, final HttpServletResponse response) {
-        return new WebContext(request, response, getServletContext());
+        return new HippoThymeleafContext(request, response, getServletContext());
     }
 
     @Override
