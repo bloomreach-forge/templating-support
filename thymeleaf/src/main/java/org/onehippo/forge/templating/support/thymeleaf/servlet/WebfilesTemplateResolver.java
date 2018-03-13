@@ -43,8 +43,20 @@ public class WebfilesTemplateResolver extends ThymeleafTemplateResolver {
         if (template.startsWith(WEB_FILE_TEMPLATE_PROTOCOL) ) {
             return new TemplateResolution(new WebfileTemplateResource(configuration, template), TemplateMode.HTML, CACHED);
         }
-        //TODO check owner template
-        
+        if(ownerTemplate != null && ownerTemplate.startsWith(WEB_FILE_TEMPLATE_PROTOCOL)){
+            return new TemplateResolution(new WebfileTemplateResource(configuration, createFragmentPath(ownerTemplate, template)), TemplateMode.HTML, CACHED);
+        }
         return null;
+    }
+
+    private String createFragmentPath(final String ownerTemplate, final String template) {
+        if (template.startsWith("/")) {
+            return WEB_FILE_TEMPLATE_PROTOCOL + template;
+        }
+        final String webPath = ownerTemplate.substring(0, ownerTemplate.lastIndexOf('/')) + '/' + template;
+        if (webPath.endsWith(".html")) {
+            return webPath;
+        }
+        return webPath + ".html";
     }
 }

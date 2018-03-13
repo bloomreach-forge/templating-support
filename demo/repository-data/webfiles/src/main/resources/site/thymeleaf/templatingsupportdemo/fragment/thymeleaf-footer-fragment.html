@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <!--
   Copyright 2018 Hippo B.V. (http://www.onehippo.com)
 
@@ -12,8 +14,12 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
- -->
-<div class="text-center" xmlns:th="http://www.thymeleaf.org">
-  <span th:text="${user != null} ? 'Hello from thmeleaf webfiles: '+ ${user.name} : 'hello anonymous from thymeleaf webfiles'"></span>
-  <div th:insert="fragment/thymeleaf-footer-fragment :: footerFragment"></div>
+  -->
+
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="footerFragment">
+ Hello from thymeleaf footer fragment
 </div>
+</body>
+</html>
