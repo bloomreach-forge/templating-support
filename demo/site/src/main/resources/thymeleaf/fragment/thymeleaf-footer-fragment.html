@@ -18,7 +18,8 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-<div th:fragment="footerFragment">
+<div class="thymeleaf-classpath-fragment" th:fragment="footerFragment">
+ <link rel="stylesheet" th:href="@{thymeleaf-classpath-fragment.css}" type="text/css"/>
  Hello from thymeleaf footer fragment classpath
 </div>
 </body>

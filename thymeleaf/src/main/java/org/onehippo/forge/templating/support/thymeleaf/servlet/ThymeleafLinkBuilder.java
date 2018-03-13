@@ -20,6 +20,7 @@ import org.hippoecm.hst.configuration.HstNodeTypes;
 import org.hippoecm.hst.configuration.site.HstSite;
 import org.hippoecm.hst.configuration.sitemap.HstSiteMapItem;
 import org.hippoecm.hst.core.linking.HstLink;
+import org.hippoecm.hst.core.linking.HstLinkCreator;
 import org.hippoecm.hst.core.request.HstRequestContext;
 import org.hippoecm.hst.core.request.ResolvedMount;
 import org.hippoecm.hst.util.HstRequestUtils;
@@ -76,18 +77,38 @@ public class ThymeleafLinkBuilder implements ILinkBuilder {
 
         final TemplateData templateData = stack.get(0);
         final String template = templateData.getTemplate();
-        if (template != null && template.startsWith(WEB_FILE_TEMPLATE_PROTOCOL)) {
-            try {
-                return createWebfileLink(ctx, createAbsolutePath(stack, base));
-            } catch (JspException e) {
-                log.error("Error creating path", e);
+        if (template != null) {
+            if (template.startsWith(WEB_FILE_TEMPLATE_PROTOCOL)) {
+                try {
+                    return createWebfileLink(ctx, createAbsolutePath(stack, base, WEB_FILE_TEMPLATE_PROTOCOL));
+                } catch (JspException e) {
+                    log.error("Error creating path", e);
+                }
+            } else if (template.startsWith(CLASSPATH_TEMPLATE_PROTOCOL)) {
+
+                return createLink(ctx, createAbsolutePath(stack, base, CLASSPATH_TEMPLATE_PROTOCOL));
             }
         }
-        return base;
+        return createLink(ctx, createAbsolutePath(stack, base, ""));
+
+    }
+
+    private String createLink(final WebEngineContext ctx, final String path) {
+        log.info("ctx {}", ctx);
+
+        final HttpServletRequest servletRequest = ctx.getRequest();
+        final HstRequestContext reqContext = HstRequestUtils.getHstRequestContext(servletRequest);
+        final HstLinkCreator creator = reqContext.getHstLinkCreator();
+        final HstLink link = creator.create(path, reqContext.getResolvedMount().getMount());
+        if (link != null) {
+            return link.getPath();
+        }
+        
+        return path;
     }
 
 
-    private String createAbsolutePath(final List<TemplateData> stack, final String base) {
+    private String createAbsolutePath(final List<TemplateData> stack, final String base, final String protocol) {
         if (base.startsWith("/")) {
             return base;
         }
@@ -95,8 +116,8 @@ public class ThymeleafLinkBuilder implements ILinkBuilder {
         String path = "";
         for (TemplateData templateData : stack) {
             final String template = templateData.getTemplate();
-            if (prefix.length() == 0 && template.startsWith(WEB_FILE_TEMPLATE_PROTOCOL)) {
-                prefix = template.substring(WEB_FILE_TEMPLATE_PROTOCOL.length(), template.lastIndexOf('/'));
+            if (prefix.length() == 0 && template.startsWith(protocol)) {
+                prefix = template.substring(protocol.length(), template.lastIndexOf('/'));
                 path = prefix;
                 continue;
             }
@@ -114,6 +135,7 @@ public class ThymeleafLinkBuilder implements ILinkBuilder {
         return path + '/' + base;
     }
 
+    // NOTE: forked from HST webfiles link tag, removed JSP related code...
     private String createWebfileLink(final WebEngineContext ctx, final String path) throws JspException {
 
 
