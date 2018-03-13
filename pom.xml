@@ -59,6 +59,7 @@
     <plugin.release.version>2.5</plugin.release.version>
     <plugin.resources.version>2.6</plugin.resources.version>
     <plugin.site.version>3.6</plugin.site.version>
+    <maven.doxia-module-markdown.version>1.7</maven.doxia-module-markdown.version>
     <plugin.source.version>2.2.1</plugin.source.version>
     <plugin.surefire.version>2.17</plugin.surefire.version>
     <plugin.surefire-report.version>2.17</plugin.surefire-report.version>
@@ -113,18 +114,22 @@
     <url>https://issues.onehippo.com/projects/HIPFORGE</url>
   </issueManagement>
 
-  <!--
   <ciManagement>
     <system>Travic CI</system>
     <url>https://travis-ci.org/onehippo-forge/templating-support</url>
   </ciManagement>
-  -->
 
   <repositories>
     <repository>
       <id>hippo</id>
       <name>Hippo Maven 2 Repository</name>
       <url>http://maven.onehippo.com/maven2/</url>
+    </repository>
+    <repository>
+      <id>hippo-maven2-forge</id>
+      <name>Hippo Maven 2 Forge Repository</name>
+      <url>http://maven.onehippo.com/maven2-forge/</url>
+      <snapshots />
     </repository>
   </repositories>
 
@@ -281,6 +286,7 @@
         <artifactId>maven-jxr-plugin</artifactId>
         <version>${plugin.jxr.version}</version>
       </plugin>
+      <!--
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-pmd-plugin</artifactId>
@@ -291,6 +297,7 @@
           <targetJdk>${project.build.javaVersion}</targetJdk>
         </configuration>
       </plugin>
+      -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
@@ -366,6 +373,13 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
         <version>${plugin.site.version}</version>
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.maven.doxia</groupId>
+            <artifactId>doxia-module-markdown</artifactId>
+            <version>${maven.doxia-module-markdown.version}</version>
+          </dependency>
+        </dependencies>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -406,6 +420,13 @@
             <configuration>
               <outputDirectory>docs</outputDirectory>
             </configuration>
+            <dependencies>
+              <dependency>
+                <groupId>org.apache.maven.doxia</groupId>
+                <artifactId>doxia-module-markdown</artifactId>
+                <version>${maven.doxia-module-markdown.version}</version>
+              </dependency>
+            </dependencies>
           </plugin>
         </plugins>
       </build>
