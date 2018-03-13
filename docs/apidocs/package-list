@@ -1,0 +1,3 @@
+org.onehippo.forge.templating.support.core.servlet
+org.onehippo.forge.templating.support.core.util
+org.onehippo.forge.templating.support.handlebars.servlet
