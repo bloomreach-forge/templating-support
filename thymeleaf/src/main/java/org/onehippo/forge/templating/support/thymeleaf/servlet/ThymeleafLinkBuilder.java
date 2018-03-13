@@ -94,8 +94,6 @@ public class ThymeleafLinkBuilder implements ILinkBuilder {
     }
 
     private String createLink(final WebEngineContext ctx, final String path) {
-        log.info("ctx {}", ctx);
-
         final HttpServletRequest servletRequest = ctx.getRequest();
         final HstRequestContext reqContext = HstRequestUtils.getHstRequestContext(servletRequest);
         final HstLinkCreator creator = reqContext.getHstLinkCreator();
