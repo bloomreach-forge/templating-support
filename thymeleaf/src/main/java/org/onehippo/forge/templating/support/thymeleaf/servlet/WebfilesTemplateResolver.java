@@ -27,17 +27,11 @@ import java.util.Map;
 
 import static org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet.*;
 
-public class WebfilesTemplateResolver implements ITemplateResolver {
-
-
-    private static final AlwaysValidCacheEntryValidity CACHED = new AlwaysValidCacheEntryValidity();
-
-    public WebfilesTemplateResolver(final ServletConfig config) {
-
-    }
+public class WebfilesTemplateResolver extends ThymeleafTemplateResolver {
+    
 
     @Override public String getName() {
-        return null;
+        return "WebfilesTemplateResolver";
     }
 
     @Override public Integer getOrder() {

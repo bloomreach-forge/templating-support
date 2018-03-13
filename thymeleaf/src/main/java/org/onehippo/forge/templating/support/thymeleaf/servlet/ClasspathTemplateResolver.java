@@ -27,17 +27,10 @@ import java.util.Map;
 
 import static org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet.*;
 
-public class ClasspathTemplateResolver implements ITemplateResolver {
-
-
-    private static final AlwaysValidCacheEntryValidity CACHED = new AlwaysValidCacheEntryValidity();
-
-    public ClasspathTemplateResolver(final ServletConfig config) {
-
-    }
-
+public class ClasspathTemplateResolver extends ThymeleafTemplateResolver {
+    
     @Override public String getName() {
-        return null;
+        return "ClasspathTemplateResolver";
     }
 
     @Override public Integer getOrder() {

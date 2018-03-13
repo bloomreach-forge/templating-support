@@ -27,17 +27,13 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 
-public class ServletTemplateResource implements ITemplateResource {
+public class ServletTemplateResource extends ThymeleafTemplateResource {
 
 
     private static final Logger log = LoggerFactory.getLogger(ServletTemplateResource.class);
 
-    private final IEngineConfiguration configuration;
-    private final String template;
-
     public ServletTemplateResource(final IEngineConfiguration configuration, final String template) {
-        this.configuration = configuration;
-        this.template = template;
+        super(configuration, template);
     }
 
     @Override public String getDescription() {

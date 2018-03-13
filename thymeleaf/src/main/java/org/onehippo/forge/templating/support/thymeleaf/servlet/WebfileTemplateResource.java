@@ -27,17 +27,13 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 
-public class WebfileTemplateResource implements ITemplateResource {
+public class WebfileTemplateResource extends ThymeleafTemplateResource {
 
 
     private static final Logger log = LoggerFactory.getLogger(WebfileTemplateResource.class);
 
-    private final IEngineConfiguration configuration;
-    private final String template;
-
     public WebfileTemplateResource(final IEngineConfiguration configuration, final String template) {
-        this.configuration = configuration;
-        this.template = template;
+        super(configuration, template);
     }
 
     @Override public String getDescription() {
@@ -52,7 +48,7 @@ public class WebfileTemplateResource implements ITemplateResource {
         return false;
     }
 
-    @Override public Reader reader() throws IOException {
+    @Override public Reader reader() {
         final String jcrTemplatePath = JcrTemplateSourceUtils.getWebFileJcrPath(template);
 
         try {

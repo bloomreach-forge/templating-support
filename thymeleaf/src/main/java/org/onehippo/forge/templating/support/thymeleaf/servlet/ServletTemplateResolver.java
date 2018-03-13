@@ -27,19 +27,11 @@ import java.util.Map;
 
 import static org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet.*;
 
-public class ServletTemplateResolver implements ITemplateResolver {
+public class ServletTemplateResolver extends ThymeleafTemplateResolver {
 
-
-    private final static String PREFIX = "";
-    private static final AlwaysValidCacheEntryValidity CACHED = new AlwaysValidCacheEntryValidity();
-
-    public ServletTemplateResolver(final ServletConfig config) {
-
-
-    }
 
     @Override public String getName() {
-        return null;
+        return "ServletTemplateResolver";
     }
 
     @Override public Integer getOrder() {

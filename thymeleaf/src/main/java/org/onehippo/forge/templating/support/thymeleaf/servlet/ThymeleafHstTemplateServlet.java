@@ -43,24 +43,27 @@ public class ThymeleafHstTemplateServlet extends AbstractHstTemplateServlet {
     @Override protected void initializeTemplateEngine(final ServletConfig config) {
         engine = new TemplateEngine();
         final Set<ITemplateResolver> resolvers = new HashSet<>();
-        resolvers.add(new WebfilesTemplateResolver(config));
-        resolvers.add(new ClasspathTemplateResolver(config));
-        resolvers.add(new ServletTemplateResolver(config));
+        resolvers.add(new WebfilesTemplateResolver());
+        resolvers.add(new ClasspathTemplateResolver());
+        resolvers.add(new ServletTemplateResolver());
         engine.setTemplateResolvers(resolvers);
     }
 
 
     @Override
-    protected Object createTemplateContext(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
+    protected Object createTemplateContext(final HttpServletRequest request, final HttpServletResponse response) {
         return new WebContext(request, response, getServletContext());
     }
 
     @Override
-    protected void processTemplate(final HttpServletRequest request, final HttpServletResponse response, final String templatePath, final Object context) throws ServletException, IOException {
-        final String process = engine.process(templatePath, (IContext) context);
-        log.debug("process {}", process);
-        final PrintWriter writer = response.getWriter();
-        writer.write(process);
-        writer.flush();
+    protected void processTemplate(final HttpServletRequest request, final HttpServletResponse response, final String templatePath, final Object context) throws IOException {
+        engine.process(templatePath, (IContext) context, response.getWriter());
+    }
+
+    @Override
+    protected void clearTemplateCache() {
+        if (engine != null) {
+            engine.clearTemplateCache();
+        }
     }
 }
