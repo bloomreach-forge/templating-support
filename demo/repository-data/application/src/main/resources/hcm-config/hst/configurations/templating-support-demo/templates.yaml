@@ -38,3 +38,9 @@ definitions:
       /base-footer-thymeleaf:
         jcr:primaryType: hst:template
         hst:renderpath: webfile:/thymeleaf/templatingsupportdemo/base-footer-thymeleaf.html
+      /base-footer-thymeleaf-classpath:
+        jcr:primaryType: hst:template
+        hst:renderpath: classpath:/thymeleaf/base-footer-thymeleaf.html
+      /base-footer-thymeleaf-servlet:
+        jcr:primaryType: hst:template
+        hst:renderpath: /thymeleaf/base-footer-thymeleaf.html

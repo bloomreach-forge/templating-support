@@ -20,17 +20,14 @@ import org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateSer
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.context.Context;
 import org.thymeleaf.context.IContext;
 import org.thymeleaf.context.WebContext;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
 import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -39,9 +36,14 @@ public class ThymeleafHstTemplateServlet extends AbstractHstTemplateServlet {
     private static final Logger log = LoggerFactory.getLogger(ThymeleafHstTemplateServlet.class);
 
     private TemplateEngine engine;
-
-    @Override protected void initializeTemplateEngine(final ServletConfig config) {
+    private String webResourcePrefix;
+    @Override
+    protected void initializeTemplateEngine(final ServletConfig config) {
         engine = new TemplateEngine();
+        final String resourcePrefix = config.getInitParameter("webResourcePrefix");
+        if (resourcePrefix != null) {
+            webResourcePrefix = resourcePrefix;
+        }
         final Set<ITemplateResolver> resolvers = new HashSet<>();
         resolvers.add(new WebfilesTemplateResolver());
         resolvers.add(new ClasspathTemplateResolver());
@@ -57,7 +59,15 @@ public class ThymeleafHstTemplateServlet extends AbstractHstTemplateServlet {
 
     @Override
     protected void processTemplate(final HttpServletRequest request, final HttpServletResponse response, final String templatePath, final Object context) throws IOException {
-        engine.process(templatePath, (IContext) context, response.getWriter());
+        log.debug("Processing template: {}", templatePath);
+        engine.process(withPrefix(templatePath), (IContext) context, response.getWriter());
+    }
+
+    private String withPrefix(final String templatePath) {
+        if (webResourcePrefix == null) {
+            return templatePath;
+        }
+        return webResourcePrefix + templatePath;
     }
 
     @Override

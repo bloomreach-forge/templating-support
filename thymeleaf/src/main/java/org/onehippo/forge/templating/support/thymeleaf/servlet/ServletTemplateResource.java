@@ -16,16 +16,16 @@
 
 package org.onehippo.forge.templating.support.thymeleaf.servlet;
 
-import org.onehippo.forge.templating.support.core.util.JcrTemplateSourceUtils;
+import org.hippoecm.hst.container.RequestContextProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.thymeleaf.IEngineConfiguration;
 import org.thymeleaf.templateresource.ITemplateResource;
 
-import javax.jcr.RepositoryException;
-import java.io.IOException;
+import javax.servlet.ServletContext;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Reader;
-import java.io.StringReader;
 
 public class ServletTemplateResource extends ThymeleafTemplateResource {
 
@@ -48,22 +48,14 @@ public class ServletTemplateResource extends ThymeleafTemplateResource {
         return false;
     }
 
-    @Override public Reader reader() throws IOException {
-        final String jcrTemplatePath = JcrTemplateSourceUtils.getWebFileJcrPath(template);
-
-        try {
-            final String sourceContent = JcrTemplateSourceUtils.getTemplateSourceContent(jcrTemplatePath);
-            if (sourceContent == null) {
-                log.warn("Empty content for: {}", template);
-                return new StringReader("");
-            }
-            return new StringReader(sourceContent);
-        } catch (RepositoryException e) {
-            log.warn("Cannot load template for {}.", template);
+    @Override public Reader reader() {
+        final ServletContext servletContext = RequestContextProvider.get().getServletContext();
+        final InputStream stream = servletContext.getResourceAsStream(template);
+        if (stream == null) {
+            log.warn("No web resource found for:{}", template);
+            return null;
         }
-
-
-        return null;
+        return new InputStreamReader(stream);
     }
 
     @Override public ITemplateResource relative(final String relativeLocation) {

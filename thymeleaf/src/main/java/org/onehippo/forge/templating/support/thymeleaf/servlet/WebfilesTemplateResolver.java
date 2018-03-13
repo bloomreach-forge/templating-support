@@ -17,12 +17,9 @@
 package org.onehippo.forge.templating.support.thymeleaf.servlet;
 
 import org.thymeleaf.IEngineConfiguration;
-import org.thymeleaf.cache.AlwaysValidCacheEntryValidity;
 import org.thymeleaf.templatemode.TemplateMode;
-import org.thymeleaf.templateresolver.ITemplateResolver;
 import org.thymeleaf.templateresolver.TemplateResolution;
 
-import javax.servlet.ServletConfig;
 import java.util.Map;
 
 import static org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet.*;
@@ -44,19 +41,10 @@ public class WebfilesTemplateResolver extends ThymeleafTemplateResolver {
             return new TemplateResolution(new WebfileTemplateResource(configuration, template), TemplateMode.HTML, CACHED);
         }
         if(ownerTemplate != null && ownerTemplate.startsWith(WEB_FILE_TEMPLATE_PROTOCOL)){
-            return new TemplateResolution(new WebfileTemplateResource(configuration, createFragmentPath(ownerTemplate, template)), TemplateMode.HTML, CACHED);
+            return new TemplateResolution(new WebfileTemplateResource(configuration, createWebfileFragmentPath(ownerTemplate, template)), TemplateMode.HTML, CACHED);
         }
         return null;
     }
 
-    private String createFragmentPath(final String ownerTemplate, final String template) {
-        if (template.startsWith("/")) {
-            return WEB_FILE_TEMPLATE_PROTOCOL + template;
-        }
-        final String webPath = ownerTemplate.substring(0, ownerTemplate.lastIndexOf('/')) + '/' + template;
-        if (webPath.endsWith(".html")) {
-            return webPath;
-        }
-        return webPath + ".html";
-    }
+
 }

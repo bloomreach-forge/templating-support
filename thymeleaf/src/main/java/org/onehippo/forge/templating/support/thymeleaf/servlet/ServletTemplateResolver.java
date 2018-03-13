@@ -17,15 +17,10 @@
 package org.onehippo.forge.templating.support.thymeleaf.servlet;
 
 import org.thymeleaf.IEngineConfiguration;
-import org.thymeleaf.cache.AlwaysValidCacheEntryValidity;
 import org.thymeleaf.templatemode.TemplateMode;
-import org.thymeleaf.templateresolver.ITemplateResolver;
 import org.thymeleaf.templateresolver.TemplateResolution;
 
-import javax.servlet.ServletConfig;
 import java.util.Map;
-
-import static org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet.*;
 
 public class ServletTemplateResolver extends ThymeleafTemplateResolver {
 
@@ -35,14 +30,15 @@ public class ServletTemplateResolver extends ThymeleafTemplateResolver {
     }
 
     @Override public Integer getOrder() {
-        return 2;
+        return 3;
     }
 
     @Override
     public TemplateResolution resolveTemplate(final IEngineConfiguration configuration, final String ownerTemplate, final String template, final Map<String, Object> templateResolutionAttributes) {
-        if (template.startsWith(WEB_FILE_TEMPLATE_PROTOCOL) || template.startsWith(CLASSPATH_TEMPLATE_PROTOCOL)) {
-            return null;
+        if (ownerTemplate != null) {
+            return new TemplateResolution(new ServletTemplateResource(configuration, createResourceFragmentPath(ownerTemplate, template)), TemplateMode.HTML, CACHED);
         }
         return new TemplateResolution(new ServletTemplateResource(configuration, template), TemplateMode.HTML, CACHED);
+
     }
 }

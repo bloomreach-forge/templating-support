@@ -20,14 +20,19 @@
         <div class="col-md-6 col-md-offset-3">
           <@hst.include ref="menu"/>
         </div>
+        
       </div>
       <div class="row">
         <@hst.include ref="main"/>
       </div>
       <div class="row">
-        <@hst.include ref="footer"/>
+        <@hst.include ref="footer-handlebars"/>
+        <@hst.include ref="footer-thymeleaf"/>
+        <@hst.include ref="footer-thymeleaf-servlet"/>
+        <@hst.include ref="footer-thymeleaf-classpath"/>
       </div>
     </div>
+    
     <@hst.headContributions categoryIncludes="htmlBodyEnd, scripts" xhtml=true/>
   </body>
 </html>

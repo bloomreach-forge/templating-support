@@ -19,9 +19,38 @@ package org.onehippo.forge.templating.support.thymeleaf.servlet;
 import org.thymeleaf.cache.AlwaysValidCacheEntryValidity;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
+import static org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet.*;
+
 public abstract class ThymeleafTemplateResolver implements ITemplateResolver {
 
     protected static final AlwaysValidCacheEntryValidity CACHED = new AlwaysValidCacheEntryValidity();
 
+    protected String createClassFragmentPath(final String ownerTemplate, final String template) {
+        return createFragmentPath(ownerTemplate, template, CLASSPATH_TEMPLATE_PROTOCOL);
+    }
+
+    protected String createResourceFragmentPath(final String ownerTemplate, final String template) {
+        return createFragmentPath(ownerTemplate, template, "");
+    }
+
+    protected String createWebfileFragmentPath(final String ownerTemplate, final String template) {
+        return createFragmentPath(ownerTemplate, template, WEB_FILE_TEMPLATE_PROTOCOL);
+    }
+
+    private String createFragmentPath(final String ownerTemplate, final String template, final String protocol) {
+        if (template.startsWith("/")) {
+            final String path = protocol + template;
+            return createExtension(path);
+        }
+        final String webPath = ownerTemplate.substring(0, ownerTemplate.lastIndexOf('/')) + '/' + template;
+        return createExtension(webPath);
+    }
+
+    private String createExtension(final String webPath) {
+        if (webPath.endsWith(".html")) {
+            return webPath;
+        }
+        return webPath + ".html";
+    }
 
 }

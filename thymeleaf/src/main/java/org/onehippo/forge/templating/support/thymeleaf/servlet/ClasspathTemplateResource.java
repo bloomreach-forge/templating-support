@@ -16,21 +16,22 @@
 
 package org.onehippo.forge.templating.support.thymeleaf.servlet;
 
-import org.onehippo.forge.templating.support.core.util.JcrTemplateSourceUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.thymeleaf.IEngineConfiguration;
 import org.thymeleaf.templateresource.ITemplateResource;
 
-import javax.jcr.RepositoryException;
-import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Reader;
-import java.io.StringReader;
+
+import static org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet.*;
 
 public class ClasspathTemplateResource extends ThymeleafTemplateResource {
 
 
     private static final Logger log = LoggerFactory.getLogger(ClasspathTemplateResource.class);
+    private static final int SUBSTRING_SIZE = CLASSPATH_TEMPLATE_PROTOCOL.length();
 
     public ClasspathTemplateResource(final IEngineConfiguration configuration, final String template) {
         super(configuration, template);
@@ -49,23 +50,15 @@ public class ClasspathTemplateResource extends ThymeleafTemplateResource {
     }
 
     @Override public Reader reader()  {
-        final String jcrTemplatePath = JcrTemplateSourceUtils.getWebFileJcrPath(template);
+        final String classPath = template.substring(SUBSTRING_SIZE);
 
-        try {
-            final String sourceContent = JcrTemplateSourceUtils.getTemplateSourceContent(jcrTemplatePath);
-            if (sourceContent == null) {
-                log.warn("Empty content for: {}", template);
-                return new StringReader("");
-            }
-            return new StringReader(sourceContent);
-        } catch (RepositoryException e) {
-            log.warn("Cannot load template for {}.", template);
+        final InputStream stream = getClass().getResourceAsStream(classPath);
+        if (stream == null) {
+            log.warn("No classpath resource found for:{} ({})", template, classPath);
+            return null;
         }
-
-
-        return null;
+        return  new InputStreamReader(stream);
     }
-
     @Override public ITemplateResource relative(final String relativeLocation) {
         return null;
     }

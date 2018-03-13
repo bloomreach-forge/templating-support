@@ -17,12 +17,9 @@
 package org.onehippo.forge.templating.support.thymeleaf.servlet;
 
 import org.thymeleaf.IEngineConfiguration;
-import org.thymeleaf.cache.AlwaysValidCacheEntryValidity;
 import org.thymeleaf.templatemode.TemplateMode;
-import org.thymeleaf.templateresolver.ITemplateResolver;
 import org.thymeleaf.templateresolver.TemplateResolution;
 
-import javax.servlet.ServletConfig;
 import java.util.Map;
 
 import static org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet.*;
@@ -34,7 +31,7 @@ public class ClasspathTemplateResolver extends ThymeleafTemplateResolver {
     }
 
     @Override public Integer getOrder() {
-        return 3;
+        return 2;
     }
 
     @Override
@@ -42,6 +39,10 @@ public class ClasspathTemplateResolver extends ThymeleafTemplateResolver {
         if (template.startsWith(CLASSPATH_TEMPLATE_PROTOCOL)) {
             return new TemplateResolution(new ClasspathTemplateResource(configuration, template), TemplateMode.HTML, CACHED);
         }
+        if (ownerTemplate != null && ownerTemplate.startsWith(CLASSPATH_TEMPLATE_PROTOCOL)) {
+            return new TemplateResolution(new ClasspathTemplateResource(configuration, createClassFragmentPath(ownerTemplate, template)), TemplateMode.HTML, CACHED);
+        }
         return null;
     }
+
 }
