@@ -35,7 +35,7 @@
 
     <hippo.repository.version>5.1.0</hippo.repository.version>
     <hippo.hst.version>5.1.0</hippo.hst.version>
-
+    <hippo.services.version>4.2.0</hippo.services.version>
     <handlebars.version>4.0.6</handlebars.version>
 
     <commons-lang.version>2.6</commons-lang.version>
@@ -71,6 +71,7 @@
     <extension.wagon-svn.version>1.9</extension.wagon-svn.version>
 
     <thymeleaf.version>3.0.9.RELEASE</thymeleaf.version>
+    <jsp-api.version>2.2</jsp-api.version>
   </properties>
 
   <licenses>
@@ -144,6 +145,25 @@
         <version>${servlet-api.version}</version>
         <scope>provided</scope>
       </dependency>
+      <dependency>
+        <groupId>javax.servlet.jsp</groupId>
+        <artifactId>jsp-api</artifactId>
+        <version>${jsp-api.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.onehippo.cms7.hst</groupId>
+        <artifactId>hst-client</artifactId>
+        <version>${hippo.hst.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.onehippo.cms7</groupId>
+        <artifactId>hippo-services</artifactId>
+        <version>${hippo.services.version}</version>
+        <scope>provided</scope>
+      </dependency>
+
 
       <dependency>
         <groupId>javax.jcr</groupId>

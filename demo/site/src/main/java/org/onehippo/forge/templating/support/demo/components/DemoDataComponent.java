@@ -16,8 +16,10 @@
 
 package org.onehippo.forge.templating.support.demo.components;
 
+import org.hippoecm.hst.container.RequestContextProvider;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
+import org.hippoecm.hst.core.request.HstRequestContext;
 import org.onehippo.cms7.essentials.components.CommonComponent;
 import org.onehippo.forge.templating.support.demo.beans.User;
 
@@ -26,6 +28,9 @@ public class DemoDataComponent extends CommonComponent {
     @Override public void doBeforeRender(final HstRequest request, final HstResponse response) {
         super.doBeforeRender(request, response);
         // add template data:
+        final HstRequestContext context = RequestContextProvider.get();
+        final User contextUser = new User("Context user");
+        context.setAttribute("contextUser", contextUser);
         final User user = new User("demo user");
         request.setAttribute("user", user);
     }

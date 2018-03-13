@@ -14,6 +14,7 @@
   limitations under the License.
  -->
 <div class="text-center" xmlns:th="http://www.thymeleaf.org">
-  <span th:text="${user != null} ? 'Hello from thmeleaf webfiles: '+ ${user.name} : 'hello anonymous from thymeleaf webfiles'"></span>
+  <link rel="stylesheet" th:href="@{files/thymeleaf-webfiles.css}" type="text/css"/>
+  <span class="thymeleaf-web-files" th:text="${user != null} ? 'Hello from thymeleaf webfiles: '+ ${user.name} : 'hello anonymous from thymeleaf webfiles'"></span>
   <div th:insert="fragment/thymeleaf-footer-fragment :: footerFragment"></div>
 </div>

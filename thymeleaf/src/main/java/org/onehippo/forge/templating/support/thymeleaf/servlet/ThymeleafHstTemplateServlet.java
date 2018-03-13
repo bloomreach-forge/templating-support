@@ -49,6 +49,7 @@ public class ThymeleafHstTemplateServlet extends AbstractHstTemplateServlet {
         resolvers.add(new ClasspathTemplateResolver());
         resolvers.add(new ServletTemplateResolver());
         engine.setTemplateResolvers(resolvers);
+        engine.setLinkBuilder(new ThymeleafLinkBuilder());
     }
 
 

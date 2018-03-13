@@ -24,3 +24,5 @@
 css/
 fonts/
 js/
+thymeleaf/templatingsupportdemo/files/
+thymeleaf/templatingsupportdemo/fragment/
