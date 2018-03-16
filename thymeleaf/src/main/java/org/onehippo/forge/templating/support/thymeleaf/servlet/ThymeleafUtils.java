@@ -19,10 +19,15 @@ package org.onehippo.forge.templating.support.thymeleaf.servlet;
 import org.hippoecm.hst.configuration.HstNodeTypes;
 import org.hippoecm.hst.configuration.site.HstSite;
 import org.hippoecm.hst.configuration.sitemap.HstSiteMapItem;
+import org.hippoecm.hst.container.RequestContextProvider;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.content.beans.standard.HippoHtml;
+import org.hippoecm.hst.content.rewriter.ContentRewriter;
+import org.hippoecm.hst.content.rewriter.ContentRewriterFactory;
 import org.hippoecm.hst.core.linking.HstLink;
 import org.hippoecm.hst.core.request.HstRequestContext;
 import org.hippoecm.hst.core.request.ResolvedMount;
+import org.hippoecm.hst.site.HstServices;
 import org.hippoecm.hst.util.HstRequestUtils;
 import org.hippoecm.hst.util.PathUtils;
 import org.hippoecm.hst.util.WebFileUtils;
@@ -148,5 +153,16 @@ public final class ThymeleafUtils {
 
 
         return link.toUrlForm(reqContext, false);
+    }
+
+    public static String extractHtml(final WebEngineContext ctx, final HippoHtml bean) {
+        if (bean == null) {
+            return "";
+        }
+        // TODO improve...
+        final String content = bean.getContent();
+        ContentRewriterFactory factory = HstServices.getComponentManager().getComponent(ContentRewriterFactory.class.getName());
+        final ContentRewriter<String> contentRewriter = factory.createContentRewriter();
+        return contentRewriter.rewrite(content, RequestContextProvider.get());
     }
 }

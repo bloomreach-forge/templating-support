@@ -13,9 +13,10 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 */-->
-<div class="text-center" xmlns:th="http://www.thymeleaf.org">
+<div class="text-center" xmlns:th="http://www.thymeleaf.org" xmlns:hst="http://www.onehippo.org">
   <link rel="stylesheet" th:href="@{files/thymeleaf-webfiles.css}" type="text/css"/>
   <span class="thymeleaf-web-files" th:text="${user != null} ? 'Hello from thymeleaf webfiles: '+ ${user.name} : 'hello anonymous from thymeleaf webfiles'"></span>
   <h3><span class="thymeleaf-web-files" th:text="${hstRequest.requestContext.getAttribute('contextUser') != null} ? 'Hello from thymeleaf webfiles: '+ ${hstRequest.requestContext.getAttribute('contextUser').name} : 'hello anonymous from thymeleaf webfiles'"></span></h3>
   <div th:insert="fragment/thymeleaf-footer-fragment :: footerFragment"></div>
+  <div hst:html="${document.content}"></div>
 </div>
