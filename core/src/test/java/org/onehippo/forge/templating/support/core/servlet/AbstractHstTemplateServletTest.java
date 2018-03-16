@@ -15,17 +15,6 @@
  */
 package org.onehippo.forge.templating.support.core.servlet;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.jcr.observation.Event;
-import javax.jcr.observation.EventIterator;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.easymock.EasyMock;
 import org.hippoecm.hst.core.container.ComponentManager;
 import org.junit.Before;
@@ -35,10 +24,17 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.mock.web.MockServletConfig;
 import org.springframework.mock.web.MockServletContext;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
+import javax.jcr.observation.Event;
+import javax.jcr.observation.EventIterator;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.junit.Assert.*;
 
 public class AbstractHstTemplateServletTest {
 
@@ -89,6 +85,7 @@ public class AbstractHstTemplateServletTest {
 
     @Test
     public void testContextAttributes() throws Exception {
+        @SuppressWarnings("unchecked")
         final Map<String, AbstractHstTemplateServlet> map = (Map<String, AbstractHstTemplateServlet>) servletContext
                 .getAttribute(AbstractHstTemplateServlet.CONTEXT_ATTRIBUTE_TEMPLATING_SERVLET_MAP);
         assertNotNull(map);

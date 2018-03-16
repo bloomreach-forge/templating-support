@@ -17,6 +17,7 @@
 package org.onehippo.forge.templating.support.demo.components;
 
 import org.hippoecm.hst.container.RequestContextProvider;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.hippoecm.hst.core.request.HstRequestContext;
@@ -29,9 +30,12 @@ public class DemoDataComponent extends CommonComponent {
         super.doBeforeRender(request, response);
         // add template data:
         final HstRequestContext context = RequestContextProvider.get();
+        final HippoBean document = getHippoBeanForPath("events/2018/03/breakfast", HippoBean.class);
+        request.setAttribute("document", document);
         final User contextUser = new User("Context user");
         context.setAttribute("contextUser", contextUser);
         final User user = new User("demo user");
         request.setAttribute("user", user);
+        
     }
 }
