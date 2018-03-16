@@ -18,6 +18,8 @@
   <span class="thymeleaf-web-files" th:text="${user != null} ? 'Hello from thymeleaf webfiles: '+ ${user.name} : 'hello anonymous from thymeleaf webfiles'"></span>
   <h3><span class="thymeleaf-web-files" th:text="${hstRequest.requestContext.getAttribute('contextUser') != null} ? 'Hello from thymeleaf webfiles: '+ ${hstRequest.requestContext.getAttribute('contextUser').name} : 'hello anonymous from thymeleaf webfiles'"></span></h3>
   <div th:insert="fragment/thymeleaf-footer-fragment :: footerFragment"></div>
+  <h2>Some html content:</h2>
   <div hst:html="${document.content}"></div>
+  <h2>HST include (top):</h2>
   <div hst:include="top"></div>
 </div>
