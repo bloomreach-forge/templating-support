@@ -34,6 +34,7 @@ public class ThymeleafHstDialect extends AbstractProcessorDialect {
         processors.add(new ThymeleafHstLinkAttribute(dialectPrefix));
         processors.add(new ThymeleafHstWebfilesAttribute(dialectPrefix));
         processors.add(new ThymeleafHstHtmlTag(dialectPrefix));
+        processors.add(new ThymeleafHstIncludeTag(dialectPrefix));
         return processors;
     }
 }

@@ -19,4 +19,5 @@
   <h3><span class="thymeleaf-web-files" th:text="${hstRequest.requestContext.getAttribute('contextUser') != null} ? 'Hello from thymeleaf webfiles: '+ ${hstRequest.requestContext.getAttribute('contextUser').name} : 'hello anonymous from thymeleaf webfiles'"></span></h3>
   <div th:insert="fragment/thymeleaf-footer-fragment :: footerFragment"></div>
   <div hst:html="${document.content}"></div>
+  <div hst:include="top"></div>
 </div>
