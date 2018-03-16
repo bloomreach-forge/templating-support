@@ -74,7 +74,7 @@ public class HandlebarsHstTemplateServlet extends AbstractHstTemplateServlet {
     @Override
     protected Object createTemplateContext(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        return null;
+        return new HippoHandlebarContext(request, response, request.getServletContext());
     }
 
     @Override
