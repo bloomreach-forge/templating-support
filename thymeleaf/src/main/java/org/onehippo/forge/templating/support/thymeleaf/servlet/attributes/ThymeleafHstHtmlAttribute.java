@@ -16,47 +16,26 @@
 
 package org.onehippo.forge.templating.support.thymeleaf.servlet.attributes;
 
-import org.hippoecm.hst.core.component.HstResponse;
-import org.hippoecm.hst.util.HstRequestUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.hippoecm.hst.content.beans.standard.HippoHtml;
+import org.onehippo.forge.templating.support.thymeleaf.servlet.ThymeleafUtils;
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.context.WebEngineContext;
 import org.thymeleaf.engine.AttributeName;
 import org.thymeleaf.model.IProcessableElementTag;
 import org.thymeleaf.processor.element.IElementTagStructureHandler;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+public class ThymeleafHstHtmlAttribute extends ThymeleafHstAttribute {
+    private static final String ATTR_NAME = "html";
 
-public class ThymeleafHstIncludeTag extends ThymeleafHstAttribute {
-    private static final String ATTR_NAME = "include";
-
-    private static final Logger log = LoggerFactory.getLogger(ThymeleafHstIncludeTag.class);
-
-    public ThymeleafHstIncludeTag(final String dialectPrefix) {
+    public ThymeleafHstHtmlAttribute(final String dialectPrefix) {
         super(dialectPrefix, ATTR_NAME);
     }
 
     protected void doProcess(final ITemplateContext context, final IProcessableElementTag tag, final AttributeName attributeName, final String attributeValue, final IElementTagStructureHandler structureHandler) {
-
-        final WebEngineContext ctx = (WebEngineContext) context;
-        final HttpServletRequest servletRequest = ctx.getRequest();
-        final HttpServletResponse servletResponse = ctx.getResponse();
-        final HstResponse hstResponse = HstRequestUtils.getHstResponse(servletRequest, servletResponse);
-
-        if (hstResponse == null) {
-            return;
-        }
-
-        try {
-            // TODO check HST logic
-            hstResponse.flushChildContent(attributeValue);
-        } catch (IOException e) {
-            log.error("", e);
-        }
-
-
+        final HippoHtml htmlBean = getExpression(context, attributeValue);
+        final String html = ThymeleafUtils.extractHtml((WebEngineContext) context, htmlBean);
+        structureHandler.setBody(html, false);
     }
+
+
 }
