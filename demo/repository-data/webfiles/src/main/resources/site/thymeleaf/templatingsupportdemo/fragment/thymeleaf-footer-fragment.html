@@ -21,7 +21,8 @@
 <div class="thymeleaf-web-files-fragment" th:fragment="footerFragment">
   <link rel="stylesheet" th:href="@{thymeleaf-webfiles-fragment.css}" type="text/css"/>
   Hello from thymeleaf footer fragment webfiles
-  <a hst:link="${document}" th:text="${document.title}"></a>
+  <link rel="stylesheet" hst:webFile="/thymeleaf/templatingsupportdemo/fragment/thymeleaf-webfiles-link.css" type="text/css"/>
+  <a class="thymeleaf-web-files-link" hst:link="${document}" th:text="${document.title}"></a>
 </div>
 </body>
 </html>
