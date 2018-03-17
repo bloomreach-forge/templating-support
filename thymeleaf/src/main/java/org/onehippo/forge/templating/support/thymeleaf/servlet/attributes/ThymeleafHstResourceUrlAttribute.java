@@ -16,7 +16,6 @@
 
 package org.onehippo.forge.templating.support.thymeleaf.servlet.attributes;
 
-import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.onehippo.forge.templating.support.thymeleaf.servlet.ThymeleafUtils;
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.context.WebEngineContext;
@@ -34,6 +33,4 @@ public class ThymeleafHstResourceUrlAttribute extends ThymeleafHstAttribute {
     protected void doProcess(final ITemplateContext context, final IProcessableElementTag tag, final AttributeName attributeName, final String attributeValue, final IElementTagStructureHandler structureHandler) {
         structureHandler.setAttribute("href", ThymeleafUtils.createResourceUrl((WebEngineContext) context));
     }
-
-
 }
