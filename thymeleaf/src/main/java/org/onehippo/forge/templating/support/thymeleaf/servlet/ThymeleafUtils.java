@@ -24,6 +24,8 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.hippoecm.hst.content.rewriter.ContentRewriter;
 import org.hippoecm.hst.content.rewriter.ContentRewriterFactory;
+import org.hippoecm.hst.core.component.HstResponse;
+import org.hippoecm.hst.core.component.HstURL;
 import org.hippoecm.hst.core.linking.HstLink;
 import org.hippoecm.hst.core.request.HstRequestContext;
 import org.hippoecm.hst.core.request.ResolvedMount;
@@ -56,6 +58,31 @@ public final class ThymeleafUtils {
     private ThymeleafUtils() {
     }
 
+    public static String createResourceUrl(final WebEngineContext ctx) {
+
+        final HttpServletRequest servletRequest = ctx.getRequest();
+
+        final HstResponse response = HstRequestUtils.getHstResponse(ctx.getRequest(), ctx.getResponse());
+        if (response != null) {
+            final HstURL url = response.createResourceURL();
+            return url.toString();
+        }
+        return "";
+    }
+
+    public static String createActionUrl(final WebEngineContext ctx) {
+
+        final HttpServletRequest servletRequest = ctx.getRequest();
+
+        final HstResponse response = HstRequestUtils.getHstResponse(ctx.getRequest(), ctx.getResponse());
+        if (response != null) {
+            final HstURL url = response.createActionURL();
+            return url.toString();
+        }
+        return "";
+    }
+
+
     public static String createHstLink(final WebEngineContext ctx, final HippoBean bean) {
         if (bean == null) {
             return "";
@@ -70,7 +97,7 @@ public final class ThymeleafUtils {
 
     }
 
-    public static String createWebfileLinkSilent(final WebEngineContext ctx, final String path)  {
+    public static String createWebfileLinkSilent(final WebEngineContext ctx, final String path) {
         try {
             return createWebfileLink(ctx, path);
         } catch (JspException ignore) {
