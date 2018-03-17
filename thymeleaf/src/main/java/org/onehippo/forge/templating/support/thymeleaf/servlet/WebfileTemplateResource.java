@@ -23,7 +23,6 @@ import org.thymeleaf.IEngineConfiguration;
 import org.thymeleaf.templateresource.ITemplateResource;
 
 import javax.jcr.RepositoryException;
-import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 

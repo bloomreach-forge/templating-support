@@ -41,7 +41,6 @@ public class HippoThymeleafContext extends AbstractContext implements IWebContex
     private final ServletContext servletContext;
 
 
-
     public HippoThymeleafContext(final HttpServletRequest request, final HttpServletResponse response, final ServletContext servletContext) {
         this.request = request;
         this.response = response;
@@ -80,7 +79,6 @@ public class HippoThymeleafContext extends AbstractContext implements IWebContex
     public ServletContext getServletContext() {
         return this.servletContext;
     }
-
 
 
 }

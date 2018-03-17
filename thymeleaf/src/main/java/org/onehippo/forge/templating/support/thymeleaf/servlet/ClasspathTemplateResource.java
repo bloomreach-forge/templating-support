@@ -49,7 +49,7 @@ public class ClasspathTemplateResource extends ThymeleafTemplateResource {
         return false;
     }
 
-    @Override public Reader reader()  {
+    @Override public Reader reader() {
         final String classPath = template.substring(SUBSTRING_SIZE);
 
         final InputStream stream = getClass().getResourceAsStream(classPath);
@@ -57,8 +57,9 @@ public class ClasspathTemplateResource extends ThymeleafTemplateResource {
             log.warn("No classpath resource found for:{} ({})", template, classPath);
             return null;
         }
-        return  new InputStreamReader(stream);
+        return new InputStreamReader(stream);
     }
+
     @Override public ITemplateResource relative(final String relativeLocation) {
         return null;
     }

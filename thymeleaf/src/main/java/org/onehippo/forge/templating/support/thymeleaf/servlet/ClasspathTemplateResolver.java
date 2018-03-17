@@ -25,7 +25,7 @@ import java.util.Map;
 import static org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet.*;
 
 public class ClasspathTemplateResolver extends ThymeleafTemplateResolver {
-    
+
     @Override public String getName() {
         return "ClasspathTemplateResolver";
     }

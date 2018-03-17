@@ -84,7 +84,7 @@ public class ThymeleafLinkBuilder implements ILinkBuilder {
         if (link != null) {
             return link.getPath();
         }
-        
+
         return path;
     }
 

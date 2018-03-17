@@ -25,7 +25,7 @@ import java.util.Map;
 import static org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet.*;
 
 public class WebfilesTemplateResolver extends ThymeleafTemplateResolver {
-    
+
 
     @Override public String getName() {
         return "WebfilesTemplateResolver";
@@ -37,10 +37,10 @@ public class WebfilesTemplateResolver extends ThymeleafTemplateResolver {
 
     @Override
     public TemplateResolution resolveTemplate(final IEngineConfiguration configuration, final String ownerTemplate, final String template, final Map<String, Object> templateResolutionAttributes) {
-        if (template.startsWith(WEB_FILE_TEMPLATE_PROTOCOL) ) {
+        if (template.startsWith(WEB_FILE_TEMPLATE_PROTOCOL)) {
             return new TemplateResolution(new WebfileTemplateResource(configuration, template), TemplateMode.HTML, CACHED);
         }
-        if(ownerTemplate != null && ownerTemplate.startsWith(WEB_FILE_TEMPLATE_PROTOCOL)){
+        if (ownerTemplate != null && ownerTemplate.startsWith(WEB_FILE_TEMPLATE_PROTOCOL)) {
             return new TemplateResolution(new WebfileTemplateResource(configuration, createWebfileFragmentPath(ownerTemplate, template)), TemplateMode.HTML, CACHED);
         }
         return null;
