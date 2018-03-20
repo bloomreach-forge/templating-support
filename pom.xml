@@ -40,6 +40,7 @@
 
     <commons-lang.version>2.6</commons-lang.version>
     <commons-io.version>2.5</commons-io.version>
+    <commons-collections.version>3.2.2</commons-collections.version>
 
     <spring-test.version>4.2.4.RELEASE</spring-test.version>
     <lib.junit.version>4.12</lib.junit.version>
@@ -145,25 +146,27 @@
         <version>${servlet-api.version}</version>
         <scope>provided</scope>
       </dependency>
+
       <dependency>
         <groupId>javax.servlet.jsp</groupId>
         <artifactId>jsp-api</artifactId>
         <version>${jsp-api.version}</version>
         <scope>provided</scope>
       </dependency>
+
       <dependency>
         <groupId>org.onehippo.cms7.hst</groupId>
         <artifactId>hst-client</artifactId>
         <version>${hippo.hst.version}</version>
         <scope>provided</scope>
       </dependency>
+
       <dependency>
         <groupId>org.onehippo.cms7</groupId>
         <artifactId>hippo-services</artifactId>
         <version>${hippo.services.version}</version>
         <scope>provided</scope>
       </dependency>
-
 
       <dependency>
         <groupId>javax.jcr</groupId>
@@ -224,6 +227,12 @@
             <artifactId>commons-logging</artifactId>
           </exclusion>
         </exclusions>
+      </dependency>
+
+      <dependency>
+        <groupId>commons-collections</groupId>
+        <artifactId>commons-collections</artifactId>
+        <version>${commons-collections.version}</version>
       </dependency>
 
       <dependency>

@@ -16,6 +16,7 @@
 package org.onehippo.forge.templating.support.handlebars.servlet;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -24,15 +25,19 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.collections.map.LazyMap;
 import org.apache.commons.lang3.BooleanUtils;
 import org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.github.jknack.handlebars.Context;
 import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Template;
 import com.github.jknack.handlebars.cache.ConcurrentMapTemplateCache;
 import com.github.jknack.handlebars.cache.TemplateCache;
+import com.github.jknack.handlebars.context.JavaBeanValueResolver;
+import com.github.jknack.handlebars.context.MapValueResolver;
 import com.github.jknack.handlebars.io.ClassPathTemplateLoader;
 import com.github.jknack.handlebars.io.ServletContextTemplateLoader;
 import com.github.jknack.handlebars.io.TemplateLoader;
@@ -71,10 +76,25 @@ public class HandlebarsHstTemplateServlet extends AbstractHstTemplateServlet {
         }
     }
 
+    @SuppressWarnings("rawtypes")
     @Override
     protected Object createTemplateContext(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        return new HippoHandlebarContext(request, response, request.getServletContext());
+        final Map modelMap = LazyMap.decorate(new HashMap<>(),
+                new DelegatingTransformer(
+                        new RequestAttributeMapTransformer(request),
+                        new HstDefineObjectsMapTransformer(request, response)
+                        )
+                );
+
+        final Context context = Context
+                .newBuilder(modelMap)
+                .resolver(
+                    MapValueResolver.INSTANCE,
+                    JavaBeanValueResolver.INSTANCE
+                ).build();
+
+        return context;
     }
 
     @Override

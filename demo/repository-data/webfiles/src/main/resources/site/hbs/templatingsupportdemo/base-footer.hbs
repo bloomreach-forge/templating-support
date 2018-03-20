@@ -1,12 +1,16 @@
 <div class="text-center">
-{{#if name}}
-  Hello {{name}} from base-footer.hbs!
+{{#if user}}
+  Hello {{user.name}} from base-footer.hbs!
 {{else}}
   Hello anonymous from base-footer.hbs!
 {{/if}}
 
 {{#if hstRequest}}
   The hstRequest var is also part of the base-footer.hbs!
+{{/if}}
+
+{{#if document}}
+Document's title: {{document.title}}.
 {{/if}}
 
 </div>
