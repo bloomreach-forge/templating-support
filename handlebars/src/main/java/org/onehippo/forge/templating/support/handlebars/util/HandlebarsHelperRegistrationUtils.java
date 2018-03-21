@@ -44,14 +44,35 @@ public class HandlebarsHelperRegistrationUtils {
      * @param handlebars handlebars
      * @param prefix prefix
      * @param helperSource helperSource
+     * @return handlebars
+     */
+    public static Handlebars registerHelpers(final Handlebars handlebars, final String prefix,
+            final Object helperSource) {
+        if (helperSource instanceof Class) {
+            return registerHelpers(handlebars, prefix, (Class) helperSource, null);
+        } else {
+            return registerHelpers(handlebars, prefix, helperSource.getClass(), helperSource);
+        }
+    }
+
+    /**
+     * Register all the declared methods of {@code helperClazz} as helpers with prefixing the helper names
+     * by {@code prefix} if a non-null string is provided.
+     * @param handlebars handlebars
+     * @param prefix prefix
      * @param helperClazz helperClazz
+     * @param helperSource helperSource
      * @return handlebars
      */
     @SuppressWarnings("unchecked")
     public static Handlebars registerHelpers(final Handlebars handlebars, final String prefix,
-            final Object helperSource, final Class<?> helperClazz) {
+            final Class<?> helperClazz, final Object helperSource) {
         if (helperClazz == Object.class) {
             throw new IllegalArgumentException("helperClazz cannot be java.lang.Object.");
+        }
+
+        if (helperSource != null && !helperClazz.isAssignableFrom(helperSource.getClass())) {
+            throw new IllegalArgumentException("helperSource is not a type of helperClazz.");
         }
 
         if (Enum.class.isAssignableFrom(helperClazz)) {

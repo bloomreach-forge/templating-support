@@ -118,10 +118,16 @@ public abstract class AbstractHstTemplateServlet extends HttpServlet {
 
     private void process(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String templatePath = getTemplatePath(request);
-        log.debug("Requested template {}.", templatePath);
-        Object templateContext = createTemplateContext(request, response);
-        processTemplate(request, response, templatePath, templateContext);
+        try {
+            TemplateRequestContext.reset(request, response);
+
+            String templatePath = getTemplatePath(request);
+            log.debug("Requested template {}.", templatePath);
+            Object templateContext = createTemplateContext(request, response);
+            processTemplate(request, response, templatePath, templateContext);
+        } finally {
+            TemplateRequestContext.clear();
+        }
     }
 
     /**

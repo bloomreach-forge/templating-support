@@ -30,6 +30,7 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.onehippo.forge.templating.support.core.helper.HstHtmlHelper;
 import org.onehippo.forge.templating.support.core.helper.HstLinkHelper;
+import org.onehippo.forge.templating.support.core.helper.HstURLHelper;
 import org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet;
 import org.onehippo.forge.templating.support.handlebars.util.HandlebarsHelperRegistrationUtils;
 
@@ -163,9 +164,8 @@ public class HandlebarsHstTemplateServlet extends AbstractHstTemplateServlet {
         final String hstHelpersPrefix = StringUtils.defaultString(
                 StringUtils.trim(config.getInitParameter(PARAM_HST_HELPERS_PREFIX)),
                 DEFAULT_HST_HELPERS_PREFIX);
-        HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, HstLinkHelper.INSTANCE,
-                HstLinkHelper.class);
-        HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, HstHtmlHelper.INSTANCE,
-                HstHtmlHelper.class);
+        HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, HstLinkHelper.INSTANCE);
+        HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, HstHtmlHelper.INSTANCE);
+        HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, HstURLHelper.INSTANCE);
     }
 }
