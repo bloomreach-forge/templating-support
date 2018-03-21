@@ -19,10 +19,10 @@ Document introduction: {{document.introduction}}
 Document link: <a href="{{hst:linkByHippoBean document true}}">{{hst:linkByHippoBean document true}}</a>
 News link: <a href="{{hst:linkByPath "news" false}}">{{hst:linkByPath "news" false}}</a>
 Homepage link: <a href="{{hst:linkBySiteMapItemRefId "root" false}}">{{hst:linkBySiteMapItemRefId "root" false}}</a>
-HST Render URL: {{hst:renderURL}}
-HST Action URL: {{hst:actionURL}}
-HST Resource URL: {{hst:resourceURL "aResourceID"}}
-HST ComponentRendering URL: {{hst:componentRenderingURL}}
+HST Render URL: {{hst:renderURL "a=1&b=2"}}
+HST Action URL: {{hst:actionURL "c=3&d=4&e=5"}}
+HST Resource URL: {{hst:resourceURL "aResourceID" "f=6&g=7"}}
+HST ComponentRendering URL: {{hst:componentRenderingURL null}}
 </pre>
 <p>Document content:</p>
 <div>

@@ -15,8 +15,12 @@
  */
 package org.onehippo.forge.templating.support.core.helper;
 
+import java.util.Map;
+
+import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.core.component.HstURL;
 import org.onehippo.forge.templating.support.core.servlet.TemplateRequestContext;
+import org.onehippo.forge.templating.support.core.util.QueryStringUtils;
 
 /**
  * HST URL Helper.
@@ -28,23 +32,38 @@ public class HstURLHelper {
     private HstURLHelper() {
     }
 
-    public String renderURL() {
+    public String renderURL(String paramsInQueryStringFormat) {
         final HstURL url = TemplateRequestContext.getHstResponse().createRenderURL();
+        setHstURLParameters(url, paramsInQueryStringFormat);
         return url.toString();
     }
 
-    public String actionURL() {
+    public String actionURL(String paramsInQueryStringFormat) {
         final HstURL url = TemplateRequestContext.getHstResponse().createActionURL();
+        setHstURLParameters(url, paramsInQueryStringFormat);
         return url.toString();
     }
 
-    public String resourceURL(String resourceID) {
+    public String resourceURL(String resourceID, String paramsInQueryStringFormat) {
         final HstURL url = TemplateRequestContext.getHstResponse().createResourceURL(resourceID);
+        setHstURLParameters(url, paramsInQueryStringFormat);
         return url.toString();
     }
 
-    public String componentRenderingURL() {
+    public String componentRenderingURL(String paramsInQueryStringFormat) {
         final HstURL url = TemplateRequestContext.getHstResponse().createComponentRenderingURL();
+        setHstURLParameters(url, paramsInQueryStringFormat);
         return url.toString();
+    }
+
+    private void setHstURLParameters(final HstURL url, final String paramsInQueryStringFormat) {
+        if (StringUtils.isNotBlank(paramsInQueryStringFormat)) {
+            try {
+                Map<String, String[]> paramsMap = QueryStringUtils.parse(paramsInQueryStringFormat, "UTF-8");
+                url.setParameters(paramsMap);
+            } catch (Exception e) {
+                throw new IllegalArgumentException("Invalid parameters.");
+            }
+        }
     }
 }
