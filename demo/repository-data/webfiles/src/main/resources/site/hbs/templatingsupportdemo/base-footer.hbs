@@ -4,13 +4,19 @@
 {{else}}
   Hello anonymous from base-footer.hbs!
 {{/if}}
+<br/>
 
 {{#if hstRequest}}
   The hstRequest var is also part of the base-footer.hbs!
 {{/if}}
+<br/>
 
 {{#if document}}
-Document's title: {{document.title}}.
+<pre>
+Document title: {{document.title}}</a>
+Document introduction: {{document.introduction}}
+Document content: {{document.content}}
+Document link: {{hst-linkByHippoBean document false}}
+</pre>
 {{/if}}
-
 </div>

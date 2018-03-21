@@ -27,7 +27,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections.map.LazyMap;
 import org.apache.commons.lang3.BooleanUtils;
+import org.onehippo.forge.templating.support.core.helper.HstLinkHelper;
 import org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet;
+import org.onehippo.forge.templating.support.handlebars.util.HandlebarsHelperRegistrationUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -74,25 +76,19 @@ public class HandlebarsHstTemplateServlet extends AbstractHstTemplateServlet {
         if (templateCache != null) {
             handlebars.with(templateCache);
         }
+
+        registerHelpers(handlebars);
     }
 
     @SuppressWarnings("rawtypes")
     @Override
     protected Object createTemplateContext(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        final Map modelMap = LazyMap.decorate(new HashMap<>(),
-                new DelegatingTransformer(
-                        new RequestAttributeMapTransformer(request),
-                        new HstDefineObjectsMapTransformer(request, response)
-                        )
-                );
+        final Map modelMap = LazyMap.decorate(new HashMap<>(), new DelegatingTransformer(
+                new RequestAttributeMapTransformer(request), new HstDefineObjectsMapTransformer(request, response)));
 
-        final Context context = Context
-                .newBuilder(modelMap)
-                .resolver(
-                    MapValueResolver.INSTANCE,
-                    JavaBeanValueResolver.INSTANCE
-                ).build();
+        final Context context = Context.newBuilder(modelMap)
+                .resolver(MapValueResolver.INSTANCE, JavaBeanValueResolver.INSTANCE).build();
 
         return context;
     }
@@ -148,5 +144,14 @@ public class HandlebarsHstTemplateServlet extends AbstractHstTemplateServlet {
         }
 
         return null;
+    }
+
+    /**
+     * Register helpers
+     * @param handlebars Handlebars instance
+     */
+    protected void registerHelpers(Handlebars handlebars) {
+        HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, "hst-", HstLinkHelper.INSTANCE,
+                HstLinkHelper.class);
     }
 }
