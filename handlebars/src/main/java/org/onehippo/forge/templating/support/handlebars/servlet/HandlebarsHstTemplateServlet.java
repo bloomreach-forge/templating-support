@@ -27,11 +27,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections.map.LazyMap;
 import org.apache.commons.lang3.BooleanUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.onehippo.forge.templating.support.core.helper.HstLinkHelper;
 import org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet;
 import org.onehippo.forge.templating.support.handlebars.util.HandlebarsHelperRegistrationUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.github.jknack.handlebars.Context;
 import com.github.jknack.handlebars.Handlebars;
@@ -56,7 +55,15 @@ public class HandlebarsHstTemplateServlet extends AbstractHstTemplateServlet {
      */
     public static final String PARAM_CACHE_ENABLED = "cache.enabled";
 
-    private static Logger log = LoggerFactory.getLogger(HandlebarsHstTemplateServlet.class);
+    /**
+     * Servlet context init param name for the prefix of HST related helpers.
+     */
+    public static final String PARAM_HST_HELPERS_PREFIX = "hst.helpers.prefix";
+
+    /**
+     * Default HST related helpers prefix.
+     */
+    public static final String DEFAULT_HST_HELPERS_PREFIX = "hst:";
 
     /**
      * Handlebars instance.
@@ -77,7 +84,7 @@ public class HandlebarsHstTemplateServlet extends AbstractHstTemplateServlet {
             handlebars.with(templateCache);
         }
 
-        registerHelpers(handlebars);
+        registerHelpers(config, handlebars);
     }
 
     @SuppressWarnings("rawtypes")
@@ -147,11 +154,15 @@ public class HandlebarsHstTemplateServlet extends AbstractHstTemplateServlet {
     }
 
     /**
-     * Register helpers
+     * Register default helpers.
+     * @param config ServletConfig instance
      * @param handlebars Handlebars instance
      */
-    protected void registerHelpers(Handlebars handlebars) {
-        HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, "hst-", HstLinkHelper.INSTANCE,
+    protected void registerHelpers(ServletConfig config, Handlebars handlebars) {
+        final String hstHelpersPrefix = StringUtils.defaultString(
+                StringUtils.trim(config.getInitParameter(PARAM_HST_HELPERS_PREFIX)),
+                DEFAULT_HST_HELPERS_PREFIX);
+        HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, HstLinkHelper.INSTANCE,
                 HstLinkHelper.class);
     }
 }
