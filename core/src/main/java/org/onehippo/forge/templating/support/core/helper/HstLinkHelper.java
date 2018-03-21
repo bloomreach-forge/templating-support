@@ -44,4 +44,11 @@ public class HstLinkHelper {
         final HstLink hstLink = linkCreator.create(hippoBean, requestContext);
         return hstLink.toUrlForm(requestContext, fullyQualified);
     }
+
+    public String linkBySiteMapItemRefId(String siteMapItemRefId, boolean fullyQualified) {
+        final HstRequestContext requestContext = RequestContextProvider.get();
+        final HstLinkCreator linkCreator = requestContext.getHstLinkCreator();
+        final HstLink hstLink = linkCreator.createByRefId(siteMapItemRefId, requestContext.getResolvedMount().getMount());
+        return hstLink.toUrlForm(requestContext, fullyQualified);
+    }
 }

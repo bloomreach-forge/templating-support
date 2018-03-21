@@ -1,13 +1,14 @@
-<div class="text-center">
+<hr/>
+<div>
 {{#if user}}
-  Hello {{user.name}} from base-footer.hbs!
+  Hello from Handlebars, {{user.name}}!
 {{else}}
-  Hello anonymous from base-footer.hbs!
+  Hello from Handlebars, anonymous!
 {{/if}}
 <br/>
 
 {{#if hstRequest}}
-  The hstRequest var is also part of the base-footer.hbs!
+  The <code>hstRequest</code> variable is also available!
 {{/if}}
 <br/>
 
@@ -15,8 +16,13 @@
 <pre>
 Document title: {{document.title}}</a>
 Document introduction: {{document.introduction}}
-Document content: {{document.content}}
-Document link: {{hst:linkByHippoBean document false}}
+Document link: <a href="{{hst:linkByHippoBean document true}}">{{hst:linkByHippoBean document true}}</a>
+News link: <a href="{{hst:linkByPath "news" false}}">{{hst:linkByPath "news" false}}</a>
+Homepage link: <a href="{{hst:linkBySiteMapItemRefId "root" false}}">{{hst:linkBySiteMapItemRefId "root" false}}</a>
 </pre>
+<p>Document content:</p>
+<div>
+{{{hst:htmlByHippoHtml document.content false}}}
+</div>
 {{/if}}
 </div>
