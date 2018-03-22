@@ -13,22 +13,28 @@
 <br/>
 
 {{#if document}}
-<pre>
-Document title: {{document.title}}</a>
-Document introduction: {{document.introduction}}
-Document link (relative): <a href="{{hst:linkByHippoBean document}}">{{hst:linkByHippoBean document}}</a>
-Document link (absolute): <a href="{{hst:linkByHippoBean document true}}">{{hst:linkByHippoBean document true}}</a>
-News link: <a href="{{hst:linkByPath "news"}}">{{hst:linkByPath "news"}}</a>
-Homepage link: <a href="{{hst:linkBySiteMapItemRefId "root"}}">{{hst:linkBySiteMapItemRefId "root"}}</a>
-HST Render URL: {{hst:renderURL "a=1&b=2"}}
-HST Action URL: {{hst:actionURL "c=3&d=4&e=5"}}
-HST Resource URL: {{hst:resourceURL "aResourceID"}}
-HST ComponentRendering URL: {{hst:componentRenderingURL}}
-Webfile Link: {{hst:webfileByPath "/js/bootstrap.min.js"}}
-</pre>
-<p>Document content:</p>
-<div>
-{{{hst:htmlByHippoHtml document.content false}}}
-</div>
+  <pre>
+    Document title: {{document.title}}</a>
+    Document introduction: {{document.introduction}}
+    Document link (relative): <a href="{{hst:linkByHippoBean document}}">{{hst:linkByHippoBean document}}</a>
+    Document link (absolute): <a href="{{hst:linkByHippoBean document true}}">{{hst:linkByHippoBean document true}}</a>
+    News link: <a href="{{hst:linkByPath "news"}}">{{hst:linkByPath "news"}}</a>
+    Homepage link: <a href="{{hst:linkBySiteMapItemRefId "root"}}">{{hst:linkBySiteMapItemRefId "root"}}</a>
+    HST Render URL: {{hst:renderURL "a=1&b=2"}}
+    HST Action URL: {{hst:actionURL "c=3&d=4&e=5"}}
+    HST Resource URL: {{hst:resourceURL "aResourceID"}}
+    HST ComponentRendering URL: {{hst:componentRenderingURL}}
+    Webfile Link: {{hst:webfileByPath "/js/bootstrap.min.js"}}
+  </pre>
+
+  <p>Document content:</p>
+  <div>
+    {{{hst:htmlByHippoHtml document.content false}}}
+  </div>
+
+  <p>Child footer component inclusion:</p>
+  <div>
+    {{{hst:includeChild "container"}}}
+  </div>
 {{/if}}
 </div>
