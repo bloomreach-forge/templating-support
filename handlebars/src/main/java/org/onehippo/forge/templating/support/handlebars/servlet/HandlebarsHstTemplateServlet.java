@@ -29,6 +29,7 @@ import org.apache.commons.lang.StringUtils;
 import org.onehippo.forge.templating.support.core.helper.HstHtmlHelper;
 import org.onehippo.forge.templating.support.core.helper.HstLinkHelper;
 import org.onehippo.forge.templating.support.core.helper.HstURLHelper;
+import org.onehippo.forge.templating.support.core.helper.HstWebfilesHelper;
 import org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet;
 import org.onehippo.forge.templating.support.handlebars.util.HandlebarsHelperRegistrationUtils;
 
@@ -172,5 +173,6 @@ public class HandlebarsHstTemplateServlet extends AbstractHstTemplateServlet {
         HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, HstLinkHelper.INSTANCE);
         HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, HstHtmlHelper.INSTANCE);
         HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, HstURLHelper.INSTANCE);
+        HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, HstWebfilesHelper.INSTANCE);
     }
 }
