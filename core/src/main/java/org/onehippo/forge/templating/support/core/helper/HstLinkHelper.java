@@ -15,11 +15,15 @@
  */
 package org.onehippo.forge.templating.support.core.helper;
 
+import java.util.Collections;
+
 import org.hippoecm.hst.container.RequestContextProvider;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.linking.HstLink;
 import org.hippoecm.hst.core.linking.HstLinkCreator;
 import org.hippoecm.hst.core.request.HstRequestContext;
+import org.hippoecm.hst.utils.TagUtils;
+import org.onehippo.forge.templating.support.core.servlet.TemplateRequestContext;
 
 /**
  * HST Link Creation Helper.
@@ -33,6 +37,16 @@ public class HstLinkHelper {
 
     public String linkByPath(String path, boolean fullyQualified) {
         final HstRequestContext requestContext = RequestContextProvider.get();
+
+        if (requestContext == null) {
+            try {
+                return TagUtils.createPathInfoWithoutRequestContext(path, Collections.emptyMap(),
+                        Collections.emptyList(), TemplateRequestContext.getRequest());
+            } catch (Exception e) {
+                throw new RuntimeException(e.toString(), e.getCause());
+            }
+        }
+
         final HstLinkCreator linkCreator = requestContext.getHstLinkCreator();
         final HstLink hstLink = linkCreator.create(path, requestContext.getResolvedMount().getMount());
         return hstLink.toUrlForm(requestContext, fullyQualified);

@@ -15,6 +15,8 @@
  */
 package org.onehippo.forge.templating.support.core.helper;
 
+import java.util.Collections;
+
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
@@ -26,10 +28,12 @@ import org.hippoecm.hst.core.linking.HstLink;
 import org.hippoecm.hst.core.request.HstRequestContext;
 import org.hippoecm.hst.util.PathUtils;
 import org.hippoecm.hst.util.WebFileUtils;
+import org.hippoecm.hst.utils.TagUtils;
 import org.onehippo.cms7.services.HippoServiceRegistry;
 import org.onehippo.cms7.services.webfiles.WebFileBundle;
 import org.onehippo.cms7.services.webfiles.WebFileException;
 import org.onehippo.cms7.services.webfiles.WebFilesService;
+import org.onehippo.forge.templating.support.core.servlet.TemplateRequestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,6 +55,16 @@ public class HstWebfilesHelper {
 
     public String webfileByPath(String path, boolean fullyQualified) {
         final HstRequestContext requestContext = RequestContextProvider.get();
+
+        if (requestContext == null) {
+            try {
+                return TagUtils.createPathInfoWithoutRequestContext(path, Collections.emptyMap(),
+                        Collections.emptyList(), TemplateRequestContext.getRequest());
+            } catch (Exception e) {
+                throw new RuntimeException(e.toString(), e.getCause());
+            }
+        }
+
         final String fullWebFilePath = findFullWebFilePath(requestContext, path);
 
         if (fullWebFilePath == null) {

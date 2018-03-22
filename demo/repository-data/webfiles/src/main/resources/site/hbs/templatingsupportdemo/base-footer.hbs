@@ -37,4 +37,8 @@
     {{{hst:includeChild "container"}}}
   </div>
 {{/if}}
+
+{{hst:contributeHeadElement "<meta name=\"mymeta\" content=\"Handlebars templatingis working!\"/>"}}
+{{hst:contributeHeadElement "<script>var myMessage = 'Handlebars templatingis working!'; if (console) console.log(myMessage);</script>" "js"}}
+
 </div>
