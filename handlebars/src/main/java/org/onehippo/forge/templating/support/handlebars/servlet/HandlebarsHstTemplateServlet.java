@@ -16,7 +16,6 @@
 package org.onehippo.forge.templating.support.handlebars.servlet;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -25,9 +24,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.collections.map.LazyMap;
-import org.apache.commons.lang3.BooleanUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.BooleanUtils;
+import org.apache.commons.lang.StringUtils;
 import org.onehippo.forge.templating.support.core.helper.HstHtmlHelper;
 import org.onehippo.forge.templating.support.core.helper.HstLinkHelper;
 import org.onehippo.forge.templating.support.core.helper.HstURLHelper;
@@ -93,11 +91,18 @@ public class HandlebarsHstTemplateServlet extends AbstractHstTemplateServlet {
     @Override
     protected Object createTemplateContext(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        final Map modelMap = LazyMap.decorate(new HashMap<>(), new DelegatingTransformer(
-                new RequestAttributeMapTransformer(request), new HstDefineObjectsMapTransformer(request, response)));
+        final HandlebarsContextModelMap contetModelMap =
+                new HandlebarsContextModelMap(
+                        new DelegatingTransformer(
+                                new RequestAttributeMapTransformer(request),
+                                new HstDefineObjectsMapTransformer(request, response)
+                                )
+                        );
 
-        final Context context = Context.newBuilder(modelMap)
-                .resolver(MapValueResolver.INSTANCE, JavaBeanValueResolver.INSTANCE).build();
+        final Context context =
+                Context.newBuilder(contetModelMap)
+                .resolver(MapValueResolver.INSTANCE, JavaBeanValueResolver.INSTANCE)
+                .build();
 
         return context;
     }

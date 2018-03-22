@@ -16,13 +16,14 @@
 <pre>
 Document title: {{document.title}}</a>
 Document introduction: {{document.introduction}}
-Document link: <a href="{{hst:linkByHippoBean document true}}">{{hst:linkByHippoBean document true}}</a>
-News link: <a href="{{hst:linkByPath "news" false}}">{{hst:linkByPath "news" false}}</a>
-Homepage link: <a href="{{hst:linkBySiteMapItemRefId "root" false}}">{{hst:linkBySiteMapItemRefId "root" false}}</a>
+Document link (relative): <a href="{{hst:linkByHippoBean document}}">{{hst:linkByHippoBean document}}</a>
+Document link (absolute): <a href="{{hst:linkByHippoBean document true}}">{{hst:linkByHippoBean document true}}</a>
+News link: <a href="{{hst:linkByPath "news"}}">{{hst:linkByPath "news"}}</a>
+Homepage link: <a href="{{hst:linkBySiteMapItemRefId "root"}}">{{hst:linkBySiteMapItemRefId "root"}}</a>
 HST Render URL: {{hst:renderURL "a=1&b=2"}}
 HST Action URL: {{hst:actionURL "c=3&d=4&e=5"}}
-HST Resource URL: {{hst:resourceURL "aResourceID" "f=6&g=7"}}
-HST ComponentRendering URL: {{hst:componentRenderingURL null}}
+HST Resource URL: {{hst:resourceURL "aResourceID"}}
+HST ComponentRendering URL: {{hst:componentRenderingURL}}
 </pre>
 <p>Document content:</p>
 <div>

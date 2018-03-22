@@ -21,12 +21,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
+import org.onehippo.forge.templating.support.handlebars.helper.LenientMethodHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Helper;
-import com.github.jknack.handlebars.helper.MethodHelper;
 
 /**
  * Utility to register helper functions.
@@ -124,7 +124,7 @@ public class HandlebarsHelperRegistrationUtils {
             }
 
             String helperName = StringUtils.defaultIfBlank(prefix, "") + methodName;
-            handlebars.registerHelper(helperName, new MethodHelper(method, (isStatic) ? null : helperSource));
+            handlebars.registerHelper(helperName, new LenientMethodHelper(method, (isStatic) ? null : helperSource));
         }
 
         return handlebars;
