@@ -24,11 +24,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
+import org.hippoecm.hst.util.NodeUtils;
 import org.onehippo.forge.templating.support.core.helper.HstHtmlHelper;
 import org.onehippo.forge.templating.support.core.helper.HstIncludeHelper;
 import org.onehippo.forge.templating.support.core.helper.HstLinkHelper;
+import org.onehippo.forge.templating.support.core.helper.HstMessagesHelper;
 import org.onehippo.forge.templating.support.core.helper.HstURLHelper;
 import org.onehippo.forge.templating.support.core.helper.HstWebfilesHelper;
 import org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet;
@@ -176,5 +179,8 @@ public class HandlebarsHstTemplateServlet extends AbstractHstTemplateServlet {
         HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, HstURLHelper.INSTANCE);
         HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, HstWebfilesHelper.INSTANCE);
         HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, HstIncludeHelper.INSTANCE);
+        HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, HstMessagesHelper.INSTANCE);
+        HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, PropertyUtils.class);
+        HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, NodeUtils.class);
     }
 }
