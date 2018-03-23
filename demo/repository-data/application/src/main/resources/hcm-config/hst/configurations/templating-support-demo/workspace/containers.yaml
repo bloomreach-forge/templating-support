@@ -35,6 +35,7 @@ definitions:
           jcr:primaryType: hst:containercomponent
           hst:label: Blog List Main
           hst:xtype: hst.vbox
+          hst:lastmodified: 2018-03-23T15:18:26.206+01:00
       /bloglistsidebar:
         jcr:primaryType: hst:containercomponentfolder
         /main:
@@ -42,6 +43,7 @@ definitions:
           jcr:primaryType: hst:containercomponent
           hst:label: Blog List Sidebar
           hst:xtype: hst.vbox
+          hst:lastmodified: 2018-03-23T15:18:26.206+01:00
       /blogpagesidebar:
         jcr:primaryType: hst:containercomponentfolder
         /main:
