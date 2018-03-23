@@ -32,7 +32,7 @@ public final class CmsHelper {
 
     public String createCmsEditLink(final HippoBean bean) {
         final HstRequestContext requestContext = RequestContextProvider.get();
-        if (requestContext == null || !requestContext.isCmsRequest() || bean == null) {
+        if (invalid(bean, requestContext)) {
             return "";
         }
 
@@ -40,6 +40,24 @@ public final class CmsHelper {
     }
 
     public String createManageContentComment(final HippoBean bean) {
+        final HstRequestContext requestContext = RequestContextProvider.get();
+        if (invalid(bean, requestContext)) {
+            return "";
+        }
+
         return "";
+    }
+
+    public String createCmsEditMenuLink(final HippoBean bean) {
+        final HstRequestContext requestContext = RequestContextProvider.get();
+        if (invalid(bean, requestContext)) {
+            return "";
+        }
+
+        return "";
+    }
+
+    private boolean invalid(final HippoBean bean, final HstRequestContext requestContext) {
+        return requestContext == null || !requestContext.isCmsRequest() || bean == null;
     }
 }
