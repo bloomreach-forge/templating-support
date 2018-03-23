@@ -16,9 +16,8 @@
 
 package org.onehippo.forge.templating.support.thymeleaf.servlet.attributes;
 
-import org.onehippo.forge.templating.support.thymeleaf.servlet.ThymeleafUtils;
+import org.onehippo.forge.templating.support.core.helper.HstURLHelper;
 import org.thymeleaf.context.ITemplateContext;
-import org.thymeleaf.context.WebEngineContext;
 import org.thymeleaf.engine.AttributeName;
 import org.thymeleaf.model.IProcessableElementTag;
 import org.thymeleaf.processor.element.IElementTagStructureHandler;
@@ -31,7 +30,8 @@ public class ThymeleafHstActionUrlAttribute extends ThymeleafHstAttribute {
     }
 
     protected void doProcess(final ITemplateContext context, final IProcessableElementTag tag, final AttributeName attributeName, final String attributeValue, final IElementTagStructureHandler structureHandler) {
-        structureHandler.setAttribute("action", ThymeleafUtils.createActionUrl((WebEngineContext) context));
+        final String link = HstURLHelper.INSTANCE.actionURL(attributeValue);
+        setLink(structureHandler, tag, link);
     }
 
 

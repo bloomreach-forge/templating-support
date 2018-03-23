@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.onehippo.forge.templating.support.thymeleaf.servlet;
+package org.onehippo.forge.templating.support.thymeleaf.servlet.resolvers;
 
 import org.thymeleaf.cache.AlwaysValidCacheEntryValidity;
 import org.thymeleaf.templateresolver.ITemplateResolver;

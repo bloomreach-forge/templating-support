@@ -16,22 +16,25 @@
 
 package org.onehippo.forge.templating.support.thymeleaf.servlet.attributes;
 
-import org.onehippo.forge.templating.support.core.helper.HstURLHelper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.thymeleaf.context.ITemplateContext;
-import org.thymeleaf.engine.AttributeName;
 import org.thymeleaf.model.IProcessableElementTag;
+import org.thymeleaf.processor.element.AbstractElementTagProcessor;
 import org.thymeleaf.processor.element.IElementTagStructureHandler;
+import org.thymeleaf.templatemode.TemplateMode;
 
-public class ThymeleafHstResourceUrlAttribute extends ThymeleafHstAttribute {
-    private static final String ATTR_NAME = "resourceUrl";
+public class ThymeleafHstHeadContributionInsertTag extends AbstractElementTagProcessor {
 
-
-    public ThymeleafHstResourceUrlAttribute(final String dialectPrefix) {
-        super(dialectPrefix, ATTR_NAME);
+    private static final Logger log = LoggerFactory.getLogger(ThymeleafHstHeadContributionInsertTag.class);
+    private static final String TAG_NAME = "headContribution";
+    public ThymeleafHstHeadContributionInsertTag(final String dialectPrefix) {
+        super(TemplateMode.HTML, dialectPrefix, TAG_NAME, true, null, false, 1000);
     }
 
-    protected void doProcess(final ITemplateContext context, final IProcessableElementTag tag, final AttributeName attributeName, final String attributeValue, final IElementTagStructureHandler structureHandler) {
-        final String link = HstURLHelper.INSTANCE.resourceURL(tag.getAttributeValue(ATTR_RESOURCE_ID), attributeValue);
-        setLink(structureHandler, tag, link);
+    @Override
+    protected void doProcess(final ITemplateContext context, final IProcessableElementTag tag, final IElementTagStructureHandler structureHandler) {
+        log.info("context {}", context);
+        
     }
 }

@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package org.onehippo.forge.templating.support.thymeleaf.servlet;
+package org.onehippo.forge.templating.support.thymeleaf.servlet.resolvers;
 
+import org.onehippo.forge.templating.support.thymeleaf.servlet.resources.ClasspathTemplateResource;
 import org.thymeleaf.IEngineConfiguration;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.TemplateResolution;
@@ -31,7 +32,7 @@ public class ClasspathTemplateResolver extends ThymeleafTemplateResolver {
     }
 
     @Override public Integer getOrder() {
-        return 2;
+        return 3;
     }
 
     @Override

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.onehippo.forge.templating.support.thymeleaf.servlet;
+package org.onehippo.forge.templating.support.thymeleaf.servlet.resources;
 
 import org.onehippo.forge.templating.support.core.util.JcrTemplateSourceUtils;
 import org.slf4j.Logger;

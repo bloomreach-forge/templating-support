@@ -14,25 +14,24 @@
  * limitations under the License.
  */
 
-package org.onehippo.forge.templating.support.thymeleaf.servlet;
+package org.onehippo.forge.templating.support.thymeleaf.servlet.resources;
 
-import org.hippoecm.hst.container.RequestContextProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.thymeleaf.IEngineConfiguration;
 import org.thymeleaf.templateresource.ITemplateResource;
 
-import javax.servlet.ServletContext;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.Reader;
+import java.io.StringReader;
 
-public class ServletTemplateResource extends ThymeleafTemplateResource {
+import static org.onehippo.forge.templating.support.thymeleaf.servlet.resolvers.StringTemplateResolver.*;
+
+public class StringTemplateResource extends ThymeleafTemplateResource {
 
 
-    private static final Logger log = LoggerFactory.getLogger(ServletTemplateResource.class);
+    private static final Logger log = LoggerFactory.getLogger(StringTemplateResource.class);
 
-    public ServletTemplateResource(final IEngineConfiguration configuration, final String template) {
+    public StringTemplateResource(final IEngineConfiguration configuration, final String template) {
         super(configuration, template);
     }
 
@@ -49,13 +48,10 @@ public class ServletTemplateResource extends ThymeleafTemplateResource {
     }
 
     @Override public Reader reader() {
-        final ServletContext servletContext = RequestContextProvider.get().getServletContext();
-        final InputStream stream = servletContext.getResourceAsStream(template);
-        if (stream == null) {
-            log.warn("No web resource found for:{}", template);
-            return null;
+        if (template == null) {
+            return new StringReader("");
         }
-        return new InputStreamReader(stream);
+        return new StringReader(template.substring(STRING_PROTOCOL.length(), template.length()));
     }
 
     @Override public ITemplateResource relative(final String relativeLocation) {

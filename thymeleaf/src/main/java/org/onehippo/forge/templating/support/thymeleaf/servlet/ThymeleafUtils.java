@@ -16,6 +16,7 @@
 
 package org.onehippo.forge.templating.support.thymeleaf.servlet;
 
+import org.apache.commons.io.IOUtils;
 import org.hippoecm.hst.configuration.HstNodeTypes;
 import org.hippoecm.hst.configuration.site.HstSite;
 import org.hippoecm.hst.configuration.sitemap.HstSiteMapItem;
@@ -26,6 +27,7 @@ import org.hippoecm.hst.content.rewriter.ContentRewriter;
 import org.hippoecm.hst.content.rewriter.ContentRewriterFactory;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.hippoecm.hst.core.component.HstURL;
+import org.hippoecm.hst.core.container.ContainerConstants;
 import org.hippoecm.hst.core.linking.HstLink;
 import org.hippoecm.hst.core.request.HstRequestContext;
 import org.hippoecm.hst.core.request.ResolvedMount;
@@ -40,11 +42,18 @@ import org.onehippo.cms7.services.webfiles.WebFilesService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.thymeleaf.context.WebEngineContext;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.xml.sax.InputSource;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.Reader;
+import java.io.StringReader;
 import java.util.Collections;
 
 import static org.hippoecm.hst.utils.TagUtils.*;
@@ -58,10 +67,58 @@ public final class ThymeleafUtils {
     private ThymeleafUtils() {
     }
 
+
+    public static void addHeadContribution(final WebEngineContext ctx, final String hint, final String category, final String value) {
+        final HstResponse hstResponse = HstRequestUtils.getHstResponse(ctx.getRequest(), ctx.getResponse());
+        if (hstResponse == null) {
+            return;
+        }
+        String keyHint = hint;
+        if (keyHint != null && hstResponse.containsHeadElement(keyHint)) {
+            return;
+        }
+        Element element;
+        Reader reader = null;
+
+        try {
+            String xmlText = "";
+            if (keyHint == null) {
+                keyHint = xmlText;
+
+                if (hstResponse.containsHeadElement(keyHint)) {
+                    return;
+                }
+            }
+
+            final DocumentBuilderFactory dbfac = DocumentBuilderFactory.newInstance();
+            final DocumentBuilder docBuilder = dbfac.newDocumentBuilder();
+            reader = new StringReader(xmlText);
+            final Document doc = docBuilder.parse(new InputSource(reader));
+            element = doc.getDocumentElement();
+        } catch (Exception ex) {
+            throw new IllegalArgumentException(ex);
+        } finally {
+            IOUtils.closeQuietly(reader);
+        }
+
+
+        if (element != null) {
+            if (category != null) {
+                String existingCategoryHint = element.getAttribute(ContainerConstants.HEAD_ELEMENT_CONTRIBUTION_CATEGORY_HINT_ATTRIBUTE);
+                // if there already exists category hint in the element itself, ignore category property.
+                if (existingCategoryHint == null || existingCategoryHint.isEmpty()) {
+                    element.setAttribute(ContainerConstants.HEAD_ELEMENT_CONTRIBUTION_CATEGORY_HINT_ATTRIBUTE, category);
+                }
+            }
+
+            hstResponse.addHeadElement(element, keyHint);
+        }
+
+
+    }
+
+
     public static String createResourceUrl(final WebEngineContext ctx) {
-
-        final HttpServletRequest servletRequest = ctx.getRequest();
-
         final HstResponse response = HstRequestUtils.getHstResponse(ctx.getRequest(), ctx.getResponse());
         if (response != null) {
             final HstURL url = response.createResourceURL();
@@ -71,9 +128,6 @@ public final class ThymeleafUtils {
     }
 
     public static String createActionUrl(final WebEngineContext ctx) {
-
-        final HttpServletRequest servletRequest = ctx.getRequest();
-
         final HstResponse response = HstRequestUtils.getHstResponse(ctx.getRequest(), ctx.getResponse());
         if (response != null) {
             final HstURL url = response.createActionURL();
@@ -192,4 +246,5 @@ public final class ThymeleafUtils {
         final ContentRewriter<String> contentRewriter = factory.createContentRewriter();
         return contentRewriter.rewrite(content, RequestContextProvider.get());
     }
+
 }

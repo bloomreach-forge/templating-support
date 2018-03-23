@@ -14,26 +14,25 @@
  * limitations under the License.
  */
 
-package org.onehippo.forge.templating.support.thymeleaf.servlet;
+package org.onehippo.forge.templating.support.thymeleaf.servlet.resources;
 
+import org.hippoecm.hst.container.RequestContextProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.thymeleaf.IEngineConfiguration;
 import org.thymeleaf.templateresource.ITemplateResource;
 
+import javax.servlet.ServletContext;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 
-import static org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet.*;
-
-public class ClasspathTemplateResource extends ThymeleafTemplateResource {
+public class ServletTemplateResource extends ThymeleafTemplateResource {
 
 
-    private static final Logger log = LoggerFactory.getLogger(ClasspathTemplateResource.class);
-    private static final int SUBSTRING_SIZE = CLASSPATH_TEMPLATE_PROTOCOL.length();
+    private static final Logger log = LoggerFactory.getLogger(ServletTemplateResource.class);
 
-    public ClasspathTemplateResource(final IEngineConfiguration configuration, final String template) {
+    public ServletTemplateResource(final IEngineConfiguration configuration, final String template) {
         super(configuration, template);
     }
 
@@ -50,11 +49,10 @@ public class ClasspathTemplateResource extends ThymeleafTemplateResource {
     }
 
     @Override public Reader reader() {
-        final String classPath = template.substring(SUBSTRING_SIZE);
-
-        final InputStream stream = getClass().getResourceAsStream(classPath);
+        final ServletContext servletContext = RequestContextProvider.get().getServletContext();
+        final InputStream stream = servletContext.getResourceAsStream(template);
         if (stream == null) {
-            log.warn("No classpath resource found for:{} ({})", template, classPath);
+            log.warn("No web resource found for:{}", template);
             return null;
         }
         return new InputStreamReader(stream);

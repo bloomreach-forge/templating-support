@@ -14,31 +14,38 @@
  * limitations under the License.
  */
 
-package org.onehippo.forge.templating.support.thymeleaf.servlet;
+package org.onehippo.forge.templating.support.thymeleaf.servlet.resolvers;
 
+import org.onehippo.forge.templating.support.thymeleaf.servlet.resources.WebfileTemplateResource;
 import org.thymeleaf.IEngineConfiguration;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.TemplateResolution;
 
 import java.util.Map;
 
-public class ServletTemplateResolver extends ThymeleafTemplateResolver {
+import static org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet.*;
+
+public class WebfilesTemplateResolver extends ThymeleafTemplateResolver {
 
 
     @Override public String getName() {
-        return "ServletTemplateResolver";
+        return "WebfilesTemplateResolver";
     }
 
     @Override public Integer getOrder() {
-        return 3;
+        return 1;
     }
 
     @Override
     public TemplateResolution resolveTemplate(final IEngineConfiguration configuration, final String ownerTemplate, final String template, final Map<String, Object> templateResolutionAttributes) {
-        if (ownerTemplate != null) {
-            return new TemplateResolution(new ServletTemplateResource(configuration, createResourceFragmentPath(ownerTemplate, template)), TemplateMode.HTML, CACHED);
+        if (template.startsWith(WEB_FILE_TEMPLATE_PROTOCOL)) {
+            return new TemplateResolution(new WebfileTemplateResource(configuration, template), TemplateMode.HTML, CACHED);
         }
-        return new TemplateResolution(new ServletTemplateResource(configuration, template), TemplateMode.HTML, CACHED);
-
+        if (ownerTemplate != null && ownerTemplate.startsWith(WEB_FILE_TEMPLATE_PROTOCOL)) {
+            return new TemplateResolution(new WebfileTemplateResource(configuration, createWebfileFragmentPath(ownerTemplate, template)), TemplateMode.HTML, CACHED);
+        }
+        return null;
     }
+
+
 }

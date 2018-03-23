@@ -18,6 +18,9 @@ package org.onehippo.forge.templating.support.thymeleaf.servlet;
 
 import org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet;
 import org.onehippo.forge.templating.support.thymeleaf.servlet.attributes.ThymeleafHstDialect;
+import org.onehippo.forge.templating.support.thymeleaf.servlet.resolvers.ClasspathTemplateResolver;
+import org.onehippo.forge.templating.support.thymeleaf.servlet.resolvers.ServletTemplateResolver;
+import org.onehippo.forge.templating.support.thymeleaf.servlet.resolvers.WebfilesTemplateResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.thymeleaf.TemplateEngine;

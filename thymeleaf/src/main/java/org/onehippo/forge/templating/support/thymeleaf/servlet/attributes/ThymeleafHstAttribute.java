@@ -18,7 +18,10 @@ package org.onehippo.forge.templating.support.thymeleaf.servlet.attributes;
 
 import org.thymeleaf.IEngineConfiguration;
 import org.thymeleaf.context.ITemplateContext;
+import org.thymeleaf.model.IAttribute;
+import org.thymeleaf.model.IProcessableElementTag;
 import org.thymeleaf.processor.element.AbstractAttributeTagProcessor;
+import org.thymeleaf.processor.element.IElementTagStructureHandler;
 import org.thymeleaf.standard.expression.IStandardExpression;
 import org.thymeleaf.standard.expression.IStandardExpressionParser;
 import org.thymeleaf.standard.expression.StandardExpressions;
@@ -27,6 +30,9 @@ import org.thymeleaf.templatemode.TemplateMode;
 public abstract class ThymeleafHstAttribute extends AbstractAttributeTagProcessor {
 
     private static final int PRECEDENCE = 10000;
+
+    public static final String ATTR_FULLY_QUALIFIED = "hst:fullyQualified";
+    public static final String ATTR_RESOURCE_ID = "hst:resourceId";
 
     public ThymeleafHstAttribute(final String dialectPrefix, final String attributeName) {
         super(TemplateMode.HTML, dialectPrefix, null, false, attributeName, true, PRECEDENCE, true);
@@ -38,6 +44,32 @@ public abstract class ThymeleafHstAttribute extends AbstractAttributeTagProcesso
         final IStandardExpressionParser parser = StandardExpressions.getExpressionParser(configuration);
         final IStandardExpression expression = parser.parseExpression(context, attributeValue);
         return (T) expression.execute(context);
+    }
+
+    protected boolean parseBoolean(final IAttribute attribute) {
+        if (attribute == null) {
+            return false;
+        }
+        final String value = attribute.getValue();
+        return Boolean.parseBoolean(value);
+    }
+
+    protected void setLink(final IElementTagStructureHandler structureHandler, final IProcessableElementTag tag, final String link) {
+        final String tagName = tag.getElementCompleteName();
+        switch (tagName) {
+            case "a":
+            case "link":
+                structureHandler.setAttribute("href", link);
+                break;
+            case "script":
+                structureHandler.setAttribute("src", link);
+                break;
+            case "form":
+                structureHandler.setAttribute("form", link);
+                break;
+            default:
+                structureHandler.setAttribute("href", link);
+        }
     }
 
 }
