@@ -1,14 +1,6 @@
+<h1>Facet links Thymeleaf </h1>
 <div xmlns:th="http://www.thymeleaf.org" xmlns:hst="http://www.onehippo.org">
-  <form hst:actionUrl="" method="get">
-    <div class="row form-group">
-      <div class="col-xs-8">
 
-      </div>
-      <div class="col-xs-4">
-        <button type="submit" class="btn btn-primary pull-right">Search</button>
-      </div>
-    </div>
-  </form>
 
   <ul class="nav nav-list">
     <li th:each="facetvalue : ${facets.folders}">
