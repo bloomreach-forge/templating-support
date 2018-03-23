@@ -17,7 +17,7 @@
 package org.onehippo.forge.templating.support.thymeleaf.servlet.attributes;
 
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.onehippo.forge.templating.support.core.helper.CmsHelper;
+import org.onehippo.forge.templating.support.core.helper.CmsEditLinkHelper;
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.engine.AttributeName;
 import org.thymeleaf.model.IAttribute;
@@ -37,7 +37,7 @@ public class ThymeleafManageContentAttribute extends ThymeleafHstAttribute {
             return;
         }
 
-        structureHandler.setBody(CmsHelper.INSTANCE.createManageContentComment(bean,
+        structureHandler.setBody(CmsEditLinkHelper.INSTANCE.manageContentComment(bean,
                 getAttribute(tag, "hst:rootPath"),
                 getAttribute(tag, "hst:defaultPath"),
                 getAttribute(tag, "hst:parameterName"),

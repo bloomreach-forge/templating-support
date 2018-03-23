@@ -15,6 +15,21 @@
  */
 package org.onehippo.forge.templating.support.core.helper;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import javax.jcr.Node;
+import javax.jcr.PathNotFoundException;
+import javax.jcr.RepositoryException;
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.configuration.ConfigurationUtils;
 import org.hippoecm.hst.configuration.HstNodeTypes;
@@ -41,43 +56,33 @@ import org.onehippo.forge.templating.support.core.servlet.TemplateRequestContext
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.jcr.Node;
-import javax.jcr.PathNotFoundException;
-import javax.jcr.RepositoryException;
-import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServletRequest;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
-import java.util.*;
-import java.util.stream.Collectors;
-
-import static org.hippoecm.hst.core.container.ContainerConstants.*;
-import static org.hippoecm.hst.utils.TagUtils.*;
+import static org.hippoecm.hst.core.container.ContainerConstants.RENDER_VARIANT;
+import static org.hippoecm.hst.utils.TagUtils.encloseInHTMLComment;
+import static org.hippoecm.hst.utils.TagUtils.toJSONMap;
 
 /**
- * For CMS related tags
+ * For CMS Edit Link related tags.
  */
-public final class CmsHelper {
+public final class CmsEditLinkHelper {
 
-    private static final Logger log = LoggerFactory.getLogger(CmsHelper.class);
-    public static final CmsHelper INSTANCE = new CmsHelper();
+    private static final Logger log = LoggerFactory.getLogger(CmsEditLinkHelper.class);
+    public static final CmsEditLinkHelper INSTANCE = new CmsEditLinkHelper();
 
     // empty string or null?
     public static final String EMPTY_RESULT = "";
 
-    private CmsHelper() {
+    private CmsEditLinkHelper() {
     }
 
-
-    public String createCmsEditLinkAsComment(final HippoBean bean) {
-        return createCmsEditLink(bean, true);
+    public String cmsEditLinkAsComment(final HippoBean bean) {
+        return cmsEditLink(bean, true);
     }
 
-    public String createCmsEditLinkAsLink(final HippoBean bean) {
-        return createCmsEditLink(bean, false);
+    public String cmsEditLinkAsLink(final HippoBean bean) {
+        return cmsEditLink(bean, false);
     }
 
-    private String createCmsEditLink(final HippoBean bean, final boolean asComment) {
+    private String cmsEditLink(final HippoBean bean, final boolean asComment) {
         final HstRequestContext requestContext = RequestContextProvider.get();
         if (invalidCmsRequest(bean, requestContext)) {
             return "";
@@ -152,7 +157,7 @@ public final class CmsHelper {
     }
 
 
-    public String createManageContentComment(final HippoBean bean, final String rootPath, final String defaultPath, final String parameterName,final String templateQuery) {
+    public String manageContentComment(final HippoBean bean, final String rootPath, final String defaultPath, final String parameterName,final String templateQuery) {
         final HstRequestContext requestContext = RequestContextProvider.get();
         if (invalidCmsRequest(bean, requestContext)) {
             return EMPTY_RESULT;
@@ -211,7 +216,7 @@ public final class CmsHelper {
 
     }
 
-    public String createCmsEditMenuLink(final HippoBean bean) {
+    public String cmsEditMenuLink(final HippoBean bean) {
         final HstRequestContext requestContext = RequestContextProvider.get();
         if (invalidCmsRequest(bean, requestContext)) {
             return EMPTY_RESULT;
@@ -437,7 +442,7 @@ public final class CmsHelper {
      * @param <A>             the annotation, or null if the annotation could not be found
      * @return
      */
-    public static <A extends Annotation> A getParameterAnnotation(final ParametersInfo parametersInfo,
+    private static <A extends Annotation> A getParameterAnnotation(final ParametersInfo parametersInfo,
                                                                   final String parameterName,
                                                                   final Class<A> annotationClass) {
         if (parametersInfo == null || parameterName == null || annotationClass == null) {

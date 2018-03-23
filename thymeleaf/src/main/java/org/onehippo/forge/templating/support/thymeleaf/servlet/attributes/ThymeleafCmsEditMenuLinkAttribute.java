@@ -17,7 +17,7 @@
 package org.onehippo.forge.templating.support.thymeleaf.servlet.attributes;
 
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.onehippo.forge.templating.support.core.helper.CmsHelper;
+import org.onehippo.forge.templating.support.core.helper.CmsEditLinkHelper;
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.engine.AttributeName;
 import org.thymeleaf.model.IProcessableElementTag;
@@ -32,7 +32,7 @@ public class ThymeleafCmsEditMenuLinkAttribute extends ThymeleafHstAttribute {
 
     protected void doProcess(final ITemplateContext context, final IProcessableElementTag tag, final AttributeName attributeName, final String attributeValue, final IElementTagStructureHandler structureHandler) {
         final HippoBean bean = getExpression(context, attributeValue);
-        final String link = CmsHelper.INSTANCE.createCmsEditMenuLink(bean);
+        final String link = CmsEditLinkHelper.INSTANCE.cmsEditMenuLink(bean);
         setLink(structureHandler, tag, link);
 
     }

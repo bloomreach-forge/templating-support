@@ -15,6 +15,30 @@
  */
 package org.onehippo.forge.templating.support.handlebars.servlet;
 
+import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.commons.lang.BooleanUtils;
+import org.apache.commons.lang.StringUtils;
+import org.hippoecm.hst.util.NodeUtils;
+import org.onehippo.forge.templating.support.core.helper.CmsEditLinkHelper;
+import org.onehippo.forge.templating.support.core.helper.HstHeadContributionHelper;
+import org.onehippo.forge.templating.support.core.helper.HstHtmlHelper;
+import org.onehippo.forge.templating.support.core.helper.HstIncludeHelper;
+import org.onehippo.forge.templating.support.core.helper.HstLinkHelper;
+import org.onehippo.forge.templating.support.core.helper.HstMessagesHelper;
+import org.onehippo.forge.templating.support.core.helper.HstURLHelper;
+import org.onehippo.forge.templating.support.core.helper.HstWebfilesHelper;
+import org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet;
+import org.onehippo.forge.templating.support.handlebars.util.HandlebarsHelperRegistrationUtils;
+
 import com.github.jknack.handlebars.Context;
 import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Template;
@@ -25,21 +49,6 @@ import com.github.jknack.handlebars.context.MapValueResolver;
 import com.github.jknack.handlebars.io.ClassPathTemplateLoader;
 import com.github.jknack.handlebars.io.ServletContextTemplateLoader;
 import com.github.jknack.handlebars.io.TemplateLoader;
-import org.apache.commons.beanutils.PropertyUtils;
-import org.apache.commons.lang.BooleanUtils;
-import org.apache.commons.lang.StringUtils;
-import org.hippoecm.hst.util.NodeUtils;
-import org.onehippo.forge.templating.support.core.helper.*;
-import org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet;
-import org.onehippo.forge.templating.support.handlebars.util.HandlebarsHelperRegistrationUtils;
-
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 /**
  * Handlebars specific Templating Support Servlet for Hippo CMS Delivery tier web application.
@@ -174,8 +183,8 @@ public class HandlebarsHstTemplateServlet extends AbstractHstTemplateServlet {
         HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, HstIncludeHelper.INSTANCE);
         HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, HstHeadContributionHelper.INSTANCE);
         HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, HstMessagesHelper.INSTANCE);
+        HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, CmsEditLinkHelper.class);
         HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, PropertyUtils.class);
         HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, NodeUtils.class);
-        HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, CmsHelper.class);
     }
 }
