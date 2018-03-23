@@ -27,3 +27,9 @@ definitions:
     /hst:hst/hst:configurations/hst:default/hst:templates/contentpage-main:
       jcr:primaryType: hst:template
       hst:renderpath: webfile:/freemarker/hstdefault/contentpage-main.ftl
+    /hst:hst/hst:configurations/hst:default/hst:templates/facet-thymeleaf:
+      jcr:primaryType: hst:template
+      hst:renderpath: webfile:/thymeleaf/templatingsupportdemo/thymeleaf-facet.ftl
+    /hst:hst/hst:configurations/hst:default/hst:templates/facet-handlebars:
+      jcr:primaryType: hst:template
+      hst:renderpath: webfile:/hbs/templatingsupportdemo/handlebars-facet.hbs
