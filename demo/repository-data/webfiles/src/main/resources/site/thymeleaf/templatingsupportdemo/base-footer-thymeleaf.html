@@ -30,7 +30,7 @@
     HST Resource URL:  <a class="thymeleaf-web-files-link" hst:resourceUrl="aResourceID" >actionUrl</a>
     HST ComponentRendering URL:  <a class="thymeleaf-web-files-link" hst:componentRenderingURL>ComponentRendering</a>
     HST WEBFILE URL:  <a class="thymeleaf-web-files-link" th:href="@{files/thymeleaf-webfiles.css}" >Css file</a>
-
+    Manage content: <span hst:manageContent="${document}"></span>
   </pre>
   <link rel="stylesheet" th:href="@{files/thymeleaf-webfiles.css}" type="text/css"/>
   <span class="thymeleaf-web-files" th:text="${user != null} ? 'Hello from thymeleaf webfiles: '+ ${user.name} : 'hello anonymous from thymeleaf webfiles'"></span>
