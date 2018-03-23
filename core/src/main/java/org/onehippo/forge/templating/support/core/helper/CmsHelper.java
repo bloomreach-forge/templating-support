@@ -15,7 +15,9 @@
  */
 package org.onehippo.forge.templating.support.core.helper;
 
+import org.hippoecm.hst.container.RequestContextProvider;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.core.request.HstRequestContext;
 
 /**
  * For CMS related tags
@@ -27,6 +29,15 @@ public final class CmsHelper {
     private CmsHelper() {
     }
 
+
+    public String createCmsEditLink(final HippoBean bean) {
+        final HstRequestContext requestContext = RequestContextProvider.get();
+        if (requestContext == null || !requestContext.isCmsRequest() || bean == null) {
+            return "";
+        }
+
+        return "";
+    }
 
     public String createManageContentComment(final HippoBean bean) {
         return "";

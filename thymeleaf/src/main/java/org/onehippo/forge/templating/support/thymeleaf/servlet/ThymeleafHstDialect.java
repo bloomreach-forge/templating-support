@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package org.onehippo.forge.templating.support.thymeleaf.servlet.attributes;
+package org.onehippo.forge.templating.support.thymeleaf.servlet;
 
+import org.onehippo.forge.templating.support.thymeleaf.servlet.attributes.*;
 import org.thymeleaf.dialect.AbstractProcessorDialect;
 import org.thymeleaf.processor.IProcessor;
 
@@ -44,6 +45,7 @@ public class ThymeleafHstDialect extends AbstractProcessorDialect {
         processors.add(new ThymeleafHstRefItemAttribute(dialectPrefix));
         processors.add(new ThymeleafHstComponentRenderingURLAttribute(dialectPrefix));
         processors.add(new ThymeleafHstManageContentAttribute(dialectPrefix));
+        processors.add(new ThymeleafCmsEditLinkAttribute(dialectPrefix));
         return processors;
     }
 }
