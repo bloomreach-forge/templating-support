@@ -20,6 +20,7 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.onehippo.forge.templating.support.core.helper.CmsHelper;
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.engine.AttributeName;
+import org.thymeleaf.model.IAttribute;
 import org.thymeleaf.model.IProcessableElementTag;
 import org.thymeleaf.processor.element.IElementTagStructureHandler;
 
@@ -35,11 +36,23 @@ public class ThymeleafManageContentAttribute extends ThymeleafHstAttribute {
         if (bean == null) {
             return;
         }
-        structureHandler.setBody(CmsHelper.INSTANCE.createManageContentComment(bean), false);
+
+        structureHandler.setBody(CmsHelper.INSTANCE.createManageContentComment(bean,
+                getAttribute(tag, "hst:rootPath"),
+                getAttribute(tag, "hst:defaultPath"),
+                getAttribute(tag, "hst:parameterName"),
+                getAttribute(tag, "hst:templateQuery")
+        ), false);
     }
 
 
-
+    protected String getAttribute(final IProcessableElementTag tag, final String name) {
+        final IAttribute attribute = tag.getAttribute(name);
+        if (attribute == null) {
+            return null;
+        }
+        return attribute.getValue();
+    }
 
 
 

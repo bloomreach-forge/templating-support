@@ -33,6 +33,7 @@ public class ThymeleafCmsEditLinkAttribute extends ThymeleafHstAttribute {
     protected void doProcess(final ITemplateContext context, final IProcessableElementTag tag, final AttributeName attributeName, final String attributeValue, final IElementTagStructureHandler structureHandler) {
         final HippoBean bean = getExpression(context, attributeValue);
         final String link = CmsHelper.INSTANCE.createCmsEditLinkAsLink(bean);
+
         setLink(structureHandler, tag, link);
 
     }
