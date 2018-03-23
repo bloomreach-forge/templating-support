@@ -20,6 +20,7 @@ import org.hippoecm.hst.core.linking.HstLink;
 import org.hippoecm.hst.core.linking.HstLinkCreator;
 import org.hippoecm.hst.core.request.HstRequestContext;
 import org.hippoecm.hst.util.HstRequestUtils;
+import org.onehippo.forge.templating.support.core.helper.HstWebfilesHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.thymeleaf.context.IExpressionContext;
@@ -28,7 +29,6 @@ import org.thymeleaf.engine.TemplateData;
 import org.thymeleaf.linkbuilder.ILinkBuilder;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.jsp.JspException;
 import java.util.List;
 import java.util.Map;
 
@@ -62,11 +62,8 @@ public class ThymeleafLinkBuilder implements ILinkBuilder {
         final String template = templateData.getTemplate();
         if (template != null) {
             if (template.startsWith(WEB_FILE_TEMPLATE_PROTOCOL)) {
-                try {
-                    return ThymeleafUtils.createWebfileLink(ctx, createAbsolutePath(stack, base, WEB_FILE_TEMPLATE_PROTOCOL));
-                } catch (JspException e) {
-                    log.error("Error creating path", e);
-                }
+                return HstWebfilesHelper.INSTANCE.webfileByPath(createAbsolutePath(stack, base, WEB_FILE_TEMPLATE_PROTOCOL), false);
+                //return ThymeleafUtils.createWebfileLink(ctx, createAbsolutePath(stack, base, WEB_FILE_TEMPLATE_PROTOCOL));
             } else if (template.startsWith(CLASSPATH_TEMPLATE_PROTOCOL)) {
 
                 return createLink(ctx, createAbsolutePath(stack, base, CLASSPATH_TEMPLATE_PROTOCOL));

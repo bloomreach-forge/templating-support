@@ -15,21 +15,22 @@
 */-->
 <div class="text-center" xmlns:th="http://www.thymeleaf.org" xmlns:hst="http://www.onehippo.org">
   <h1> From thymeleaf:</h1>
- <pre>
+ <pre style="text-align: left">
     Document title: <span th:text="${document.title}"></span>
     Document introduction: <span th:text="${document.introduction}"></span>
 
     Document link (relative): <a class="thymeleaf-web-files-link" hst:link="${document}" th:text="${document.title}"></a>
     Document link (absolute): <a class="thymeleaf-web-files-link" hst:link="${document}" hst:fullyQualified="true" th:text="${document.title}"></a>
-    News link: <a class="thymeleaf-web-files-link" hst:linkByPath="/news"  th:text="/news"></a>
-    Homepage: <a class="thymeleaf-web-files-link" hst:linkBySiteMapItemRefId="/news"  th:text="root"></a>
-    HST Render URL: <a class="thymeleaf-web-files-link" hst:renderURL=""  th:text="renderURL"></a>
-    HST Render URL with Params:  <a class="thymeleaf-web-files-link" hst:renderURL="a=1&b=2"  th:text="renderURL with pa"></a>
+    News link: <a class="thymeleaf-web-files-link" hst:linkByPath="/news" >/news</a>
+    Homepage: <a class="thymeleaf-web-files-link" hst:linkBySiteMapItemRefId="root" >root</a>
+    HST Render URL: <a class="thymeleaf-web-files-link" hst:renderURL="">renderURL</a>
+    HST Render URL with Params:  <a class="thymeleaf-web-files-link" hst:renderURL="a=1&b=2">renderURL</a>
 
-    HST Action URL:  <a class="thymeleaf-web-files-link" hst:renderURL="a=1&b=2" th:text="renderURL with pa"></a>
-    HST Resource URL: {{hst:resourceURL "aResourceID"}}
-    HST ComponentRendering URL: {{hst:componentRenderingURL}}
-    Webfile Link: {{hst:webfileByPath "/js/bootstrap.min.js"}}
+    HST Action URL:  <a class="thymeleaf-web-files-link" hst:actionUrl="">actionUrl</a>
+    HST Resource URL:  <a class="thymeleaf-web-files-link" hst:resourceUrl="aResourceID" >actionUrl</a>
+    HST ComponentRendering URL:  <a class="thymeleaf-web-files-link" hst:componentRenderingURL>ComponentRendering</a>
+    HST WEBFILE URL:  <a class="thymeleaf-web-files-link" th:href="@{files/thymeleaf-webfiles.css}" >Css file</a>
+
   </pre>
   <link rel="stylesheet" th:href="@{files/thymeleaf-webfiles.css}" type="text/css"/>
   <span class="thymeleaf-web-files" th:text="${user != null} ? 'Hello from thymeleaf webfiles: '+ ${user.name} : 'hello anonymous from thymeleaf webfiles'"></span>

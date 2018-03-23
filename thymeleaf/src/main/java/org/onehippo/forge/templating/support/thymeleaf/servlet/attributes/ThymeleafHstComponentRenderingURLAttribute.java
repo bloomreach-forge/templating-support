@@ -16,32 +16,22 @@
 
 package org.onehippo.forge.templating.support.thymeleaf.servlet.attributes;
 
-import org.onehippo.forge.templating.support.core.helper.HstLinkHelper;
+import org.onehippo.forge.templating.support.core.helper.HstURLHelper;
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.engine.AttributeName;
-import org.thymeleaf.model.IAttribute;
 import org.thymeleaf.model.IProcessableElementTag;
 import org.thymeleaf.processor.element.IElementTagStructureHandler;
 
-public class ThymeleafHstPathAttribute extends ThymeleafHstAttribute {
-    private static final String ATTR_NAME = "linkByPath";
+public class ThymeleafHstComponentRenderingURLAttribute extends ThymeleafHstAttribute {
+    private static final String ATTR_NAME = "componentRenderingURL";
 
 
-    public ThymeleafHstPathAttribute(final String dialectPrefix) {
+    public ThymeleafHstComponentRenderingURLAttribute(final String dialectPrefix) {
         super(dialectPrefix, ATTR_NAME);
     }
 
     protected void doProcess(final ITemplateContext context, final IProcessableElementTag tag, final AttributeName attributeName, final String attributeValue, final IElementTagStructureHandler structureHandler) {
-        final String path = getExpression(context, attributeValue);
-        final IAttribute attribute = tag.getAttribute(ATTR_FULLY_QUALIFIED);
-        final boolean fullyQualified = parseBoolean(attribute);
-        final String link = HstLinkHelper.INSTANCE.linkByPath(path, fullyQualified);
+        final String link = HstURLHelper.INSTANCE.componentRenderingURL(attributeValue);
         setLink(structureHandler, tag, link);
-
     }
-
-    
-
-
-
 }

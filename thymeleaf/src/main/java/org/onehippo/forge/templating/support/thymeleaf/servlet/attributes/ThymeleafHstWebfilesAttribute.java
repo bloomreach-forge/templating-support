@@ -16,10 +16,10 @@
 
 package org.onehippo.forge.templating.support.thymeleaf.servlet.attributes;
 
-import org.onehippo.forge.templating.support.thymeleaf.servlet.ThymeleafUtils;
+import org.onehippo.forge.templating.support.core.helper.HstWebfilesHelper;
 import org.thymeleaf.context.ITemplateContext;
-import org.thymeleaf.context.WebEngineContext;
 import org.thymeleaf.engine.AttributeName;
+import org.thymeleaf.model.IAttribute;
 import org.thymeleaf.model.IProcessableElementTag;
 import org.thymeleaf.processor.element.IElementTagStructureHandler;
 
@@ -32,7 +32,10 @@ public class ThymeleafHstWebfilesAttribute extends ThymeleafHstAttribute {
     }
 
     protected void doProcess(final ITemplateContext context, final IProcessableElementTag tag, final AttributeName attributeName, final String attributeValue, final IElementTagStructureHandler structureHandler) {
-        structureHandler.setAttribute("href", ThymeleafUtils.createWebfileLinkSilent((WebEngineContext) context, attributeValue));
+        final IAttribute attribute = tag.getAttribute(ATTR_FULLY_QUALIFIED);
+        final boolean fullyQualified = parseBoolean(attribute);
+        final String link = HstWebfilesHelper.INSTANCE.webfileByPath(attributeValue, fullyQualified);
+        setLink(structureHandler, tag, link);
     }
 
 }

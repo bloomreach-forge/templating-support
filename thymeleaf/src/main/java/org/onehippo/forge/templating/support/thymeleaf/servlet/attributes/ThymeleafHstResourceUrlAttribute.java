@@ -31,7 +31,7 @@ public class ThymeleafHstResourceUrlAttribute extends ThymeleafHstAttribute {
     }
 
     protected void doProcess(final ITemplateContext context, final IProcessableElementTag tag, final AttributeName attributeName, final String attributeValue, final IElementTagStructureHandler structureHandler) {
-        final String link = HstURLHelper.INSTANCE.resourceURL(tag.getAttributeValue(ATTR_RESOURCE_ID), attributeValue);
+        final String link = HstURLHelper.INSTANCE.resourceURL(attributeValue, null);
         setLink(structureHandler, tag, link);
     }
 }

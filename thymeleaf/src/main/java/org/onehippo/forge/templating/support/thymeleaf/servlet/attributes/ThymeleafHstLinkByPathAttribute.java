@@ -16,28 +16,31 @@
 
 package org.onehippo.forge.templating.support.thymeleaf.servlet.attributes;
 
-import org.hippoecm.hst.content.beans.standard.HippoHtml;
-import org.onehippo.forge.templating.support.core.helper.HstHtmlHelper;
+import org.onehippo.forge.templating.support.core.helper.HstLinkHelper;
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.engine.AttributeName;
 import org.thymeleaf.model.IAttribute;
 import org.thymeleaf.model.IProcessableElementTag;
 import org.thymeleaf.processor.element.IElementTagStructureHandler;
 
-public class ThymeleafHstHtmlAttribute extends ThymeleafHstAttribute {
-    private static final String ATTR_NAME = "html";
+public class ThymeleafHstLinkByPathAttribute extends ThymeleafHstAttribute {
+    private static final String ATTR_NAME = "linkByPath";
 
-    public ThymeleafHstHtmlAttribute(final String dialectPrefix) {
+
+    public ThymeleafHstLinkByPathAttribute(final String dialectPrefix) {
         super(dialectPrefix, ATTR_NAME);
     }
 
     protected void doProcess(final ITemplateContext context, final IProcessableElementTag tag, final AttributeName attributeName, final String attributeValue, final IElementTagStructureHandler structureHandler) {
-        final HippoHtml htmlBean = getExpression(context, attributeValue);
         final IAttribute attribute = tag.getAttribute(ATTR_FULLY_QUALIFIED);
         final boolean fullyQualified = parseBoolean(attribute);
-        final String html = HstHtmlHelper.INSTANCE.htmlByHippoHtml(htmlBean, fullyQualified);
-        structureHandler.setBody(html, false);
+        final String link = HstLinkHelper.INSTANCE.linkByPath(attributeValue, fullyQualified);
+        setLink(structureHandler, tag, link);
+
     }
+
+    
+
 
 
 }
