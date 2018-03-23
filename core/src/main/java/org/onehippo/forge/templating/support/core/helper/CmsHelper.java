@@ -54,7 +54,13 @@ public final class CmsHelper {
     }
 
 
-    public String createCmsEditLink(final HippoBean bean) {
+    public String createCmsEditLinkAsComment(final HippoBean bean) {
+        return createCmsEditLink(bean, true);
+    }
+    public String createCmsEditLinkAsLink(final HippoBean bean) {
+        return createCmsEditLink(bean, false);
+    }
+    private String createCmsEditLink(final HippoBean bean, final boolean asComment) {
         final HstRequestContext requestContext = RequestContextProvider.get();
         if (invalid(bean, requestContext)) {
             return "";
@@ -122,8 +128,12 @@ public final class CmsHelper {
         }
         String encodedPath = EncodingUtils.getEncodedPath(nodeLocation, request);
         String cmsEditLink = cmsBaseUrl + "?path=" + encodedPath;
-        return encloseInHTMLComment(toJSONMap(getAttributeMap(cmsEditLink, nodeId)));
+        if (asComment) {
+            return encloseInHTMLComment(toJSONMap(getAttributeMap(cmsEditLink, nodeId)));
+        }
+        return cmsEditLink;
     }
+
 
     public String createManageContentComment(final HippoBean bean) {
         final HstRequestContext requestContext = RequestContextProvider.get();
