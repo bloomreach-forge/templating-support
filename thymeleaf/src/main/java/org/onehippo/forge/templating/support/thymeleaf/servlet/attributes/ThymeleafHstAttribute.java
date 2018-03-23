@@ -46,6 +46,28 @@ public abstract class ThymeleafHstAttribute extends AbstractAttributeTagProcesso
         return (T) expression.execute(context);
     }
 
+    protected <T> T getExpression(final ITemplateContext context, final IProcessableElementTag tag, final String name) {
+        final String value = getAttribute(tag, name);
+        if (value == null) {
+            return null;
+        }
+        return getExpression(context, value);
+    }
+
+
+    private String getAttribute(final IProcessableElementTag tag, final String name) {
+        final IAttribute attribute = tag.getAttribute(name);
+        if (attribute == null) {
+            return null;
+        }
+        final String value = attribute.getValue();
+        if (value == null) {
+            return null;
+        }
+        return value;
+    }
+
+    
     protected boolean parseBoolean(final IAttribute attribute) {
         if (attribute == null) {
             return false;
