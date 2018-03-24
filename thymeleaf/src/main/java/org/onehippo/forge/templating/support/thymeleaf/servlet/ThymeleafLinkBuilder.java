@@ -90,25 +90,22 @@ public class ThymeleafLinkBuilder implements ILinkBuilder {
         if (base.startsWith("/")) {
             return base;
         }
-        String prefix = "";
+        final boolean hasProtocol = protocol.length() > 0;
         String path = "";
         for (TemplateData templateData : stack) {
             final String template = templateData.getTemplate();
-            if (prefix.length() == 0 && template.startsWith(protocol)) {
-                prefix = template.substring(protocol.length(), template.lastIndexOf('/'));
-                path = prefix;
-                continue;
+            if (hasProtocol && template.startsWith(protocol)) {
+                path = template.substring(protocol.length(), template.lastIndexOf('/'));;
             }
-            if (template.startsWith("/")) {
+            else if (template.startsWith("/")) {
                 path = template.substring(0, template.lastIndexOf('/'));
-            } else if (prefix.length() > 0) {
+            } else {
                 if (template.indexOf('/') > 0) {
                     path = path + '/' + template.substring(0, template.lastIndexOf('/'));
                 } else {
                     path = path.substring(0, path.lastIndexOf('/'));
                 }
             }
-
         }
         return path + '/' + base;
     }
