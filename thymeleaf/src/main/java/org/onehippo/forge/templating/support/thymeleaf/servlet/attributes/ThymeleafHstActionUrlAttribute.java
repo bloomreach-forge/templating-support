@@ -22,7 +22,7 @@ import org.thymeleaf.engine.AttributeName;
 import org.thymeleaf.model.IProcessableElementTag;
 import org.thymeleaf.processor.element.IElementTagStructureHandler;
 
-public class ThymeleafHstActionUrlAttribute extends ThymeleafHstAttribute {
+public class ThymeleafHstActionUrlAttribute extends BaseAttributeProcessor {
     private static final String ATTR_NAME = "actionUrl";
 
     public ThymeleafHstActionUrlAttribute(final String dialectPrefix) {

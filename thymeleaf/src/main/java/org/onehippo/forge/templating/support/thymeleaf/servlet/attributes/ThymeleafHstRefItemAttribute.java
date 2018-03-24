@@ -23,7 +23,7 @@ import org.thymeleaf.model.IAttribute;
 import org.thymeleaf.model.IProcessableElementTag;
 import org.thymeleaf.processor.element.IElementTagStructureHandler;
 
-public class ThymeleafHstRefItemAttribute extends ThymeleafHstAttribute {
+public class ThymeleafHstRefItemAttribute extends BaseAttributeProcessor {
     private static final String ATTR_NAME = "linkBySiteMapItemRefId";
 
 

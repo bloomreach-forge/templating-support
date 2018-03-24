@@ -23,7 +23,7 @@ import org.thymeleaf.model.IAttribute;
 import org.thymeleaf.model.IProcessableElementTag;
 import org.thymeleaf.processor.element.IElementTagStructureHandler;
 
-public class ThymeleafHstLinkByPathAttribute extends ThymeleafHstAttribute {
+public class ThymeleafHstLinkByPathAttribute extends BaseAttributeProcessor {
     private static final String ATTR_NAME = "linkByPath";
 
 

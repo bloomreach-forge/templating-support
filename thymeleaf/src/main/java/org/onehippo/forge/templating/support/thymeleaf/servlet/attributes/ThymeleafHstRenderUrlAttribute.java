@@ -22,7 +22,7 @@ import org.thymeleaf.engine.AttributeName;
 import org.thymeleaf.model.IProcessableElementTag;
 import org.thymeleaf.processor.element.IElementTagStructureHandler;
 
-public class ThymeleafHstRenderUrlAttribute extends ThymeleafHstAttribute {
+public class ThymeleafHstRenderUrlAttribute extends BaseAttributeProcessor {
     private static final String ATTR_NAME = "renderURL";
 
 

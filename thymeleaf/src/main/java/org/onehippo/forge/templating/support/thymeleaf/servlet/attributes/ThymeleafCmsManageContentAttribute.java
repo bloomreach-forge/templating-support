@@ -24,7 +24,7 @@ import org.thymeleaf.model.IAttribute;
 import org.thymeleaf.model.IProcessableElementTag;
 import org.thymeleaf.processor.element.IElementTagStructureHandler;
 
-public class ThymeleafCmsManageContentAttribute extends ThymeleafHstAttribute {
+public class ThymeleafCmsManageContentAttribute extends BaseAttributeProcessor {
     private static final String ATTR_NAME = "manageContent";
 
     public ThymeleafCmsManageContentAttribute(final String dialectPrefix) {

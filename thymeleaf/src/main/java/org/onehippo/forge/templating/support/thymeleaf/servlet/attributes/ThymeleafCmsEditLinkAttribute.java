@@ -23,7 +23,7 @@ import org.thymeleaf.engine.AttributeName;
 import org.thymeleaf.model.IProcessableElementTag;
 import org.thymeleaf.processor.element.IElementTagStructureHandler;
 
-public class ThymeleafCmsEditLinkAttribute extends ThymeleafHstAttribute {
+public class ThymeleafCmsEditLinkAttribute extends BaseAttributeProcessor {
     private static final String ATTR_NAME = "cmsEditLink";
 
     public ThymeleafCmsEditLinkAttribute(final String dialectPrefix) {

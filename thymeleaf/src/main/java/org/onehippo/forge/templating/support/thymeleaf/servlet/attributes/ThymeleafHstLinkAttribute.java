@@ -24,7 +24,7 @@ import org.thymeleaf.model.IAttribute;
 import org.thymeleaf.model.IProcessableElementTag;
 import org.thymeleaf.processor.element.IElementTagStructureHandler;
 
-public class ThymeleafHstLinkAttribute extends ThymeleafHstAttribute {
+public class ThymeleafHstLinkAttribute extends BaseAttributeProcessor {
     private static final String ATTR_NAME = "link";
 
     public ThymeleafHstLinkAttribute(final String dialectPrefix) {

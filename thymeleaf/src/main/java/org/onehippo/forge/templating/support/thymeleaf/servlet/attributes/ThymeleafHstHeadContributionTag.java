@@ -22,24 +22,22 @@ import org.slf4j.LoggerFactory;
 import org.thymeleaf.IEngineConfiguration;
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.engine.TemplateModel;
-import org.thymeleaf.model.*;
-import org.thymeleaf.processor.element.AbstractElementModelProcessor;
+import org.thymeleaf.model.IModel;
+import org.thymeleaf.model.IProcessableElementTag;
 import org.thymeleaf.processor.element.IElementModelStructureHandler;
-import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.util.FastStringWriter;
 
 import java.io.IOException;
 import java.io.Writer;
 
-public class ThymeleafHstHeadContributionTag extends AbstractElementModelProcessor {
+public class ThymeleafHstHeadContributionTag extends BaseModelProcessor {
 
     private static final Logger log = LoggerFactory.getLogger(ThymeleafHstHeadContributionTag.class);
     private static final String TAG_NAME = "headContribution";
-    private static final EmptyWrapperTag EMPTY_WRAPPER = new EmptyWrapperTag();
-    private static final int BUFFER_SIZE = 1024;
+
 
     public ThymeleafHstHeadContributionTag(final String dialectPrefix) {
-        super(TemplateMode.HTML, dialectPrefix, TAG_NAME, true, null, false, 1000);
+        super(dialectPrefix, TAG_NAME);
     }
 
 
@@ -47,7 +45,7 @@ public class ThymeleafHstHeadContributionTag extends AbstractElementModelProcess
     protected void doProcess(final ITemplateContext context, final IModel originalModel, final IElementModelStructureHandler structureHandler) {
         String attrKeyHint = getAttribute(originalModel, "hst:keyHint");
         String attrCategory = getAttribute(originalModel, "hst:category");
-        final IModel model = wrap(originalModel);
+        final IModel model = wrapWithEmpty(originalModel);
         // remove original model:
         originalModel.reset();
         final IEngineConfiguration configuration = context.getConfiguration();
@@ -69,46 +67,5 @@ public class ThymeleafHstHeadContributionTag extends AbstractElementModelProcess
     }
     
 
-    private String getAttribute(final IModel model, final String name) {
-        final int size = model.size();
-        for (int i = 0; i < size; i++) {
-            final ITemplateEvent event = model.get(i);
-            if (event instanceof IOpenElementTag) {
-                final IOpenElementTag openElementTag = (IOpenElementTag) event;
-                final IAttribute attribute = openElementTag.getAttribute(name);
-                if (attribute != null) {
-                    return attribute.getValue();
-                }
-
-            }
-        }
-        return null;
-    }
-    private IModel wrap(IModel model) {
-        final IModel clonedModel = model.cloneModel();
-        final int size = clonedModel.size();
-        for (int i = 0; i < size; i++) {
-            final ITemplateEvent event = model.get(i);
-            if (event instanceof IOpenElementTag) {
-                clonedModel.replace(i, EMPTY_WRAPPER);
-            }
-        }
-        clonedModel.replace(model.size() - 1, EMPTY_WRAPPER);
-        return clonedModel;
-    }
-
-    private IModel removeTags(IModel model) {
-        final IModel clonedModel = model.cloneModel();
-        final int size = clonedModel.size();
-        int removed = 0;
-        for (int i = 0; i < size; i++) {
-            final ITemplateEvent event = model.get(i);
-            if (event instanceof IOpenElementTag || event instanceof ICloseElementTag) {
-                clonedModel.remove(i - removed);
-                removed++;
-            }
-        }
-        return clonedModel;
-    }
 
 }

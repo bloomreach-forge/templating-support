@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class ThymeleafHstIncludeAttribute extends ThymeleafHstAttribute {
+public class ThymeleafHstIncludeAttribute extends BaseAttributeProcessor {
     private static final String ATTR_NAME = "include";
 
     private static final Logger log = LoggerFactory.getLogger(ThymeleafHstIncludeAttribute.class);
