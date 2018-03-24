@@ -154,7 +154,7 @@ public final class CmsEditLinkHelper {
         String encodedPath = EncodingUtils.getEncodedPath(nodeLocation, request);
         String cmsEditLink = cmsBaseUrl + "?path=" + encodedPath;
 
-        if (!asComment) {
+        if (asComment) {
             return encloseInHTMLComment(toJSONMap(getAttributeMap(cmsEditLink, nodeId)));
         }
 
