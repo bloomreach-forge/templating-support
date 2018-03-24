@@ -14,13 +14,14 @@
   limitations under the License.
 */-->
 <div xmlns:th="http://www.thymeleaf.org" xmlns:hst="http://www.onehippo.org">
-
+  <!--/*@thymesVar id="document" type="org.onehippo.forge.templating.support.demo.beans.EventsDocument"*/-->
  <hr/>
 
  <h2> From thymeleaf:</h2>
 
  <pre style="text-align: left">
-    Document title: <span th:text="${document.title}"></span>
+    Document title:
+    <span th:text="${document.title}"></span>
     Document introduction: <span th:text="${document.introduction}"></span>
 
     Document link (relative): <a class="thymeleaf-web-files-link" hst:link="${document}" th:text="${document.title}"></a>
@@ -34,8 +35,9 @@
     HST Resource URL:  <a class="thymeleaf-web-files-link" hst:resourceUrl="aResourceID" >actionUrl</a>
     HST ComponentRendering URL:  <a class="thymeleaf-web-files-link" hst:componentRenderingURL>ComponentRendering</a>
     HST WEBFILE URL:  <a class="thymeleaf-web-files-link" th:href="@{files/thymeleaf-webfiles.css}" >Css file</a>
+    <a hst:linkByPath="/blog">Facets example</a>
     <!--
-      hst:facetnavigationlink, hst:setBundle
+     hst:setBundle
     -->
   </pre>
   <pre th:if="${hstRequestContext.cmsRequest}">
