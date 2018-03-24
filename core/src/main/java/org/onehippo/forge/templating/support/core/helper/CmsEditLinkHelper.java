@@ -66,26 +66,28 @@ import static org.hippoecm.hst.utils.TagUtils.toJSONMap;
 public final class CmsEditLinkHelper {
 
     private static final Logger log = LoggerFactory.getLogger(CmsEditLinkHelper.class);
+
     public static final CmsEditLinkHelper INSTANCE = new CmsEditLinkHelper();
 
-    // empty string or null?
-    public static final String EMPTY_RESULT = "";
+    // It seems okay to return null in Handlebars at least for example. Is it okay in Thymeleaf or elsewhere?
+    private static final String NO_RESULT = null;
 
     private CmsEditLinkHelper() {
     }
 
-    public String cmsEditLinkAsComment(final HippoBean bean) {
-        return cmsEditLink(bean, true);
-    }
-
-    public String cmsEditLinkAsLink(final HippoBean bean) {
-        return cmsEditLink(bean, false);
-    }
-
-    private String cmsEditLink(final HippoBean bean, final boolean asComment) {
+    /**
+     * Create CMS edit link for the {@code bean} and return it as either Link URI or HTML Comment.
+     * If {@code asComment} is true, it returns the link information as HTML comment. Otherwise, it simply returns
+     * the link URI.
+     * @param bean content bean
+     * @param asComment
+     * @return CMS edit link for the {@code bean} and return it as either Link URI or HTML Comment
+     */
+    public String cmsEditLink(final HippoBean bean, final boolean asComment) {
         final HstRequestContext requestContext = RequestContextProvider.get();
+
         if (invalidCmsRequest(bean, requestContext)) {
-            return "";
+            return NO_RESULT;
         }
 
         final Mount mount = requestContext.getResolvedMount().getMount();
@@ -94,7 +96,7 @@ public final class CmsEditLinkHelper {
         // try to find find the best cms location in case multiple ones are configured
         if (mount.getCmsLocations().isEmpty()) {
             log.warn("Skipping cms edit url no cms locations configured in hst hostgroup configuration");
-            return EMPTY_RESULT;
+            return NO_RESULT;
         }
         final HttpServletRequest request = TemplateRequestContext.getRequest();
         String cmsBaseUrl;
@@ -115,7 +117,7 @@ public final class CmsEditLinkHelper {
             Node editNode = node.getCanonicalNode();
             if (editNode == null) {
                 log.debug("Cannot create a 'surf and edit' link for a pure virtual jcr node: '{}'", node.getPath());
-                return EMPTY_RESULT;
+                return NO_RESULT;
             } else {
                 Node rootNode = editNode.getSession().getRootNode();
                 if (editNode.isSame(rootNode)) {
@@ -141,26 +143,46 @@ public final class CmsEditLinkHelper {
             }
         } catch (RepositoryException e) {
             log.error("Exception while trying to retrieve the node path for the edit location", e);
-            return EMPTY_RESULT;
+            return NO_RESULT;
         }
 
         if (nodeLocation == null) {
             log.warn("Did not find a jcr node location for the bean to create a cms edit location with. ");
-            return EMPTY_RESULT;
+            return NO_RESULT;
         }
+
         String encodedPath = EncodingUtils.getEncodedPath(nodeLocation, request);
         String cmsEditLink = cmsBaseUrl + "?path=" + encodedPath;
-        if (asComment) {
+
+        if (!asComment) {
             return encloseInHTMLComment(toJSONMap(getAttributeMap(cmsEditLink, nodeId)));
         }
+
         return cmsEditLink;
     }
 
+    /**
+     * Create CMS edit link URI for the {@code bean} and return it.
+     * @param bean content bean
+     * @return Create CMS edit link URI for the {@code bean} and return it
+     */
+    public String cmsEditLinkAsLink(final HippoBean bean) {
+        return cmsEditLink(bean, false);
+    }
 
-    public String manageContentComment(final HippoBean bean, final String rootPath, final String defaultPath, final String parameterName,final String templateQuery) {
+    /**
+     * Create CMS edit link for the {@code bean} and return it as HTML Comment.
+     * @param bean content bean
+     * @return CMS edit link for the {@code bean} and return it as HTML Comment
+     */
+    public String cmsEditLinkAsComment(final HippoBean bean) {
+        return cmsEditLink(bean, true);
+    }
+
+    public String manageContentComment(final HippoBean bean, final String rootPath, final String defaultPath, final String parameterName, final String templateQuery) {
         final HstRequestContext requestContext = RequestContextProvider.get();
         if (invalidCmsRequest(bean, requestContext)) {
-            return EMPTY_RESULT;
+            return NO_RESULT;
         }
 
         String documentId = null;
@@ -170,13 +192,13 @@ public final class CmsEditLinkHelper {
                 final Node editNode = documentNode.getCanonicalNode();
                 if (editNode == null) {
                     log.debug("Cannot create a manageContent tag, cannot find canonical node of '{}'", documentNode.getPath());
-                    return EMPTY_RESULT;
+                    return NO_RESULT;
                 }
 
                 final Node handleNode = getHandleNodeIfIsAncestor(editNode);
                 if (handleNode == null) {
                     log.warn("Could not find handle node of {}", editNode.getPath());
-                    return EMPTY_RESULT;
+                    return NO_RESULT;
                 }
 
                 log.debug("The node path for the manageContent tag is '{}'", handleNode.getPath());
@@ -184,7 +206,7 @@ public final class CmsEditLinkHelper {
             } catch (RepositoryException e) {
                 log.warn("Error while retrieving the handle of '{}', skipping manageContent tag",
                         JcrUtils.getNodePathQuietly(bean.getNode()), e);
-                return EMPTY_RESULT;
+                return NO_RESULT;
             }
         }
 
@@ -199,7 +221,7 @@ public final class CmsEditLinkHelper {
                             + " Either make the root path relative to the channel content root,"
                             + " or make the component parameter store an absolute path.",
                     getComponentRenderPath(), parameterName, JcrPath.class.getSimpleName(), rootPath);
-            return EMPTY_RESULT;
+            return NO_RESULT;
         }
 
         String absoluteRootPath;
@@ -208,7 +230,7 @@ public final class CmsEditLinkHelper {
         } catch (final RepositoryException e) {
             log.warn("Exception while checking rootPath parameter for manageContent tag in template '{}'.",
                     getComponentRenderPath(), e);
-            return EMPTY_RESULT;
+            return NO_RESULT;
         }
         final String componentValue = getComponentValue(parameterName, isRelativePathParameter);
 
@@ -219,10 +241,10 @@ public final class CmsEditLinkHelper {
     public String cmsEditMenuLink(final HippoBean bean) {
         final HstRequestContext requestContext = RequestContextProvider.get();
         if (invalidCmsRequest(bean, requestContext)) {
-            return EMPTY_RESULT;
+            return NO_RESULT;
         }
 
-        return EMPTY_RESULT;
+        return NO_RESULT;
     }
 
     private String write(final String templateQuery, final String rootPath, final String defaultPath, final String parameterName, final String documentId, final String componentValue, final JcrPath jcrPath,

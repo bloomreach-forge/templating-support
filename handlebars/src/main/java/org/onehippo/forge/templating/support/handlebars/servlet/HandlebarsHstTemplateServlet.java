@@ -183,7 +183,7 @@ public class HandlebarsHstTemplateServlet extends AbstractHstTemplateServlet {
         HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, HstIncludeHelper.INSTANCE);
         HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, HstHeadContributionHelper.INSTANCE);
         HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, HstMessagesHelper.INSTANCE);
-        HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, CmsEditLinkHelper.class);
+        HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, CmsEditLinkHelper.INSTANCE);
         HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, PropertyUtils.class);
         HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, NodeUtils.class);
     }

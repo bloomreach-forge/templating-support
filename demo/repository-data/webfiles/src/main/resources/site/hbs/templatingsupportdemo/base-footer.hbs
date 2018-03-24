@@ -32,6 +32,13 @@
     Webfile Link: {{hst:webfileByPath "/js/bootstrap.min.js"}}
   </pre>
 
+  {{#if hstRequestContext.preview}}
+  <pre>
+    CMS Edit Link: {{hst:cmsEditLink document}}
+    CMS Edit Link (as comment): {{hst:cmsEditLink document true}}
+  </pre>
+  {{/if}}
+
   <p>Document content:</p>
   <div>
     {{{hst:htmlByHippoHtml document.content}}}
