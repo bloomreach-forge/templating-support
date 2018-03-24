@@ -15,15 +15,14 @@
  */
 package org.onehippo.forge.templating.support.core.helper;
 
-import java.io.IOException;
-import java.util.ResourceBundle;
-
-import javax.servlet.jsp.jstl.core.Config;
-import javax.servlet.jsp.jstl.fmt.LocalizationContext;
-
 import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.container.RequestContextProvider;
 import org.hippoecm.hst.utils.MessageUtils;
+
+import javax.servlet.jsp.jstl.core.Config;
+import javax.servlet.jsp.jstl.fmt.LocalizationContext;
+import java.io.IOException;
+import java.util.ResourceBundle;
 
 /**
  * HST Link Creation Helper.
@@ -44,7 +43,9 @@ public class HstMessagesHelper {
                 bundle = locCtx.getResourceBundle();
             }
         }
-
+        if (bundle == null) {
+            return null;
+        }
         return MessageUtils.replaceMessagesByBundle(bundle, text);
     }
 

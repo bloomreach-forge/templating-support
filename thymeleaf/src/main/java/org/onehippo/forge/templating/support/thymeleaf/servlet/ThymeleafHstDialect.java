@@ -39,13 +39,14 @@ public class ThymeleafHstDialect extends AbstractProcessorDialect {
         processors.add(new ThymeleafHstIncludeAttribute(dialectPrefix));
         processors.add(new ThymeleafHstFacetNavigationLinkAttribute(dialectPrefix));
         processors.add(new ThymeleafHstResourceUrlAttribute(dialectPrefix));
+        processors.add(new ThymeleafHstMessagesReplaceAttribute(dialectPrefix));
         processors.add(new ThymeleafHstHeadContributionInsertTag(dialectPrefix));
         processors.add(new ThymeleafHstHeadContributionTag(dialectPrefix));
         processors.add(new ThymeleafHstActionUrlAttribute(dialectPrefix));
         processors.add(new ThymeleafHstRenderUrlAttribute(dialectPrefix));
         processors.add(new ThymeleafHstRefItemAttribute(dialectPrefix));
         processors.add(new ThymeleafHstComponentRenderingURLAttribute(dialectPrefix));
-        processors.add(new ThymeleafManageContentAttribute(dialectPrefix));
+        processors.add(new ThymeleafCmsManageContentAttribute(dialectPrefix));
         processors.add(new ThymeleafCmsEditLinkAttribute(dialectPrefix));
         processors.add(new ThymeleafCmsEditMenuLinkAttribute(dialectPrefix));
         return processors;

@@ -19,21 +19,24 @@ package org.onehippo.forge.templating.support.thymeleaf.servlet.attributes;
 import org.onehippo.forge.templating.support.core.helper.HstHeadContributionHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.thymeleaf.IEngineConfiguration;
 import org.thymeleaf.context.ITemplateContext;
+import org.thymeleaf.engine.TemplateModel;
 import org.thymeleaf.model.*;
 import org.thymeleaf.processor.element.AbstractElementModelProcessor;
 import org.thymeleaf.processor.element.IElementModelStructureHandler;
-import org.thymeleaf.standard.expression.IStandardExpression;
-import org.thymeleaf.standard.expression.IStandardExpressionParser;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.util.FastStringWriter;
 
 import java.io.IOException;
+import java.io.Writer;
 
 public class ThymeleafHstHeadContributionTag extends AbstractElementModelProcessor {
 
     private static final Logger log = LoggerFactory.getLogger(ThymeleafHstHeadContributionTag.class);
     private static final String TAG_NAME = "headContribution";
+    private static final EmptyWrapperTag EMPTY_WRAPPER = new EmptyWrapperTag();
+    private static final int BUFFER_SIZE = 1024;
 
     public ThymeleafHstHeadContributionTag(final String dialectPrefix) {
         super(TemplateMode.HTML, dialectPrefix, TAG_NAME, true, null, false, 1000);
@@ -41,48 +44,57 @@ public class ThymeleafHstHeadContributionTag extends AbstractElementModelProcess
 
 
     @Override
-    protected void doProcess(final ITemplateContext context, final IModel model, final IElementModelStructureHandler structureHandler) {
+    protected void doProcess(final ITemplateContext context, final IModel originalModel, final IElementModelStructureHandler structureHandler) {
+        String attrKeyHint = getAttribute(originalModel, "hst:keyHint");
+        String attrCategory = getAttribute(originalModel, "hst:category");
+        final IModel model = wrap(originalModel);
+        // remove original model:
+        originalModel.reset();
+        final IEngineConfiguration configuration = context.getConfiguration();
+        IProcessableElementTag firstEvent = (IProcessableElementTag) model.get(0);
+        final Writer modelWriter = new FastStringWriter(BUFFER_SIZE);
+        try {
+            model.write(modelWriter);
+            final TemplateModel temporaryModel = configuration.getTemplateManager()
+                    .parseString(context.getTemplateData(), modelWriter.toString(), firstEvent.getLine(),
+                            firstEvent.getCol(),
+                            getTemplateMode(), true);
+            final Writer templateWriter = new FastStringWriter(BUFFER_SIZE);
+            configuration.getTemplateManager().process(temporaryModel, context, templateWriter);
+            HstHeadContributionHelper.INSTANCE.contributeHeadElement(templateWriter.toString(), attrKeyHint, attrCategory);
+        } catch (IOException e) {
+            log.error("Error parsing head contribution {}", e);
+        }
+
+    }
+    
+
+    private String getAttribute(final IModel model, final String name) {
         final int size = model.size();
-        String attrKeyHint = null;
-        String attrCategory = null;
         for (int i = 0; i < size; i++) {
             final ITemplateEvent event = model.get(i);
             if (event instanceof IOpenElementTag) {
                 final IOpenElementTag openElementTag = (IOpenElementTag) event;
-                final IAttribute keyHint = openElementTag.getAttribute("keyHint");
-                if (keyHint != null) {
-                    attrKeyHint = keyHint.getValue();
+                final IAttribute attribute = openElementTag.getAttribute(name);
+                if (attribute != null) {
+                    return attribute.getValue();
                 }
-                final IAttribute category = openElementTag.getAttribute("category");
-                if (category != null) {
-                    attrCategory = category.getValue();
-                }
-                break;
-            }
-        }
-        final IModel noTagsModel = removeTags(model);
-        // remove original model:
-        model.reset();
-        final int modelSize = noTagsModel.size();
-        final FastStringWriter writer = new FastStringWriter(1024);
-        //writer.write(STRING_PROTOCOL);
-        for (int i = 0; i < modelSize; i++) {
-            final ITemplateEvent event = noTagsModel.get(i);
-            try {
-                event.write(writer);
-            } catch (IOException e) {
-                log.warn("Error writing header contribution part", e);
-            }
-        }
-        // TODO parse expressions
-        HstHeadContributionHelper.INSTANCE.contributeHeadElement(writer.toString(), attrKeyHint, attrCategory);
 
+            }
+        }
+        return null;
     }
-
-
-    private String parseExpression(final IStandardExpressionParser parser, final ITemplateContext context, final String attributeValue) {
-        final IStandardExpression expression = parser.parseExpression(context, attributeValue);
-        return (String) expression.execute(context);
+    private IModel wrap(IModel model) {
+        final IModel clonedModel = model.cloneModel();
+        final int size = clonedModel.size();
+        for (int i = 0; i < size; i++) {
+            final ITemplateEvent event = model.get(i);
+            if (event instanceof IOpenElementTag) {
+                clonedModel.replace(i, EMPTY_WRAPPER);
+            }
+        }
+        clonedModel.replace(model.size() - 1, EMPTY_WRAPPER);
+        return clonedModel;
     }
 
     private IModel removeTags(IModel model) {
@@ -98,4 +110,5 @@ public class ThymeleafHstHeadContributionTag extends AbstractElementModelProcess
         }
         return clonedModel;
     }
+
 }

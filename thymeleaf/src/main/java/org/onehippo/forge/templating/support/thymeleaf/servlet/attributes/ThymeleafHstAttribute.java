@@ -16,19 +16,27 @@
 
 package org.onehippo.forge.templating.support.thymeleaf.servlet.attributes;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.thymeleaf.IEngineConfiguration;
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.model.IAttribute;
+import org.thymeleaf.model.IModel;
 import org.thymeleaf.model.IProcessableElementTag;
+import org.thymeleaf.model.ITemplateEvent;
 import org.thymeleaf.processor.element.AbstractAttributeTagProcessor;
 import org.thymeleaf.processor.element.IElementTagStructureHandler;
 import org.thymeleaf.standard.expression.IStandardExpression;
 import org.thymeleaf.standard.expression.IStandardExpressionParser;
 import org.thymeleaf.standard.expression.StandardExpressions;
 import org.thymeleaf.templatemode.TemplateMode;
+import org.thymeleaf.util.FastStringWriter;
+
+import java.io.IOException;
 
 public abstract class ThymeleafHstAttribute extends AbstractAttributeTagProcessor {
 
+    private static final Logger log = LoggerFactory.getLogger(ThymeleafHstAttribute.class);
     private static final int PRECEDENCE = 10000;
 
     public static final String ATTR_FULLY_QUALIFIED = "hst:fullyQualified";
@@ -46,8 +54,8 @@ public abstract class ThymeleafHstAttribute extends AbstractAttributeTagProcesso
         return (T) expression.execute(context);
     }
 
-    protected <T> T getExpression(final ITemplateContext context, final IProcessableElementTag tag, final String name) {
-        final String value = getAttribute(tag, name);
+    protected <T> T getExpression(final ITemplateContext context, final IProcessableElementTag tag, final String attributeName) {
+        final String value = getAttribute(tag, attributeName);
         if (value == null) {
             return null;
         }
@@ -92,6 +100,21 @@ public abstract class ThymeleafHstAttribute extends AbstractAttributeTagProcesso
             default:
                 structureHandler.setAttribute("href", link);
         }
+    }
+
+    public static FastStringWriter modelAsString(final IModel model) {
+        final FastStringWriter writer = new FastStringWriter(1024);
+        final int modelSize = model.size();
+        //writer.write(STRING_PROTOCOL);
+        for (int i = 0; i < modelSize; i++) {
+            final ITemplateEvent event = model.get(i);
+            try {
+                event.write(writer);
+            } catch (IOException e) {
+                log.warn("Error writing header contribution part", e);
+            }
+        }
+        return writer;
     }
 
 }

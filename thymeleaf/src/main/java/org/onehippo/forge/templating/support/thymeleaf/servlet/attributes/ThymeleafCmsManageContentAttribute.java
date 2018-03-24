@@ -24,10 +24,10 @@ import org.thymeleaf.model.IAttribute;
 import org.thymeleaf.model.IProcessableElementTag;
 import org.thymeleaf.processor.element.IElementTagStructureHandler;
 
-public class ThymeleafManageContentAttribute extends ThymeleafHstAttribute {
+public class ThymeleafCmsManageContentAttribute extends ThymeleafHstAttribute {
     private static final String ATTR_NAME = "manageContent";
 
-    public ThymeleafManageContentAttribute(final String dialectPrefix) {
+    public ThymeleafCmsManageContentAttribute(final String dialectPrefix) {
         super(dialectPrefix, ATTR_NAME);
     }
 
