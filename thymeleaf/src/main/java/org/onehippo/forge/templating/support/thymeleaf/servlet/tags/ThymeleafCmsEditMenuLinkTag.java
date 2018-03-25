@@ -19,7 +19,7 @@ package org.onehippo.forge.templating.support.thymeleaf.servlet.tags;
 import com.google.common.base.Strings;
 import org.hippoecm.hst.core.sitemenu.CommonMenu;
 import org.onehippo.forge.templating.support.core.helper.CmsEditLinkHelper;
-import org.onehippo.forge.templating.support.thymeleaf.servlet.utils.HstThymeleafUtils;
+import org.onehippo.forge.templating.support.thymeleaf.servlet.utils.ThymeleafHstUtils;
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.model.IModel;
 import org.thymeleaf.processor.element.IElementModelStructureHandler;
@@ -35,7 +35,7 @@ public class ThymeleafCmsEditMenuLinkTag extends BaseModelProcessor {
 
     @Override
     protected void doProcess(final ITemplateContext context, final IModel model, final IElementModelStructureHandler structureHandler) {
-        final CommonMenu menu = HstThymeleafUtils.getExpression(context, getAttribute(model, "hst:menu"));
+        final CommonMenu menu = ThymeleafHstUtils.getExpression(context, getAttribute(model, "hst:menu"));
         model.reset();
         final String link = CmsEditLinkHelper.INSTANCE.cmsEditMenuLink(menu);
         if (!Strings.isNullOrEmpty(link)) {

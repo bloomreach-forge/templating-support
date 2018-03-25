@@ -32,16 +32,16 @@ import javax.servlet.http.HttpSession;
 
 import static org.hippoecm.hst.tag.DefineObjectsTag.*;
 
-public class HippoThymeleafContext extends AbstractContext implements IWebContext {
+public class ThymeleafHstContext extends AbstractContext implements IWebContext {
 
 
-    private static final Logger log = LoggerFactory.getLogger(HippoThymeleafContext.class);
+    private static final Logger log = LoggerFactory.getLogger(ThymeleafHstContext.class);
     private final HttpServletRequest request;
     private final HttpServletResponse response;
     private final ServletContext servletContext;
 
 
-    public HippoThymeleafContext(final HttpServletRequest request, final HttpServletResponse response, final ServletContext servletContext) {
+    public ThymeleafHstContext(final HttpServletRequest request, final HttpServletResponse response, final ServletContext servletContext) {
         this.request = request;
         this.response = response;
         this.servletContext = servletContext;

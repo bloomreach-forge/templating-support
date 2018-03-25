@@ -2,8 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:hst="http://www.onehippo.org">
 <head>
   <meta charset="utf-8"/>
-  <link rel="stylesheet" th:href="@{/css/bootstrap.css}" type="text/css"/>
-  <link th:if="hstRequest.requestContext.cmsRequest" rel="stylesheet" th:href="@{//css/cms-request.css}" type="text/css"/>
+  <meta name="author" content="Thymeleaf">
+  <link rel="stylesheet" th:href="@{webfile:/css/bootstrap.css}" type="text/css"/>
+  <!--<link th:if="hstRequest.requestContext.cmsRequest" rel="stylesheet" th:href="@{webfile:/css/cms-request.css}" type="text/css"/>-->
   <hst:headContributions hst:categoryExcludes="htmlBodyEnd, scripts" hst:xhtml="true" />
 </head>
 <body>

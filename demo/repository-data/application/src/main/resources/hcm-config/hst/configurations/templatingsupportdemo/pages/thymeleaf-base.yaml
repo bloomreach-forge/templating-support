@@ -1,0 +1,8 @@
+definitions:
+  config:
+    /hst:hst/hst:configurations/templatingsupportdemo/hst:pages/thymeleaf-base:
+      jcr:primaryType: hst:component
+      hst:referencecomponent: hst:abstractpages/base-thymeleaf
+      /main:
+        jcr:primaryType: hst:component
+        hst:template: blog-main

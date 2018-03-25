@@ -21,14 +21,14 @@ import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.hippoecm.hst.content.rewriter.ContentRewriter;
 import org.hippoecm.hst.content.rewriter.ImageVariant;
 import org.onehippo.forge.templating.support.core.helper.HstHtmlHelper;
-import org.onehippo.forge.templating.support.thymeleaf.servlet.utils.HstThymeleafUtils;
+import org.onehippo.forge.templating.support.thymeleaf.servlet.utils.ThymeleafHstUtils;
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.engine.AttributeName;
 import org.thymeleaf.model.IAttribute;
 import org.thymeleaf.model.IProcessableElementTag;
 import org.thymeleaf.processor.element.IElementTagStructureHandler;
 
-import static org.onehippo.forge.templating.support.thymeleaf.servlet.utils.HstThymeleafUtils.*;
+import static org.onehippo.forge.templating.support.thymeleaf.servlet.utils.ThymeleafHstUtils.*;
 
 public class ThymeleafHstHtmlAttribute extends BaseAttributeProcessor {
     private static final String ATTR_NAME = "html";
@@ -39,7 +39,7 @@ public class ThymeleafHstHtmlAttribute extends BaseAttributeProcessor {
 
     @Override
     protected void doProcess(final ITemplateContext context, final IProcessableElementTag tag, final AttributeName attributeName, final String attributeValue, final IElementTagStructureHandler structureHandler) {
-        final HippoHtml htmlBean = HstThymeleafUtils.getExpression(context, attributeValue);
+        final HippoHtml htmlBean = ThymeleafHstUtils.getExpression(context, attributeValue);
         final IAttribute fullyQualifiedAttribute = tag.getAttribute(ATTR_FULLY_QUALIFIED);
         final String imageVariantName = getAttribute(tag, "hst:imageVariantName");
         final String imageVariantReplaces = getAttribute(tag, "hst:imageVariantReplaces");

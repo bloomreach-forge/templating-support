@@ -22,7 +22,7 @@ import org.thymeleaf.expression.IExpressionObjectFactory;
 
 import java.util.Set;
 
-public class HstThymeleafExpressionFactory implements IExpressionObjectFactory {
+public class ThymeleafHstExpressionFactory implements IExpressionObjectFactory {
     
     private static final String MESSAGE_REPLACE = "messagesReplace";
     private static final ImmutableSet<String> NAMES = ImmutableSet.of(MESSAGE_REPLACE);
@@ -33,7 +33,7 @@ public class HstThymeleafExpressionFactory implements IExpressionObjectFactory {
 
     @Override public Object buildObject(final IExpressionContext context, final String expressionObjectName) {
         if (MESSAGE_REPLACE.equals(expressionObjectName)) {
-            return new HstThymeleafMessageReplaceExpression();
+            return new ThymeleafHstMessageReplaceExpression();
         }
         return null;
     }

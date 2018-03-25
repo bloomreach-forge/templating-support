@@ -21,7 +21,7 @@ import org.onehippo.forge.templating.support.thymeleaf.servlet.resolvers.Classpa
 import org.onehippo.forge.templating.support.thymeleaf.servlet.resolvers.HstMessageResolver;
 import org.onehippo.forge.templating.support.thymeleaf.servlet.resolvers.ServletTemplateResolver;
 import org.onehippo.forge.templating.support.thymeleaf.servlet.resolvers.WebfilesTemplateResolver;
-import org.onehippo.forge.templating.support.thymeleaf.servlet.utils.ThymeleafLinkBuilder;
+import org.onehippo.forge.templating.support.thymeleaf.servlet.utils.HstThymeleafLinkBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.thymeleaf.TemplateEngine;
@@ -56,14 +56,14 @@ public class ThymeleafHstTemplateServlet extends AbstractHstTemplateServlet {
         resolvers.add(new ServletTemplateResolver());
         engine.setTemplateResolvers(resolvers);
         engine.addDialect(new ThymeleafHstDialect());
-        engine.setLinkBuilder(new ThymeleafLinkBuilder());
+        engine.setLinkBuilder(new HstThymeleafLinkBuilder());
         engine.setMessageResolver(new HstMessageResolver());
     }
 
 
     @Override
     protected Object createTemplateContext(final HttpServletRequest request, final HttpServletResponse response) {
-        return new HippoThymeleafContext(request, response, getServletContext());
+        return new ThymeleafHstContext(request, response, getServletContext());
     }
 
     @Override

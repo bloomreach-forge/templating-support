@@ -21,7 +21,7 @@ import org.onehippo.forge.templating.support.core.helper.HstMessagesHelper;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
-public final class HstThymeleafMessageReplaceExpression {
+public final class ThymeleafHstMessageReplaceExpression {
 
     
     public String replaceByBundle(final String text, final ResourceBundle bundle) throws IOException {

@@ -44,3 +44,12 @@ definitions:
       /base-footer-thymeleaf-servlet:
         jcr:primaryType: hst:template
         hst:renderpath: /thymeleaf/base-footer-thymeleaf.html
+      /base-layout-thymeleaf:
+        jcr:primaryType: hst:template
+        hst:renderpath: webfile:/thymeleaf/templatingsupportdemo/base-layout-thymeleaf.html
+      /base-top-menu-thymeleaf:
+        jcr:primaryType: hst:template
+        hst:renderpath: webfile:/thymeleaf/templatingsupportdemo/base-top-menu-thymeleaf.html
+      /thymeleaf-main:
+        jcr:primaryType: hst:template
+        hst:renderpath: webfile:/thymeleaf/templatingsupportdemo/thymeleaf/thymeleaf-main.html

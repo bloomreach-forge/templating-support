@@ -1,0 +1,24 @@
+definitions:
+  config:
+    /hst:hst/hst:configurations/templatingsupportdemo/hst:abstractpages/base-thymeleaf:
+      jcr:primaryType: hst:component
+      hst:template: base-layout-thymeleaf
+      /menu:
+        jcr:primaryType: hst:component
+        hst:componentclassname: org.onehippo.cms7.essentials.components.EssentialsMenuComponent
+        hst:parameternames: [selectedMenu, level, menu]
+        hst:parametervalues: ['on', '1', main]
+        hst:template: base-top-menu-thymeleaf
+      /top:
+        jcr:primaryType: hst:containercomponentreference
+        hst:referencecomponent: base/top
+      /footer-thymeleaf:
+        jcr:primaryType: hst:component
+        hst:componentclassname: org.onehippo.forge.templating.support.demo.components.DemoDataComponent
+        hst:template: base-footer-thymeleaf
+        /top:
+          jcr:primaryType: hst:component
+          hst:componentclassname: org.onehippo.cms7.essentials.components.EssentialsMenuComponent
+          hst:parameternames: [selectedMenu, level, menu]
+          hst:parametervalues: ['on', '1', main]
+          hst:template: base-top-menu

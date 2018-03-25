@@ -18,7 +18,7 @@ package org.onehippo.forge.templating.support.thymeleaf.servlet;
 
 import org.onehippo.forge.templating.support.thymeleaf.servlet.attributes.*;
 import org.onehippo.forge.templating.support.thymeleaf.servlet.tags.*;
-import org.onehippo.forge.templating.support.thymeleaf.servlet.utils.HstThymeleafExpressionFactory;
+import org.onehippo.forge.templating.support.thymeleaf.servlet.utils.ThymeleafHstExpressionFactory;
 import org.thymeleaf.dialect.AbstractProcessorDialect;
 import org.thymeleaf.dialect.IExpressionObjectDialect;
 import org.thymeleaf.expression.IExpressionObjectFactory;
@@ -30,7 +30,7 @@ import java.util.Set;
 public class ThymeleafHstDialect extends AbstractProcessorDialect implements IExpressionObjectDialect {
 
 
-    private static final IExpressionObjectFactory HST_EXPRESSION_FACTORY = new HstThymeleafExpressionFactory();
+    private static final IExpressionObjectFactory HST_EXPRESSION_FACTORY = new ThymeleafHstExpressionFactory();
     
     public ThymeleafHstDialect() {
         super("HST dialect", "hst", 1000);

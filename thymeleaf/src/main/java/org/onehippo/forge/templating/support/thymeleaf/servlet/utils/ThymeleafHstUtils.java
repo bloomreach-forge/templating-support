@@ -25,8 +25,8 @@ import org.thymeleaf.standard.expression.IStandardExpression;
 import org.thymeleaf.standard.expression.IStandardExpressionParser;
 import org.thymeleaf.standard.expression.StandardExpressions;
 
-public final class HstThymeleafUtils {
-    private HstThymeleafUtils() {
+public final class ThymeleafHstUtils {
+    private ThymeleafHstUtils() {
     }
 
     @SuppressWarnings("unchecked")

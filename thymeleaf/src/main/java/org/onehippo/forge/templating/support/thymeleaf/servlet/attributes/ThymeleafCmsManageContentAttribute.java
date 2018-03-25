@@ -18,7 +18,7 @@ package org.onehippo.forge.templating.support.thymeleaf.servlet.attributes;
 
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.onehippo.forge.templating.support.core.helper.CmsEditLinkHelper;
-import org.onehippo.forge.templating.support.thymeleaf.servlet.utils.HstThymeleafUtils;
+import org.onehippo.forge.templating.support.thymeleaf.servlet.utils.ThymeleafHstUtils;
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.engine.AttributeName;
 import org.thymeleaf.model.IAttribute;
@@ -34,7 +34,7 @@ public class ThymeleafCmsManageContentAttribute extends BaseAttributeProcessor {
 
     @Override
     protected void doProcess(final ITemplateContext context, final IProcessableElementTag tag, final AttributeName attributeName, final String attributeValue, final IElementTagStructureHandler structureHandler) {
-        final HippoBean bean = HstThymeleafUtils.getExpression(context, attributeValue);
+        final HippoBean bean = ThymeleafHstUtils.getExpression(context, attributeValue);
         if (bean == null) {
             return;
         }

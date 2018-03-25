@@ -35,7 +35,7 @@ public class ThymeleafHstHeadContributionsTag extends BaseModelProcessor {
     @Override
     protected void doProcess(final ITemplateContext context, final IModel model, final IElementModelStructureHandler structureHandler) {
         final String includes = getAttribute(model, "hst:categoryIncludes");
-        final String excludes = getAttribute(model, "hst:categoryIncludes");
+        final String excludes = getAttribute(model, "hst:categoryExcludes");
         final Boolean xhtmlAttribute = getAttributeExpression(context, model, "hst:xhtml");
         final boolean xhtml = xhtmlAttribute == null ? false: xhtmlAttribute;
         // remove tag:

@@ -78,9 +78,9 @@ public class HstHeadContributionHelper {
     }
 
     public String contributedHeadElements(String categoryIncludes, String categoryExcludes, final boolean xhtml) {
-        final Set<String> categoryIncludesSet = new LinkedHashSet<>(
+        final Set<String> categoryIncludesSet = categoryIncludes ==null? null:new LinkedHashSet<>(
                 Arrays.asList(StringUtils.split(categoryIncludes, ", \t")));
-        final Set<String> categoryExcludesSet = new LinkedHashSet<>(
+        final Set<String> categoryExcludesSet = categoryExcludes ==null ? null : new LinkedHashSet<>(
                 Arrays.asList(StringUtils.split(categoryExcludes, ", \t")));
 
         final HstResponse hstResponse = TemplateRequestContext.getHstResponse();

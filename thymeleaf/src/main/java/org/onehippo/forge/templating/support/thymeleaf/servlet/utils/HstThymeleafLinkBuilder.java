@@ -34,9 +34,10 @@ import java.util.Map;
 
 import static org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet.*;
 
-public class ThymeleafLinkBuilder implements ILinkBuilder {
+public class HstThymeleafLinkBuilder implements ILinkBuilder {
 
-    private static final Logger log = LoggerFactory.getLogger(ThymeleafLinkBuilder.class);
+    private static final Logger log = LoggerFactory.getLogger(HstThymeleafLinkBuilder.class);
+    private static final String WEB_FILE_ABSOLUTE_PATH = WEB_FILE_TEMPLATE_PROTOCOL + '/';
 
 
     @Override public String getName() {
@@ -49,10 +50,13 @@ public class ThymeleafLinkBuilder implements ILinkBuilder {
 
     @Override
     public String buildLink(final IExpressionContext context, final String base, final Map<String, Object> parameters) {
-        if (base.startsWith("/")) {
-            return base;
-        }
         final WebEngineContext ctx = (WebEngineContext) context;
+        if (base.startsWith("/")) {
+            return createLink( ctx, base);
+        }
+        if (base.startsWith(WEB_FILE_ABSOLUTE_PATH)) {
+           return HstWebfilesHelper.INSTANCE.webfileByPath(base.substring(WEB_FILE_ABSOLUTE_PATH.length()), false);
+        }
         final List<TemplateData> stack = ctx.getTemplateStack();
         if (stack == null || stack.isEmpty()) {
             return base;
@@ -95,7 +99,7 @@ public class ThymeleafLinkBuilder implements ILinkBuilder {
         for (TemplateData templateData : stack) {
             final String template = templateData.getTemplate();
             if (hasProtocol && template.startsWith(protocol)) {
-                path = template.substring(protocol.length(), template.lastIndexOf('/'));;
+                path = template.substring(protocol.length(), template.lastIndexOf('/'));
             }
             else if (template.startsWith("/")) {
                 path = template.substring(0, template.lastIndexOf('/'));
