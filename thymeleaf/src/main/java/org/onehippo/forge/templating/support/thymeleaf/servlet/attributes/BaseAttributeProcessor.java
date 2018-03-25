@@ -34,8 +34,8 @@ public abstract class BaseAttributeProcessor extends AbstractAttributeTagProcess
     private static final Logger log = LoggerFactory.getLogger(BaseAttributeProcessor.class);
     private static final int PRECEDENCE = 10000;
 
+    public static final String ATTRIBUTE_HST_PARAMS = "hst:params";
     public static final String ATTR_FULLY_QUALIFIED = "hst:fullyQualified";
-    public static final String ATTR_RESOURCE_ID = "hst:resourceId";
 
     public BaseAttributeProcessor(final String dialectPrefix, final String attributeName) {
         super(TemplateMode.HTML, dialectPrefix, null, false, attributeName, true, PRECEDENCE, true);
