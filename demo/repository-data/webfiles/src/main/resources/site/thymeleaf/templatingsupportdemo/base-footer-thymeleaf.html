@@ -35,10 +35,10 @@
     HST Resource URL:  <a class="thymeleaf-web-files-link" hst:resourceUrl="aResourceID" >actionUrl</a>
     HST ComponentRendering URL:  <a class="thymeleaf-web-files-link" hst:componentRenderingURL>ComponentRendering</a>
     HST WEBFILE URL:  <a class="thymeleaf-web-files-link" th:href="@{files/thymeleaf-webfiles.css}" >Css file</a>
-    <a hst:linkByPath="/blog">Facets example</a>
+    HST facetNavigationLink example: <a hst:linkByPath="/blog">Facets example</a>
 
    <hst:setBundle hst:basename="essentials.pagination" />
-   <span th:text="#{results.indication}"></span>
+   HST setBundle (essentials.pagination/results.indication): <strong th:text="#{results.indication}"></strong>
   </pre>
   <pre th:if="${hstRequestContext.cmsRequest}">
     Manage content: <a hst:manageContent="${document}">Link</a>
