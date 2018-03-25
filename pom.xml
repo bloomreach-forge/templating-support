@@ -74,7 +74,6 @@
     <extension.wagon-svn.version>1.9</extension.wagon-svn.version>
 
     <thymeleaf.version>3.0.9.RELEASE</thymeleaf.version>
-    <jsp-api.version>2.2</jsp-api.version>
   </properties>
 
   <licenses>
@@ -148,13 +147,7 @@
         <version>${servlet-api.version}</version>
         <scope>provided</scope>
       </dependency>
-
-      <dependency>
-        <groupId>javax.servlet.jsp</groupId>
-        <artifactId>jsp-api</artifactId>
-        <version>${jsp-api.version}</version>
-        <scope>provided</scope>
-      </dependency>
+      
 
       <dependency>
         <groupId>org.onehippo.cms7.hst</groupId>

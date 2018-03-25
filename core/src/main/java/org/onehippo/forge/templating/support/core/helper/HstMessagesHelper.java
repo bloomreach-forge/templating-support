@@ -25,11 +25,12 @@ import java.io.IOException;
 import java.util.ResourceBundle;
 
 /**
- * HST Link Creation Helper.
+ * HST resomessages Helper.
  */
 public class HstMessagesHelper {
 
     public static final HstMessagesHelper INSTANCE = new HstMessagesHelper();
+    public static final String FMT_LOCALIZATION_CONTEXT_REQUEST = Config.FMT_LOCALIZATION_CONTEXT + ".request";
 
     private HstMessagesHelper() {
     }

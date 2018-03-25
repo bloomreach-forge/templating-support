@@ -126,6 +126,11 @@
       <artifactId>jsp-api</artifactId>
       <scope>provided</scope>
     </dependency>
+      <dependency>
+        <groupId>org.apache.taglibs</groupId>
+        <artifactId>taglibs-standard-spec</artifactId>
+      </dependency>
+    
 
   </dependencies>
 

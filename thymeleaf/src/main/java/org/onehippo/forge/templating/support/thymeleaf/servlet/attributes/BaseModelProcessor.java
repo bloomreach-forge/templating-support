@@ -36,12 +36,17 @@ public abstract class BaseModelProcessor extends AbstractElementModelProcessor {
         for (int i = 0; i < size; i++) {
             final ITemplateEvent event = model.get(i);
             if (event instanceof IOpenElementTag) {
-                final IOpenElementTag openElementTag = (IOpenElementTag) event;
-                final IAttribute attribute = openElementTag.getAttribute(name);
+                final IOpenElementTag tag = (IOpenElementTag) event;
+                final IAttribute attribute = tag.getAttribute(name);
                 if (attribute != null) {
                     return attribute.getValue();
                 }
-
+            } else if (event instanceof IStandaloneElementTag) {
+                final IStandaloneElementTag tag = (IStandaloneElementTag) event;
+                final IAttribute attribute = tag.getAttribute(name);
+                if (attribute != null) {
+                    return attribute.getValue();
+                }
             }
         }
         return null;

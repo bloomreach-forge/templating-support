@@ -18,6 +18,7 @@ package org.onehippo.forge.templating.support.thymeleaf.servlet;
 
 import org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet;
 import org.onehippo.forge.templating.support.thymeleaf.servlet.resolvers.ClasspathTemplateResolver;
+import org.onehippo.forge.templating.support.thymeleaf.servlet.resolvers.HstMessageResolver;
 import org.onehippo.forge.templating.support.thymeleaf.servlet.resolvers.ServletTemplateResolver;
 import org.onehippo.forge.templating.support.thymeleaf.servlet.resolvers.WebfilesTemplateResolver;
 import org.slf4j.Logger;
@@ -36,6 +37,7 @@ import java.util.Set;
 public class ThymeleafHstTemplateServlet extends AbstractHstTemplateServlet {
 
     private static final Logger log = LoggerFactory.getLogger(ThymeleafHstTemplateServlet.class);
+    public static final String MESSAGE_RESOLVER = "thymeleaf.message.resolver";
 
     private TemplateEngine engine;
     private String webResourcePrefix;
@@ -54,6 +56,7 @@ public class ThymeleafHstTemplateServlet extends AbstractHstTemplateServlet {
         engine.setTemplateResolvers(resolvers);
         engine.addDialect(new ThymeleafHstDialect());
         engine.setLinkBuilder(new ThymeleafLinkBuilder());
+        engine.setMessageResolver(new HstMessageResolver());
     }
 
 
