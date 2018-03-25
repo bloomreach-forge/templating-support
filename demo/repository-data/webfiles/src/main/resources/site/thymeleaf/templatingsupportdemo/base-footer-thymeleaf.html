@@ -46,6 +46,7 @@
   <pre th:if="${hstRequestContext.cmsRequest}">
     Manage content: <a hst:manageContent="${document}">Link</a>
     Cms Edit link : <a hst:cmsEditLink="${document}">Link</a>
+    Cms Edit menu : <a hst:cmsEditMenu="${menu}">Menu</a>
   </pre>
   <link rel="stylesheet" th:href="@{files/thymeleaf-webfiles.css}" type="text/css"/>
   <span class="thymeleaf-web-files" th:text="${user != null} ? 'Hello from thymeleaf webfiles: '+ ${user.name} : 'hello anonymous from thymeleaf webfiles'"></span>
