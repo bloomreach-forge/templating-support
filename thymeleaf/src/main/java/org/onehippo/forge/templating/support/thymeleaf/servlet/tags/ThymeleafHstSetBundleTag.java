@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 
-package org.onehippo.forge.templating.support.thymeleaf.servlet.attributes;
+package org.onehippo.forge.templating.support.thymeleaf.servlet.tags;
 
 import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.resourcebundle.CompositeResourceBundle;
 import org.hippoecm.hst.resourcebundle.ResourceBundleUtils;
 import org.onehippo.forge.templating.support.core.helper.HstMessagesHelper;
 import org.onehippo.forge.templating.support.core.servlet.TemplateRequestContext;
+import org.onehippo.forge.templating.support.thymeleaf.servlet.attributes.ThymeleafHstHtmlAttribute;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.thymeleaf.context.ITemplateContext;

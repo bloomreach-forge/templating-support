@@ -17,6 +17,10 @@
 package org.onehippo.forge.templating.support.thymeleaf.servlet;
 
 import org.onehippo.forge.templating.support.thymeleaf.servlet.attributes.*;
+import org.onehippo.forge.templating.support.thymeleaf.servlet.tags.ThymeleafHstHeadContributionTag;
+import org.onehippo.forge.templating.support.thymeleaf.servlet.tags.ThymeleafHstHeadContributionsTag;
+import org.onehippo.forge.templating.support.thymeleaf.servlet.tags.ThymeleafHstIncludeTag;
+import org.onehippo.forge.templating.support.thymeleaf.servlet.tags.ThymeleafHstSetBundleTag;
 import org.onehippo.forge.templating.support.thymeleaf.servlet.utils.HstThymeleafExpressionFactory;
 import org.thymeleaf.dialect.AbstractProcessorDialect;
 import org.thymeleaf.dialect.IExpressionObjectDialect;
@@ -41,7 +45,7 @@ public class ThymeleafHstDialect extends AbstractProcessorDialect implements IEx
         processors.add(new ThymeleafHstWebfilesAttribute(dialectPrefix));
         processors.add(new ThymeleafHstLinkByPathAttribute(dialectPrefix));
         processors.add(new ThymeleafHstHtmlAttribute(dialectPrefix));
-        processors.add(new ThymeleafHstIncludeAttribute(dialectPrefix));
+        processors.add(new ThymeleafHstIncludeTag(dialectPrefix));
         processors.add(new ThymeleafHstFacetNavigationLinkAttribute(dialectPrefix));
         processors.add(new ThymeleafHstResourceUrlAttribute(dialectPrefix));
         processors.add(new ThymeleafHstSetBundleTag(dialectPrefix));

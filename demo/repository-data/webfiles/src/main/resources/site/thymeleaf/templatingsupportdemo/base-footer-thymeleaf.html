@@ -55,7 +55,7 @@
   <h2>Some html content:</h2>
   <div hst:html="${document.content}"></div>
   <h2>HST include (top):</h2>
-  <div hst:include="top"></div>
+  <hst:include hst:ref="top"/>
   <hst:headContribution hst:category="thymeleafCategory">
     <link rel="stylesheet" th:href="@{files/thymeleaf-webfiles-head-contrubution.css}" type="text/css"/>
   </hst:headContribution>

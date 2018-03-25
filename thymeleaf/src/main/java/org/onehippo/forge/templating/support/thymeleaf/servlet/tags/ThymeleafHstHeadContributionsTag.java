@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.onehippo.forge.templating.support.thymeleaf.servlet.attributes;
+package org.onehippo.forge.templating.support.thymeleaf.servlet.tags;
 
 import org.onehippo.forge.templating.support.core.helper.HstHeadContributionHelper;
 import org.slf4j.Logger;
