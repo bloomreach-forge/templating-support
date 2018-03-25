@@ -16,9 +16,3 @@ definitions:
         jcr:primaryType: hst:component
         hst:componentclassname: org.onehippo.forge.templating.support.demo.components.DemoDataComponent
         hst:template: base-footer-thymeleaf
-        /top:
-          jcr:primaryType: hst:component
-          hst:componentclassname: org.onehippo.cms7.essentials.components.EssentialsMenuComponent
-          hst:parameternames: [selectedMenu, level, menu]
-          hst:parametervalues: ['on', '1', main]
-          hst:template: base-top-menu

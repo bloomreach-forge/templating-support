@@ -1,0 +1,8 @@
+<div th:if="${menu}" class="has-edit-button" xmlns:th="http://www.thymeleaf.org" xmlns:hst="http://www.onehippo.org">
+    <ul class="nav nav-pills">
+      <li th:each="item : ${menu.siteMenuItems}" th:classappend="${item.selected} ? 'active' : ''">
+        <a hst:link="${item.hstLink}" th:text="${item.name}"></a>
+      </li>
+    </ul>
+  <hst:cmseditmenu hst:menu="${menu}"/>
+</div>

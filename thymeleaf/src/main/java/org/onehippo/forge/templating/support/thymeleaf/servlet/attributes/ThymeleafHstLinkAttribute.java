@@ -16,7 +16,9 @@
 
 package org.onehippo.forge.templating.support.thymeleaf.servlet.attributes;
 
+import org.hippoecm.hst.container.RequestContextProvider;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.core.linking.HstLink;
 import org.onehippo.forge.templating.support.core.helper.HstLinkHelper;
 import org.onehippo.forge.templating.support.thymeleaf.servlet.utils.ThymeleafHstUtils;
 import org.thymeleaf.context.ITemplateContext;
@@ -34,17 +36,20 @@ public class ThymeleafHstLinkAttribute extends BaseAttributeProcessor {
 
     @Override
     protected void doProcess(final ITemplateContext context, final IProcessableElementTag tag, final AttributeName attributeName, final String attributeValue, final IElementTagStructureHandler structureHandler) {
-        final HippoBean bean = ThymeleafHstUtils.getExpression(context, attributeValue);
+        final Object o = ThymeleafHstUtils.getExpression(context, attributeValue);
         final IAttribute attribute = tag.getAttribute(ATTR_FULLY_QUALIFIED);
         final boolean fullyQualified = parseBoolean(attribute);
-        final String link = HstLinkHelper.INSTANCE.linkByHippoBean(bean, fullyQualified);
-        setLink(structureHandler, tag, link);
+        if (o instanceof HippoBean) {
+            setLink(structureHandler, tag, HstLinkHelper.INSTANCE.linkByHippoBean((HippoBean) o, fullyQualified));
+        } else if (o instanceof HstLink) {
+            final HstLink link = (HstLink) o;
+            setLink(structureHandler, tag, link.toUrlForm(RequestContextProvider.get(), fullyQualified));
+        } else if (o instanceof String) {
+            setLink(structureHandler, tag, HstLinkHelper.INSTANCE.linkByPath((String) o, fullyQualified));
+        }
+
 
     }
-
-
-
-
 
 
 }
