@@ -17,6 +17,7 @@
 package org.onehippo.forge.templating.support.thymeleaf.servlet.attributes;
 
 import org.onehippo.forge.templating.support.core.helper.HstLinkHelper;
+import org.onehippo.forge.templating.support.thymeleaf.servlet.HstThymeleafUtils;
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.engine.AttributeName;
 import org.thymeleaf.model.IProcessableElementTag;
@@ -31,9 +32,9 @@ public class ThymeleafHstFacetNavigationLinkAttribute extends BaseAttributeProce
 
     protected void doProcess(final ITemplateContext context, final IProcessableElementTag tag, final AttributeName attributeName, final String attributeValue, final IElementTagStructureHandler structureHandler) {
         final String link = HstLinkHelper.INSTANCE.linkForFacet(
-                getExpression(context, tag, "hst:facetNavigationLink"),
-                getExpression(context, tag, "hst:facetRemove"),
-                getExpression(context, tag, "hst:facetRemoveList"));
+                HstThymeleafUtils.getExpression(context, tag, "hst:facetNavigationLink"),
+                HstThymeleafUtils.getExpression(context, tag, "hst:facetRemove"),
+                HstThymeleafUtils.getExpression(context, tag, "hst:facetRemoveList"));
         setLink(structureHandler, tag, link);
 
     }

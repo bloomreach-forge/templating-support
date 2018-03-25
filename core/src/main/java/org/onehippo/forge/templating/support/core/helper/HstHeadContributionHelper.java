@@ -15,15 +15,6 @@
  */
 package org.onehippo.forge.templating.support.core.helper;
 
-import java.io.StringReader;
-import java.util.Arrays;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.core.component.HeadElement;
 import org.hippoecm.hst.core.component.HeadElementImpl;
@@ -34,6 +25,15 @@ import org.onehippo.forge.templating.support.core.servlet.TemplateRequestContext
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.InputSource;
+
+import javax.servlet.ServletResponse;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.StringReader;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * HST HeadContribution(s) Helper.
@@ -77,7 +77,7 @@ public class HstHeadContributionHelper {
         return "";
     }
 
-    public String contributedHeadElements(String categoryIncludes, String categoryExcludes) {
+    public String contributedHeadElements(String categoryIncludes, String categoryExcludes, final boolean xhtml) {
         final Set<String> categoryIncludesSet = new LinkedHashSet<>(
                 Arrays.asList(StringUtils.split(categoryIncludes, ", \t")));
         final Set<String> categoryExcludesSet = new LinkedHashSet<>(
@@ -91,7 +91,7 @@ public class HstHeadContributionHelper {
         if (headElements != null) {
             for (Element headElement : headElements) {
                 if (shouldBeIncludedInOutput(categoryIncludesSet, categoryExcludesSet, headElement)) {
-                    buffer.append(headElementToString(headElement)).append("\r\n");
+                    buffer.append(headElementToString(headElement, xhtml, hstResponse)).append("\r\n");
                     hstResponse.addProcessedHeadElement(headElement);
                 }
             }
@@ -101,7 +101,7 @@ public class HstHeadContributionHelper {
     }
 
     private boolean shouldBeIncludedInOutput(final Set<String> categoryIncludesSet,
-            final Set<String> categoryExcludesSet, final Element headElement) {
+                                             final Set<String> categoryExcludesSet, final Element headElement) {
         boolean filterOnIncludes = categoryIncludesSet != null && !categoryIncludesSet.isEmpty();
         boolean filterOnExcludes = categoryExcludesSet != null && !categoryExcludesSet.isEmpty();
 
@@ -117,14 +117,22 @@ public class HstHeadContributionHelper {
         return shouldInclude && !shouldExclude;
     }
 
-    private String headElementToString(final Element headElement) {
+    private String headElementToString(final Element headElement, final boolean xhtml, final ServletResponse response) {
         final Element clone = (Element) headElement.cloneNode(true);
         HeadElement outHeadElement = new HeadElementImpl(clone);
 
         if (outHeadElement.hasAttribute(ContainerConstants.HEAD_ELEMENT_CONTRIBUTION_CATEGORY_HINT_ATTRIBUTE)) {
             outHeadElement.removeAttribute(ContainerConstants.HEAD_ELEMENT_CONTRIBUTION_CATEGORY_HINT_ATTRIBUTE);
         }
+        if (xhtml) {
+            return HeadElementUtils.toXhtmlString(outHeadElement, isResponseTextHtmlContent(response));
+        } else {
+            return HeadElementUtils.toHtmlString(outHeadElement);
+        }
+    }
 
-        return HeadElementUtils.toHtmlString(outHeadElement);
+    private boolean isResponseTextHtmlContent(final ServletResponse response) {
+        String responseContentType = response.getContentType();
+        return (responseContentType != null && responseContentType.startsWith("text/html"));
     }
 }

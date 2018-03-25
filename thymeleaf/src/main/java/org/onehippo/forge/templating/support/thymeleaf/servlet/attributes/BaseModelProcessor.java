@@ -16,6 +16,8 @@
 
 package org.onehippo.forge.templating.support.thymeleaf.servlet.attributes;
 
+import org.onehippo.forge.templating.support.thymeleaf.servlet.HstThymeleafUtils;
+import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.model.*;
 import org.thymeleaf.processor.element.AbstractElementModelProcessor;
 import org.thymeleaf.templatemode.TemplateMode;
@@ -31,6 +33,13 @@ public abstract class BaseModelProcessor extends AbstractElementModelProcessor {
     }
 
 
+    protected <T> T getAttributeExpression(final ITemplateContext context, final IModel model, final String name) {
+        final String value = getAttribute(model, name);
+        if (value == null) {
+            return null;
+        }
+        return HstThymeleafUtils.getExpression(context, value);
+    }
     protected String getAttribute(final IModel model, final String name) {
         final int size = model.size();
         for (int i = 0; i < size; i++) {

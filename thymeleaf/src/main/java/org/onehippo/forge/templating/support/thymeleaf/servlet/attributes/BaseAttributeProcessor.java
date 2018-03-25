@@ -18,17 +18,12 @@ package org.onehippo.forge.templating.support.thymeleaf.servlet.attributes;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.thymeleaf.IEngineConfiguration;
-import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.model.IAttribute;
 import org.thymeleaf.model.IModel;
 import org.thymeleaf.model.IProcessableElementTag;
 import org.thymeleaf.model.ITemplateEvent;
 import org.thymeleaf.processor.element.AbstractAttributeTagProcessor;
 import org.thymeleaf.processor.element.IElementTagStructureHandler;
-import org.thymeleaf.standard.expression.IStandardExpression;
-import org.thymeleaf.standard.expression.IStandardExpressionParser;
-import org.thymeleaf.standard.expression.StandardExpressions;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.util.FastStringWriter;
 
@@ -46,36 +41,7 @@ public abstract class BaseAttributeProcessor extends AbstractAttributeTagProcess
         super(TemplateMode.HTML, dialectPrefix, null, false, attributeName, true, PRECEDENCE, true);
     }
 
-    @SuppressWarnings("unchecked")
-    protected <T> T getExpression(final ITemplateContext context, final String attributeValue) {
-        final IEngineConfiguration configuration = context.getConfiguration();
-        final IStandardExpressionParser parser = StandardExpressions.getExpressionParser(configuration);
-        final IStandardExpression expression = parser.parseExpression(context, attributeValue);
-        return (T) expression.execute(context);
-    }
 
-    protected <T> T getExpression(final ITemplateContext context, final IProcessableElementTag tag, final String attributeName) {
-        final String value = getAttribute(tag, attributeName);
-        if (value == null) {
-            return null;
-        }
-        return getExpression(context, value);
-    }
-
-
-    private String getAttribute(final IProcessableElementTag tag, final String name) {
-        final IAttribute attribute = tag.getAttribute(name);
-        if (attribute == null) {
-            return null;
-        }
-        final String value = attribute.getValue();
-        if (value == null) {
-            return null;
-        }
-        return value;
-    }
-
-    
     protected boolean parseBoolean(final IAttribute attribute) {
         if (attribute == null) {
             return false;

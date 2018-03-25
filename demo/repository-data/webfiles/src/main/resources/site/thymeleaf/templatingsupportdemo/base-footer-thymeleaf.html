@@ -39,7 +39,10 @@
 
    <hst:setBundle hst:basename="essentials.pagination" />
    HST setBundle (essentials.pagination/results.indication): <strong th:text="#{results.indication}"></strong>
-  </pre>
+  <hst:headContributions hst:categoryIncludes="thymeleafCategory"/>
+ </pre>
+
+
   <pre th:if="${hstRequestContext.cmsRequest}">
     Manage content: <a hst:manageContent="${document}">Link</a>
     Cms Edit link : <a hst:cmsEditLink="${document}">Link</a>
@@ -52,11 +55,14 @@
   <div hst:html="${document.content}"></div>
   <h2>HST include (top):</h2>
   <div hst:include="top"></div>
-  <hst:headContribution hst:keyHint="keyHintValue">
+  <hst:headContribution hst:category="thymeleafCategory">
+    <link rel="stylesheet" th:href="@{files/thymeleaf-webfiles-head-contrubution.css}" type="text/css"/>
+  </hst:headContribution>
+  <hst:headContribution>
     <meta name="ourmeta" content="Thymeleaf templating is working!"/>
   </hst:headContribution>
-  <hst:headContribution hst:keyHint="webfileInclude">
-    <link rel="stylesheet" th:href="@{files/thymeleaf-webfiles-head-contrubution.css}" type="text/css"/>
+  <hst:headContribution hst:category="thymeleafCategory">
+    <meta name="thymeleafCategoryMeta" content="Thymeleaf templating is working!"/>
   </hst:headContribution>
   <p class="thymeleaf-web-files-head">Head contribution styling</p>
 </div>

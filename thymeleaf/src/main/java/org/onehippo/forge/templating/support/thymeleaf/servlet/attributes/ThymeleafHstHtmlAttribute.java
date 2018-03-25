@@ -18,6 +18,7 @@ package org.onehippo.forge.templating.support.thymeleaf.servlet.attributes;
 
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.onehippo.forge.templating.support.core.helper.HstHtmlHelper;
+import org.onehippo.forge.templating.support.thymeleaf.servlet.HstThymeleafUtils;
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.engine.AttributeName;
 import org.thymeleaf.model.IAttribute;
@@ -32,7 +33,7 @@ public class ThymeleafHstHtmlAttribute extends BaseAttributeProcessor {
     }
 
     protected void doProcess(final ITemplateContext context, final IProcessableElementTag tag, final AttributeName attributeName, final String attributeValue, final IElementTagStructureHandler structureHandler) {
-        final HippoHtml htmlBean = getExpression(context, attributeValue);
+        final HippoHtml htmlBean = HstThymeleafUtils.getExpression(context, attributeValue);
         final IAttribute attribute = tag.getAttribute(ATTR_FULLY_QUALIFIED);
         final boolean fullyQualified = parseBoolean(attribute);
         final String html = HstHtmlHelper.INSTANCE.htmlByHippoHtml(htmlBean, fullyQualified);

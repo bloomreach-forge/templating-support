@@ -17,6 +17,7 @@
 package org.onehippo.forge.templating.support.thymeleaf.servlet.attributes;
 
 import org.onehippo.forge.templating.support.core.helper.HstLinkHelper;
+import org.onehippo.forge.templating.support.thymeleaf.servlet.HstThymeleafUtils;
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.engine.AttributeName;
 import org.thymeleaf.model.IAttribute;
@@ -32,7 +33,7 @@ public class ThymeleafHstRefItemAttribute extends BaseAttributeProcessor {
     }
 
     protected void doProcess(final ITemplateContext context, final IProcessableElementTag tag, final AttributeName attributeName, final String attributeValue, final IElementTagStructureHandler structureHandler) {
-        final String path = getExpression(context, attributeValue);
+        final String path = HstThymeleafUtils.getExpression(context, attributeValue);
         final IAttribute attribute = tag.getAttribute(ATTR_FULLY_QUALIFIED);
         final boolean fullyQualified = parseBoolean(attribute);
         final String link = HstLinkHelper.INSTANCE.linkBySiteMapItemRefId(path, fullyQualified);
