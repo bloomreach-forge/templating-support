@@ -1,12 +1,12 @@
 /*
  * Copyright 2018 Hippo B.V. (http://www.onehippo.com)
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *         http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -49,8 +49,10 @@ public class HstHtmlHelper {
         contentRewriter.setFullyQualifiedLinks(fullyQualified);
         return contentRewriter.rewrite(htmlBean.getContent(), htmlBean.getNode(), requestContext);
     }
+
     
-    public String htmlByHippoHtml(HippoHtmlBean htmlBean, final ContentRewriter<String> contentRewriter, final ImageVariant imageVariant,  final boolean canonicalLinks,  boolean fullyQualified) {
+    // TODO mm: change this, HandlebarsHelperRegistrationUtils logs warnings about duplicate methods
+    public String htmlByHippoHtmlFull(HippoHtmlBean htmlBean, final ContentRewriter<String> contentRewriter, final ImageVariant imageVariant, final boolean canonicalLinks, boolean fullyQualified) {
         final HstRequestContext requestContext = RequestContextProvider.get();
         contentRewriter.setCanonicalLinks(canonicalLinks);
         contentRewriter.setImageVariant(imageVariant);

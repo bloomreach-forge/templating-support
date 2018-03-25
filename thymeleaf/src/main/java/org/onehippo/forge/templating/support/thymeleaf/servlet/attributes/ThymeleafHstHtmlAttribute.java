@@ -16,6 +16,7 @@
 
 package org.onehippo.forge.templating.support.thymeleaf.servlet.attributes;
 
+import com.google.common.base.Strings;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.hippoecm.hst.content.rewriter.ContentRewriter;
 import org.hippoecm.hst.content.rewriter.ImageVariant;
@@ -44,9 +45,9 @@ public class ThymeleafHstHtmlAttribute extends BaseAttributeProcessor {
         final boolean fallback = parseBoolean(tag.getAttribute("hst:imageVariantFallback"));
         final boolean canonicalLinks = parseBoolean(tag.getAttribute("hst:canonicalLinks"));
         final ContentRewriter<String> contentRewriter = HstHtmlHelper.INSTANCE.getOrCreateContentRewriter(getExpression(context, getAttribute(tag, "hst:contentRewriter")));
-        final ImageVariant imageVariant = HstHtmlHelper.INSTANCE.replaceVariants(imageVariantName, imageVariantReplaces, fallback);
+        final ImageVariant imageVariant = Strings.isNullOrEmpty(imageVariantName) ? null: HstHtmlHelper.INSTANCE.replaceVariants(imageVariantName, imageVariantReplaces, fallback);
         final boolean fullyQualified = parseBoolean(fullyQualifiedAttribute);
-        final String html = HstHtmlHelper.INSTANCE.htmlByHippoHtml(htmlBean, contentRewriter, imageVariant, canonicalLinks, fullyQualified);
+        final String html = HstHtmlHelper.INSTANCE.htmlByHippoHtmlFull(htmlBean, contentRewriter, imageVariant, canonicalLinks, fullyQualified);
         structureHandler.setBody(html, false);
     }
 
