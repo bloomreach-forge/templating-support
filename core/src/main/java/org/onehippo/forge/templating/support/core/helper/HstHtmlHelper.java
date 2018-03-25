@@ -50,8 +50,9 @@ public class HstHtmlHelper {
         return contentRewriter.rewrite(htmlBean.getContent(), htmlBean.getNode(), requestContext);
     }
     
-    public String htmlByHippoHtml(HippoHtmlBean htmlBean, final ContentRewriter<String> contentRewriter, final ImageVariant imageVariant,  boolean fullyQualified) {
+    public String htmlByHippoHtml(HippoHtmlBean htmlBean, final ContentRewriter<String> contentRewriter, final ImageVariant imageVariant,  final boolean canonicalLinks,  boolean fullyQualified) {
         final HstRequestContext requestContext = RequestContextProvider.get();
+        contentRewriter.setCanonicalLinks(canonicalLinks);
         contentRewriter.setImageVariant(imageVariant);
         contentRewriter.setFullyQualifiedLinks(fullyQualified);
         return contentRewriter.rewrite(htmlBean.getContent(), htmlBean.getNode(), requestContext);
