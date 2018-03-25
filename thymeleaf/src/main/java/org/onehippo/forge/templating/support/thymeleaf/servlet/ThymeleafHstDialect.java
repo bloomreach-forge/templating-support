@@ -17,6 +17,7 @@
 package org.onehippo.forge.templating.support.thymeleaf.servlet;
 
 import org.onehippo.forge.templating.support.thymeleaf.servlet.attributes.*;
+import org.onehippo.forge.templating.support.thymeleaf.servlet.utils.HstThymeleafExpressionFactory;
 import org.thymeleaf.dialect.AbstractProcessorDialect;
 import org.thymeleaf.dialect.IExpressionObjectDialect;
 import org.thymeleaf.expression.IExpressionObjectFactory;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.onehippo.forge.templating.support.thymeleaf.servlet;
+package org.onehippo.forge.templating.support.thymeleaf.servlet.utils;
 
 import org.hippoecm.hst.core.linking.HstLink;
 import org.hippoecm.hst.core.linking.HstLinkCreator;

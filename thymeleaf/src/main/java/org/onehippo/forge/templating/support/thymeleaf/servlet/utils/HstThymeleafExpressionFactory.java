@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.onehippo.forge.templating.support.thymeleaf.servlet;
+package org.onehippo.forge.templating.support.thymeleaf.servlet.utils;
 
 import com.google.common.collect.ImmutableSet;
 import org.thymeleaf.context.IExpressionContext;

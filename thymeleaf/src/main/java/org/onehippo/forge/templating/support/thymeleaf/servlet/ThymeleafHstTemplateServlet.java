@@ -21,6 +21,7 @@ import org.onehippo.forge.templating.support.thymeleaf.servlet.resolvers.Classpa
 import org.onehippo.forge.templating.support.thymeleaf.servlet.resolvers.HstMessageResolver;
 import org.onehippo.forge.templating.support.thymeleaf.servlet.resolvers.ServletTemplateResolver;
 import org.onehippo.forge.templating.support.thymeleaf.servlet.resolvers.WebfilesTemplateResolver;
+import org.onehippo.forge.templating.support.thymeleaf.servlet.utils.ThymeleafLinkBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.thymeleaf.TemplateEngine;

@@ -18,7 +18,7 @@ package org.onehippo.forge.templating.support.thymeleaf.servlet.attributes;
 
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.onehippo.forge.templating.support.core.helper.CmsEditLinkHelper;
-import org.onehippo.forge.templating.support.thymeleaf.servlet.HstThymeleafUtils;
+import org.onehippo.forge.templating.support.thymeleaf.servlet.utils.HstThymeleafUtils;
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.engine.AttributeName;
 import org.thymeleaf.model.IAttribute;

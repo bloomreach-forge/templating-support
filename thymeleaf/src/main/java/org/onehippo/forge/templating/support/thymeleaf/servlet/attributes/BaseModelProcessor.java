@@ -16,7 +16,7 @@
 
 package org.onehippo.forge.templating.support.thymeleaf.servlet.attributes;
 
-import org.onehippo.forge.templating.support.thymeleaf.servlet.HstThymeleafUtils;
+import org.onehippo.forge.templating.support.thymeleaf.servlet.utils.HstThymeleafUtils;
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.model.*;
 import org.thymeleaf.processor.element.AbstractElementModelProcessor;
