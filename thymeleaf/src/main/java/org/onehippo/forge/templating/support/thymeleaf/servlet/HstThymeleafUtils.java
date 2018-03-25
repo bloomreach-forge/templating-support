@@ -44,7 +44,7 @@ public final class HstThymeleafUtils {
         return getExpression(context, value);
     }
 
-    private static String getAttribute(final IProcessableElementTag tag, final String name) {
+    public static String getAttribute(final IProcessableElementTag tag, final String name) {
         final IAttribute attribute = tag.getAttribute(name);
         if (attribute == null) {
             return null;

@@ -17,6 +17,8 @@
 package org.onehippo.forge.templating.support.thymeleaf.servlet.attributes;
 
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
+import org.hippoecm.hst.content.rewriter.ContentRewriter;
+import org.hippoecm.hst.content.rewriter.ImageVariant;
 import org.onehippo.forge.templating.support.core.helper.HstHtmlHelper;
 import org.onehippo.forge.templating.support.thymeleaf.servlet.HstThymeleafUtils;
 import org.thymeleaf.context.ITemplateContext;
@@ -24,6 +26,8 @@ import org.thymeleaf.engine.AttributeName;
 import org.thymeleaf.model.IAttribute;
 import org.thymeleaf.model.IProcessableElementTag;
 import org.thymeleaf.processor.element.IElementTagStructureHandler;
+
+import static org.onehippo.forge.templating.support.thymeleaf.servlet.HstThymeleafUtils.*;
 
 public class ThymeleafHstHtmlAttribute extends BaseAttributeProcessor {
     private static final String ATTR_NAME = "html";
@@ -34,9 +38,14 @@ public class ThymeleafHstHtmlAttribute extends BaseAttributeProcessor {
 
     protected void doProcess(final ITemplateContext context, final IProcessableElementTag tag, final AttributeName attributeName, final String attributeValue, final IElementTagStructureHandler structureHandler) {
         final HippoHtml htmlBean = HstThymeleafUtils.getExpression(context, attributeValue);
-        final IAttribute attribute = tag.getAttribute(ATTR_FULLY_QUALIFIED);
-        final boolean fullyQualified = parseBoolean(attribute);
-        final String html = HstHtmlHelper.INSTANCE.htmlByHippoHtml(htmlBean, fullyQualified);
+        final IAttribute fullyQualifiedAttribute = tag.getAttribute(ATTR_FULLY_QUALIFIED);
+        final String imageVariantName = getAttribute(tag, "hst:imageVariantName");
+        final String imageVariantReplaces = getAttribute(tag, "hst:imageVariantReplaces");
+        final boolean fallback = parseBoolean(tag.getAttribute("hst:imageVariantFallback"));
+        final ContentRewriter<String> contentRewriter = HstHtmlHelper.INSTANCE.getOrCreateContentRewriter(getExpression(context, "hst:contentRewriter"));
+        final ImageVariant imageVariant = HstHtmlHelper.INSTANCE.replaceVariants(imageVariantName, imageVariantReplaces, fallback);
+        final boolean fullyQualified = parseBoolean(fullyQualifiedAttribute);
+        final String html = HstHtmlHelper.INSTANCE.htmlByHippoHtml(htmlBean, contentRewriter, imageVariant, fullyQualified);
         structureHandler.setBody(html, false);
     }
 
