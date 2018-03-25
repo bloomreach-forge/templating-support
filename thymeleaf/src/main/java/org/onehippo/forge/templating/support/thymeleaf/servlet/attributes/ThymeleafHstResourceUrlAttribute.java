@@ -31,6 +31,7 @@ public class ThymeleafHstResourceUrlAttribute extends BaseAttributeProcessor {
         super(dialectPrefix, ATTR_NAME);
     }
 
+    @Override
     protected void doProcess(final ITemplateContext context, final IProcessableElementTag tag, final AttributeName attributeName, final String attributeValue, final IElementTagStructureHandler structureHandler) {
         final String parameters = HstThymeleafUtils.getAttribute(tag, ATTRIBUTE_HST_PARAMS);
         final String link = HstURLHelper.INSTANCE.resourceURL(attributeValue, parameters);

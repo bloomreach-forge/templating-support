@@ -32,6 +32,7 @@ public class ThymeleafHstRefItemAttribute extends BaseAttributeProcessor {
         super(dialectPrefix, ATTR_NAME);
     }
 
+    @Override
     protected void doProcess(final ITemplateContext context, final IProcessableElementTag tag, final AttributeName attributeName, final String attributeValue, final IElementTagStructureHandler structureHandler) {
         final String path = HstThymeleafUtils.getExpression(context, attributeValue);
         final IAttribute attribute = tag.getAttribute(ATTR_FULLY_QUALIFIED);

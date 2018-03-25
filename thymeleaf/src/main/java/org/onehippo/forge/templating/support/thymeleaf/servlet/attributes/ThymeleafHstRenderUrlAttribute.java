@@ -30,6 +30,7 @@ public class ThymeleafHstRenderUrlAttribute extends BaseAttributeProcessor {
         super(dialectPrefix, ATTR_NAME);
     }
 
+    @Override
     protected void doProcess(final ITemplateContext context, final IProcessableElementTag tag, final AttributeName attributeName, final String attributeValue, final IElementTagStructureHandler structureHandler) {
         final String link = HstURLHelper.INSTANCE.renderURL(attributeValue);
         setLink(structureHandler, tag, link);

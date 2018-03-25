@@ -30,6 +30,7 @@ public class ThymeleafHstFacetNavigationLinkAttribute extends BaseAttributeProce
         super(dialectPrefix, ATTR_NAME);
     }
 
+    @Override
     protected void doProcess(final ITemplateContext context, final IProcessableElementTag tag, final AttributeName attributeName, final String attributeValue, final IElementTagStructureHandler structureHandler) {
         final String link = HstLinkHelper.INSTANCE.linkForFacet(
                 HstThymeleafUtils.getExpression(context, tag, "hst:facetNavigationLink"),

@@ -37,6 +37,7 @@ public class ThymeleafHstHtmlAttribute extends BaseAttributeProcessor {
         super(dialectPrefix, ATTR_NAME);
     }
 
+    @Override
     protected void doProcess(final ITemplateContext context, final IProcessableElementTag tag, final AttributeName attributeName, final String attributeValue, final IElementTagStructureHandler structureHandler) {
         final HippoHtml htmlBean = HstThymeleafUtils.getExpression(context, attributeValue);
         final IAttribute fullyQualifiedAttribute = tag.getAttribute(ATTR_FULLY_QUALIFIED);

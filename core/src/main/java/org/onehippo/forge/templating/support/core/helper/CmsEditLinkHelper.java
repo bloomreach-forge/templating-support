@@ -15,25 +15,14 @@
  */
 package org.onehippo.forge.templating.support.core.helper;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import javax.jcr.Node;
-import javax.jcr.PathNotFoundException;
-import javax.jcr.RepositoryException;
-import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.configuration.ConfigurationUtils;
 import org.hippoecm.hst.configuration.HstNodeTypes;
 import org.hippoecm.hst.configuration.hosting.Mount;
+import org.hippoecm.hst.configuration.internal.CanonicalInfo;
+import org.hippoecm.hst.configuration.internal.ConfigurationLockInfo;
+import org.hippoecm.hst.configuration.site.HstSite;
+import org.hippoecm.hst.configuration.sitemenu.HstSiteMenuConfiguration;
 import org.hippoecm.hst.container.RequestContextProvider;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.channelmanager.ChannelManagerConstants;
@@ -46,6 +35,7 @@ import org.hippoecm.hst.core.parameters.ParametersInfo;
 import org.hippoecm.hst.core.request.ComponentConfiguration;
 import org.hippoecm.hst.core.request.HstRequestContext;
 import org.hippoecm.hst.core.request.ResolvedMount;
+import org.hippoecm.hst.core.sitemenu.CommonMenu;
 import org.hippoecm.hst.util.EncodingUtils;
 import org.hippoecm.hst.util.HstRequestUtils;
 import org.hippoecm.hst.util.ParametersInfoAnnotationUtils;
@@ -56,9 +46,19 @@ import org.onehippo.forge.templating.support.core.servlet.TemplateRequestContext
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.hippoecm.hst.core.container.ContainerConstants.RENDER_VARIANT;
-import static org.hippoecm.hst.utils.TagUtils.encloseInHTMLComment;
-import static org.hippoecm.hst.utils.TagUtils.toJSONMap;
+import javax.jcr.Node;
+import javax.jcr.PathNotFoundException;
+import javax.jcr.RepositoryException;
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static org.hippoecm.hst.core.channelmanager.ChannelManagerConstants.*;
+import static org.hippoecm.hst.core.container.ContainerConstants.*;
+import static org.hippoecm.hst.utils.TagUtils.*;
 
 /**
  * For CMS Edit Link related tags.
@@ -238,15 +238,74 @@ public final class CmsEditLinkHelper {
 
     }
 
-    public String cmsEditMenuLink(final HippoBean bean) {
+
+    public String cmsEditMenuLink(final CommonMenu menu) {
         final HstRequestContext requestContext = RequestContextProvider.get();
-        if (invalidCmsRequest(bean, requestContext)) {
+        if (invalidCmsRequest(menu, requestContext)) {
             return NO_RESULT;
         }
 
-        return NO_RESULT;
+        if (menu == null) {
+            log.warn("Cannot create a cms edit menu because no menu present");
+            return NO_RESULT;
+        }
+
+        final HstSite hstSite = requestContext.getResolvedMount().getMount().getHstSite();
+        if (hstSite == null) {
+            log.debug("Skipping cms edit menu because no hst site for matched mount '{}'.",
+                    requestContext.getResolvedMount().getMount().toString());
+            return NO_RESULT;
+        }
+
+        final HstSiteMenuConfiguration siteMenuConfiguration = hstSite.getSiteMenusConfiguration().getSiteMenuConfiguration(menu.getName());
+
+        if (siteMenuConfiguration == null) {
+            log.debug("Skipping cms edit menu because no siteMenuConfiguration '{}' found for matched mount '{}'.",
+                    menu.getName(), requestContext.getResolvedMount().getMount().toString());
+            return NO_RESULT;
+        }
+
+        if (!(siteMenuConfiguration instanceof CanonicalInfo)) {
+            log.debug("Skipping cms edit menu because siteMenuConfiguration found not instanceof CanonicalInfo " +
+                    "for matched mount '{}'.", requestContext.getResolvedMount().getMount().toString());
+            return NO_RESULT;
+        }
+        if (!(siteMenuConfiguration instanceof ConfigurationLockInfo)) {
+            log.debug("Skipping cms edit menu because siteMenuConfiguration found not instanceof ConfigurationLockInfo " +
+                    "for matched mount '{}'.", requestContext.getResolvedMount().getMount().toString());
+            return NO_RESULT;
+        }
+        CanonicalInfo canonicalInfo = (CanonicalInfo) siteMenuConfiguration;
+        if (!canonicalInfo.isWorkspaceConfiguration()) {
+            log.debug("Skipping cms edit menu because siteMenuConfiguration found not part of workspace " +
+                    "for matched mount '{}'.", requestContext.getResolvedMount().getMount().toString());
+            return NO_RESULT;
+        }
+        if (!canonicalInfo.getCanonicalPath().startsWith(hstSite.getConfigurationPath() + '/')) {
+            log.debug("Skipping cms edit menu because siteMenuConfiguration found is inherited from other configuration " +
+                    "for matched mount '{}'.", requestContext.getResolvedMount().getMount().toString());
+            return NO_RESULT;
+        }
+        return encloseInHTMLComment(toJSONMap(getAttributeMap(siteMenuConfiguration)));
     }
 
+    private Map<?, ?> getAttributeMap(final HstSiteMenuConfiguration siteMenuConfiguration) {
+        final String canonicalIdentifier = ((CanonicalInfo) siteMenuConfiguration).getCanonicalIdentifier();
+        final Map<String, Object> result = new HashMap<>();
+        result.put(ChannelManagerConstants.HST_TYPE, "EDIT_MENU_LINK");
+        result.put("uuid", canonicalIdentifier);
+        final String lockedBy = ((ConfigurationLockInfo) siteMenuConfiguration).getLockedBy();
+        if (lockedBy != null) {
+            result.put(HST_LOCKED_BY, lockedBy);
+            result.put(HST_LOCKED_BY_CURRENT_USER, lockedBy.equals(getCurrentCmsUser()));
+            result.put(HST_LOCKED_ON, ((ConfigurationLockInfo) siteMenuConfiguration).getLockedOn().getTimeInMillis());
+        }
+        return result;
+    }
+
+    private static String getCurrentCmsUser() {
+        return (String) RequestContextProvider.get().getServletRequest().getAttribute(CMS_REQUEST_USER_ID_ATTR);
+    }
     private String write(final String templateQuery, final String rootPath, final String defaultPath, final String parameterName, final String documentId, final String componentValue, final JcrPath jcrPath,
                          final boolean isRelativePathParameter, final String absoluteRootPath) {
 
@@ -267,7 +326,7 @@ public final class CmsEditLinkHelper {
         //return ParameterUtils.getParameterAnnotation(paramsInfo, parameterName, JcrPath.class);
     }
 
-    private boolean invalidCmsRequest(final HippoBean bean, final HstRequestContext requestContext) {
+    private boolean invalidCmsRequest(final Object bean, final HstRequestContext requestContext) {
         return requestContext == null || !requestContext.isCmsRequest() || bean == null;
     }
 
