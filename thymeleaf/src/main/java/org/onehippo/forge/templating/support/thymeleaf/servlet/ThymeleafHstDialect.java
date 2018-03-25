@@ -18,14 +18,18 @@ package org.onehippo.forge.templating.support.thymeleaf.servlet;
 
 import org.onehippo.forge.templating.support.thymeleaf.servlet.attributes.*;
 import org.thymeleaf.dialect.AbstractProcessorDialect;
+import org.thymeleaf.dialect.IExpressionObjectDialect;
+import org.thymeleaf.expression.IExpressionObjectFactory;
 import org.thymeleaf.processor.IProcessor;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class ThymeleafHstDialect extends AbstractProcessorDialect {
+public class ThymeleafHstDialect extends AbstractProcessorDialect implements IExpressionObjectDialect {
 
 
+    private static final IExpressionObjectFactory HST_EXPRESSION_FACTORY = new HstThymeleafExpressionFactory();
+    
     public ThymeleafHstDialect() {
         super("HST dialect", "hst", 1000);
     }
@@ -40,7 +44,6 @@ public class ThymeleafHstDialect extends AbstractProcessorDialect {
         processors.add(new ThymeleafHstFacetNavigationLinkAttribute(dialectPrefix));
         processors.add(new ThymeleafHstResourceUrlAttribute(dialectPrefix));
         processors.add(new ThymeleafHstSetBundleTag(dialectPrefix));
-        processors.add(new ThymeleafHstMessagesReplaceAttribute(dialectPrefix));
         processors.add(new ThymeleafHstHeadContributionsTag(dialectPrefix));
         processors.add(new ThymeleafHstHeadContributionTag(dialectPrefix));
         processors.add(new ThymeleafHstActionUrlAttribute(dialectPrefix));
@@ -51,5 +54,9 @@ public class ThymeleafHstDialect extends AbstractProcessorDialect {
         processors.add(new ThymeleafCmsEditLinkAttribute(dialectPrefix));
         processors.add(new ThymeleafCmsEditMenuLinkAttribute(dialectPrefix));
         return processors;
+    }
+
+    @Override public IExpressionObjectFactory getExpressionObjectFactory() {
+        return HST_EXPRESSION_FACTORY;
     }
 }
