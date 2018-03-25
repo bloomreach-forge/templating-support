@@ -16,6 +16,7 @@
 
 package org.onehippo.forge.templating.support.thymeleaf.servlet;
 
+import com.google.common.base.Strings;
 import org.thymeleaf.IEngineConfiguration;
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.model.IAttribute;
@@ -30,6 +31,9 @@ public final class HstThymeleafUtils {
 
     @SuppressWarnings("unchecked")
     public static  <T> T getExpression(final ITemplateContext context, final String attributeValue) {
+        if (Strings.isNullOrEmpty(attributeValue)) {
+            return null;
+        }
         final IEngineConfiguration configuration = context.getConfiguration();
         final IStandardExpressionParser parser = StandardExpressions.getExpressionParser(configuration);
         final IStandardExpression expression = parser.parseExpression(context, attributeValue);

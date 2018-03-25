@@ -42,7 +42,7 @@ public class ThymeleafHstHtmlAttribute extends BaseAttributeProcessor {
         final String imageVariantName = getAttribute(tag, "hst:imageVariantName");
         final String imageVariantReplaces = getAttribute(tag, "hst:imageVariantReplaces");
         final boolean fallback = parseBoolean(tag.getAttribute("hst:imageVariantFallback"));
-        final ContentRewriter<String> contentRewriter = HstHtmlHelper.INSTANCE.getOrCreateContentRewriter(getExpression(context, "hst:contentRewriter"));
+        final ContentRewriter<String> contentRewriter = HstHtmlHelper.INSTANCE.getOrCreateContentRewriter(getExpression(context, getAttribute(tag, "hst:contentRewriter")));
         final ImageVariant imageVariant = HstHtmlHelper.INSTANCE.replaceVariants(imageVariantName, imageVariantReplaces, fallback);
         final boolean fullyQualified = parseBoolean(fullyQualifiedAttribute);
         final String html = HstHtmlHelper.INSTANCE.htmlByHippoHtml(htmlBean, contentRewriter, imageVariant, fullyQualified);
