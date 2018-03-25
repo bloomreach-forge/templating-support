@@ -1,36 +1,31 @@
 <!doctype html>
-
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:hst="http://www.onehippo.org">
-  <head>
-    <meta charset="utf-8"/>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.css}" type="text/css"/>
-
-      <link th:if="hstRequest.requestContext.cmsRequest" rel="stylesheet" th:href="@{//css/cms-request.css}" type="text/css"/>
-
-    <hst:headContributions hst:categoryExcludes="htmlBodyEnd, scripts" hst:xhtml=true />
-  </head>
-  <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-          <hst:include hst:ref="top"/>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-          <hst:include hst:ref="menu"/>
-        </div>
-        
-      </div>
-      <div class="row">
-        <hst:include hst:ref="main"/>
-      </div>
-      <div class="row">
-        <hst:include hst:ref="footer-thymeleaf"/>
-
-      </div>
+<head>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.css}" type="text/css"/>
+  <link th:if="hstRequest.requestContext.cmsRequest" rel="stylesheet" th:href="@{//css/cms-request.css}" type="text/css"/>
+  <hst:headContributions hst:categoryExcludes="htmlBodyEnd, scripts" hst:xhtml="true" />
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <hst:include hst:ref="top"/>
     </div>
-    
-    <hst:headContributions hst:categoryIncludes="htmlBodyEnd, scripts" hst:xhtml="true"/>
-  </body>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <hst:include hst:ref="menu"/>
+    </div>
+  </div>
+  <div class="row">
+    <hst:include hst:ref="main"/>
+  </div>
+  <div class="row">
+    <hst:include hst:ref="footer-thymeleaf"/>
+  </div>
+</div>
+
+<hst:headContributions hst:categoryIncludes="htmlBodyEnd, scripts" hst:xhtml="true"/>
+</body>
 </html>
