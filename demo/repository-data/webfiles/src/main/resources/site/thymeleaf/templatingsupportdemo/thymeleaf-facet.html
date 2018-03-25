@@ -1,5 +1,6 @@
 <h1>Facet links Thymeleaf </h1>
 <div xmlns:th="http://www.thymeleaf.org" xmlns:hst="http://www.onehippo.org">
+  <!--/*@thymesVar id="facets" type="org.hippoecm.hst.content.beans.standard.HippoFacetNavigationBean"*/-->
   <hst:setBundle hst:basename="essentials.facets"/>
   <form hst:actionurl="" method="get">
     <div class="row form-group">
@@ -12,6 +13,7 @@
 </div>
 </form>
   <ul class="nav nav-list">
+
     <li th:each="facetvalue : ${facets.folders}">
       <label th:if="${facetvalue.folders.size > 0}" th:text="${facetvalue.name}" class="nav-header"></label>
       <ul class="nav nav-list" th:each="item : ${facetvalue.folders}">
