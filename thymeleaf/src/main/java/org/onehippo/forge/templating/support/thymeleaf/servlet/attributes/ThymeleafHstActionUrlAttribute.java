@@ -31,7 +31,8 @@ public class ThymeleafHstActionUrlAttribute extends BaseAttributeProcessor {
 
     @Override
     protected void doProcess(final ITemplateContext context, final IProcessableElementTag tag, final AttributeName attributeName, final String attributeValue, final IElementTagStructureHandler structureHandler) {
-        final String link = HstURLHelper.INSTANCE.actionURL(attributeValue);
+        final String value = getStringOrExpression(context, attributeValue);
+        final String link = HstURLHelper.INSTANCE.actionURL(value);
         setLink(structureHandler, tag, link);
     }
 
