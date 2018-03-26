@@ -50,9 +50,8 @@ public class HstHtmlHelper {
         return contentRewriter.rewrite(htmlBean.getContent(), htmlBean.getNode(), requestContext);
     }
 
-    
-    // TODO mm: change this, HandlebarsHelperRegistrationUtils logs warnings about duplicate methods
-    public String htmlByHippoHtmlFull(HippoHtmlBean htmlBean, final ContentRewriter<String> contentRewriter, final ImageVariant imageVariant, final boolean canonicalLinks, boolean fullyQualified) {
+    public String rewriteHippoHtml(final ContentRewriter<String> contentRewriter, HippoHtmlBean htmlBean,
+            final ImageVariant imageVariant, final boolean canonicalLinks, boolean fullyQualified) {
         final HstRequestContext requestContext = RequestContextProvider.get();
         contentRewriter.setCanonicalLinks(canonicalLinks);
         contentRewriter.setImageVariant(imageVariant);
