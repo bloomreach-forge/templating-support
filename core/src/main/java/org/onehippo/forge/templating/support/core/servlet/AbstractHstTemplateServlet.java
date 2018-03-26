@@ -15,9 +15,9 @@
  */
 package org.onehippo.forge.templating.support.core.servlet;
 
-import java.io.IOException;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import org.hippoecm.hst.core.container.ContainerConstants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -25,10 +25,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.hippoecm.hst.core.container.ContainerConstants;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.io.IOException;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Base Abstract Templating Support Servlet class which can be extended by a specific servlet implementation
@@ -47,7 +46,7 @@ import org.slf4j.LoggerFactory;
  * <li>To define the common string constants such as "webfile:", "classpath", etc.
  * <li>To provide a generic JCR Observation event listener mechanism to <b>invalidate</b> the template cache
  * on any template configurations and webfiles changes, so subclasses do not have to worry about implementing
- * the JCR observaton event listener by itself as long as it is okay to invalidate every cache item on any change,
+ * the JCR observation event listener by itself as long as it is okay to invalidate every cache item on any change,
  * which is almost not a problem in production where you don't update those configurations and webfiles at runtime,
  * and which is still very beneficial during development phase locally.
  * </ul>
@@ -159,7 +158,7 @@ public abstract class AbstractHstTemplateServlet extends HttpServlet {
             String templatePath, Object context) throws ServletException, IOException;
 
     /**
-     * Clear the template cache if available in the subclass. It does nothing by default unless overriden.
+     * Clear the template cache if available in the subclass. It does nothing by default unless overridden.
      */
     protected void clearTemplateCache() {
     }
@@ -176,7 +175,7 @@ public abstract class AbstractHstTemplateServlet extends HttpServlet {
         return (protocol != null) ? protocol + pathInfo : pathInfo;
     }
 
-    private String getTemplatePathInfo(HttpServletRequest request) throws ServletException {
+    private String getTemplatePathInfo(HttpServletRequest request) {
         String includeServletPath = (String) request.getAttribute("javax.servlet.include.servlet_path");
 
         if (includeServletPath != null) {
