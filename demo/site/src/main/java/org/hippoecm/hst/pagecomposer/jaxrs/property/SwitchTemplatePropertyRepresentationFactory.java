@@ -44,13 +44,14 @@ public class SwitchTemplatePropertyRepresentationFactory implements PropertyRepr
 
     private static final Logger log = LoggerFactory.getLogger(SwitchTemplatePropertyRepresentationFactory.class);
 
-    private final String SWITCH_TEMPLATE_RESOURCE_BUNDLE = "hippo:channelmanager.switch-template";
+    private static final String SWITCH_TEMPLATE_RESOURCE_BUNDLE = "hippo:channelmanager.switch-template";
 
+    private Set<String> templateExtensions;
     private final static String SWITCH_TEMPLATE_I18N_KEY = "switch.template";
     private final static String CHOOSE_TEMPLATE_I18N_KEY = "choose.template";
     private final static String MISSING_TEMPLATE_I18N_KEY = "missing.template";
-    private static final String FTL_SUFFIX = ".ftl";
-    private static final FreeMarkerDisplayNameComparator FREE_MARKER_DISPLAY_NAME_COMPARATOR = new FreeMarkerDisplayNameComparator();
+
+    private static final TemplateDisplayNameComparator TEMPLATE_DISPLAY_NAME_COMPARATOR = new TemplateDisplayNameComparator();
 
     private enum TemplateParamWebFile {
         NOT_CONFIGURED,
@@ -58,7 +59,8 @@ public class SwitchTemplatePropertyRepresentationFactory implements PropertyRepr
         CONFIGURED_BUT_NON_EXISTING
     }
 
-    public static class FreeMarkerDisplayNameComparator implements Comparator<String> {
+    public static class TemplateDisplayNameComparator implements Comparator<String> {
+
         @Override
         public int compare(final String key1, final String key2) {
 
@@ -66,8 +68,10 @@ public class SwitchTemplatePropertyRepresentationFactory implements PropertyRepr
 
             final String compare1;
             final boolean key1HasFtlSuffix;
-            if (key1.endsWith(FTL_SUFFIX)) {
-                compare1 = key1.substring(0, key1.length() - FTL_SUFFIX.length());
+
+            final String extension = getExtension(key1, key2);
+            if (key1.endsWith(extension)) {
+                compare1 = key1.substring(0, key1.length() - extension.length());
                 key1HasFtlSuffix = true;
             } else {
                 compare1 = key1;
@@ -75,8 +79,8 @@ public class SwitchTemplatePropertyRepresentationFactory implements PropertyRepr
             }
             final String compare2;
             final boolean key2HasFtlSuffix;
-            if (key2.endsWith(FTL_SUFFIX)) {
-                compare2 = key2.substring(0, key2.length() - FTL_SUFFIX.length());
+            if (key2.endsWith(extension)) {
+                compare2 = key2.substring(0, key2.length() - extension.length());
                 key2HasFtlSuffix = true;
             } else {
                 compare2 = key2;
@@ -97,6 +101,16 @@ public class SwitchTemplatePropertyRepresentationFactory implements PropertyRepr
             }
             return -1;
         }
+
+        private String getExtension(final String key1, final String key2) {
+            if (key1 != null && key1.indexOf('.') != -1) {
+                return key1.substring(key1.lastIndexOf('.'));
+            }
+            if (key2 != null && key2.indexOf('.') != -1) {
+                return key2.substring(key2.lastIndexOf('.'));
+            }
+            return "";
+        }
     }
 
     @Override
@@ -112,7 +126,7 @@ public class SwitchTemplatePropertyRepresentationFactory implements PropertyRepr
         try {
             containerItemPath = containerItemNode.getPath();
             final HstComponentConfiguration componentConfiguration = containerItemHelper.getConfigObject(containerItemNode.getIdentifier());
-            if (hasWebFileFreeMarkerTemplate(componentConfiguration)) {
+            if (hasWebFileTemplate(componentConfiguration, getTemplateExtensions())) {
                 // if there are multiple templates available, we inject a switchTemplateComponentPropertyRepresentation
                 // containing the possible values.
 
@@ -141,14 +155,14 @@ public class SwitchTemplatePropertyRepresentationFactory implements PropertyRepr
                     // check available variants
                     final Node mainTemplateFolder = session.getNode(freeMarkerVariantsFolderPath);
                     for (Node variant : new NodeIterable(mainTemplateFolder.getNodes())) {
-                        if (variant.getPath().endsWith(FTL_SUFFIX) || variant.getPath().endsWith(".hsb") || variant.getPath().endsWith(".html")) {
-                            log.debug("Found variant '{}' for '{}'", variant.getPath(), templateFreeMarkerPath);
-                            final String variantJcrPath = variant.getPath();
-                            final String variantWebFilePath = WebFileUtils.jcrPathToWebFilePath(variantJcrPath);
+                        final String path = variant.getPath();
+                        if (validExtension(path, getTemplateExtensions())) {
+                            log.debug("Found variant '{}' for '{}'", path, templateFreeMarkerPath);
+                            final String variantWebFilePath = WebFileUtils.jcrPathToWebFilePath(path);
                             variantWebFilePaths.add(variantWebFilePath);
                         } else {
                             log.debug("Found node '{}' below '{}' but it does not end with .ftl and is thus not a variant",
-                                    variant.getPath(), freeMarkerVariantsFolderPath);
+                                    path, freeMarkerVariantsFolderPath);
                         }
                     }
                 }
@@ -199,6 +213,15 @@ public class SwitchTemplatePropertyRepresentationFactory implements PropertyRepr
         return null;
     }
 
+    private static boolean validExtension(final String path, final Set<String> templateExtensions) {
+        for (String templateExtension : templateExtensions) {
+            if (path.endsWith(templateExtension)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private ResourceBundle loadSwitchTemplateResourceBundle(final Locale locale) {
         final Locale localeOrDefault;
         if (locale == null) {
@@ -226,13 +249,12 @@ public class SwitchTemplatePropertyRepresentationFactory implements PropertyRepr
         }
     }
 
-    private static boolean hasWebFileFreeMarkerTemplate(final HstComponentConfiguration componentConfiguration) {
+    private static boolean hasWebFileTemplate(final HstComponentConfiguration componentConfiguration, final Set<String> templateExtensions) {
         final String renderPath = componentConfiguration.getRenderPath();
         if (renderPath == null) {
             return false;
         }
-        return renderPath.startsWith(ContainerConstants.FREEMARKER_WEB_FILE_TEMPLATE_PROTOCOL) &&
-                renderPath.endsWith(".ftl") || renderPath.endsWith(".hsb") || renderPath.endsWith(".html");
+        return renderPath.startsWith(ContainerConstants.FREEMARKER_WEB_FILE_TEMPLATE_PROTOCOL) && validExtension(renderPath, templateExtensions);
     }
 
     /**
@@ -357,11 +379,25 @@ public class SwitchTemplatePropertyRepresentationFactory implements PropertyRepr
             throw new IllegalArgumentException(msg);
         }
 
-        Map<String, String> sortedMap = new TreeMap<>(FREE_MARKER_DISPLAY_NAME_COMPARATOR);
+        Map<String, String> sortedMap = new TreeMap<>(TEMPLATE_DISPLAY_NAME_COMPARATOR);
         for (int i = 0; i < keys.length; i++) {
             sortedMap.put(keys[i], values[i]);
         }
         return sortedMap;
     }
 
+    public Set<String> getTemplateExtensions() {
+        // TODO inject
+        if (templateExtensions == null) {
+            templateExtensions = new HashSet<>();
+            templateExtensions.add(".ftl");
+            templateExtensions.add(".html");
+            templateExtensions.add(".hbs");
+        }
+        return templateExtensions;
+    }
+
+    public void setTemplateExtensions(final Set<String> templateExtensions) {
+        this.templateExtensions = templateExtensions;
+    }
 }
