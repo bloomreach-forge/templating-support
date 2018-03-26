@@ -80,7 +80,7 @@ public final class CmsEditLinkHelper {
      * If {@code asComment} is true, it returns the link information as HTML comment. Otherwise, it simply returns
      * the link URI.
      * @param bean content bean
-     * @param asComment
+     * @param asComment flag whether the link should be serialized as HTML comment or not
      * @return CMS edit link for the {@code bean} and return it as either Link URI or HTML Comment
      */
     public String cmsEditLink(final HippoBean bean, final boolean asComment) {

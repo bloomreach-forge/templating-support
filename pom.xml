@@ -56,8 +56,6 @@
     <plugin.install.version>2.5.1</plugin.install.version>
     <plugin.jar.version>2.4</plugin.jar.version>
     <plugin.javadoc.version>2.9.1</plugin.javadoc.version>
-    <plugin.jxr.version>2.3</plugin.jxr.version>
-    <plugin.pmd.version>3.1</plugin.pmd.version>
     <plugin.project-info-reports.version>2.7</plugin.project-info-reports.version>
     <plugin.release.version>2.5</plugin.release.version>
     <plugin.resources.version>2.6</plugin.resources.version>
@@ -85,6 +83,17 @@
   </licenses>
 
   <developers>
+    <developer>
+      <name>Marijan Milicevic</name>
+      <id>mmilicevic</id>
+      <email>marijan.milicevic @ bloomreach . com</email>
+      <organization>Hippo</organization>
+      <roles>
+        <role>Project Lead</role>
+        <role>Java Developer</role>
+      </roles>
+      <timezone>+1</timezone>
+    </developer>
     <developer>
       <name>Woonsan Ko</name>
       <id>wko</id>
@@ -216,14 +225,12 @@
         <groupId>com.github.jknack</groupId>
         <artifactId>handlebars</artifactId>
         <version>${handlebars.version}</version>
-        <optional>true</optional>
       </dependency>
 
       <dependency>
         <groupId>org.thymeleaf</groupId>
         <artifactId>thymeleaf</artifactId>
         <version>${thymeleaf.version}</version>
-        <optional>true</optional>
       </dependency>
 
       <dependency>
@@ -328,23 +335,6 @@
         <artifactId>maven-project-info-reports-plugin</artifactId>
         <version>${plugin.project-info-reports.version}</version>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jxr-plugin</artifactId>
-        <version>${plugin.jxr.version}</version>
-      </plugin>
-      <!--
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-pmd-plugin</artifactId>
-        <version>${plugin.pmd.version}</version>
-        <configuration>
-          <linkXref>true</linkXref>
-          <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
-          <targetJdk>${project.build.javaVersion}</targetJdk>
-        </configuration>
-      </plugin>
-      -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
