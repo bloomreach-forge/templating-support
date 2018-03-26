@@ -90,10 +90,9 @@ public abstract class BaseAttributeProcessor extends AbstractAttributeTagProcess
         if (Strings.isNullOrEmpty(attributeValue)) {
             return attributeValue;
         }
-        if (attributeValue.startsWith("${") || attributeValue.startsWith("#{")) {
+        if (attributeValue.contains("${") || attributeValue.contains("#{")) {
             return ThymeleafHstUtils.getExpression(context, attributeValue);
         }
         return attributeValue;
     }
-
 }

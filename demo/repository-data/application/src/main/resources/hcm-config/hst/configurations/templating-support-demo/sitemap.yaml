@@ -91,7 +91,7 @@ definitions:
         hst:relativecontentpath: blog
         /_any_.html:
           jcr:primaryType: hst:sitemapitem
-          hst:componentconfigurationid: hst:pages/blogpage
+          hst:componentconfigurationid: hst:pages/thymeleaf
           hst:relativecontentpath: ${parent}/${1}
         /_any_:
           jcr:primaryType: hst:sitemapitem
