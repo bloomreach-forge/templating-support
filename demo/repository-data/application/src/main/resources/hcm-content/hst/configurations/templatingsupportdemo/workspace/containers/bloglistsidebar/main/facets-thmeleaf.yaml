@@ -3,7 +3,7 @@
   hst:componentclassname: org.onehippo.cms7.essentials.components.EssentialsFacetsComponent
   hst:iconpath: images/essentials/catalog-component-icons/facets.png
   hst:label: Facets Thymeleaf
-  hst:parameternames: [facetPath]
-  hst:parametervalues: [blogFacets]
+  hst:parameternames: [facetPath, org.hippoecm.hst.core.component.template]
+  hst:parametervalues: [blogFacets, 'webfile:/thymeleaf/templatingsupportdemo/thymeleaf-facet/thymeleaf-facet-second.html']
   hst:template: facet-thymeleaf
   hst:xtype: hst.item

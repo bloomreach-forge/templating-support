@@ -2,9 +2,9 @@
   jcr:primaryType: hst:containeritemcomponent
   hst:componentclassname: org.onehippo.cms7.essentials.components.EssentialsBlogComponent
   hst:label: Blog List
-  hst:parameternames: [documentTypes, sortField, sortOrder, showPagination, includeSubtypes,
-    pageSize, path]
-  hst:parametervalues: ['templatingsupportdemo:blogpost', '', desc, 'on', 'off', '1',
-    '']
+  hst:parameternames: [path, documentTypes, sortOrder, sortField, pageSize, showPagination,
+    includeSubtypes]
+  hst:parametervalues: ['', 'templatingsupportdemo:blogpost', desc, '', '1', 'on',
+    'off']
   hst:template: blog-list-thymeleaf
   hst:xtype: hst.item
