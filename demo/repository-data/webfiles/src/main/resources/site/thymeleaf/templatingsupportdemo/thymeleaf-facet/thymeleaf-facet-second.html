@@ -1,0 +1,33 @@
+<span>rendered by thymeleaf</span>
+<div th:if="${facets !=null && facets.folders !=null}" xmlns:th="http://www.thymeleaf.org" xmlns:hst="http://www.onehippo.org">
+  <!--/*@thymesVar id="facets" type="org.hippoecm.hst.content.beans.standard.HippoFacetNavigationBean"*/-->
+  <hst:setBundle hst:basename="essentials.facets"/>
+  <form hst:actionurl="" method="get">
+    <div class="row form-group">
+      <div class="col-xs-8">
+        <input  type="search" th:value="${query ==null?'': query}" name="query" class="form-control" th:placeholder="#{facets.placeholder}" />
+    </div>
+    <div class="col-xs-4">
+      <button type="submit" class="btn btn-primary pull-right" th:text="#{facets.searchbutton}"></button>
+    </div>
+</div>
+</form>
+  <ul class="nav nav-list">
+
+    <li th:each="facetvalue : ${facets.folders}">
+      <label th:if="${facetvalue.folders.size > 0}" th:text="${facetvalue.name}" class="nav-header"></label>
+      <ul class="nav nav-list" th:each="item : ${facetvalue.folders}">
+        <li th:if="${item.leaf && (item.count > 0)}" class="active">
+          <a hst:facetNavigationLink="${facets}" hst:facetRemove="${item}" >&nbsp;
+            <span th:text="${item.name +' remove'}" class="alert-danger"></span>
+          </a>
+        </li>
+        <li th:unless="${item.leaf && (item.count > 0)}" class="active">
+          <a hst:link="${item}"  >&nbsp;
+            <span th:text="${item.name + ' ('+item.count +')'}"></span>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
