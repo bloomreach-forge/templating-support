@@ -52,7 +52,7 @@ public class ThymeleafHstDialect extends AbstractProcessorDialect implements IEx
         processors.add(new ThymeleafHstRenderUrlAttribute(dialectPrefix));
         processors.add(new ThymeleafHstRefItemAttribute(dialectPrefix));
         processors.add(new ThymeleafHstComponentRenderingURLAttribute(dialectPrefix));
-        processors.add(new ThymeleafCmsManageContentAttribute(dialectPrefix));
+        processors.add(new ThymeleafCmsManageContentTag(dialectPrefix));
         processors.add(new ThymeleafCmsEditLinkAttribute(dialectPrefix));
         processors.add(new ThymeleafCmsEditMenuLinkTag(dialectPrefix));
         return processors;

@@ -1,10 +1,12 @@
-<div th:if="${pageable != null}" xmlns:th="http://www.thymeleaf.org">
+<div th:if="${pageable != null}" xmlns:th="http://www.thymeleaf.org" xmlns:hst="http://www.onehippo.org">
   <span>rendered by thymeleaf</span>
-    <article class="has-edit-button">
-      <!--<h3><a href="${link}">${item.title?html}</a></h3>-->
+    <!--/*@thymesVar id="pageable" type="org.onehippo.cms7.essentials.components.paging.Pageable<org.onehippo.forge.templating.support.demo.beans.Blogpost>"*/-->
+    <!--/*@thymesVar id="item" type="org.onehippo.forge.templating.support.demo.beans.Blogpost"*/-->
+    <article class="has-edit-button" th:each="item : ${pageable.items}">
+      <hst:manageContent hst:hippobean="${item}"/>
+      <h3><a hst:link="${item}" th:text="${item.title}"></a></h3>
+      <p th:if="${item.publicationDate != null && item.publicationDate.time != null}" th:text="${#dates.format(item.publicationDate.time, 'dd-MMM-yyyy')}"></p>
+      <p th:text="${item.introduction}"></p>
     </article>
-  <!--<#if cparam.showPagination>
-    <#include "../../include/pagination.ftl">
-  </#if>-->
-  <div th:insert="/thymeleaf/include/pagination :: pagination"></div>
+  <div th:if="${cparam.showPagination}" th:insert="/thymeleaf/include/pagination :: pagination"></div>
 </div>

@@ -17,30 +17,36 @@
 package org.onehippo.forge.templating.support.thymeleaf.servlet.tags;
 
 import com.google.common.base.Strings;
-import org.hippoecm.hst.core.sitemenu.CommonMenu;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.onehippo.forge.templating.support.core.helper.CmsEditLinkHelper;
-import org.onehippo.forge.templating.support.thymeleaf.servlet.utils.ThymeleafHstUtils;
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.model.IModel;
 import org.thymeleaf.processor.element.IElementModelStructureHandler;
 
-public class ThymeleafCmsEditMenuLinkTag extends BaseModelProcessor {
-    private static final String TAG_NAME = "cmseditmenu";
+public class ThymeleafCmsManageContentTag extends BaseModelProcessor {
+    private static final String TAG_NAME = "manageContent";
 
-    public ThymeleafCmsEditMenuLinkTag(final String dialectPrefix) {
+    public ThymeleafCmsManageContentTag(final String dialectPrefix) {
         super(dialectPrefix, TAG_NAME);
     }
 
-
-
     @Override
     protected void doProcess(final ITemplateContext context, final IModel model, final IElementModelStructureHandler structureHandler) {
-        final CommonMenu menu = ThymeleafHstUtils.getExpression(context, getAttribute(model, "hst:menu"));
-        model.reset();
-        final String link = CmsEditLinkHelper.INSTANCE.cmsEditMenuLink(menu);
-        if (!Strings.isNullOrEmpty(link)) {
-            model.insert(0, new TextEvent(link));
+        final HippoBean bean = getAttributeExpression(context, model, "hst:hippobean");
+        if (bean == null) {
+            return;
         }
-
+        final String comment = CmsEditLinkHelper.INSTANCE.manageContentComment(bean,
+                getAttribute(model, "hst:rootPath"),
+                getAttribute(model, "hst:defaultPath"),
+                getAttribute(model, "hst:parameterName"),
+                getAttribute(model, "hst:templateQuery")
+        );
+        // remove tag
+        model.reset();
+        if (!Strings.isNullOrEmpty(comment)) {
+            model.insert(0, new TextEvent(comment));
+        }
     }
+    
 }
