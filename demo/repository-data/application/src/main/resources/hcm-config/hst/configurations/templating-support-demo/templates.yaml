@@ -53,3 +53,6 @@ definitions:
       /thymeleaf-main:
         jcr:primaryType: hst:template
         hst:renderpath: webfile:/thymeleaf/templatingsupportdemo/thymeleaf/thymeleaf-main.html
+      /blog-main-thymeleaf:
+        jcr:primaryType: hst:template
+        hst:renderpath: webfile:/thymeleaf/templatingsupportdemo/thymeleaf/thymeleaf-main.html

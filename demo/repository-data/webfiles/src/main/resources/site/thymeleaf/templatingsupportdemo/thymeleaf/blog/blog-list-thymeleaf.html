@@ -1,0 +1,10 @@
+<div th:if="${pageable != null}" xmlns:th="http://www.thymeleaf.org">
+  <span>rendered by thymeleaf</span>
+    <article class="has-edit-button">
+      <!--<h3><a href="${link}">${item.title?html}</a></h3>-->
+    </article>
+  <!--<#if cparam.showPagination>
+    <#include "../../include/pagination.ftl">
+  </#if>-->
+  <div th:insert="/thymeleaf/include/pagination :: pagination"></div>
+</div>

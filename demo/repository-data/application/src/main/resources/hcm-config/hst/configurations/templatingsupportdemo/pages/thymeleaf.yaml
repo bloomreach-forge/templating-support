@@ -5,10 +5,10 @@ definitions:
       hst:referencecomponent: hst:pages/thymeleaf-base
       /main:
         jcr:primaryType: hst:component
-        hst:template: blog-main
+        hst:template: blog-main-thymeleaf
         /sidebarcontainer:
           jcr:primaryType: hst:containercomponentreference
           hst:referencecomponent: bloglistsidebar/main
         /detailcontainer:
           jcr:primaryType: hst:containercomponentreference
-          hst:referencecomponent: bloglistdetail/main
+          hst:referencecomponent: bloglistdetail-thymeleaf/main

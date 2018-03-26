@@ -35,7 +35,7 @@ definitions:
           jcr:primaryType: hst:containercomponent
           hst:label: Blog List Main
           hst:xtype: hst.vbox
-          hst:lastmodified: 2018-03-23T15:18:26.206+01:00
+          hst:lastmodified: 2018-03-26T11:40:13.346+02:00
       /bloglistsidebar:
         jcr:primaryType: hst:containercomponentfolder
         /main:
@@ -107,4 +107,12 @@ definitions:
           .meta:residual-child-node-category: content
           jcr:primaryType: hst:containercomponent
           hst:label: Content Page Main
+          hst:xtype: hst.vbox
+      /bloglistdetail-thymeleaf:
+        jcr:primaryType: hst:containercomponentfolder
+        /main:
+          .meta:residual-child-node-category: content
+          jcr:primaryType: hst:containercomponent
+          hst:label: Blog List Main
+          hst:lastmodified: 2018-03-23T15:18:26.206+01:00
           hst:xtype: hst.vbox

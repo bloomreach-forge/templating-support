@@ -33,3 +33,6 @@ definitions:
     /hst:hst/hst:configurations/hst:default/hst:templates/facet-handlebars:
       jcr:primaryType: hst:template
       hst:renderpath: webfile:/hbs/templatingsupportdemo/handlebars-facet.hbs
+    /hst:hst/hst:configurations/hst:default/hst:templates/blog-list-thymeleaf:
+      jcr:primaryType: hst:template
+      hst:renderpath: webfile:/thymeleaf/templatingsupportdemo/thymeleaf/blog/blog-list-thymeleaf.html

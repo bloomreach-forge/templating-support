@@ -5,4 +5,4 @@ definitions:
       hst:referencecomponent: hst:abstractpages/base-thymeleaf
       /main:
         jcr:primaryType: hst:component
-        hst:template: blog-main
+        hst:template: blog-main-thymeleaf
