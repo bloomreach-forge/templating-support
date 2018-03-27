@@ -17,6 +17,41 @@
 
 Thymeleaf Templating Support Module provides equivalent features to HST-2 JSP Tab Libraries.
 
+
+
+# Model
+
+
+
+### HstRequestContext can be accessed as follows:
+
+```
+
+<span class="thymeleaf-web-files" th:text="${hstRequestContext.getAttribute('contextUser').name}"></span>
+
+```
+
+
+
+
+# Fragments
+
+### relative url (relative to current fragment)
+
+```html
+  <div th:insert="fragment/thymeleaf-footer-fragment :: footerFragment"></div>
+```
+
+### absolute url 
+
+```html
+  <div th:if="${cparam.showPagination}" th:insert="/thymeleaf/include/pagination :: pagination"></div>
+```
+
+
+
+# Tags and attributes
+
 ### Generating HST Link like *<@hst.link />* tag
 
 ```html

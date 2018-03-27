@@ -23,7 +23,7 @@
           </a>
         </li>
         <li th:unless="${item.leaf && (item.count > 0)}" class="active">
-          <a hst:link="${item}"  >&nbsp;
+          <a hst:link="${item}">&nbsp;
             <span th:text="${item.name + ' ('+item.count +')'}"></span>
           </a>
         </li>
