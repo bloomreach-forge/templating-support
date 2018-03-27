@@ -88,3 +88,10 @@ TODO
 ### Message Replacing like *<@hst.messagesReplace />* tag
 
 TODO
+###  <@hst.manageContent /> tag
+
+TODO
+
+###  <@hst.cmsEditLink /> tag
+
+TODO 

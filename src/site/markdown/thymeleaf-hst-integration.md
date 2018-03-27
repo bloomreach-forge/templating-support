@@ -62,7 +62,7 @@ or:
 
 | Attribute name                        | Value         							|
 | ---------------------                 |:----------------------------------------:	|
-| hst:html (**required**)      		| String,	|
+| hst:html (**required**)      		| HippoHtml,	|
 | hst:fullyQualified (**optional**)     | boolean, string(true/false)    |
 | hst:imageVariantName (**optional**)     | string    |
 | hst:imageVariantReplaces (**optional**)     | string    |
@@ -80,7 +80,7 @@ or by using tag:
 
 | Attribute name                        | Value         							|
 | ---------------------                 |:----------------------------------------:	|
-| hst:htmlBean (**required**)      		| String,	|
+| hst:htmlBean (**required**)      		| HippoHtml,	|
 | hst:fullyQualified (**optional**)     | boolean, string(true/false)    |
 | hst:imageVariantName (**optional**)     | string    |
 | hst:imageVariantReplaces (**optional**)     | string    |
@@ -216,4 +216,46 @@ This is implemeted as Thymeleaf expression:
 
 
 ```
+
+### CMS edit link, like  *<@hst.cmsEditLink />* tag
+
+
+```html
+
+<a hst:cmsEditLink="${document}">Link</a>
+
+```
+
+| Attribute name                        | Value         							|
+| ---------------------                 |:----------------------------------------:	|
+| hst:cmsEditLink (**required**)      		    |  HippoBean   	|
+
+
+### CMS edit menu, like  *<@hst.cmseditmenu />* tag
+
+
+```html
+
+<hst:cmseditmenu hst:menu="${menu}" />
+
+```
+
+| Attribute name                        | Value         							|
+| ---------------------                 |:----------------------------------------:	|
+| hst:menu (**required**)      		    |  CommonMenu   	|
+
+
+### CMS menage content, like  *<@hst.manageContent />* tag
+
+
+```html
+
+<hst:manageContent hst:hippobean="${document}" />
+
+```
+
+| Attribute name                        | Value         							|
+| ---------------------                 |:----------------------------------------:	|
+| hst:hippobean (**required**)      		    |  CommonMenu   	|
+
 
