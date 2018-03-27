@@ -331,6 +331,7 @@ This is implemeted as Thymeleaf expression:
 ```
 
 | Attribute name                        | Value         							|
+| ---------------------         |:----------------------------------------:	|
 | hst:basename (**required**)      		    |  String  	|
 | hst:fallbackToJavaResourceBundle (**optional**)     | boolean, string(true/false)    |
 
