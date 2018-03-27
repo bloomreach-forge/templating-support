@@ -26,6 +26,9 @@ import org.thymeleaf.standard.expression.IStandardExpressionParser;
 import org.thymeleaf.standard.expression.StandardExpressions;
 
 public final class ThymeleafHstUtils {
+    public static final String ATTRIBUTE_HST_PARAMS = "hst:params";
+    public static final String ATTR_FULLY_QUALIFIED = "hst:fullyQualified";
+
     private ThymeleafHstUtils() {
     }
 
@@ -58,5 +61,15 @@ public final class ThymeleafHstUtils {
             return null;
         }
         return value;
+    }
+
+    public static String getStringOrExpression(final ITemplateContext context, final String attributeValue) {
+        if (Strings.isNullOrEmpty(attributeValue)) {
+            return attributeValue;
+        }
+        if (attributeValue.contains("${") || attributeValue.contains("#{")) {
+            return getExpression(context, attributeValue);
+        }
+        return attributeValue;
     }
 }

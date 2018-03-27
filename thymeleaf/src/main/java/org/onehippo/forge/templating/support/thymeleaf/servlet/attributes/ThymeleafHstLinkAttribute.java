@@ -37,7 +37,7 @@ public class ThymeleafHstLinkAttribute extends BaseAttributeProcessor {
     @Override
     protected void doProcess(final ITemplateContext context, final IProcessableElementTag tag, final AttributeName attributeName, final String attributeValue, final IElementTagStructureHandler structureHandler) {
         final Object o = ThymeleafHstUtils.getExpression(context, attributeValue);
-        final IAttribute attribute = tag.getAttribute(ATTR_FULLY_QUALIFIED);
+        final IAttribute attribute = tag.getAttribute(ThymeleafHstUtils.ATTR_FULLY_QUALIFIED);
         final boolean fullyQualified = parseBoolean(attribute);
         if (o instanceof HippoBean) {
             setLink(structureHandler, tag, HstLinkHelper.INSTANCE.linkByHippoBean((HippoBean) o, fullyQualified));

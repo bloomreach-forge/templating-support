@@ -36,6 +36,9 @@ public class DemoDataComponent extends CommonComponent {
         context.setAttribute("contextUser", contextUser);
         final User user = new User("demo user");
         request.setAttribute("user", user);
-        
+        request.setAttribute("booleanValueTrue", true);
+        request.setAttribute("booleanValueFalse", true);
+        request.setAttribute("facetBean", true);
+
     }
 }

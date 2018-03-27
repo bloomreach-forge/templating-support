@@ -16,11 +16,8 @@
 
 package org.onehippo.forge.templating.support.thymeleaf.servlet.attributes;
 
-import com.google.common.base.Strings;
-import org.onehippo.forge.templating.support.thymeleaf.servlet.utils.ThymeleafHstUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.model.IAttribute;
 import org.thymeleaf.model.IModel;
 import org.thymeleaf.model.IProcessableElementTag;
@@ -36,9 +33,6 @@ public abstract class BaseAttributeProcessor extends AbstractAttributeTagProcess
 
     private static final Logger log = LoggerFactory.getLogger(BaseAttributeProcessor.class);
     private static final int PRECEDENCE = 10000;
-
-    public static final String ATTRIBUTE_HST_PARAMS = "hst:params";
-    public static final String ATTR_FULLY_QUALIFIED = "hst:fullyQualified";
 
     public BaseAttributeProcessor(final String dialectPrefix, final String attributeName) {
         super(TemplateMode.HTML, dialectPrefix, null, false, attributeName, true, PRECEDENCE, true);
@@ -61,10 +55,11 @@ public abstract class BaseAttributeProcessor extends AbstractAttributeTagProcess
                 structureHandler.setAttribute("href", link);
                 break;
             case "script":
+            case "img":
                 structureHandler.setAttribute("src", link);
                 break;
             case "form":
-                structureHandler.setAttribute("form", link);
+                structureHandler.setAttribute("action", link);
                 break;
             default:
                 structureHandler.setAttribute("href", link);
@@ -86,13 +81,4 @@ public abstract class BaseAttributeProcessor extends AbstractAttributeTagProcess
         return writer;
     }
 
-    protected String getStringOrExpression(final ITemplateContext context, final String attributeValue) {
-        if (Strings.isNullOrEmpty(attributeValue)) {
-            return attributeValue;
-        }
-        if (attributeValue.contains("${") || attributeValue.contains("#{")) {
-            return ThymeleafHstUtils.getExpression(context, attributeValue);
-        }
-        return attributeValue;
-    }
 }

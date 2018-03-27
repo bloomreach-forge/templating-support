@@ -33,12 +33,29 @@ public abstract class BaseModelProcessor extends AbstractElementModelProcessor {
     }
 
 
+    protected boolean getBooleanOrExpression(final ITemplateContext context, final IModel model, final String name) {
+        final String value = getAttribute(model, name);
+        if (value == null) {
+            return false;
+        }
+        if (value.equals("true") || value.equals("false")) {
+            return Boolean.parseBoolean(value);
+        }
+        final Boolean expression = ThymeleafHstUtils.getExpression(context, value);
+        return expression==null? false: expression;
+    }
+
     protected <T> T getAttributeExpression(final ITemplateContext context, final IModel model, final String name) {
         final String value = getAttribute(model, name);
         if (value == null) {
             return null;
         }
         return ThymeleafHstUtils.getExpression(context, value);
+    }
+
+    protected String getAttributeOrExpression(final ITemplateContext context, final IModel model, final String name) {
+        final String value = getAttribute(model, name);
+        return ThymeleafHstUtils.getStringOrExpression(context, value);
     }
     protected String getAttribute(final IModel model, final String name) {
         final int size = model.size();

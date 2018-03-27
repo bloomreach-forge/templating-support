@@ -35,7 +35,7 @@ public class ThymeleafHstRefItemAttribute extends BaseAttributeProcessor {
     @Override
     protected void doProcess(final ITemplateContext context, final IProcessableElementTag tag, final AttributeName attributeName, final String attributeValue, final IElementTagStructureHandler structureHandler) {
         final String path = ThymeleafHstUtils.getExpression(context, attributeValue);
-        final IAttribute attribute = tag.getAttribute(ATTR_FULLY_QUALIFIED);
+        final IAttribute attribute = tag.getAttribute(ThymeleafHstUtils.ATTR_FULLY_QUALIFIED);
         final boolean fullyQualified = parseBoolean(attribute);
         final String link = HstLinkHelper.INSTANCE.linkBySiteMapItemRefId(path, fullyQualified);
         setLink(structureHandler, tag, link);

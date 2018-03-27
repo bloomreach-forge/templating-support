@@ -46,7 +46,7 @@ public class ThymeleafHstSetBundleTag extends BaseModelProcessor {
 
     @Override
     protected void doProcess(final ITemplateContext context, final IModel model, final IElementModelStructureHandler structureHandler) {
-        final String baseName = getAttribute(model, "hst:basename");
+        final String baseName = getAttributeExpression(context, model, "hst:basename");
         final boolean fallback = Boolean.parseBoolean(getAttribute(model, "hst:fallbackToJavaResourceBundle"));
         final Locale locale = context.getLocale();
         final LocalizationContext localizationContext = getContext(locale, baseName, fallback);

@@ -25,16 +25,17 @@
     Document introduction: <span th:text="${document.introduction}"></span>
 
     Document link (relative): <a class="thymeleaf-web-files-link" hst:link="${document}" th:text="${document.title}"></a>
-    Document link (absolute): <a class="thymeleaf-web-files-link" hst:link="${document}" hst:fullyQualified="true" th:text="${document.title}"></a>
+    Document link (absolute): <a class="thymeleaf-web-files-link" hst:link="${document}" hst:fullyQualified="${booleanValueTrue}" th:text="${document.title +'hst:fullyQualified:' + booleanValueTrue}"></a>
     News link: <a class="thymeleaf-web-files-link" hst:linkByPath="/news" >/news</a>
     Homepage: <a class="thymeleaf-web-files-link" hst:linkBySiteMapItemRefId="root" >root</a>
     HST Render URL: <a class="thymeleaf-web-files-link" hst:renderURL="">renderURL</a>
     HST Render URL with Params:  <a class="thymeleaf-web-files-link" hst:renderURL="a=1&b=2">renderURL</a>
 
-    HST Action URL:  <a class="thymeleaf-web-files-link" hst:actionUrl="">actionUrl</a>
-    HST Resource URL:  <a class="thymeleaf-web-files-link" hst:resourceUrl="aResourceID" >actionUrl</a>
+    HST Action URL:  <a class="thymeleaf-web-files-link" hst:actionURL="">actionUrl</a>
+    HST Resource URL:  <a class="thymeleaf-web-files-link" hst:resourceURL="aResourceID" >actionUrl</a>
     HST ComponentRendering URL:  <a class="thymeleaf-web-files-link" hst:componentRenderingURL>ComponentRendering</a>
-    HST WEBFILE URL:  <a class="thymeleaf-web-files-link" th:href="@{files/thymeleaf-webfiles.css}" >Css file</a>
+    HST WEBFILE URL:  <a class="thymeleaf-web-files-link" th:href="@{files/thymeleaf-webfiles.css}" >Css file th:href (NOTE:relative to template!)</a>
+    HST WEBFILE URL:  <a class="thymeleaf-web-files-link" hst:webFile="/thymeleaf/templatingsupportdemo/files/thymeleaf-webfiles.css" >Css file hst:webfile</a>
     HST facetNavigationLink example: <a hst:linkByPath="/blog">Facets example</a>
 
    <hst:setBundle hst:basename="essentials.pagination" />
@@ -54,6 +55,8 @@
   <div th:insert="fragment/thymeleaf-footer-fragment :: footerFragment"></div>
   <h2>Some html content:</h2>
   <div hst:html="${document.content}"></div>
+  <h2>Some html content as tag:</h2>
+  <hst:html hst:htmlBean="${document.content}" />
   <hst:headContribution hst:category="thymeleafCategory">
     <link rel="stylesheet" th:href="@{files/thymeleaf-webfiles-head-contrubution.css}" type="text/css"/>
   </hst:headContribution>

@@ -17,6 +17,7 @@
 package org.onehippo.forge.templating.support.thymeleaf.servlet.attributes;
 
 import org.onehippo.forge.templating.support.core.helper.HstURLHelper;
+import org.onehippo.forge.templating.support.thymeleaf.servlet.utils.ThymeleafHstUtils;
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.engine.AttributeName;
 import org.thymeleaf.model.IProcessableElementTag;
@@ -32,7 +33,7 @@ public class ThymeleafHstRenderUrlAttribute extends BaseAttributeProcessor {
 
     @Override
     protected void doProcess(final ITemplateContext context, final IProcessableElementTag tag, final AttributeName attributeName, final String attributeValue, final IElementTagStructureHandler structureHandler) {
-        final String value = getStringOrExpression(context, attributeValue);
+        final String value = ThymeleafHstUtils.getStringOrExpression(context, attributeValue);
         final String link = HstURLHelper.INSTANCE.renderURL(value);
         setLink(structureHandler, tag, link);
     }

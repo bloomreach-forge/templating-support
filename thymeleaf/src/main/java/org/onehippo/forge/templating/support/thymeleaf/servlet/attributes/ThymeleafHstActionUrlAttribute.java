@@ -17,13 +17,14 @@
 package org.onehippo.forge.templating.support.thymeleaf.servlet.attributes;
 
 import org.onehippo.forge.templating.support.core.helper.HstURLHelper;
+import org.onehippo.forge.templating.support.thymeleaf.servlet.utils.ThymeleafHstUtils;
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.engine.AttributeName;
 import org.thymeleaf.model.IProcessableElementTag;
 import org.thymeleaf.processor.element.IElementTagStructureHandler;
 
 public class ThymeleafHstActionUrlAttribute extends BaseAttributeProcessor {
-    private static final String ATTR_NAME = "actionUrl";
+    private static final String ATTR_NAME = "actionURL";
 
     public ThymeleafHstActionUrlAttribute(final String dialectPrefix) {
         super(dialectPrefix, ATTR_NAME);
@@ -31,7 +32,7 @@ public class ThymeleafHstActionUrlAttribute extends BaseAttributeProcessor {
 
     @Override
     protected void doProcess(final ITemplateContext context, final IProcessableElementTag tag, final AttributeName attributeName, final String attributeValue, final IElementTagStructureHandler structureHandler) {
-        final String value = getStringOrExpression(context, attributeValue);
+        final String value = ThymeleafHstUtils.getStringOrExpression(context, attributeValue);
         final String link = HstURLHelper.INSTANCE.actionURL(value);
         setLink(structureHandler, tag, link);
     }

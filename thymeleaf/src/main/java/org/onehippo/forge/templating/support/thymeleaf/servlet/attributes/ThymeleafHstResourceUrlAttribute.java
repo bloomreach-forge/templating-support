@@ -24,7 +24,7 @@ import org.thymeleaf.model.IProcessableElementTag;
 import org.thymeleaf.processor.element.IElementTagStructureHandler;
 
 public class ThymeleafHstResourceUrlAttribute extends BaseAttributeProcessor {
-    private static final String ATTR_NAME = "resourceUrl";
+    private static final String ATTR_NAME = "resourceURL";
 
 
     public ThymeleafHstResourceUrlAttribute(final String dialectPrefix) {
@@ -33,7 +33,7 @@ public class ThymeleafHstResourceUrlAttribute extends BaseAttributeProcessor {
 
     @Override
     protected void doProcess(final ITemplateContext context, final IProcessableElementTag tag, final AttributeName attributeName, final String attributeValue, final IElementTagStructureHandler structureHandler) {
-        final String parameters = ThymeleafHstUtils.getAttribute(tag, ATTRIBUTE_HST_PARAMS);
+        final String parameters = ThymeleafHstUtils.getAttribute(tag, ThymeleafHstUtils.ATTRIBUTE_HST_PARAMS);
         final String link = HstURLHelper.INSTANCE.resourceURL(attributeValue, parameters);
         setLink(structureHandler, tag, link);
     }
