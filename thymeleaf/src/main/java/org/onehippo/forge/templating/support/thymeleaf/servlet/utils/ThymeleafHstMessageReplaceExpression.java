@@ -16,6 +16,9 @@
 
 package org.onehippo.forge.templating.support.thymeleaf.servlet.utils;
 
+import com.google.common.base.Strings;
+import org.hippoecm.hst.content.beans.standard.HippoHtml;
+import org.onehippo.forge.templating.support.core.helper.HstHtmlHelper;
 import org.onehippo.forge.templating.support.core.helper.HstMessagesHelper;
 
 import java.io.IOException;
@@ -28,7 +31,29 @@ public final class ThymeleafHstMessageReplaceExpression {
         return HstMessagesHelper.INSTANCE.replaceByBundle(text, bundle);
     }
 
+    public String replaceByBundle(final HippoHtml html, final boolean fullyQualified, final ResourceBundle bundle) throws IOException {
+        if (html == null) {
+            return "";
+        }
+        final String text = HstHtmlHelper.INSTANCE.htmlByHippoHtml(html, fullyQualified);
+        if (Strings.isNullOrEmpty(text)) {
+            return "";
+        }
+        return HstMessagesHelper.INSTANCE.replaceByBundle(text, bundle);
+    }
+
     public String replaceByBundleName(final String text, final String bundleName) throws IOException {
+        return HstMessagesHelper.INSTANCE.replaceByBundleName(text, bundleName);
+    }
+
+    public String replaceByBundleName(final HippoHtml html, final boolean fullyQualified, final String bundleName) throws IOException {
+        if (html == null) {
+            return "";
+        }
+        final String text = HstHtmlHelper.INSTANCE.htmlByHippoHtml(html, fullyQualified);
+        if (Strings.isNullOrEmpty(text)) {
+            return "";
+        }
         return HstMessagesHelper.INSTANCE.replaceByBundleName(text, bundleName);
     }
 

@@ -249,7 +249,9 @@ This is implemeted as Thymeleaf expression:
 ```java
 
 #messagesReplace.replaceByBundle(text, bundle)
+#messagesReplace.replaceByBundle(html, fullyQualified, bundle)
 #messagesReplace.replaceByBundleName(text, bundleName)
+#messagesReplace.replaceByBundleName(html, fullyQualified, bundleName)
 
 ```
 | Attribute name                        | Value         							|
@@ -257,6 +259,8 @@ This is implemeted as Thymeleaf expression:
 | text (**required**)      		    	|  String   	|
 | bundleName (**required**)      		|  String   	|
 | bundle (**required**)      		    |  ResourceBundle   	|
+| fullyQualified (**required**)      	|  boolean   	|
+| html (**required**)      				|  HippoHtml   	|
 
 
 
