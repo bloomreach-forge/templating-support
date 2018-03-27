@@ -68,7 +68,7 @@ or:
 | hst:imageVariantReplaces (**optional**)     | string    |
 | hst:imageVariantFallback (**optional**)     | boolean, string(true/false)    |
 | hst:canonicalLinks (**optional**)     | boolean, string(true/false)    |
-| hst:contentRewriter (**optional**)     | ContentRewriter<String>  |
+| hst:contentRewriter (**optional**)     | ContentRewriter  |
 
 or by using tag:
 
@@ -86,7 +86,7 @@ or by using tag:
 | hst:imageVariantReplaces (**optional**)     | string    |
 | hst:imageVariantFallback (**optional**)     | boolean, string(true/false)    |
 | hst:canonicalLinks (**optional**)     | boolean, string(true/false)    |
-| hst:contentRewriter (**optional**)     | ContentRewriter<String>  |
+| hst:contentRewriter (**optional**)     | ContentRewriter  |
 
 
 
