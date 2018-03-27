@@ -207,15 +207,23 @@ or by using tag:
 
 
 ### Message Replacing like *<@hst.messagesReplace />* tag
+
 This is implemeted as Thymeleaf expression:
+
 
 ```java
 
-#messagesReplace.replaceByBundle(final String text, final ResourceBundle bundle)
-#messagesReplace.replaceByBundleName(final String text, final String bundleName)
-
+#messagesReplace.replaceByBundle(text, bundle)
+#messagesReplace.replaceByBundleName(text, bundleName)
 
 ```
+| Attribute name                        | Value         							|
+| ---------------------                 |:----------------------------------------:	|
+| text (**required**)      		    	|  String   	|
+| bundleName (**required**)      		|  String   	|
+| bundle (**required**)      		    |  ResourceBundle   	|
+
+
 
 ### CMS edit link, like  *<@hst.cmsEditLink />* tag
 
