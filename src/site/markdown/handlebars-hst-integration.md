@@ -95,3 +95,10 @@ TODO
 ###  <@hst.cmsEditLink /> tag
 
 TODO 
+
+###  <@hst.facetNavigationLink /> tag
+
+TODO 
+###  <@hst.setBundle /> tag
+
+TODO 

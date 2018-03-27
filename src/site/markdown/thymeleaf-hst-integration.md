@@ -164,7 +164,7 @@ or by using tag:
 
 | Attribute name                        | Value         							|
 | ---------------------                 |:----------------------------------------:	|
-| hst:componentRenderingURL (**required**)      		    | optional value (parameters e.g. a=1&b=2)	|
+| hst:componentRenderingURL (**required**)      		    | no value (parameters e.g. a=1&b=2)	|
 
 
 
@@ -266,4 +266,71 @@ This is implemeted as Thymeleaf expression:
 | ---------------------                 |:----------------------------------------:	|
 | hst:hippobean (**required**)      		    |  CommonMenu   	|
 
+
+
+
+### Facet navigation link, like  *<@hst.facetNavigationLink />* tag
+
+
+```html
+
+<a hst:facetNavigationLink="${facets}" hst:facetRemove="${item}">&nbsp;
+     <span th:text="${item.name +' remove'}" class="alert-danger"></span>
+</a>
+
+```
+
+| Attribute name                        | Value         							|
+| ---------------------                 |:----------------------------------------:	|
+| hst:facetNavigationLink (**required**)      		| HippoFacetSubNavigation	|
+| hst:facetRemove (**optional**)      		| HippoFacetSubNavigation	|
+| hst:facetRemoveList (**optional**)      		| List of HippoFacetSubNavigation	|
+
+
+
+
+
+### HST linkByPath
+
+
+```html
+
+<a hst:linkByPath="/news" >/news</a>
+
+```
+
+| Attribute name                        | Value         							|
+| ---------------------                 |:----------------------------------------:	|
+| hst:linkByPath (**required**)      		    | String|
+| hst:fullyQualified (**optional**)     | boolean, string(true/false)    |
+
+
+### HST linkBySiteMapItemRefId
+
+
+```html
+
+<a  hst:linkBySiteMapItemRefId="root">root</a>
+
+```
+
+| Attribute name                        | Value         							|
+| ---------------------                 |:----------------------------------------:	|
+| hst:linkBySiteMapItemRefId (**required**)      		    | String|
+| hst:fullyQualified (**optional**)     | boolean, string(true/false)    |
+
+
+
+
+### HST set bundle like *<@hst.setBundle />* tag
+
+```html
+
+  <hst:setBundle hst:basename="essentials.facets"/>
+
+```
+
+| Attribute name                        | Value         							|
+| hst:basename (**required**)      		    |  String  	|
+| hst:fallbackToJavaResourceBundle (**optional**)     | boolean, string(true/false)    |
 
