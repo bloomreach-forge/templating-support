@@ -47,58 +47,82 @@ You can generate an HST link with an HST SiteMap Item Reference like the followi
 
 To generate an absolute link, append ```true``` parameter (it's ```false``` by default):
 
-TODO
 
 ### Generating HST WebFile Link like *<@hst.webfile />* tag
+```
+{{hst:webfileByPath "/js/bootstrap.min.js"}}
+```
 
-TODO
 
 ### Rendering Hippo HTML Compound Bean like *<@hst.html />* tag
 
-TODO
+```
+   {{{hst:htmlByHippoHtml document.content}}}
+```
 
 ### Including Child HST Components like *<@hst.include />* tag
 
-TODO
+```    
+    {{{hst:includeChild "container"}}}
+ 
+```
 
 ### Generating HST Render URLs like *<@hst.renderURL />* tag
-
-TODO
-
+```
+{{hst:renderURL}}
+{{hst:renderURL "a=1&b=2"}}
+```
 ### Generating HST Action URLs like *<@hst.actionURL />* tag
 
-TODO
+```
+{{hst:actionURL}}
+```
 
 ### Generating HST Resource URLs like *<@hst.resourceURL />* tag
 
-TODO
+```
+{{hst:resourceURL "aResourceID"}}
+```
 
 ### Generating HST ComponentRendering URLs like *<@hst.componentRenderingURL />* tag
-
-TODO
-
+```
+{{hst:componentRenderingURL}}
+```
 ### Contributing HST Head Element like *<@hst.headContribution />* tag
-
-TODO
-
+```
+{{hst:contributeHeadElement "<meta name=\"mymeta\" content=\"Handlebars templatingis working!\"/>"}}
+```
 ### Writing All the Contributed HST Head Elements like *<@hst.headContributions />* tag
 
 TODO
 
 ### Message Replacing like *<@hst.messagesReplace />* tag
-
-TODO
+```
+{{replaceByBundle "test" bundle}}
+{{replaceByBundleName "test" "name"}}
+```
 ###  <@hst.manageContent /> tag
-
-TODO
-
+```
+{{hst:manageContent document}}
+```
 ###  <@hst.cmsEditLink /> tag
-
-TODO 
-
+```
+{{hst:cmsEditLink document}}
+```
+as text:
+```
+{{hst:cmsEditLink document true}} 
+```
 ###  <@hst.facetNavigationLink /> tag
-
-TODO 
+```
+ {{hst:linkForFacet facetBean facetBean}}
+```
 ###  <@hst.setBundle /> tag
+```
+{{hst:setBundle "essentials.pagination"}} 
+```
 
-TODO 
+###  <@fmt.message /> tag
+```
+{{hst:bundleMessage "results.indication"}}
+```
