@@ -30,6 +30,9 @@
     HST Resource URL: {{hst:resourceURL "aResourceID"}}
     HST ComponentRendering URL: {{hst:componentRenderingURL}}
     Webfile Link: {{hst:webfileByPath "/js/bootstrap.min.js"}}
+    Set Bundle: {{hst:setBundle "essentials.pagination"}}
+    {{hst:bundleMessage "results.indication"}}
+
   </pre>
 
   {{#if hstRequestContext.preview}}
@@ -39,6 +42,7 @@
     CMS Manage content:: {{hst:manageContent document}}
   </pre>
   {{/if}}
+
 
   <p>Document content:</p>
   <div>

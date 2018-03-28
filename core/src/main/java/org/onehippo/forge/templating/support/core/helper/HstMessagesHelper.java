@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.util.ResourceBundle;
 
 /**
- * HST resomessages Helper.
+ * HST messages Helper.
  */
 public class HstMessagesHelper {
 
