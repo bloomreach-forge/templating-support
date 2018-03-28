@@ -36,7 +36,7 @@ public class ThymeleafCmsManageContentTag extends BaseModelProcessor {
         if (bean == null) {
             return;
         }
-        final String comment = CmsEditLinkHelper.INSTANCE.manageContentComment(bean,
+        final String comment = CmsEditLinkHelper.INSTANCE.manageContent(bean,
                 getAttribute(model, "hst:rootPath"),
                 getAttribute(model, "hst:defaultPath"),
                 getAttribute(model, "hst:parameterName"),

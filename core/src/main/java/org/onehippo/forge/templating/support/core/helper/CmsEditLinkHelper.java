@@ -179,7 +179,7 @@ public final class CmsEditLinkHelper {
         return cmsEditLink(bean, true);
     }
 
-    public String manageContentComment(final HippoBean bean, final String rootPath, final String defaultPath, final String parameterName, final String templateQuery) {
+    public String manageContent(final HippoBean bean, final String rootPath, final String defaultPath, final String parameterName, final String templateQuery) {
         final HstRequestContext requestContext = RequestContextProvider.get();
         if (invalidCmsRequest(bean, requestContext)) {
             return NO_RESULT;
