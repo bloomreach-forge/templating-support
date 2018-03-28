@@ -366,6 +366,7 @@ This is implemeted as Thymeleaf expression:
 ```html
 
   <hst:setBundle hst:basename="essentials.facets"/>
+  read message from bundle: <strong th:text="#{results.indication}"></strong>
 
 ```
 
