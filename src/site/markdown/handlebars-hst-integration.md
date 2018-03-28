@@ -93,8 +93,11 @@ To generate an absolute link, append ```true``` parameter (it's ```false``` by d
 {{hst:contributeHeadElement "<meta name=\"mymeta\" content=\"Handlebars templatingis working!\"/>"}}
 ```
 ### Writing All the Contributed HST Head Elements like *<@hst.headContributions />* tag
+```
+{{contributedHeadElements "body, head", "exclude,stuff", true}}
 
-TODO
+```
+Third parameter indicates xhml (if true)
 
 ### Message Replacing like *<@hst.messagesReplace />* tag
 ```
