@@ -1,0 +1,12 @@
+<ul th:if="${pageable !=null}" class="pagination" xmlns:th="http://www.thymeleaf.org" xmlns:hst="http://www.onehippo.org" th:fragment="pagination" >
+  <hst:setBundle hst:basename="essentials.pagination"/>
+  <li class="disabled">
+    <a href="#" th:text="${pageable.total + ' '} + #{results.indication}"></a>
+  </li>
+  <li th:each="pageNr, iter : ${pageable.pageNumbersArray }">
+    <a th:if="${pageable.previous && iter.index==0}" hst:renderURL="${'page=' + pageable.previousPage + '&pageSize='+ pageable.pageSize}" th:text="#{page.previous}"></a>
+    <a th:classappend="${pageable.currentPage == pageNr} ? 'active' : ''"  hst:renderURL="${'page=' + pageNr + '&pageSize='+ pageable.pageSize}" th:text="${pageNr}" ></a>
+    <a th:if="${pageable.next && iter.last}" hst:renderURL="${'page=' + pageable.nextPage + '&pageSize='+ pageable.pageSize}" th:text="#{page.next}"></a>
+  </li>
+  <li>rendered by thymeleaf:pagination</li>
+</ul>

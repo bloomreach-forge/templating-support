@@ -13,8 +13,6 @@
 [//]: # (  See the License for the specific language governing permissions and  )
 [//]: # (  limitations under the License.  )
 
-# Release Notes
-
 ## Compatibility
 
 | Plugin Version        | Hippo CMS Release Version |
@@ -25,5 +23,5 @@
 
 ### 1.0.0
 
-- In development.
+- Coming soon ...
 

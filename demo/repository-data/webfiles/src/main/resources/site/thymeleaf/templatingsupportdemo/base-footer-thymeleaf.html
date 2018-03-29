@@ -1,0 +1,71 @@
+<!--/*
+  Copyright 2018 Hippo B.V. (http://www.onehippo.com)
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+*/-->
+<div xmlns:th="http://www.thymeleaf.org" xmlns:hst="http://www.onehippo.org">
+  <!--/*@thymesVar id="document" type="org.onehippo.forge.templating.support.demo.beans.EventsDocument"*/-->
+ <hr/>
+
+ <h2> From thymeleaf:</h2>
+
+ <pre style="text-align: left">
+    Document title:
+    <span th:text="${document.title}"></span>
+    Document introduction: <span th:text="${document.introduction}"></span>
+
+    Document link (relative): <a class="thymeleaf-web-files-link" hst:link="${document}" th:text="${document.title}"></a>
+    Document link (absolute): <a class="thymeleaf-web-files-link" hst:link="${document}" hst:fullyQualified="${booleanValueTrue}" th:text="${document.title +'hst:fullyQualified:' + booleanValueTrue}"></a>
+    News link: <a class="thymeleaf-web-files-link" hst:linkByPath="/news" >/news</a>
+    Homepage: <a class="thymeleaf-web-files-link" hst:linkBySiteMapItemRefId="root" >root</a>
+    HST Render URL: <a class="thymeleaf-web-files-link" hst:renderURL="">renderURL</a>
+    HST Render URL with Params:  <a class="thymeleaf-web-files-link" hst:renderURL="a=1&b=2">renderURL</a>
+
+    HST Action URL:  <a class="thymeleaf-web-files-link" hst:actionURL="">actionUrl</a>
+    HST Resource URL:  <a class="thymeleaf-web-files-link" hst:resourceURL="aResourceID" >actionUrl</a>
+    HST ComponentRendering URL:  <a class="thymeleaf-web-files-link" hst:componentRenderingURL>ComponentRendering</a>
+    HST WEBFILE URL:  <a class="thymeleaf-web-files-link" th:href="@{files/thymeleaf-webfiles.css}" >Css file th:href (NOTE:relative to template!)</a>
+    HST WEBFILE URL:  <a class="thymeleaf-web-files-link" hst:webFile="/thymeleaf/templatingsupportdemo/files/thymeleaf-webfiles.css" >Css file hst:webfile</a>
+    HST facetNavigationLink example: <a hst:facetNavigationLink="${facetBean}" hst:facetRemove="${facetBean}">Facets link example</a>
+
+   <hst:setBundle hst:basename="essentials.pagination" />
+   HST setBundle (essentials.pagination/results.indication): <strong th:text="#{results.indication}"></strong>
+  <hst:headContributions hst:categoryIncludes="thymeleafCategory"/>
+ </pre>
+
+
+
+  <pre th:if="${hstRequestContext.cmsRequest}">
+    Manage content: <hst:manageContent hst:hippobean="${document}" />
+    Cms Edit link : <a hst:cmsEditLink="${document}">Link</a>
+    Cms Edit menu : <hst:cmseditmenu hst:menu="${menu}" />
+  </pre>
+  <link rel="stylesheet" th:href="@{files/thymeleaf-webfiles.css}" type="text/css"/>
+  <span class="thymeleaf-web-files" th:text="${user != null} ? 'Hello from thymeleaf webfiles: '+ ${user.name} : 'hello anonymous from thymeleaf webfiles'"></span>
+  <h3><span class="thymeleaf-web-files" th:text="${hstRequestContext.getAttribute('contextUser') != null} ? 'Hello from thymeleaf webfiles: '+ ${hstRequestContext.getAttribute('contextUser').name} : 'hello anonymous from thymeleaf webfiles'"></span></h3>
+  <div th:insert="fragment/thymeleaf-footer-fragment :: footerFragment"></div>
+  <h2>Some html content:</h2>
+  <div hst:html="${document.content}"></div>
+  <h2>Some html content as tag:</h2>
+  <hst:html hst:htmlBean="${document.content}" />
+  <hst:headContribution hst:category="thymeleafCategory">
+    <link rel="stylesheet" th:href="@{files/thymeleaf-webfiles-head-contrubution.css}" type="text/css"/>
+  </hst:headContribution>
+  <hst:headContribution>
+    <meta name="ourmeta" content="Thymeleaf templating is working!"/>
+  </hst:headContribution>
+  <hst:headContribution hst:category="thymeleafCategory">
+    <meta name="thymeleafCategoryMeta" content="Thymeleaf templating is working!"/>
+  </hst:headContribution>
+  <p class="thymeleaf-web-files-head">Head contribution styling</p>
+</div>

@@ -65,3 +65,24 @@ definitions:
         hst:label: Simple Content
         hst:template: contentpage-main
         hst:xtype: hst.item
+      /facets-thmeleaf:
+        jcr:primaryType: hst:containeritemcomponent
+        hst:componentclassname: org.onehippo.cms7.essentials.components.EssentialsFacetsComponent
+        hst:iconpath: images/essentials/catalog-component-icons/facets.png
+        hst:label: Facets Thymeleaf
+        hst:template: facet-thymeleaf
+        hst:xtype: hst.item
+      /facets-handlebars:
+        jcr:primaryType: hst:containeritemcomponent
+        hst:componentclassname: org.onehippo.cms7.essentials.components.EssentialsFacetsComponent
+        hst:iconpath: images/essentials/catalog-component-icons/facets.png
+        hst:label: Facets Handlebars
+        hst:template: facet-handlebars
+        hst:xtype: hst.item
+      /bloglist-thymeleaf:
+        jcr:primaryType: hst:containeritemcomponent
+        hst:componentclassname: org.onehippo.cms7.essentials.components.EssentialsBlogComponent
+        hst:iconpath: images/essentials/catalog-component-icons/blog-list.png
+        hst:label: Blog List Thymeleaf
+        hst:template: blog-list-thymeleaf
+        hst:xtype: hst.item

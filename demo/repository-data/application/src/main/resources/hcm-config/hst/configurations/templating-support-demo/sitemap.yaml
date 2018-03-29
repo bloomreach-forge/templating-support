@@ -85,3 +85,27 @@ definitions:
           jcr:primaryType: hst:sitemapitem
           hst:componentconfigurationid: hst:pages/contentlist
           hst:relativecontentpath: ${parent}/${1}
+      /thymeleaf:
+        jcr:primaryType: hst:sitemapitem
+        hst:componentconfigurationid: hst:pages/thymeleaf
+        hst:relativecontentpath: blog
+        /_any_.html:
+          jcr:primaryType: hst:sitemapitem
+          hst:componentconfigurationid: hst:pages/thymeleaf
+          hst:relativecontentpath: ${parent}/${1}
+        /_any_:
+          jcr:primaryType: hst:sitemapitem
+          hst:componentconfigurationid: hst:pages/bloglist
+          hst:relativecontentpath: ${parent}/${1}
+        /facet:
+          jcr:primaryType: hst:sitemapitem
+          hst:componentconfigurationid: hst:pages/bloglist
+          hst:relativecontentpath: blogFacets
+          /_default_.html:
+            jcr:primaryType: hst:sitemapitem
+            hst:componentconfigurationid: hst:pages/blogpage
+            hst:relativecontentpath: ${parent}/hippo:resultset/${1}
+          /_any_:
+            jcr:primaryType: hst:sitemapitem
+            hst:componentconfigurationid: hst:pages/bloglist
+            hst:relativecontentpath: ${parent}/${1}

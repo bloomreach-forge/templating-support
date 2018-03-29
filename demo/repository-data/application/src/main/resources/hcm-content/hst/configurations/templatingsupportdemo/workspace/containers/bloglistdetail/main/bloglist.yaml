@@ -1,0 +1,11 @@
+/hst:hst/hst:configurations/templatingsupportdemo/hst:workspace/hst:containers/bloglistdetail/main/bloglist:
+  jcr:primaryType: hst:containeritemcomponent
+  hst:componentclassname: org.onehippo.cms7.essentials.components.EssentialsBlogComponent
+  hst:iconpath: images/essentials/catalog-component-icons/blog-list.png
+  hst:label: Blog List
+  hst:parameternames: [path, documentTypes, sortOrder, sortField, pageSize, showPagination,
+    includeSubtypes, org.hippoecm.hst.core.component.template]
+  hst:parametervalues: ['', 'templatingsupportdemo:blogpost', desc, '', '10', 'off',
+    'on', 'webfile:/freemarker/hstdefault/blog/blog-list.ftl']
+  hst:template: blog-list
+  hst:xtype: hst.item

@@ -15,27 +15,31 @@
  */
 package org.onehippo.forge.templating.support.handlebars.servlet;
 
-import java.io.IOException;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import com.github.jknack.handlebars.Context;
+import com.github.jknack.handlebars.Handlebars;
+import com.github.jknack.handlebars.Template;
+import com.github.jknack.handlebars.cache.ConcurrentMapTemplateCache;
+import com.github.jknack.handlebars.cache.TemplateCache;
+import com.github.jknack.handlebars.context.JavaBeanValueResolver;
+import com.github.jknack.handlebars.context.MapValueResolver;
+import com.github.jknack.handlebars.io.ClassPathTemplateLoader;
+import com.github.jknack.handlebars.io.ServletContextTemplateLoader;
+import com.github.jknack.handlebars.io.TemplateLoader;
+import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.commons.lang.BooleanUtils;
+import org.apache.commons.lang.StringUtils;
+import org.hippoecm.hst.util.NodeUtils;
+import org.onehippo.forge.templating.support.core.helper.*;
+import org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet;
+import org.onehippo.forge.templating.support.handlebars.util.HandlebarsHelperRegistrationUtils;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.lang3.BooleanUtils;
-import org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.github.jknack.handlebars.Handlebars;
-import com.github.jknack.handlebars.Template;
-import com.github.jknack.handlebars.cache.ConcurrentMapTemplateCache;
-import com.github.jknack.handlebars.cache.TemplateCache;
-import com.github.jknack.handlebars.io.ClassPathTemplateLoader;
-import com.github.jknack.handlebars.io.ServletContextTemplateLoader;
-import com.github.jknack.handlebars.io.TemplateLoader;
+import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * Handlebars specific Templating Support Servlet for Hippo CMS Delivery tier web application.
@@ -49,7 +53,15 @@ public class HandlebarsHstTemplateServlet extends AbstractHstTemplateServlet {
      */
     public static final String PARAM_CACHE_ENABLED = "cache.enabled";
 
-    private static Logger log = LoggerFactory.getLogger(HandlebarsHstTemplateServlet.class);
+    /**
+     * Servlet context init param name for the prefix of HST related helpers.
+     */
+    public static final String PARAM_HST_HELPERS_PREFIX = "hst.helpers.prefix";
+
+    /**
+     * Default HST related helpers prefix.
+     */
+    public static final String DEFAULT_HST_HELPERS_PREFIX = "hst:";
 
     /**
      * Handlebars instance.
@@ -69,12 +81,28 @@ public class HandlebarsHstTemplateServlet extends AbstractHstTemplateServlet {
         if (templateCache != null) {
             handlebars.with(templateCache);
         }
+
+        registerHelpers(config, handlebars);
     }
 
+    @SuppressWarnings("rawtypes")
     @Override
     protected Object createTemplateContext(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        return null;
+        final HandlebarsContextModelMap contetModelMap =
+                new HandlebarsContextModelMap(
+                        new DelegatingTransformer(
+                                new RequestAttributeMapTransformer(request),
+                                new HstDefineObjectsMapTransformer(request, response)
+                                )
+                        );
+
+        final Context context =
+                Context.newBuilder(contetModelMap)
+                .resolver(MapValueResolver.INSTANCE, JavaBeanValueResolver.INSTANCE)
+                .build();
+
+        return context;
     }
 
     @Override
@@ -128,5 +156,28 @@ public class HandlebarsHstTemplateServlet extends AbstractHstTemplateServlet {
         }
 
         return null;
+    }
+
+    /**
+     * Register default helpers.
+     * @param config ServletConfig instance
+     * @param handlebars Handlebars instance
+     */
+    protected void registerHelpers(ServletConfig config, Handlebars handlebars) {
+        final String hstHelpersPrefix = StringUtils.defaultString(
+                StringUtils.trim(config.getInitParameter(PARAM_HST_HELPERS_PREFIX)),
+                DEFAULT_HST_HELPERS_PREFIX);
+        HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, HstLinkHelper.INSTANCE);
+        HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, HstHtmlHelper.INSTANCE);
+        HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, HstURLHelper.INSTANCE);
+        HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, HstWebfilesHelper.INSTANCE);
+        HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, HstIncludeHelper.INSTANCE);
+        HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, HstHeadContributionHelper.INSTANCE);
+        HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, HstMessagesHelper.INSTANCE);
+        HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, CmsEditLinkHelper.INSTANCE);
+        HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, HstSetBundleHelper.INSTANCE);
+        HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, I18nHelper.INSTANCE);
+        HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, PropertyUtils.class);
+        HandlebarsHelperRegistrationUtils.registerHelpers(handlebars, hstHelpersPrefix, NodeUtils.class);
     }
 }

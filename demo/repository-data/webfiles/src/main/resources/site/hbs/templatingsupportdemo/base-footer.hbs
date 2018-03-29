@@ -1,7 +1,62 @@
-<div class="text-center">
-{{#if name}}
-  Hello {{name}} from base-footer.hbs!
+<div>
+
+<hr/>
+
+<h2> From handlebars:</h2>
+
+{{#if user}}
+  Hello from Handlebars, {{user.name}}!
 {{else}}
-  Hello anonymous from base-footer.hbs!
+  Hello from Handlebars, anonymous!
 {{/if}}
+<br/>
+
+{{#if hstRequest}}
+  The <code>hstRequest</code> variable is also available!
+{{/if}}
+<br/>
+
+{{#if document}}
+  <pre>
+    Document title: {{document.title}}</a>
+    Document introduction: {{document.introduction}}
+    Document link (relative): <a href="{{hst:linkByHippoBean document}}">{{hst:linkByHippoBean document}}</a>
+    Document link (absolute): <a href="{{hst:linkByHippoBean document true}}">{{hst:linkByHippoBean document true}}</a>
+    News link: <a href="{{hst:linkByPath "news"}}">{{hst:linkByPath "news"}}</a>
+    Homepage link: <a href="{{hst:linkBySiteMapItemRefId "root"}}">{{hst:linkBySiteMapItemRefId "root"}}</a>
+    HST Render URL: {{hst:renderURL}}
+    HST Render URL with Params: {{hst:renderURL "a=1&b=2"}}
+    HST Action URL: {{hst:actionURL}}
+    HST Resource URL: {{hst:resourceURL "aResourceID"}}
+    HST ComponentRendering URL: {{hst:componentRenderingURL}}
+    Webfile Link: {{hst:webfileByPath "/js/bootstrap.min.js"}}
+    Facet Link linkForFacet: {{hst:linkForFacet facetBean facetBean}}
+    Set Bundle(essentials.pagination)[no output] {{hst:setBundle "essentials.pagination"}}
+    Bundle message(results.indication): {{hst:bundleMessage "results.indication"}}
+    Replaced Text: {{hst:replaceByBundleName "Hello, ${results.indication}!" "essentials.pagination"}}
+  </pre>
+
+  {{#if hstRequestContext.preview}}
+  <pre>
+    CMS Edit Link: {{hst:cmsEditLink document}}
+    CMS Edit Link (as text): {{hst:cmsEditLink document true}}
+    CMS Manage content:: {{hst:manageContent document}}
+  </pre>
+  {{/if}}
+
+
+  <p>Document content:</p>
+  <div>
+    {{{hst:htmlByHippoHtml document.content}}}
+  </div>
+
+  <p>Child footer container inclusion:</p>
+  <div>
+    {{{hst:includeChild "container"}}}
+  </div>
+{{/if}}
+
+{{hst:contributeHeadElement "<meta name=\"mymeta\" content=\"Handlebars templatingis working!\"/>"}}
+{{hst:contributeHeadElement "<script>var myMessage = 'Handlebars templatingis working!'; if (console) console.log(myMessage);</script>" "js"}}
+
 </div>

@@ -1,0 +1,20 @@
+<!--/*
+  Copyright 2018 Hippo B.V. (http://www.onehippo.com)
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+*/-->
+<div class="text-center" xmlns:th="http://www.thymeleaf.org">
+  <link rel="stylesheet" th:href="@{files/thymeleaf-classpath.css}" type="text/css"/>
+  <span class="thymeleaf-classpath" th:text="${user != null} ? 'Hello from thmeleaf classpath: '+ ${user.name} : 'hello anonymous from thymeleaf classpath'"></span>
+  <div th:insert="fragment/thymeleaf-footer-fragment :: footerFragment"></div>
+</div>

@@ -35,3 +35,24 @@ definitions:
       /contentlist-main-contentlist:
         jcr:primaryType: hst:template
         hst:renderpath: webfile:/freemarker/hstdefault/contentlist-main-contentlist.ftl
+      /base-footer-thymeleaf:
+        jcr:primaryType: hst:template
+        hst:renderpath: webfile:/thymeleaf/templatingsupportdemo/base-footer-thymeleaf.html
+      /base-footer-thymeleaf-classpath:
+        jcr:primaryType: hst:template
+        hst:renderpath: classpath:/thymeleaf/base-footer-thymeleaf.html
+      /base-footer-thymeleaf-servlet:
+        jcr:primaryType: hst:template
+        hst:renderpath: /thymeleaf/base-footer-thymeleaf.html
+      /base-layout-thymeleaf:
+        jcr:primaryType: hst:template
+        hst:renderpath: webfile:/thymeleaf/templatingsupportdemo/base-layout-thymeleaf.html
+      /base-top-menu-thymeleaf:
+        jcr:primaryType: hst:template
+        hst:renderpath: webfile:/thymeleaf/templatingsupportdemo/base-top-menu-thymeleaf.html
+      /thymeleaf-main:
+        jcr:primaryType: hst:template
+        hst:renderpath: webfile:/thymeleaf/templatingsupportdemo/thymeleaf/thymeleaf-main.html
+      /blog-main-thymeleaf:
+        jcr:primaryType: hst:template
+        hst:renderpath: webfile:/thymeleaf/templatingsupportdemo/thymeleaf/thymeleaf-main.html
