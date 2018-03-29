@@ -91,128 +91,1242 @@
   <div id="bodyColumn"  class="span10" >
     <div class="section">
 <h2><a name="How_Handlebars_Templating_Support_Module_support_HST-2_Integration"></a>How Handlebars Templating Support Module support HST-2 Integration?</h2>
-<p>Handlebars Templating Support Module provides equivalent features to HST-2 JSP Tab Libraries.</p>
+<p>Handlebars Templating Support Module provides equivalent features to HST-2 JSP Tab Libraries.</p></div>
 <div class="section">
-<h3><a name="Generating_HST_Link_like_hst.link__tag"></a>Generating HST Link like <i>&lt;@hst.link /&gt;</i> tag</h3>
-<p>You can generate an HST link with a <tt>HippoBean</tt> like the following:</p>
+<h2><a name="Models"></a>Models</h2>
+<p>HstRequestContext, HstRequest and HstResponse objects can always be accessed through <tt>hstRequestContext</tt>, <tt>hstRequest</tt> and <tt>hstResponse</tt>.</p></div>
+<div class="section">
+<h2><a name="Helpers"></a>Helpers</h2>
+<div class="section">
+<h3><a name="hst:linkByHippoBean"></a>hst:linkByHippoBean</h3>
+<p>Synopsis: generate an HST link by the given <tt>HippoBean</tt> with the following parameter(s):</p>
+
+<table border="0" class="table table-striped">
+  <thead>
+    
+<tr class="a">
+      
+<th align="center">Index </th>
+      
+<th align="center">Type </th>
+      
+<th>Description </th>
+      
+<th>Required? </th>
+      
+<th>Default value </th>
+    </tr>
+  </thead>
+  <tbody>
+    
+<tr class="b">
+      
+<td align="center">0 </td>
+      
+<td align="center">HippoBean </td>
+      
+<td>Content bean to link to. </td>
+      
+<td>Yes </td>
+      
+<td> </td>
+    </tr>
+    
+<tr class="a">
+      
+<td align="center">1 </td>
+      
+<td align="center">boolean </td>
+      
+<td>whether to generate link as a fully qualified URL </td>
+      
+<td>No </td>
+      
+<td>false </td>
+    </tr>
+  </tbody>
+</table>
+<p>Example(s):</p>
 
 <div class="source">
 <div class="source"><pre>{{hst:linkByHippoBean document}}
-</pre></div></div>
-<p>To generate an absolute link, append <tt>true</tt> parameter (it&#x2019;s <tt>false</tt> by default):</p>
+</pre></div></div></div>
+<div class="section">
+<h3><a name="hst:linkByPath"></a>hst:linkByPath</h3>
+<p>Synopsis: generate an HST link by the given path info with the following parameter(s):</p>
+
+<table border="0" class="table table-striped">
+  <thead>
+    
+<tr class="a">
+      
+<th align="center">Index </th>
+      
+<th align="center">Type </th>
+      
+<th>Description </th>
+      
+<th>Required? </th>
+      
+<th>Default value </th>
+    </tr>
+  </thead>
+  <tbody>
+    
+<tr class="b">
+      
+<td align="center">0 </td>
+      
+<td align="center">String </td>
+      
+<td>Content path to link to. </td>
+      
+<td>Yes </td>
+      
+<td> </td>
+    </tr>
+    
+<tr class="a">
+      
+<td align="center">1 </td>
+      
+<td align="center">boolean </td>
+      
+<td>whether to generate link as fully qualified URL </td>
+      
+<td>No </td>
+      
+<td>false </td>
+    </tr>
+  </tbody>
+</table>
+<p>Example(s):</p>
 
 <div class="source">
-<div class="source"><pre>{{hst:linkByHippoBean document true}}
-</pre></div></div>
-<p>You can generate an HST link with a path info like the following:</p>
+<div class="source"><pre>{{hst:linkByPath &quot;/news&quot;}}
+</pre></div></div></div>
+<div class="section">
+<h3><a name="hst:linkBySiteMapItemRefId"></a>hst:linkBySiteMapItemRefId</h3>
+<p>Synopsis: generate an HST link by the given sitemap item reference ID with the following parameter(s):</p>
 
-<div class="source">
-<div class="source"><pre>{{hst:linkByHippoBean &quot;/news&quot;}}
-</pre></div></div>
-<p>To generate an absolute link, append <tt>true</tt> parameter (it&#x2019;s <tt>false</tt> by default):</p>
-<p>You can generate an HST link with an HST SiteMap Item Reference like the following:</p>
+<table border="0" class="table table-striped">
+  <thead>
+    
+<tr class="a">
+      
+<th align="center">Index </th>
+      
+<th align="center">Type </th>
+      
+<th>Description </th>
+      
+<th>Required? </th>
+      
+<th>Default value </th>
+    </tr>
+  </thead>
+  <tbody>
+    
+<tr class="b">
+      
+<td align="center">0 </td>
+      
+<td align="center">String </td>
+      
+<td>Sitemap item reference ID to link to. </td>
+      
+<td>Yes </td>
+      
+<td> </td>
+    </tr>
+    
+<tr class="a">
+      
+<td align="center">1 </td>
+      
+<td align="center">boolean </td>
+      
+<td>whether to generate link as fully qualified URL </td>
+      
+<td>No </td>
+      
+<td>false </td>
+    </tr>
+  </tbody>
+</table>
+<p>Example(s):</p>
 
 <div class="source">
 <div class="source"><pre>{{hst:linkBySiteMapItemRefId &quot;root&quot;}}
-</pre></div></div>
-<p>To generate an absolute link, append <tt>true</tt> parameter (it&#x2019;s <tt>false</tt> by default):</p></div>
+</pre></div></div></div>
 <div class="section">
-<h3><a name="Generating_HST_WebFile_Link_like_hst.webfile__tag"></a>Generating HST WebFile Link like <i>&lt;@hst.webfile /&gt;</i> tag</h3>
+<h3><a name="hst:linkForFacet"></a>hst:linkForFacet</h3>
+<p>Synopsis: generate an HST link by the given HippoFacetSubNavigation items with the following parameter(s):</p>
+
+<table border="0" class="table table-striped">
+  <thead>
+    
+<tr class="a">
+      
+<th align="center">Index </th>
+      
+<th align="center">Type </th>
+      
+<th>Description </th>
+      
+<th>Required? </th>
+      
+<th>Default value </th>
+    </tr>
+  </thead>
+  <tbody>
+    
+<tr class="b">
+      
+<td align="center">0 </td>
+      
+<td align="center">HippoFacetSubNavigation </td>
+      
+<td>Current HippoFacetSubNavigation object. </td>
+      
+<td>Yes </td>
+      
+<td> </td>
+    </tr>
+    
+<tr class="a">
+      
+<td align="center">1 </td>
+      
+<td align="center">HippoFacetSubNavigation </td>
+      
+<td>HippoFacetSubNavigation object to remove </td>
+      
+<td>No </td>
+      
+<td> </td>
+    </tr>
+    
+<tr class="b">
+      
+<td align="center">2 </td>
+      
+<td align="center">List&lt;HippoFacetSubNavigation&gt; </td>
+      
+<td>The list of HippoFacetSubNavigations to remove. </td>
+      
+<td>Yes </td>
+      
+<td> </td>
+    </tr>
+  </tbody>
+</table>
+<p>Example(s):</p>
+
+<div class="source">
+<div class="source"><pre>{{hst:linkForFacet curSubNav removeItem removeList}}
+</pre></div></div></div>
+<div class="section">
+<h3><a name="hst:webfileByPath"></a>hst:webfileByPath</h3>
+<p>Synopsis: generate an HST WebFiles link by the given path with the following parameter(s):</p>
+
+<table border="0" class="table table-striped">
+  <thead>
+    
+<tr class="a">
+      
+<th align="center">Index </th>
+      
+<th align="center">Type </th>
+      
+<th>Description </th>
+      
+<th>Required? </th>
+      
+<th>Default value </th>
+    </tr>
+  </thead>
+  <tbody>
+    
+<tr class="b">
+      
+<td align="center">0 </td>
+      
+<td align="center">String </td>
+      
+<td>WebFile path to link to. </td>
+      
+<td>Yes </td>
+      
+<td> </td>
+    </tr>
+    
+<tr class="a">
+      
+<td align="center">1 </td>
+      
+<td align="center">boolean </td>
+      
+<td>whether to generate link as a fully qualified URL </td>
+      
+<td>No </td>
+      
+<td>false </td>
+    </tr>
+  </tbody>
+</table>
+<p>Example(s):</p>
 
 <div class="source">
 <div class="source"><pre>{{hst:webfileByPath &quot;/js/bootstrap.min.js&quot;}}
 </pre></div></div></div>
 <div class="section">
-<h3><a name="Rendering_Hippo_HTML_Compound_Bean_like_hst.html__tag"></a>Rendering Hippo HTML Compound Bean like <i>&lt;@hst.html /&gt;</i> tag</h3>
+<h3><a name="hst:htmlByHippoHtml"></a>hst:htmlByHippoHtml</h3>
+<p>Synopsis: rewrite the given HippoHtmlBean content to HTML markups with the following parameter(s):</p>
+
+<table border="0" class="table table-striped">
+  <thead>
+    
+<tr class="a">
+      
+<th align="center">Index </th>
+      
+<th align="center">Type </th>
+      
+<th>Description </th>
+      
+<th>Required? </th>
+      
+<th>Default value </th>
+    </tr>
+  </thead>
+  <tbody>
+    
+<tr class="b">
+      
+<td align="center">0 </td>
+      
+<td align="center">HippoHtmlBean </td>
+      
+<td>HippoHtmlBean instance. </td>
+      
+<td>Yes </td>
+      
+<td> </td>
+    </tr>
+    
+<tr class="a">
+      
+<td align="center">1 </td>
+      
+<td align="center">boolean </td>
+      
+<td>whether to generate link as a fully qualified URL </td>
+      
+<td>No </td>
+      
+<td>false </td>
+    </tr>
+  </tbody>
+</table>
+<p>Example(s):</p>
 
 <div class="source">
-<div class="source"><pre>   {{{hst:htmlByHippoHtml document.content}}}
+<div class="source"><pre>{{hst:htmlByHippoHtml document.body}}
 </pre></div></div></div>
 <div class="section">
-<h3><a name="Including_Child_HST_Components_like_hst.include__tag"></a>Including Child HST Components like <i>&lt;@hst.include /&gt;</i> tag</h3>
+<h3><a name="hst:htmlByFormattedText"></a>hst:htmlByFormattedText</h3>
+<p>Synopsis: rewrite the given formatted text string to HTML markups with the following parameter(s):</p>
+
+<table border="0" class="table table-striped">
+  <thead>
+    
+<tr class="a">
+      
+<th align="center">Index </th>
+      
+<th align="center">Type </th>
+      
+<th>Description </th>
+      
+<th>Required? </th>
+      
+<th>Default value </th>
+    </tr>
+  </thead>
+  <tbody>
+    
+<tr class="b">
+      
+<td align="center">0 </td>
+      
+<td align="center">String </td>
+      
+<td>Formatted text </td>
+      
+<td>Yes </td>
+      
+<td> </td>
+    </tr>
+    
+<tr class="a">
+      
+<td align="center">1 </td>
+      
+<td align="center">boolean </td>
+      
+<td>whether to generate link as a fully qualified URL </td>
+      
+<td>No </td>
+      
+<td>false </td>
+    </tr>
+  </tbody>
+</table>
+<p>Example(s):</p>
+
+<div class="source">
+<div class="source"><pre>{{hst:htmlByFormattedText document.introduction}}
+</pre></div></div></div>
+<div class="section">
+<h3><a name="hst:rewriteHippoHtml"></a>hst:rewriteHippoHtml</h3>
+<p>Synopsis: rewrite the given HippoHtmlBean content to HTML markups with the following parameter(s):</p>
+
+<table border="0" class="table table-striped">
+  <thead>
+    
+<tr class="a">
+      
+<th align="center">Index </th>
+      
+<th align="center">Type </th>
+      
+<th>Description </th>
+      
+<th>Required? </th>
+      
+<th>Default value </th>
+    </tr>
+  </thead>
+  <tbody>
+    
+<tr class="b">
+      
+<td align="center">0 </td>
+      
+<td align="center">ContentRewriter&lt;String&gt; </td>
+      
+<td>HippoHtmlBean instance. </td>
+      
+<td>Yes </td>
+      
+<td> </td>
+    </tr>
+    
+<tr class="a">
+      
+<td align="center">1 </td>
+      
+<td align="center">HippoHtmlBean </td>
+      
+<td>HippoHtmlBean instance. </td>
+      
+<td>Yes </td>
+      
+<td> </td>
+    </tr>
+    
+<tr class="b">
+      
+<td align="center">2 </td>
+      
+<td align="center">ImageVariant </td>
+      
+<td>HippoHtmlBean instance. </td>
+      
+<td>No </td>
+      
+<td> </td>
+    </tr>
+    
+<tr class="a">
+      
+<td align="center">3 </td>
+      
+<td align="center">boolean </td>
+      
+<td>whether the ContentRewriter should use an imageVariant. </td>
+      
+<td>No </td>
+      
+<td>false </td>
+    </tr>
+    
+<tr class="b">
+      
+<td align="center">4 </td>
+      
+<td align="center">boolean </td>
+      
+<td>whether to generate link as a fully qualified URL </td>
+      
+<td>No </td>
+      
+<td>false </td>
+    </tr>
+  </tbody>
+</table>
+<p>Example(s):</p>
+
+<div class="source">
+<div class="source"><pre>{{hst:rewriteHippoHtml contentRewriter document.body}}
+</pre></div></div></div>
+<div class="section">
+<h3><a name="hst:includeChild"></a>hst:includeChild</h3>
+<p>Synopsis: Include the child component window&#x2019;s output after finding it by the given child component window reference name with the following parameter(s):</p>
+
+<table border="0" class="table table-striped">
+  <thead>
+    
+<tr class="a">
+      
+<th align="center">Index </th>
+      
+<th align="center">Type </th>
+      
+<th>Description </th>
+      
+<th>Required? </th>
+      
+<th>Default value </th>
+    </tr>
+  </thead>
+  <tbody>
+    
+<tr class="b">
+      
+<td align="center">0 </td>
+      
+<td align="center">String </td>
+      
+<td>Child component window reference name </td>
+      
+<td>Yes </td>
+      
+<td> </td>
+    </tr>
+  </tbody>
+</table>
+<p>Example(s):</p>
 
 <div class="source">
 <div class="source"><pre>    {{{hst:includeChild &quot;container&quot;}}}
  
 </pre></div></div></div>
 <div class="section">
-<h3><a name="Generating_HST_Render_URLs_like_hst.renderURL__tag"></a>Generating HST Render URLs like <i>&lt;@hst.renderURL /&gt;</i> tag</h3>
+<h3><a name="hst:renderURL"></a>hst:renderURL</h3>
+<p>Synopsis: Generate an HST Render URL:</p>
+
+<table border="0" class="table table-striped">
+  <thead>
+    
+<tr class="a">
+      
+<th align="center">Index </th>
+      
+<th align="center">Type </th>
+      
+<th>Description </th>
+      
+<th>Required? </th>
+      
+<th>Default value </th>
+    </tr>
+  </thead>
+  <tbody>
+    
+<tr class="b">
+      
+<td align="center">0 </td>
+      
+<td align="center">String </td>
+      
+<td>Additional Request Parameters in HTTP Query String format </td>
+      
+<td>No </td>
+      
+<td> </td>
+    </tr>
+  </tbody>
+</table>
+<p>Example(s):</p>
 
 <div class="source">
 <div class="source"><pre>{{hst:renderURL}}
 {{hst:renderURL &quot;a=1&amp;b=2&quot;}}
 </pre></div></div></div>
 <div class="section">
-<h3><a name="Generating_HST_Action_URLs_like_hst.actionURL__tag"></a>Generating HST Action URLs like <i>&lt;@hst.actionURL /&gt;</i> tag</h3>
+<h3><a name="hst:actionURL"></a>hst:actionURL</h3>
+<p>Synopsis: Generate an HST Action URL:</p>
+
+<table border="0" class="table table-striped">
+  <thead>
+    
+<tr class="a">
+      
+<th align="center">Index </th>
+      
+<th align="center">Type </th>
+      
+<th>Description </th>
+      
+<th>Required? </th>
+      
+<th>Default value </th>
+    </tr>
+  </thead>
+  <tbody>
+    
+<tr class="b">
+      
+<td align="center">0 </td>
+      
+<td align="center">String </td>
+      
+<td>Additional Request Parameters in HTTP Query String format </td>
+      
+<td>No </td>
+      
+<td> </td>
+    </tr>
+  </tbody>
+</table>
+<p>Example(s):</p>
 
 <div class="source">
 <div class="source"><pre>{{hst:actionURL}}
+{{hst:actionURL &quot;a=1&amp;b=2&quot;}}
 </pre></div></div></div>
 <div class="section">
-<h3><a name="Generating_HST_Resource_URLs_like_hst.resourceURL__tag"></a>Generating HST Resource URLs like <i>&lt;@hst.resourceURL /&gt;</i> tag</h3>
+<h3><a name="hst:resourceURL"></a>hst:resourceURL</h3>
+<p>Synopsis: Generate an HST Resource URL:</p>
+
+<table border="0" class="table table-striped">
+  <thead>
+    
+<tr class="a">
+      
+<th align="center">Index </th>
+      
+<th align="center">Type </th>
+      
+<th>Description </th>
+      
+<th>Required? </th>
+      
+<th>Default value </th>
+    </tr>
+  </thead>
+  <tbody>
+    
+<tr class="b">
+      
+<td align="center">0 </td>
+      
+<td align="center">String </td>
+      
+<td>Resource ID </td>
+      
+<td>Yes </td>
+      
+<td> </td>
+    </tr>
+    
+<tr class="a">
+      
+<td align="center">1 </td>
+      
+<td align="center">String </td>
+      
+<td>Additional Request Parameters in HTTP Query String format </td>
+      
+<td>No </td>
+      
+<td> </td>
+    </tr>
+  </tbody>
+</table>
+<p>Example(s):</p>
 
 <div class="source">
 <div class="source"><pre>{{hst:resourceURL &quot;aResourceID&quot;}}
 </pre></div></div></div>
 <div class="section">
-<h3><a name="Generating_HST_ComponentRendering_URLs_like_hst.componentRenderingURL__tag"></a>Generating HST ComponentRendering URLs like <i>&lt;@hst.componentRenderingURL /&gt;</i> tag</h3>
+<h3><a name="hst:componentRenderingURL"></a>hst:componentRenderingURL</h3>
+<p>Synopsis: Generate an HST Component Rendering URL:</p>
+
+<table border="0" class="table table-striped">
+  <thead>
+    
+<tr class="a">
+      
+<th align="center">Index </th>
+      
+<th align="center">Type </th>
+      
+<th>Description </th>
+      
+<th>Required? </th>
+      
+<th>Default value </th>
+    </tr>
+  </thead>
+  <tbody>
+    
+<tr class="b">
+      
+<td align="center">0 </td>
+      
+<td align="center">String </td>
+      
+<td>Additional Request Parameters in HTTP Query String format </td>
+      
+<td>No </td>
+      
+<td> </td>
+    </tr>
+  </tbody>
+</table>
+<p>Example(s):</p>
 
 <div class="source">
 <div class="source"><pre>{{hst:componentRenderingURL}}
 </pre></div></div></div>
 <div class="section">
-<h3><a name="Contributing_HST_Head_Element_like_hst.headContribution__tag"></a>Contributing HST Head Element like <i>&lt;@hst.headContribution /&gt;</i> tag</h3>
+<h3><a name="hst:contributeHeadElement"></a>hst:contributeHeadElement</h3>
+<p>Synopsis: Contribute an HEAD element.</p>
+
+<table border="0" class="table table-striped">
+  <thead>
+    
+<tr class="a">
+      
+<th align="center">Index </th>
+      
+<th align="center">Type </th>
+      
+<th>Description </th>
+      
+<th>Required? </th>
+      
+<th>Default value </th>
+    </tr>
+  </thead>
+  <tbody>
+    
+<tr class="b">
+      
+<td align="center">0 </td>
+      
+<td align="center">String </td>
+      
+<td>Head Element content in text </td>
+      
+<td>Yes </td>
+      
+<td> </td>
+    </tr>
+    
+<tr class="a">
+      
+<td align="center">1 </td>
+      
+<td align="center">String </td>
+      
+<td>Key hint of this contributed head element </td>
+      
+<td>No </td>
+      
+<td> </td>
+    </tr>
+    
+<tr class="b">
+      
+<td align="center">2 </td>
+      
+<td align="center">String </td>
+      
+<td>Head Element category name </td>
+      
+<td>No </td>
+      
+<td> </td>
+    </tr>
+  </tbody>
+</table>
+<p>Example(s):</p>
 
 <div class="source">
 <div class="source"><pre>{{hst:contributeHeadElement &quot;&lt;meta name=\&quot;mymeta\&quot; content=\&quot;Handlebars templatingis working!\&quot;/&gt;&quot;}}
 </pre></div></div></div>
 <div class="section">
-<h3><a name="Writing_All_the_Contributed_HST_Head_Elements_like_hst.headContributions__tag"></a>Writing All the Contributed HST Head Elements like <i>&lt;@hst.headContributions /&gt;</i> tag</h3>
+<h3><a name="hst:contributedHeadElements"></a>hst:contributedHeadElements</h3>
+<p>Synopsis: Write all the contributed HEAD elements meeting the conditions.</p>
+
+<table border="0" class="table table-striped">
+  <thead>
+    
+<tr class="a">
+      
+<th align="center">Index </th>
+      
+<th align="center">Type </th>
+      
+<th>Description </th>
+      
+<th>Required? </th>
+      
+<th>Default value </th>
+    </tr>
+  </thead>
+  <tbody>
+    
+<tr class="b">
+      
+<td align="center">0 </td>
+      
+<td align="center">String </td>
+      
+<td>Comma separated category names to include </td>
+      
+<td>No </td>
+      
+<td> </td>
+    </tr>
+    
+<tr class="a">
+      
+<td align="center">1 </td>
+      
+<td align="center">String </td>
+      
+<td>Comma separated category names to exclude </td>
+      
+<td>No </td>
+      
+<td> </td>
+    </tr>
+    
+<tr class="b">
+      
+<td align="center">2 </td>
+      
+<td align="center">boolean </td>
+      
+<td>Whether to write in XHTML format </td>
+      
+<td>No </td>
+      
+<td>false </td>
+    </tr>
+  </tbody>
+</table>
+<p>Example(s):</p>
 
 <div class="source">
-<div class="source"><pre>{{contributedHeadElements &quot;body, head&quot;, &quot;exclude,stuff&quot;, true}}
+<div class="source"><pre>{{hst:contributedHeadElements &quot;body, head&quot;, &quot;exclude,stuff&quot;, true}}
 
-</pre></div></div>
-<p>Third parameter indicates xhml (if true)</p></div>
-<div class="section">
-<h3><a name="Message_Replacing_like_hst.messagesReplace__tag"></a>Message Replacing like <i>&lt;@hst.messagesReplace /&gt;</i> tag</h3>
-
-<div class="source">
-<div class="source"><pre>{{replaceByBundle &quot;test&quot; bundle}}
-{{replaceByBundleName &quot;test&quot; &quot;name&quot;}}
 </pre></div></div></div>
 <div class="section">
-<h3><a name="ahst.manageContent__tag"></a>&lt;@hst.manageContent /&gt; tag</h3>
+<h3><a name="hst:setBundle"></a>hst:setBundle</h3>
+<p>Synopsis: Set the i18n ResourceBundle in the template</p>
+
+<table border="0" class="table table-striped">
+  <thead>
+    
+<tr class="a">
+      
+<th align="center">Index </th>
+      
+<th align="center">Type </th>
+      
+<th>Description </th>
+      
+<th>Required? </th>
+      
+<th>Default value </th>
+    </tr>
+  </thead>
+  <tbody>
+    
+<tr class="b">
+      
+<td align="center">0 </td>
+      
+<td align="center">String </td>
+      
+<td>Resource Bundle basename </td>
+      
+<td>Yes </td>
+      
+<td> </td>
+    </tr>
+    
+<tr class="a">
+      
+<td align="center">0 </td>
+      
+<td align="center">boolean </td>
+      
+<td>Whether to fall back to the Java system ResourceBundle </td>
+      
+<td>No </td>
+      
+<td>false </td>
+    </tr>
+  </tbody>
+</table>
+<p>Example(s):</p>
+
+<div class="source">
+<div class="source"><pre>{{hst:setBundle &quot;essentials.pagination&quot;}}
+</pre></div></div></div>
+<div class="section">
+<h3><a name="hst:bundleMessage"></a>hst:bundleMessage</h3>
+<p>Synopsis: Get the i18n message by the given key from the underlying ResourceBundle</p>
+
+<table border="0" class="table table-striped">
+  <thead>
+    
+<tr class="a">
+      
+<th align="center">Index </th>
+      
+<th align="center">Type </th>
+      
+<th>Description </th>
+      
+<th>Required? </th>
+      
+<th>Default value </th>
+    </tr>
+  </thead>
+  <tbody>
+    
+<tr class="b">
+      
+<td align="center">0 </td>
+      
+<td align="center">String </td>
+      
+<td>Resource Bundle Message key </td>
+      
+<td>Yes </td>
+      
+<td> </td>
+    </tr>
+  </tbody>
+</table>
+<p>Example(s):</p>
+
+<div class="source">
+<div class="source"><pre>{{hst:bundleMessage &quot;results.indication&quot;}}
+</pre></div></div></div>
+<div class="section">
+<h3><a name="hst:replaceByBundle"></a>hst:replaceByBundle</h3>
+<p>Synopsis: Replace text by the given or underlying ResourceBundle.</p>
+
+<table border="0" class="table table-striped">
+  <thead>
+    
+<tr class="a">
+      
+<th align="center">Index </th>
+      
+<th align="center">Type </th>
+      
+<th>Description </th>
+      
+<th>Required? </th>
+      
+<th>Default value </th>
+    </tr>
+  </thead>
+  <tbody>
+    
+<tr class="b">
+      
+<td align="center">0 </td>
+      
+<td align="center">String </td>
+      
+<td>String to replace </td>
+      
+<td>Yes </td>
+      
+<td> </td>
+    </tr>
+    
+<tr class="a">
+      
+<td align="center">1 </td>
+      
+<td align="center">ResourceBundle </td>
+      
+<td>The ResourceBundle contains key-value pairs </td>
+      
+<td>No </td>
+      
+<td> </td>
+    </tr>
+  </tbody>
+</table>
+<p>Example(s):</p>
+
+<div class="source">
+<div class="source"><pre>{{hst:replaceByBundleName &quot;Hello, ${results.indication}!&quot; bundle}}
+</pre></div></div></div>
+<div class="section">
+<h3><a name="hst:replaceByBundleName"></a>hst:replaceByBundleName</h3>
+<p>Synopsis: Replace text by the ResourceBundle that is resolved by the given bundle name.</p>
+
+<table border="0" class="table table-striped">
+  <thead>
+    
+<tr class="a">
+      
+<th align="center">Index </th>
+      
+<th align="center">Type </th>
+      
+<th>Description </th>
+      
+<th>Required? </th>
+      
+<th>Default value </th>
+    </tr>
+  </thead>
+  <tbody>
+    
+<tr class="b">
+      
+<td align="center">0 </td>
+      
+<td align="center">String </td>
+      
+<td>String to replace </td>
+      
+<td>Yes </td>
+      
+<td> </td>
+    </tr>
+    
+<tr class="a">
+      
+<td align="center">1 </td>
+      
+<td align="center">String </td>
+      
+<td>The basename of the ResourceBundle </td>
+      
+<td>No </td>
+      
+<td> </td>
+    </tr>
+  </tbody>
+</table>
+<p>Example(s):</p>
+
+<div class="source">
+<div class="source"><pre>{{hst:replaceByBundleName &quot;Hello, ${results.indication}!&quot; &quot;essentials.pagination&quot;}}
+</pre></div></div></div>
+<div class="section">
+<h3><a name="hst:manageContent"></a>hst:manageContent</h3>
+<p>Synopsis: Create an HTML comment snippet that contains information about the manage content link in CMS.</p>
+
+<table border="0" class="table table-striped">
+  <thead>
+    
+<tr class="a">
+      
+<th align="center">Index </th>
+      
+<th align="center">Type </th>
+      
+<th>Description </th>
+      
+<th>Required? </th>
+      
+<th>Default value </th>
+    </tr>
+  </thead>
+  <tbody>
+    
+<tr class="b">
+      
+<td align="center">0 </td>
+      
+<td align="center">HippoBean </td>
+      
+<td>Content bean to manage </td>
+      
+<td>Yes </td>
+      
+<td> </td>
+    </tr>
+    
+<tr class="a">
+      
+<td align="center">1 </td>
+      
+<td align="center">String </td>
+      
+<td>Path to the root folder of selectable document locations. </td>
+      
+<td>No </td>
+      
+<td>false </td>
+    </tr>
+    
+<tr class="b">
+      
+<td align="center">2 </td>
+      
+<td align="center">String </td>
+      
+<td>Initial location of a new document, relative to the rootPath. </td>
+      
+<td>No </td>
+      
+<td>false </td>
+    </tr>
+    
+<tr class="a">
+      
+<td align="center">3 </td>
+      
+<td align="center">String </td>
+      
+<td>Name of the component parameter to set when changing the content. </td>
+      
+<td>No </td>
+      
+<td>false </td>
+    </tr>
+    
+<tr class="b">
+      
+<td align="center">4 </td>
+      
+<td align="center">String </td>
+      
+<td>Template query to use for creating new documents. </td>
+      
+<td>No </td>
+      
+<td>false </td>
+    </tr>
+  </tbody>
+</table>
+<p>Example(s):</p>
 
 <div class="source">
 <div class="source"><pre>{{hst:manageContent document}}
 </pre></div></div></div>
 <div class="section">
-<h3><a name="ahst.cmsEditLink__tag"></a>&lt;@hst.cmsEditLink /&gt; tag</h3>
+<h3><a name="hst:cmsEditMenuLink"></a>hst:cmsEditMenuLink</h3>
+<p>Synopsis: Generate the link that can be used as editable link or HTML comment for a menu in CMS.</p>
+
+<table border="0" class="table table-striped">
+  <thead>
+    
+<tr class="a">
+      
+<th align="center">Index </th>
+      
+<th align="center">Type </th>
+      
+<th>Description </th>
+      
+<th>Required? </th>
+      
+<th>Default value </th>
+    </tr>
+  </thead>
+  <tbody>
+    
+<tr class="b">
+      
+<td align="center">0 </td>
+      
+<td align="center">CommonMenu </td>
+      
+<td>menu object </td>
+      
+<td>Yes </td>
+      
+<td> </td>
+    </tr>
+  </tbody>
+</table>
+<p>Example(s):</p>
+
+<div class="source">
+<div class="source"><pre>{{hst:cmsEditMenuLink menu}}
+</pre></div></div></div>
+<div class="section">
+<h3><a name="hst:cmsEditLink"></a>hst:cmsEditLink</h3>
+<p>Synopsis: Generate the link that can be used as editable link or HTML comment for a document in CMS.</p>
+
+<table border="0" class="table table-striped">
+  <thead>
+    
+<tr class="a">
+      
+<th align="center">Index </th>
+      
+<th align="center">Type </th>
+      
+<th>Description </th>
+      
+<th>Required? </th>
+      
+<th>Default value </th>
+    </tr>
+  </thead>
+  <tbody>
+    
+<tr class="b">
+      
+<td align="center">0 </td>
+      
+<td align="center">HippoBean </td>
+      
+<td>Content bean to edit </td>
+      
+<td>Yes </td>
+      
+<td> </td>
+    </tr>
+    
+<tr class="a">
+      
+<td align="center">1 </td>
+      
+<td align="center">boolean </td>
+      
+<td>Whether to generate as HTML comment </td>
+      
+<td>No </td>
+      
+<td>false </td>
+    </tr>
+  </tbody>
+</table>
+<p>Example(s):</p>
 
 <div class="source">
 <div class="source"><pre>{{hst:cmsEditLink document}}
-</pre></div></div>
-<p>as text: <tt>
-{{hst:cmsEditLink document true}} 
-</tt></p></div>
-<div class="section">
-<h3><a name="ahst.facetNavigationLink__tag"></a>&lt;@hst.facetNavigationLink /&gt; tag</h3>
-
-<div class="source">
-<div class="source"><pre> {{hst:linkForFacet facetBean facetBean}}
-</pre></div></div></div>
-<div class="section">
-<h3><a name="ahst.setBundle__tag"></a>&lt;@hst.setBundle /&gt; tag</h3>
-
-<div class="source">
-<div class="source"><pre>{{hst:setBundle &quot;essentials.pagination&quot;}} 
-</pre></div></div></div>
-<div class="section">
-<h3><a name="afmt.message__tag"></a>&lt;@fmt.message /&gt; tag</h3>
-
-<div class="source">
-<div class="source"><pre>{{hst:bundleMessage &quot;results.indication&quot;}}
 </pre></div></div></div></div>
     </div>
     </div>
