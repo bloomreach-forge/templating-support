@@ -12,7 +12,7 @@
   <description>Templating Support Demo</description>
   <groupId>org.onehippo.forge.templating-support</groupId>
   <artifactId>templating-support-demo</artifactId>
-  <version>0.1.0-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <!-- 
