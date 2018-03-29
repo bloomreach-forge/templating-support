@@ -84,6 +84,7 @@ public abstract class AbstractHstTemplateServlet extends HttpServlet {
 
         final ServletContext servletContext = config.getServletContext();
 
+        @SuppressWarnings("unchecked")
         Map<String, AbstractHstTemplateServlet> templatingServletMap = (Map<String, AbstractHstTemplateServlet>) servletContext
                 .getAttribute(CONTEXT_ATTRIBUTE_TEMPLATING_SERVLET_MAP);
 

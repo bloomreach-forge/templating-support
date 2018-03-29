@@ -89,6 +89,7 @@ public class AbstractHstTemplateServletTest {
 
     @Test
     public void testContextAttributes() throws Exception {
+        @SuppressWarnings("unchecked")
         final Map<String, AbstractHstTemplateServlet> map = (Map<String, AbstractHstTemplateServlet>) servletContext
                 .getAttribute(AbstractHstTemplateServlet.CONTEXT_ATTRIBUTE_TEMPLATING_SERVLET_MAP);
         assertNotNull(map);
