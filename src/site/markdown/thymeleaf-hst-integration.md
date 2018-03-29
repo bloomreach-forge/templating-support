@@ -19,7 +19,7 @@ Thymeleaf Templating Support Module provides equivalent features to HST-2 JSP Ta
 
 
 
-# Model
+## Model
 
 
 
@@ -34,7 +34,7 @@ Thymeleaf Templating Support Module provides equivalent features to HST-2 JSP Ta
 
 
 
-# Fragments
+## Fragments
 
 ### relative url (relative to current fragment)
 
@@ -50,7 +50,7 @@ Thymeleaf Templating Support Module provides equivalent features to HST-2 JSP Ta
 
 
 
-# Tags and attributes
+## Tags and attributes
 
 ### Generating HST Link like *<@hst.link />* tag
 

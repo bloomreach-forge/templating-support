@@ -17,115 +17,346 @@
 
 Handlebars Templating Support Module provides equivalent features to HST-2 JSP Tab Libraries.
 
-### Generating HST Link like *<@hst.link />* tag
+## Models
 
-You can generate an HST link with a ```HippoBean``` like the following:
+HstRequestContext, HstRequest and HstResponse objects can always be accessed through ```hstRequestContext```, ```hstRequest``` and ```hstResponse```.
+
+## Helpers
+
+### hst:linkByHippoBean
+
+Synopsis: generate an HST link by the given ```HippoBean``` with the following parameter(s):
+
+| Index | Type      | Description                                           | Required? | Default value |
+|:-----:|:---------:|-------------------------------------------------------|-----------|---------------|
+| 0     | HippoBean | Content bean to link to.                              | Yes       |               |
+| 1     | boolean   | whether to generate link as a fully qualified URL     | No        | false         |
+
+Example(s):
 
 ```
 {{hst:linkByHippoBean document}}
 ```
 
-To generate an absolute link, append ```true``` parameter (it's ```false``` by default):
+### hst:linkByPath
+
+Synopsis: generate an HST link by the given path info with the following parameter(s):
+
+| Index | Type      | Description                                           | Required? | Default value |
+|:-----:|:---------:|-------------------------------------------------------|-----------|---------------|
+| 0     | String    | Content path to link to.                              | Yes       |               |
+| 1     | boolean   | whether to generate link as fully qualified URL       | No        | false         |
+
+Example(s):
 
 ```
-{{hst:linkByHippoBean document true}}
+{{hst:linkByPath "/news"}}
 ```
 
-You can generate an HST link with a path info like the following:
+### hst:linkBySiteMapItemRefId
 
-```
-{{hst:linkByHippoBean "/news"}}
-```
+Synopsis: generate an HST link by the given sitemap item reference ID with the following parameter(s):
 
-To generate an absolute link, append ```true``` parameter (it's ```false``` by default):
+| Index | Type      | Description                                           | Required? | Default value |
+|:-----:|:---------:|-------------------------------------------------------|-----------|---------------|
+| 0     | String    | Sitemap item reference ID to link to.                 | Yes       |               |
+| 1     | boolean   | whether to generate link as fully qualified URL       | No        | false         |
 
-You can generate an HST link with an HST SiteMap Item Reference like the following:
+Example(s):
 
 ```
 {{hst:linkBySiteMapItemRefId "root"}}
 ```
 
-To generate an absolute link, append ```true``` parameter (it's ```false``` by default):
+### hst:linkForFacet
 
+Synopsis: generate an HST link by the given HippoFacetSubNavigation items with the following parameter(s):
 
-### Generating HST WebFile Link like *<@hst.webfile />* tag
+| Index | Type                                | Description                                           | Required? | Default value |
+|:-----:|:-----------------------------------:|-------------------------------------------------------|-----------|---------------|
+| 0     | HippoFacetSubNavigation             | Current HippoFacetSubNavigation object.               | Yes       |               |
+| 1     | HippoFacetSubNavigation             | HippoFacetSubNavigation object to remove              | No        |               |
+| 2     | List&lt;HippoFacetSubNavigation&gt; | The list of HippoFacetSubNavigations to remove.       | Yes       |               |
+
+Example(s):
+
+```
+{{hst:linkForFacet curSubNav removeItem removeList}}
+```
+
+### hst:webfileByPath
+
+Synopsis: generate an HST WebFiles link by the given path with the following parameter(s):
+
+| Index | Type      | Description                                           | Required? | Default value |
+|:-----:|:---------:|-------------------------------------------------------|-----------|---------------|
+| 0     | String    | WebFile path to link to.                              | Yes       |               |
+| 1     | boolean   | whether to generate link as a fully qualified URL     | No        | false         |
+
+Example(s):
+
 ```
 {{hst:webfileByPath "/js/bootstrap.min.js"}}
 ```
 
+### hst:htmlByHippoHtml
 
-### Rendering Hippo HTML Compound Bean like *<@hst.html />* tag
+Synopsis: rewrite the given HippoHtmlBean content to HTML markups with the following parameter(s):
+
+| Index | Type          | Description                                           | Required? | Default value |
+|:-----:|:-------------:|-------------------------------------------------------|-----------|---------------|
+| 0     | HippoHtmlBean | HippoHtmlBean instance.                               | Yes       |               |
+| 1     | boolean       | whether to generate link as a fully qualified URL     | No        | false         |
+
+Example(s):
 
 ```
-   {{{hst:htmlByHippoHtml document.content}}}
+{{hst:htmlByHippoHtml document.body}}
 ```
 
-### Including Child HST Components like *<@hst.include />* tag
+### hst:htmlByFormattedText
+
+Synopsis: rewrite the given formatted text string to HTML markups with the following parameter(s):
+
+| Index | Type          | Description                                           | Required? | Default value |
+|:-----:|:-------------:|-------------------------------------------------------|-----------|---------------|
+| 0     | String        | Formatted text                                        | Yes       |               |
+| 1     | boolean       | whether to generate link as a fully qualified URL     | No        | false         |
+
+Example(s):
+
+```
+{{hst:htmlByFormattedText document.introduction}}
+```
+
+### hst:rewriteHippoHtml
+
+Synopsis: rewrite the given HippoHtmlBean content to HTML markups with the following parameter(s):
+
+| Index | Type                          | Description                                             | Required? | Default value |
+|:-----:|:-----------------------------:|---------------------------------------------------------|-----------|---------------|
+| 0     | ContentRewriter&lt;String&gt; | HippoHtmlBean instance.                                 | Yes       |               |
+| 1     | HippoHtmlBean                 | HippoHtmlBean instance.                                 | Yes       |               |
+| 2     | ImageVariant                  | HippoHtmlBean instance.                                 | No        |               |
+| 3     | boolean                       | whether the ContentRewriter should use an imageVariant. | No        | false         |
+| 4     | boolean                       | whether to generate link as a fully qualified URL       | No        | false         |
+
+Example(s):
+
+```
+{{hst:rewriteHippoHtml contentRewriter document.body}}
+```
+
+### hst:includeChild
+
+Synopsis: Include the child component window's output after finding it by the given child component window reference name with the following parameter(s):
+
+| Index | Type          | Description                                           | Required? | Default value |
+|:-----:|:-------------:|-------------------------------------------------------|-----------|---------------|
+| 0     | String        | Child component window reference name                | Yes       |               |
+
+Example(s):
 
 ```    
     {{{hst:includeChild "container"}}}
  
 ```
 
-### Generating HST Render URLs like *<@hst.renderURL />* tag
+### hst:renderURL
+
+Synopsis: Generate an HST Render URL:
+
+| Index | Type          | Description                                               | Required? | Default value |
+|:-----:|:-------------:|-----------------------------------------------------------|-----------|---------------|
+| 0     | String        | Additional Request Parameters in HTTP Query String format | No        |               |
+
+Example(s):
+
 ```
 {{hst:renderURL}}
 {{hst:renderURL "a=1&b=2"}}
 ```
-### Generating HST Action URLs like *<@hst.actionURL />* tag
+
+### hst:actionURL
+
+Synopsis: Generate an HST Action URL:
+
+| Index | Type          | Description                                               | Required? | Default value |
+|:-----:|:-------------:|-----------------------------------------------------------|-----------|---------------|
+| 0     | String        | Additional Request Parameters in HTTP Query String format | No        |               |
+
+Example(s):
 
 ```
 {{hst:actionURL}}
+{{hst:actionURL "a=1&b=2"}}
 ```
 
-### Generating HST Resource URLs like *<@hst.resourceURL />* tag
+### hst:resourceURL
+
+Synopsis: Generate an HST Resource URL:
+
+| Index | Type          | Description                                               | Required? | Default value |
+|:-----:|:-------------:|-----------------------------------------------------------|-----------|---------------|
+| 0     | String        | Resource ID                                               | Yes       |               |
+| 1     | String        | Additional Request Parameters in HTTP Query String format | No        |               |
+
+Example(s):
 
 ```
 {{hst:resourceURL "aResourceID"}}
 ```
 
-### Generating HST ComponentRendering URLs like *<@hst.componentRenderingURL />* tag
+### hst:componentRenderingURL
+
+Synopsis: Generate an HST Component Rendering URL:
+
+| Index | Type          | Description                                               | Required? | Default value |
+|:-----:|:-------------:|-----------------------------------------------------------|-----------|---------------|
+| 0     | String        | Additional Request Parameters in HTTP Query String format | No        |               |
+
+Example(s):
+
 ```
 {{hst:componentRenderingURL}}
 ```
-### Contributing HST Head Element like *<@hst.headContribution />* tag
+
+### hst:contributeHeadElement
+
+Synopsis: Contribute an HEAD element.
+
+| Index | Type          | Description                                               | Required? | Default value |
+|:-----:|:-------------:|-----------------------------------------------------------|-----------|---------------|
+| 0     | String        | Head Element content in text                              | Yes       |               |
+| 1     | String        | Key hint of this contributed head element                 | No        |               |
+| 2     | String        | Head Element category name                                | No        |               |
+
+Example(s):
+
 ```
 {{hst:contributeHeadElement "<meta name=\"mymeta\" content=\"Handlebars templatingis working!\"/>"}}
 ```
-### Writing All the Contributed HST Head Elements like *<@hst.headContributions />* tag
-```
-{{contributedHeadElements "body, head", "exclude,stuff", true}}
+
+### hst:contributedHeadElements
+
+Synopsis: Write all the contributed HEAD elements meeting the conditions.
+
+| Index | Type          | Description                                               | Required? | Default value |
+|:-----:|:-------------:|-----------------------------------------------------------|-----------|---------------|
+| 0     | String        | Comma separated category names to include                 | No        |               |
+| 1     | String        | Comma separated category names to exclude                 | No        |               |
+| 2     | boolean       | Whether to write in XHTML format                          | No        | false         |
+
+Example(s):
 
 ```
-Third parameter indicates xhml (if true)
+{{hst:contributedHeadElements "body, head", "exclude,stuff", true}}
 
-### Message Replacing like *<@hst.messagesReplace />* tag
-```
-{{replaceByBundle "test" bundle}}
-{{replaceByBundleName "test" "name"}}
-```
-###  <@hst.manageContent /> tag
-```
-{{hst:manageContent document}}
-```
-###  <@hst.cmsEditLink /> tag
-```
-{{hst:cmsEditLink document}}
-```
-as text:
-```
-{{hst:cmsEditLink document true}} 
-```
-###  <@hst.facetNavigationLink /> tag
-```
- {{hst:linkForFacet facetBean facetBean}}
-```
-###  <@hst.setBundle /> tag
-```
-{{hst:setBundle "essentials.pagination"}} 
 ```
 
-###  <@fmt.message /> tag
+### hst:setBundle
+
+Synopsis: Set the i18n ResourceBundle in the template
+
+| Index | Type           | Description                                               | Required? | Default value |
+|:-----:|:--------------:|-----------------------------------------------------------|-----------|---------------|
+| 0     | String         | Resource Bundle basename                                  | Yes       |               |
+| 0     | boolean        | Whether to fall back to the Java system ResourceBundle    | No        | false         |
+
+Example(s):
+
+```
+{{hst:setBundle "essentials.pagination"}}
+```
+
+### hst:bundleMessage
+
+Synopsis: Get the i18n message by the given key from the underlying ResourceBundle
+
+| Index | Type           | Description                                               | Required? | Default value |
+|:-----:|:--------------:|-----------------------------------------------------------|-----------|---------------|
+| 0     | String         | Resource Bundle Message key                               | Yes       |               |
+
+Example(s):
+
 ```
 {{hst:bundleMessage "results.indication"}}
 ```
+
+### hst:replaceByBundle
+
+Synopsis: Replace text by the given or underlying ResourceBundle.
+
+| Index | Type           | Description                                               | Required? | Default value |
+|:-----:|:--------------:|-----------------------------------------------------------|-----------|---------------|
+| 0     | String         | String to replace                                         | Yes       |               |
+| 1     | ResourceBundle | The ResourceBundle contains key-value pairs               | No        |               |
+
+Example(s):
+
+```
+{{hst:replaceByBundleName "Hello, ${results.indication}!" bundle}}
+```
+
+### hst:replaceByBundleName
+
+Synopsis: Replace text by the ResourceBundle that is resolved by the given bundle name.
+
+| Index | Type           | Description                                               | Required? | Default value |
+|:-----:|:--------------:|-----------------------------------------------------------|-----------|---------------|
+| 0     | String         | String to replace                                         | Yes       |               |
+| 1     | String         | The basename of the ResourceBundle                        | No        |               |
+
+Example(s):
+
+```
+{{hst:replaceByBundleName "Hello, ${results.indication}!" "essentials.pagination"}}
+```
+
+### hst:manageContent
+
+Synopsis: Create an HTML comment snippet that contains information about the manage content link in CMS.
+
+| Index | Type           | Description                                                       | Required? | Default value |
+|:-----:|:--------------:|-------------------------------------------------------------------|-----------|---------------|
+| 0     | HippoBean      | Content bean to manage                                            | Yes       |               |
+| 1     | String         | Path to the root folder of selectable document locations.         | No        | false         |
+| 2     | String         | Initial location of a new document, relative to the rootPath.     | No        | false         |
+| 3     | String         | Name of the component parameter to set when changing the content. | No        | false         |
+| 4     | String         | Template query to use for creating new documents.                 | No        | false         |
+
+Example(s):
+
+```
+{{hst:manageContent document}}
+```
+
+### hst:cmsEditMenuLink
+
+Synopsis: Generate the link that can be used as editable link or HTML comment for a menu in CMS.
+
+| Index | Type           | Description                                               | Required? | Default value |
+|:-----:|:--------------:|-----------------------------------------------------------|-----------|---------------|
+| 0     | CommonMenu     | menu object                                               | Yes       |               |
+
+Example(s):
+
+```
+{{hst:cmsEditMenuLink menu}}
+```
+
+### hst:cmsEditLink
+
+Synopsis: Generate the link that can be used as editable link or HTML comment for a document in CMS.
+
+| Index | Type           | Description                                               | Required? | Default value |
+|:-----:|:--------------:|-----------------------------------------------------------|-----------|---------------|
+| 0     | HippoBean      | Content bean to edit                                      | Yes       |               |
+| 1     | boolean        | Whether to generate as HTML comment                       | No        | false         |
+
+Example(s):
+
+```
+{{hst:cmsEditLink document}}
+```
+

@@ -23,7 +23,7 @@ Make sure you have the following **repository** configuration under the **reposi
     <repository>
       <id>hippo-maven2</id>
       <name>Hippo Maven 2 Repository</name>
-      <url>https://maven.onehippo.com/maven2-forge//</url>
+      <url>https://maven.onehippo.com/maven2-forge/</url>
     </repository>
 ```
 

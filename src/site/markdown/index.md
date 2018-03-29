@@ -34,6 +34,8 @@ Features:
 - Common base class: ```org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet```
 - Default JCR Event Listener implementation to invalidate template cache on changes, by invoking ```#clearTemplateCache()``` of the specific implemenation servlets.
 - Common Helper Classes to support seamless HST-2 integrations.
+- ```TemplatingPropertyRepresentationFactory``` overriding the defeault ```org.hippoecm.hst.pagecomposer.jaxrs.api.PropertyRepresentationFactory``` to allow template switching
+  even between Handlebars or Thymeleaf in the component parameter setting dialog.
 
 ### **templating-support-handlebars** submodule
 
@@ -41,7 +43,7 @@ Handlebars view technology supporting servlet and other utilities.
 
 Features:
 
-- Default Handlebars servlet: ```org.onehippo.forge.templating.support.handlebars.servlet.HandlebarsHstTemplateServlet```,
+- Default Handlebars template servlet: ```org.onehippo.forge.templating.support.handlebars.servlet.HandlebarsHstTemplateServlet```,
   supporting ```WebfileTemplateLoader``` (```webfile:...```),
   ```ClassPathTemplateLoader``` (```classpath:...```),
   ```ServletContextTemplateLoader```
@@ -56,13 +58,33 @@ Thymeleaf view technology supporting servlet and other utilities.
 
 Features:
 
-- ...
+- Default Thymeleaf template servlet: ```org.onehippo.forge.templating.support.thymeleaf.servlet.ThymeleafHstTemplateServlet```,
+  supporting ```WebfilesTemplateResolver``` (```webfile:...```),
+  ```ClasspathTemplateResolver``` (```classpath:...```),
+  ```ServletTemplateResolver```
+  based on protocol prefixes.
+- Models and Dialects for seamless HST-2 integrations.
+
+See [Install](handlebars-install.html) page for detail on how to use it in your project.
 
 See [Install](thymeleaf-install.html) page for detail on how to use it in your project.
 
-# Demo Application
+## Switch Template Support
 
-You can build the module locally (as it's not released yet) first in the project root folder.
+By default, the [Switch Template Support](https://www.onehippo.org/library/concepts/web-files/switch-template-support.html) feature in the product supports only FreeMarker templates.
+
+If you want to support the feature for your templates in either Handlebars or Thymeleaf,
+simply copy the [template-support.xml](https://github.com/onehippo-forge/templating-support/blob/develop/demo/site/src/main/resources/META-INF/hst-assembly/overrides/addon/org/hippoecm/hst/pagecomposer/template-support.xml) in the demo project
+into ```site/src/main/resources/META-INF/hst-assembly/overrides/addon/org/hippoecm/hst/pagecomposer/``` folder.
+
+Then you will be able to switch templates in either Handlebars or Thymeleaf:
+
+![Template Switching Screenshot](images/template_switch.png "Template Switching Screenshot")
+
+
+## Demo Application
+
+You can build the module locally first in the project root folder.
 
 ```bash
 $ mvn clean install

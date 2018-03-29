@@ -33,7 +33,7 @@
     Facet Link linkForFacet: {{hst:linkForFacet facetBean facetBean}}
     Set Bundle(essentials.pagination)[no output] {{hst:setBundle "essentials.pagination"}}
     Bundle message(results.indication): {{hst:bundleMessage "results.indication"}}
-
+    Replaced Text: {{hst:replaceByBundleName "Hello, ${results.indication}!" "essentials.pagination"}}
   </pre>
 
   {{#if hstRequestContext.preview}}
