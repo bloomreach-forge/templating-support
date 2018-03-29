@@ -186,7 +186,8 @@ or by using tag:
 
 | Attribute name                        | Value         							|
 | ---------------------                 |:----------------------------------------:	|
-| hst:resourceURL (**required**)      		    | optional value (parameters e.g. a=1&b=2)	|
+| hst:resourceURL (**required**)      		    |String, resource id	e.g. myResource|
+| hst:params (**optional**)      		    | optional value (parameters e.g. a=1&b=2)	|
 
 
 
@@ -243,7 +244,7 @@ or by using tag:
 
 ### Message Replacing like *<@hst.messagesReplace />* tag
 
-This is implemeted as Thymeleaf expression:
+This is implemented as Thymeleaf expression:
 
 
 ```java
@@ -261,6 +262,24 @@ This is implemeted as Thymeleaf expression:
 | bundle (**required**)      		    |  ResourceBundle   	|
 | fullyQualified (**required**)      	|  boolean   	|
 | html (**required**)      				|  HippoHtml   	|
+
+
+### hstFunctions 
+```java
+
+#hstFunctions.isReadable(bean, name)
+#hstFunctions.isNodeType(node, name)
+#hstFunctions.isBeanType(bean, name)
+
+
+```
+| Attribute name                        | Value         							|
+| ---------------------                 |:----------------------------------------:	|
+| name (**required**)      		    	|  String   	|
+| bean (**required**)      				|  Object   	|
+| node (**required**)      				|  javax.jcr.Node   	|
+
+
 
 
 

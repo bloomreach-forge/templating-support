@@ -25,14 +25,18 @@ import java.util.Set;
 public class ThymeleafHstExpressionFactory implements IExpressionObjectFactory {
     
     private static final String MESSAGE_REPLACE = "messagesReplace";
-    private static final ImmutableSet<String> NAMES = ImmutableSet.of(MESSAGE_REPLACE);
+    private static final String HST_FUNCTIONS = "hstFunctions";
+    
+    private static final ImmutableSet<String> NAMES = ImmutableSet.of(MESSAGE_REPLACE, HST_FUNCTIONS);
 
     @Override public Set<String> getAllExpressionObjectNames() {
         return NAMES;
     }
 
     @Override public Object buildObject(final IExpressionContext context, final String expressionObjectName) {
-        if (MESSAGE_REPLACE.equals(expressionObjectName)) {
+        if (HST_FUNCTIONS.equals(expressionObjectName)) {
+            return new ThymeleafHstFunctionsExpression();
+        }if (MESSAGE_REPLACE.equals(expressionObjectName)) {
             return new ThymeleafHstMessageReplaceExpression();
         }
         return null;
