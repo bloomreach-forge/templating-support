@@ -65,8 +65,6 @@ Features:
   based on protocol prefixes.
 - Models and Dialects for seamless HST-2 integrations.
 
-See [Install](handlebars-install.html) page for detail on how to use it in your project.
-
 See [Install](thymeleaf-install.html) page for detail on how to use it in your project.
 
 ## Switch Template Support
