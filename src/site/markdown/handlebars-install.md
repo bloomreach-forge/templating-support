@@ -65,3 +65,7 @@ In ```site/src/main/webapp/WEB-INF/web.xml```, add the following:
 ### Configure WebFiles to Include **.hbs** File Extension
 
 Add ```*.hbs``` in **Included Files** in webfiles configuration. See [https://www.onehippo.org/library/concepts/web-files/web-files-configuration.html](https://www.onehippo.org/library/concepts/web-files/web-files-configuration.html).
+
+### Switch Template Support
+
+By default, the Switch Template Support feature in the product supports only FreeMarker templates. Follow the instruction in the [Switch Template Support section](index.html#Switch_Template_Support) to enable the feature for Handlebars in your project.

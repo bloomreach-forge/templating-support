@@ -35,10 +35,10 @@ The output is in the ```docs/``` directory by default. You can open ```docs/inde
 
 You can push it and GitHub Pages will be served for the site automatically.
 
-## For Contributors
+## For Users and Contributors
 
 - Please ask and discuss if you want to collaborate, contribute or review on anything through Hippo Community Forum.
-- Specific view templating dependencies should be added as ```optional``` and end projects should include the dependency explicitly.
-- Once we get a relatively stable version, we'll cut the initial release, with online site documentations including release notes.
+- If you find an issue, please file a ticket at [https://issues.onehippo.com/projects/HIPFORGE](https://issues.onehippo.com/projects/HIPFORGE).
+  Set "Component/s" field to "Templating Support".
 - All the contributors are encouraged to *fork* and create *pull requests* for any contributions.
 - When submitting a pull request, please make sure to add proper license headers. See existing sources.
