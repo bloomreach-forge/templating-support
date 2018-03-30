@@ -23,5 +23,5 @@
 
 ### 1.0.0
 
-- Coming soon ...
-
+- Initial release supporting [Handlebars.java](https://github.com/jknack/handlebars.java) and [Thymeleaf](https://www.thymeleaf.org/)
+  for HST-2 templating.
