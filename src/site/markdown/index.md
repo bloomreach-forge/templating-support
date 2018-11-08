@@ -72,7 +72,7 @@ See [Install](thymeleaf-install.html) page for detail on how to use it in your p
 By default, the [Switch Template Support](https://www.onehippo.org/library/concepts/web-files/switch-template-support.html) feature in the product supports only FreeMarker templates.
 
 If you want to support the feature for your templates in either Handlebars or Thymeleaf,
-simply copy the [template-support.xml](https://github.com/onehippo-forge/templating-support/blob/develop/demo/site/src/main/resources/META-INF/hst-assembly/overrides/addon/org/hippoecm/hst/pagecomposer/template-support.xml) in the demo project
+simply copy the [template-support.xml](https://github.com/bloomreach-forge/templating-support/blob/develop/demo/site/src/main/resources/META-INF/hst-assembly/overrides/addon/org/hippoecm/hst/pagecomposer/template-support.xml) in the demo project
 into ```site/src/main/resources/META-INF/hst-assembly/overrides/addon/org/hippoecm/hst/pagecomposer/``` folder.
 
 Then you will be able to switch templates in either Handlebars or Thymeleaf:
