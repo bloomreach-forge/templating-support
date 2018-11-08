@@ -15,7 +15,7 @@
 
 ## Install Thymeleaf Templating Support Module
 
-### Hippo Forge Maven Repository
+### Bloomreach Forge Maven Repository
 
 Make sure you have the following **repository** configuration under the **repositories** section in the root ```pom.xml```.
 

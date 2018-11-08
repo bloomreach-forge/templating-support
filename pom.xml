@@ -23,7 +23,7 @@
   <artifactId>templating-support</artifactId>
   <version>1.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <url>https://github.com/onehippo-forge/templating-support</url>
+  <url>https://github.com/bloomreach-forge/templating-support</url>
 
   <properties>
 
@@ -108,9 +108,9 @@
   </developers>
 
   <scm>
-    <connection>scm:git:git@github.com:onehippo-forge/templating-support.git</connection>
-    <developerConnection>scm:git:git@github.com:onehippo-forge/templating-support.git</developerConnection>
-    <url>https://github.com/onehippo-forge/templating-support.git</url>
+    <connection>scm:git:git@github.com:bloomreach-forge/templating-support.git</connection>
+    <developerConnection>scm:git:git@github.com:bloomreach-forge/templating-support.git</developerConnection>
+    <url>https://github.com/bloomreach-forge/templating-support.git</url>
     <tag>HEAD</tag>
   </scm>
 
@@ -129,7 +129,7 @@
 
   <ciManagement>
     <system>Travic CI</system>
-    <url>https://travis-ci.org/onehippo-forge/templating-support</url>
+    <url>https://travis-ci.org/bloomreach-forge/templating-support</url>
   </ciManagement>
 
   <repositories>
