@@ -40,6 +40,9 @@
 
    <hst:setBundle hst:basename="essentials.pagination" />
    HST setBundle (essentials.pagination/results.indication): <strong th:text="#{results.indication}"></strong>
+   HST setBunlde with replacement (Your order {0} is in the works. We sent an email to {1} with your order confirmation):
+   <hst:setBundle hst:basename="essentials.global"/>
+      <p data-th-text="#{orderConfirmationMessage('ODER_NUMBER','order@email')}"/>
   <hst:headContributions hst:categoryIncludes="thymeleafCategory"/>
  </pre>
 
