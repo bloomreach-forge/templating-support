@@ -1,6 +1,8 @@
 .idea/
 out/
 target/
+demo/classes
+clases/
 overlays/
 *.iws
 *.iml
