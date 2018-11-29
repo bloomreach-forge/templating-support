@@ -8,21 +8,52 @@
     jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
     jcr:uuid: 6479f242-0d16-4fcb-8701-e1ab214f7704
     hippo:name: Global
-    /global:
+    /global[1]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable']
       jcr:uuid: 09b2977f-b025-4361-b9db-2c51615dd19b
-      hippo:availability: [live, preview]
+      hippo:availability: [live]
       hippostd:state: published
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
-      hippostdpubwf:lastModificationDate: 2014-08-21T22:10:52.812+02:00
+      hippostdpubwf:lastModificationDate: 2018-11-28T15:32:11.785+01:00
       hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2014-08-21T22:10:54.657+02:00
-      resourcebundle:descriptions: [Text shown in the global page footer.]
+      hippostdpubwf:publicationDate: 2018-11-28T15:32:14.036+01:00
+      resourcebundle:descriptions: [Text shown in the global page footer., 'https://issues.onehippo.com/browse/HIPFORGE-238']
       resourcebundle:id: essentials.global
-      resourcebundle:keys: [footer.text]
-      resourcebundle:messages: [©2018]
+      resourcebundle:keys: [footer.text, orderConfirmationMessage]
+      resourcebundle:messages: [©2018, 'Your order {0} is in the works. We sent an
+          email to {1} with your order confirmation.']
+    /global[2]:
+      jcr:primaryType: resourcebundle:resourcebundle
+      jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+      jcr:uuid: 0d39ea62-1096-4740-b338-39f05e591f20
+      hippo:availability: [preview]
+      hippostd:state: unpublished
+      hippostdpubwf:createdBy: admin
+      hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
+      hippostdpubwf:lastModificationDate: 2018-11-28T15:32:11.785+01:00
+      hippostdpubwf:lastModifiedBy: admin
+      resourcebundle:descriptions: [Text shown in the global page footer., 'https://issues.onehippo.com/browse/HIPFORGE-238']
+      resourcebundle:id: essentials.global
+      resourcebundle:keys: [footer.text, orderConfirmationMessage]
+      resourcebundle:messages: [©2018, 'Your order {0} is in the works. We sent an
+          email to {1} with your order confirmation.']
+    /global[3]:
+      jcr:primaryType: resourcebundle:resourcebundle
+      jcr:mixinTypes: ['mix:referenceable']
+      jcr:uuid: ade18497-4575-4a68-9056-e1c39d96449b
+      hippo:availability: []
+      hippostd:state: draft
+      hippostdpubwf:createdBy: admin
+      hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
+      hippostdpubwf:lastModificationDate: 2018-11-28T15:31:42.489+01:00
+      hippostdpubwf:lastModifiedBy: admin
+      resourcebundle:descriptions: [Text shown in the global page footer., 'https://issues.onehippo.com/browse/HIPFORGE-238']
+      resourcebundle:id: essentials.global
+      resourcebundle:keys: [footer.text, orderConfirmationMessage]
+      resourcebundle:messages: [©2018, 'Your order {0} is in the works. We sent an
+          email to {1} with your order confirmation.']
   /homepage:
     jcr:primaryType: hippo:handle
     jcr:mixinTypes: ['hippo:named', 'mix:referenceable']

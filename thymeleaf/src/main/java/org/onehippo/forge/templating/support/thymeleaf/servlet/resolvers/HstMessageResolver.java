@@ -28,11 +28,15 @@ import org.thymeleaf.messageresolver.StandardMessageResolver;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.jstl.core.Config;
 import javax.servlet.jsp.jstl.fmt.LocalizationContext;
+
+import java.text.MessageFormat;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class HstMessageResolver extends AbstractMessageResolver {
 
     private static final Logger log = LoggerFactory.getLogger(HstMessageResolver.class);
+    private static final Object[] EMPTY_MESSAGE_PARAMETERS = new Object[0];
     private final StandardMessageResolver standardMessageResolver;
 
     public HstMessageResolver() {
@@ -46,13 +50,12 @@ public class HstMessageResolver extends AbstractMessageResolver {
         final LocalizationContext locCtx = (LocalizationContext) Config.get(RequestContextProvider.get().getServletRequest(), Config.FMT_LOCALIZATION_CONTEXT);
         String message = getMessage(key, locCtx);
         if (message != null) {
-            return message;
-          
+            return formatMessage(ctx.getLocale(), message, messageParameters);
         }
         final LocalizationContext localizationContext = (LocalizationContext) request.getAttribute(HstMessagesHelper.FMT_LOCALIZATION_CONTEXT_REQUEST);
         message = getMessage(key, localizationContext);
         if (message != null) {
-            return message;
+            return formatMessage(ctx.getLocale(), message, messageParameters);
         }
         return standardMessageResolver.resolveMessage(context, origin, key, messageParameters);
     }
@@ -67,8 +70,40 @@ public class HstMessageResolver extends AbstractMessageResolver {
         return null;
     }
 
+    
     @Override
     public String createAbsentMessageRepresentation(final ITemplateContext context, final Class<?> origin, final String key, final Object[] messageParameters) {
         return standardMessageResolver.createAbsentMessageRepresentation(context, origin, key, messageParameters);
     }
+
+
+
+
+    private static String formatMessage(final Locale locale, final String message, final Object[] messageParameters) {
+        if (message == null) {
+            return null;
+        }
+        if (!isFormatCandidate(message)) { // trying to avoid creating MessageFormat if not needed
+            return message;
+        }
+        final MessageFormat messageFormat = new MessageFormat(message, locale);
+        return messageFormat.format((messageParameters != null ? messageParameters : EMPTY_MESSAGE_PARAMETERS));
+    }
+
+
+    /*
+     * This will allow us determine whether a message might actually contain parameter placeholders.
+     */
+    private static boolean isFormatCandidate(final String message) {
+        char c;
+        int n = message.length();
+        while (n-- != 0) {
+            c = message.charAt(n);
+            if (c == '}' || c == '\'') {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
