@@ -71,7 +71,7 @@
 
     <extension.wagon-svn.version>1.9</extension.wagon-svn.version>
 
-    <thymeleaf.version>3.0.9.RELEASE</thymeleaf.version>
+    <thymeleaf.version>3.0.11.RELEASE</thymeleaf.version>
   </properties>
 
   <licenses>
