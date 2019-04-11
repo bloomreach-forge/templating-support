@@ -1,9 +1,20 @@
-package org.onehippo.forge.templating.support.demo.components;
+/*
+ * Copyright 2018-2019 Hippo B.V. (http://www.onehippo.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
+package org.onehippo.forge.templating.support.demo.components;
 
 import org.hippoecm.hst.container.RequestContextProvider;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
@@ -16,21 +27,22 @@ import org.onehippo.cms7.essentials.components.CommonComponent;
 import org.onehippo.forge.templating.support.demo.beans.User;
 
 public class DemoDataComponent extends CommonComponent {
-    public DemoDataComponent() {
-    }
 
-    public void doBeforeRender(HstRequest request, HstResponse response) {
+    @Override
+    public void doBeforeRender(final HstRequest request, final HstResponse response) {
         super.doBeforeRender(request, response);
-        HstRequestContext context = RequestContextProvider.get();
-        HippoBean document = this.getHippoBeanForPath("events/2019/04/breakfast", HippoBean.class);
+        // add template data:
+        final HstRequestContext context = RequestContextProvider.get();
+        final HippoBean document = getHippoBeanForPath("events/2019/04/breakfast", HippoBean.class);
         request.setAttribute("document", document);
-        User contextUser = new User("Context user");
+        final User contextUser = new User("Context user");
         context.setAttribute("contextUser", contextUser);
-        User user = new User("demo user");
+        final User user = new User("demo user");
         request.setAttribute("user", user);
         request.setAttribute("booleanValueTrue", true);
         request.setAttribute("booleanValueFalse", true);
-        HippoFacetNavigationBean facetNavigationBean = ContentBeanUtils.getFacetNavigationBean("blogFacets/Categories/cms", "");
+        final HippoFacetNavigationBean facetNavigationBean = ContentBeanUtils.getFacetNavigationBean("blogFacets/Categories/cms", "");
         request.setAttribute("facetBean", facetNavigationBean);
+
     }
 }

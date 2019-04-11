@@ -23,3 +23,24 @@ definitions:
         hst:label: Carousel
         hst:template: essentials-carousel
         hst:xtype: hst.item
+      /facets:
+        jcr:primaryType: hst:containeritemcomponent
+        hst:componentclassname: org.onehippo.cms7.essentials.components.EssentialsFacetsComponent
+        hst:iconpath: images/essentials/catalog-component-icons/facets.png
+        hst:label: Facets
+        hst:template: blog-facet
+        hst:xtype: hst.item
+      /bloglist:
+        jcr:primaryType: hst:containeritemcomponent
+        hst:componentclassname: org.onehippo.cms7.essentials.components.EssentialsBlogComponent
+        hst:iconpath: images/essentials/catalog-component-icons/blog-list.png
+        hst:label: Blog List
+        hst:template: blog-list
+        hst:xtype: hst.item
+      /blogauthorposts:
+        jcr:primaryType: hst:containeritemcomponent
+        hst:componentclassname: org.onehippo.cms7.essentials.components.EssentialsBlogAuthorPostsComponent
+        hst:iconpath: images/essentials/catalog-component-icons/blogposts-by-author.png
+        hst:label: Blog Posts by Author
+        hst:template: blog-author-posts
+        hst:xtype: hst.item

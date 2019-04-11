@@ -28,3 +28,30 @@ definitions:
           jcr:primaryType: hst:sitemapitem
           hst:componentconfigurationid: hst:pages/eventslist
           hst:relativecontentpath: ${parent}/${1}
+      /blog:
+        jcr:primaryType: hst:sitemapitem
+        hst:componentconfigurationid: hst:pages/bloglist
+        hst:pagetitle: List of Blog Posts
+        hst:refId: blog-list
+        hst:relativecontentpath: blog
+        /_any_.html:
+          jcr:primaryType: hst:sitemapitem
+          hst:componentconfigurationid: hst:pages/blogpage
+          hst:relativecontentpath: ${parent}/${1}
+        /_any_:
+          jcr:primaryType: hst:sitemapitem
+          hst:componentconfigurationid: hst:pages/bloglist
+          hst:relativecontentpath: ${parent}/${1}
+        /facet:
+          jcr:primaryType: hst:sitemapitem
+          hst:componentconfigurationid: hst:pages/bloglist
+          hst:pagetitle: Faceted List of Blog Posts
+          hst:relativecontentpath: blogFacets
+          /_default_.html:
+            jcr:primaryType: hst:sitemapitem
+            hst:componentconfigurationid: hst:pages/blogpage
+            hst:relativecontentpath: ${parent}/hippo:resultset/${1}
+          /_any_:
+            jcr:primaryType: hst:sitemapitem
+            hst:componentconfigurationid: hst:pages/bloglist
+            hst:relativecontentpath: ${parent}/${1}

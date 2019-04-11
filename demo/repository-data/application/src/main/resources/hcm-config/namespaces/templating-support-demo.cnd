@@ -4,10 +4,19 @@
 <'hippostdpubwf'='http://www.onehippo.org/jcr/hippostdpubwf/nt/1.0'>
 <'hippotranslation'='http://www.onehippo.org/jcr/hippotranslation/nt/1.0'>
 
+[templatingsupportdemo:account] > hippo:compound, hippostd:relaxed
+  orderable
+
 [templatingsupportdemo:basedocument] > hippo:document, hippostd:publishableSummary, hippostdpubwf:document
   orderable
 
+[templatingsupportdemo:author] > hippostd:relaxed, hippotranslation:translated, templatingsupportdemo:basedocument
+  orderable
+
 [templatingsupportdemo:bannerdocument] > hippostd:relaxed, hippotranslation:translated, templatingsupportdemo:basedocument
+  orderable
+
+[templatingsupportdemo:blogpost] > hippostd:relaxed, hippotranslation:translated, templatingsupportdemo:basedocument
   orderable
 
 [templatingsupportdemo:eventsdocument] > hippostd:relaxed, hippotranslation:translated, templatingsupportdemo:basedocument

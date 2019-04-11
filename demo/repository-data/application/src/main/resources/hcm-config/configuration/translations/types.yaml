@@ -72,3 +72,121 @@ definitions:
         templatingsupportdemo:image: Abbildung
         templatingsupportdemo:link: Link
         templatingsupportdemo:title: Titel
+    /hippo:configuration/hippo:translations/hippo:types/templatingsupportdemo:blogpost:
+      jcr:primaryType: hipposys:resourcebundles
+      /en:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: Blog Post
+        templatingsupportdemo:authors: Author(s)
+        templatingsupportdemo:authors#hint: Link to author document(s)
+        templatingsupportdemo:categories: Categories
+        templatingsupportdemo:content: Content
+        templatingsupportdemo:introduction: Introduction
+        templatingsupportdemo:publicationdate: Publication Date
+        templatingsupportdemo:title: Title
+      /nl:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: Blogpost
+        templatingsupportdemo:authors: Auteur(s)
+        templatingsupportdemo:authors#hint: Link naar auteur document(en)
+        templatingsupportdemo:categories: Categorieën
+        templatingsupportdemo:content: Inhoud
+        templatingsupportdemo:introduction: Introductie
+        templatingsupportdemo:publicationdate: Publicatiedatum
+        templatingsupportdemo:title: Titel
+      /fr:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: Post blog
+        templatingsupportdemo:authors: Auteur(s)
+        templatingsupportdemo:authors#hint: Lien vers le(s) document(s) de l'auteur
+        templatingsupportdemo:categories: Catégories
+        templatingsupportdemo:content: Contenu
+        templatingsupportdemo:introduction: Introduction
+        templatingsupportdemo:publicationdate: Date de publication
+        templatingsupportdemo:title: Titre
+      /de:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: Blog-Post
+        templatingsupportdemo:authors: Verfasser
+        templatingsupportdemo:authors#hint: Link zu Verfasserdokument(en)
+        templatingsupportdemo:categories: Kategorien
+        templatingsupportdemo:content: Inhalt
+        templatingsupportdemo:introduction: Einführung
+        templatingsupportdemo:publicationdate: Publikationsdatum
+        templatingsupportdemo:title: Titel
+    /hippo:configuration/hippo:translations/hippo:types/templatingsupportdemo:author:
+      jcr:primaryType: hipposys:resourcebundles
+      /en:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: Author
+        templatingsupportdemo:accounts: Accounts
+        templatingsupportdemo:accounts#hint: External social media accounts
+        templatingsupportdemo:content: Description
+        templatingsupportdemo:content#hint: Information about the author
+        templatingsupportdemo:fullname: Name
+        templatingsupportdemo:fullname#hint: Full name
+        templatingsupportdemo:photo: Photo
+        templatingsupportdemo:photo#hint: Photo of the author
+        templatingsupportdemo:role: Role
+      /nl:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: Auteur
+        templatingsupportdemo:accounts: Accounts
+        templatingsupportdemo:accounts#hint: Externe social media accounts
+        templatingsupportdemo:content: Beschrijving
+        templatingsupportdemo:content#hint: Informatie over de auteur
+        templatingsupportdemo:fullname: Naam
+        templatingsupportdemo:fullname#hint: Volledige naam
+        templatingsupportdemo:photo: Foto
+        templatingsupportdemo:photo#hint: Foto van de auteur
+        templatingsupportdemo:role: Rol
+      /fr:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: Auteur
+        templatingsupportdemo:accounts: Konten
+        templatingsupportdemo:accounts#hint: Comptes médias sociaux externes
+        templatingsupportdemo:content: Description
+        templatingsupportdemo:content#hint: Informations sur l'auteur
+        templatingsupportdemo:fullname: Nom
+        templatingsupportdemo:fullname#hint: Nom complet
+        templatingsupportdemo:photo: Photo
+        templatingsupportdemo:photo#hint: Photo de l'auteur
+        templatingsupportdemo:role: Rôle
+      /de:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: Verfasser
+        templatingsupportdemo:accounts: Comptes
+        templatingsupportdemo:accounts#hint: Externe Konten soziale Medien
+        templatingsupportdemo:content: Beschreibung
+        templatingsupportdemo:content#hint: Informationen über den Verfasser
+        templatingsupportdemo:fullname: Name
+        templatingsupportdemo:fullname#hint: Vollständiger Name
+        templatingsupportdemo:photo: Foto
+        templatingsupportdemo:photo#hint: Foto des Verfassers
+        templatingsupportdemo:role: Rolle
+    /hippo:configuration/hippo:translations/hippo:types/templatingsupportdemo:account:
+      jcr:primaryType: hipposys:resourcebundles
+      /en:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: Account (Compound)
+        templatingsupportdemo:link: Link
+        templatingsupportdemo:link#hint: External link to the account
+        templatingsupportdemo:type: Type
+      /nl:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: Account (Compound)
+        templatingsupportdemo:link: Link
+        templatingsupportdemo:link#hint: Externe link naar het account
+        templatingsupportdemo:type: Soort
+      /fr:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: Compte (Compound)
+        templatingsupportdemo:link: Lien
+        templatingsupportdemo:link#hint: Lien externe vers le compte
+        templatingsupportdemo:type: Type
+      /de:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: Konto (Compound)
+        templatingsupportdemo:link: Link
+        templatingsupportdemo:link#hint: Externer Link zum Konto
+        templatingsupportdemo:type: Art

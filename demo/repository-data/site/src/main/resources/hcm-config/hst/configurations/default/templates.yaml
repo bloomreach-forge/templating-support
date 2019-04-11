@@ -9,3 +9,12 @@ definitions:
     /hst:hst/hst:configurations/hst:default/hst:templates/essentials-banner:
       jcr:primaryType: hst:template
       hst:renderpath: webfile:/freemarker/hstdefault/essentials-banner.ftl
+    /hst:hst/hst:configurations/hst:default/hst:templates/blog-author-posts:
+      jcr:primaryType: hst:template
+      hst:renderpath: webfile:/freemarker/hstdefault/blog/blog-author-posts.ftl
+    /hst:hst/hst:configurations/hst:default/hst:templates/blog-facet:
+      jcr:primaryType: hst:template
+      hst:renderpath: webfile:/freemarker/hstdefault/facet/blog-facet.ftl
+    /hst:hst/hst:configurations/hst:default/hst:templates/blog-list:
+      jcr:primaryType: hst:template
+      hst:renderpath: webfile:/freemarker/hstdefault/blog/blog-list.ftl
