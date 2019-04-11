@@ -16,6 +16,7 @@
 
 package org.onehippo.forge.templating.support.thymeleaf.servlet;
 
+import org.apache.commons.lang.BooleanUtils;
 import org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet;
 import org.onehippo.forge.templating.support.thymeleaf.servlet.resolvers.ClasspathTemplateResolver;
 import org.onehippo.forge.templating.support.thymeleaf.servlet.resolvers.HstMessageResolver;
@@ -25,6 +26,8 @@ import org.onehippo.forge.templating.support.thymeleaf.servlet.utils.HstThymelea
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.cache.ICacheManager;
+import org.thymeleaf.cache.StandardCacheManager;
 import org.thymeleaf.context.IContext;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
@@ -38,14 +41,18 @@ import java.util.Set;
 public class ThymeleafHstTemplateServlet extends AbstractHstTemplateServlet {
 
     private static final Logger log = LoggerFactory.getLogger(ThymeleafHstTemplateServlet.class);
-    public static final String MESSAGE_RESOLVER = "thymeleaf.message.resolver";
+    /*public static final String MESSAGE_RESOLVER = "thymeleaf.message.resolver";*/
+
 
     private TemplateEngine engine;
     private String webResourcePrefix;
 
     @Override
     protected void initializeTemplateEngine(final ServletConfig config) {
+        final boolean cacheEnabled = BooleanUtils.toBoolean(config.getInitParameter(PARAM_CACHE_ENABLED));
         engine = new TemplateEngine();
+        final ICacheManager cacheManager = cacheEnabled? new StandardCacheManager():null;
+        engine.setCacheManager(cacheManager);
         final String resourcePrefix = config.getInitParameter("webResourcePrefix");
         if (resourcePrefix != null) {
             webResourcePrefix = resourcePrefix;

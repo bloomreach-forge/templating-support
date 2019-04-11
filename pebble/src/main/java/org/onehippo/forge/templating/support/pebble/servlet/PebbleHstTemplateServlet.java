@@ -16,6 +16,9 @@
 
 package org.onehippo.forge.templating.support.pebble.servlet;
 
+import com.mitchellbosecke.pebble.PebbleEngine;
+import com.mitchellbosecke.pebble.template.PebbleTemplate;
+import org.apache.commons.lang.BooleanUtils;
 import org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet;
 
 import javax.servlet.ServletConfig;
@@ -23,22 +26,39 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PebbleHstTemplateServlet extends AbstractHstTemplateServlet {
-
+    
+    private PebbleEngine engine;
 
     @Override
-    protected void initializeTemplateEngine(final ServletConfig config) throws ServletException {
-        
+    protected void initializeTemplateEngine(final ServletConfig config) {
+
+        final boolean cacheEnabled = BooleanUtils.toBoolean(config.getInitParameter(PARAM_CACHE_ENABLED));
+        engine = new PebbleEngine.Builder()
+                .cacheActive(cacheEnabled)
+                .autoEscaping(true)
+                .build();
     }
 
     @Override
-    protected Object createTemplateContext(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
-        return null;
+    protected void clearTemplateCache() {
+        engine.getTemplateCache().invalidateAll();
     }
 
     @Override
-    protected void processTemplate(final HttpServletRequest request, final HttpServletResponse response, final String templatePath, final Object context) throws ServletException, IOException {
+    protected Object createTemplateContext(final HttpServletRequest request, final HttpServletResponse response) {
+        return new HashMap<String, Object>();
+    }
 
+    @Override
+    protected void processTemplate(final HttpServletRequest request, final HttpServletResponse response, final String templatePath, final Object context) throws IOException {
+        final PebbleTemplate template = engine.getTemplate(templatePath);
+        if (template != null) {
+            @SuppressWarnings("unchecked") final Map<String, Object> ourContext = (Map<String, Object>) context;
+            template.evaluate(response.getWriter(), ourContext, request.getLocale());
+        }
     }
 }
