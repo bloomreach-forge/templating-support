@@ -50,7 +50,6 @@
 
   <pre th:if="${hstRequestContext.cmsRequest}">
     Manage content: <hst:manageContent hst:hippobean="${document}" />
-    Cms Edit link : <a hst:cmsEditLink="${document}">Link</a>
     Cms Edit menu : <hst:cmseditmenu hst:menu="${menu}" />
   </pre>
   <link rel="stylesheet" th:href="@{files/thymeleaf-webfiles.css}" type="text/css"/>

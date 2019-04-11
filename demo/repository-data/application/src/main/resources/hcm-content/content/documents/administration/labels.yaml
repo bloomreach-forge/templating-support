@@ -1,68 +1,66 @@
 /content/documents/administration/labels:
   jcr:primaryType: hippostd:folder
   jcr:mixinTypes: ['mix:referenceable']
-  jcr:uuid: 53663c23-1b37-45f5-82e0-c98b0cfeeae1
+  jcr:uuid: 95bf07fb-3a50-4550-a0f0-95db637a5462
   hippostd:foldertype: [new-resource-bundle, new-untranslated-folder]
   /global:
     jcr:primaryType: hippo:handle
-    jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
-    jcr:uuid: 6479f242-0d16-4fcb-8701-e1ab214f7704
+    jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+    jcr:uuid: 66043ce6-738e-4bf5-a9b2-6a2a987198bb
     hippo:name: Global
+    hippo:versionHistory: 7a4bbe50-0d3f-4713-b5bc-f241d5dd9724
     /global[1]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable']
-      jcr:uuid: 09b2977f-b025-4361-b9db-2c51615dd19b
+      jcr:uuid: 627bb135-50cc-459b-ac4f-445936dd80c5
       hippo:availability: [live]
       hippostd:state: published
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
-      hippostdpubwf:lastModificationDate: 2018-11-28T15:32:11.785+01:00
+      hippostdpubwf:lastModificationDate: 2019-04-11T16:07:37.467+02:00
       hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2018-11-28T15:32:14.036+01:00
-      resourcebundle:descriptions: [Text shown in the global page footer., 'https://issues.onehippo.com/browse/HIPFORGE-238']
+      hippostdpubwf:publicationDate: 2019-04-11T16:07:39.066+02:00
+      resourcebundle:descriptions: [Text shown in the global page footer.]
       resourcebundle:id: essentials.global
-      resourcebundle:keys: [footer.text, orderConfirmationMessage]
-      resourcebundle:messages: [©2018, 'Your order {0} is in the works. We sent an
-          email to {1} with your order confirmation.']
+      resourcebundle:keys: [footer.text]
+      resourcebundle:messages: [©2019]
     /global[2]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-      jcr:uuid: 0d39ea62-1096-4740-b338-39f05e591f20
+      jcr:uuid: c6af38fb-7fcd-45d5-be4e-9fdd19ba02bd
       hippo:availability: [preview]
       hippostd:state: unpublished
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
-      hippostdpubwf:lastModificationDate: 2018-11-28T15:32:11.785+01:00
+      hippostdpubwf:lastModificationDate: 2019-04-11T16:07:37.467+02:00
       hippostdpubwf:lastModifiedBy: admin
-      resourcebundle:descriptions: [Text shown in the global page footer., 'https://issues.onehippo.com/browse/HIPFORGE-238']
+      resourcebundle:descriptions: [Text shown in the global page footer.]
       resourcebundle:id: essentials.global
-      resourcebundle:keys: [footer.text, orderConfirmationMessage]
-      resourcebundle:messages: [©2018, 'Your order {0} is in the works. We sent an
-          email to {1} with your order confirmation.']
+      resourcebundle:keys: [footer.text]
+      resourcebundle:messages: [©2019]
     /global[3]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable']
-      jcr:uuid: ade18497-4575-4a68-9056-e1c39d96449b
+      jcr:uuid: 3d94e848-914b-4652-855f-922c81ea9a2f
       hippo:availability: []
       hippostd:state: draft
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
-      hippostdpubwf:lastModificationDate: 2018-11-28T15:31:42.489+01:00
+      hippostdpubwf:lastModificationDate: 2019-04-11T16:07:30.251+02:00
       hippostdpubwf:lastModifiedBy: admin
-      resourcebundle:descriptions: [Text shown in the global page footer., 'https://issues.onehippo.com/browse/HIPFORGE-238']
+      resourcebundle:descriptions: [Text shown in the global page footer.]
       resourcebundle:id: essentials.global
-      resourcebundle:keys: [footer.text, orderConfirmationMessage]
-      resourcebundle:messages: [©2018, 'Your order {0} is in the works. We sent an
-          email to {1} with your order confirmation.']
+      resourcebundle:keys: [footer.text]
+      resourcebundle:messages: [©2019]
   /homepage:
     jcr:primaryType: hippo:handle
     jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
-    jcr:uuid: 9e0d33c4-a311-47c2-b8c4-fa79dcfdd5b6
+    jcr:uuid: 33af6520-f097-4065-a8ab-11b5dd7f8ad3
     hippo:name: Homepage
     /homepage:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable']
-      jcr:uuid: f7168387-0b1c-4331-928d-babecac220e5
+      jcr:uuid: caf69a63-e80a-43c4-ad78-616106a8bc44
       hippo:availability: [live, preview]
       hippostd:state: published
       hippostdpubwf:createdBy: admin
@@ -75,19 +73,19 @@
       resourcebundle:id: essentials.homepage
       resourcebundle:keys: [homepage.title, homepage.text]
       resourcebundle:messages: [Home Page, 'Every website comes with its own styling
-          requirements. Hippo''s setup application can therefore not address site
-          styling. Instead, the generated pages use minimal styling to render the
-          content. It is the task of the Hippo developer to adjust the front-end to
-          the site''s needs.']
+          requirements. The BloomReach setup application can therefore not address
+          site styling. Instead, the generated pages use minimal styling to render
+          the content. It is the task of the project developer to adjust the front-end
+          to the site''s needs.']
   /pagenotfound:
     jcr:primaryType: hippo:handle
     jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
-    jcr:uuid: ccc7d87d-0196-4395-a9fb-5e53b287d2b7
+    jcr:uuid: 2687978f-bb28-4919-96aa-d18c58466e37
     hippo:name: Page not found
     /pagenotfound:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable']
-      jcr:uuid: 0d11a670-4953-464e-b391-ca37980196f7
+      jcr:uuid: f65663fe-35ca-4d69-ae76-b04f98d7e66d
       hippo:availability: [live, preview]
       hippostd:state: published
       hippostdpubwf:createdBy: admin
@@ -104,12 +102,12 @@
   /pagination:
     jcr:primaryType: hippo:handle
     jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
-    jcr:uuid: 3c8b7679-1df1-40b0-9133-f6d2ea9d0bd3
+    jcr:uuid: c68b04a7-a94a-41f6-990f-50508f6eac91
     hippo:name: Pagination
     /pagination:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable']
-      jcr:uuid: 5d1478be-5401-4464-87ca-9e24a010c4dd
+      jcr:uuid: a637c895-68b3-4012-b9e4-4479083974a7
       hippo:availability: [live, preview]
       hippostd:state: published
       hippostdpubwf:createdBy: admin
@@ -123,46 +121,3 @@
       resourcebundle:id: essentials.pagination
       resourcebundle:keys: [results.indication, page.previous, page.next]
       resourcebundle:messages: [document(s), previous, next]
-  /blog:
-    jcr:primaryType: hippo:handle
-    jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
-    jcr:uuid: 1ad0eda2-2fb4-41fd-aab7-f74252f09981
-    hippo:name: Blog
-    /blog:
-      jcr:primaryType: resourcebundle:resourcebundle
-      jcr:mixinTypes: ['mix:referenceable']
-      jcr:uuid: 109793e8-cfa7-4068-b175-bde052079542
-      hippo:availability: [live, preview]
-      hippostd:state: published
-      hippostdpubwf:createdBy: admin
-      hippostdpubwf:creationDate: 2014-08-21T22:52:25.399+02:00
-      hippostdpubwf:lastModificationDate: 2014-08-21T22:58:03.243+02:00
-      hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2014-08-21T22:58:05.602+02:00
-      resourcebundle:descriptions: ['Header used in "more blogs from same author",
-          prefix to the author name.', Message displayed when no other blogs from
-          same author were found.]
-      resourcebundle:id: essentials.blog
-      resourcebundle:keys: [blog.moreby, blog.notfound]
-      resourcebundle:messages: [More by, No other posts found.]
-  /facets:
-    jcr:primaryType: hippo:handle
-    jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
-    jcr:uuid: 8648e215-3368-4beb-9974-ed854c817137
-    hippo:name: Facets
-    /facets:
-      jcr:primaryType: resourcebundle:resourcebundle
-      jcr:mixinTypes: ['mix:referenceable']
-      jcr:uuid: 978c95fe-1c3a-410f-8b9c-0e64cfb198f5
-      hippo:availability: [live, preview]
-      hippostd:state: published
-      hippostdpubwf:createdBy: admin
-      hippostdpubwf:creationDate: 2014-08-21T23:01:47.892+02:00
-      hippostdpubwf:lastModificationDate: 2014-08-21T23:08:36.629+02:00
-      hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2014-08-21T23:08:38.698+02:00
-      resourcebundle:descriptions: [Placeholder label for facets search., Label on
-          facet search button., Label for link to remove a facet filter.]
-      resourcebundle:id: essentials.facets
-      resourcebundle:keys: [facets.placeholder, facets.searchbutton, facets.remove]
-      resourcebundle:messages: [Search blog posts, Search, remove]

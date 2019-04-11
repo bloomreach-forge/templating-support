@@ -3,13 +3,13 @@ definitions:
     /hippo:namespaces/templatingsupportdemo/basedocument:
       jcr:primaryType: hipposysedit:templatetype
       jcr:mixinTypes: ['mix:referenceable']
-      jcr:uuid: fe0b929e-376e-4e25-a689-781fa75b31c4
+      jcr:uuid: e1f605fb-0fcf-466f-a72d-d231ea6ea8ba
       /hipposysedit:nodetype:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: ee883760-1d79-46f4-9b1c-32469252033c
+        jcr:uuid: d84766b8-fbd5-41d2-96d9-3d90ecc58f29
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['hipposysedit:remodel']
           hipposysedit:supertype: ['hippo:document', 'hippostdpubwf:document', 'hippostd:publishableSummary']
-          hipposysedit:uri: http://www.onehippo.org/templatingsupportdemo/nt/1.0
+          hipposysedit:uri: http://www.templatingsupportdemo.com/templatingsupportdemo/nt/1.0

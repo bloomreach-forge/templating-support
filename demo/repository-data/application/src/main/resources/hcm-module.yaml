@@ -1,4 +1,4 @@
-group: 
+group:
   name: templating-support-demo
   after: hippo-cms
 project: templating-support-demo

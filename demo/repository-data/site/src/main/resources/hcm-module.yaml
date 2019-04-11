@@ -1,0 +1,6 @@
+group: 
+  name: templating-support-demo
+  after: hippo-cms
+project: templating-support-demo
+module:
+  name: templating-support-demo-repository-data-site

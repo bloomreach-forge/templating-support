@@ -8,8 +8,8 @@
     <version>1.0.2-SNAPSHOT</version>
   </parent>
 
-  <name>Templating Support Demo Repository Data For Development</name>
-  <description>Templating Support Demo Repository Data For Development</description>
+  <name>demo Repository Data For Development</name>
+  <description>demo Repository Data For Development</description>
   <artifactId>templating-support-demo-repository-data-development</artifactId>
 
   <build>

@@ -9,8 +9,8 @@
   </parent>
   <artifactId>templating-support-demo-essentials</artifactId>
   <packaging>war</packaging>
-  <name>Templating Support Demo Essentials</name>
-  <description>Templating Support Demo Essentials</description>
+  <name>demo Essentials</name>
+  <description>demo Essentials</description>
   <dependencies>
     <dependency>
       <groupId>org.onehippo.cms7</groupId>
