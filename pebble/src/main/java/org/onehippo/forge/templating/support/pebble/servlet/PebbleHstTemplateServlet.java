@@ -40,6 +40,7 @@ public class PebbleHstTemplateServlet extends AbstractHstTemplateServlet {
         engine = new PebbleEngine.Builder()
                 .cacheActive(cacheEnabled)
                 .autoEscaping(true)
+                .extension(new PebbleHstExtension())
                 .build();
     }
 
