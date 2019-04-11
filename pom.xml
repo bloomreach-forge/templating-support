@@ -30,15 +30,15 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.build.javaVersion>1.8</project.build.javaVersion>
 
-    <servlet-api.version>3.0.1</servlet-api.version>
+    <servlet-api.version>3.1.0</servlet-api.version>
     <jsp-api.version>2.2</jsp-api.version>
     <taglibs.version>1.2.5</taglibs.version>
     <javax.jcr.version>2.0</javax.jcr.version>
 
-    <hippo.repository.version>5.1.0</hippo.repository.version>
-    <hippo.hst.version>5.1.0</hippo.hst.version>
-    <hippo.services.version>4.2.0</hippo.services.version>
-    <handlebars.version>4.0.6</handlebars.version>
+    <hippo.repository.version>13.0.0</hippo.repository.version>
+    <hippo.hst.version>13.0.0-1</hippo.hst.version>
+    <hippo.services.version>13.0.0</hippo.services.version>
+    <handlebars.version>4.1.2</handlebars.version>
 
     <commons-lang.version>2.6</commons-lang.version>
     <commons-io.version>2.5</commons-io.version>
@@ -50,20 +50,20 @@
     <lib.slf4j.version>1.7.25</lib.slf4j.version>
     <lib.log4j2.version>2.8.2</lib.log4j2.version>
 
-    <plugin.compiler.version>3.1</plugin.compiler.version>
-    <plugin.clean.version>2.5</plugin.clean.version>
-    <plugin.deploy.version>2.8.1</plugin.deploy.version>
-    <plugin.install.version>2.5.1</plugin.install.version>
-    <plugin.jar.version>2.4</plugin.jar.version>
-    <plugin.javadoc.version>2.9.1</plugin.javadoc.version>
+    <plugin.compiler.version>3.8.0</plugin.compiler.version>
+    <plugin.clean.version>3.1.0</plugin.clean.version>
+    <plugin.deploy.version>2.8.2</plugin.deploy.version>
+    <plugin.install.version>2.5.2</plugin.install.version>
+    <plugin.jar.version>3.1.0</plugin.jar.version>
+    <plugin.javadoc.version>3.0.1</plugin.javadoc.version>
     <plugin.project-info-reports.version>2.7</plugin.project-info-reports.version>
-    <plugin.release.version>2.5</plugin.release.version>
-    <plugin.resources.version>2.6</plugin.resources.version>
+    <plugin.release.version>2.5.3</plugin.release.version>
+    <plugin.resources.version>3.1.0</plugin.resources.version>
     <plugin.site.version>3.6</plugin.site.version>
     <maven.doxia-module-markdown.version>1.7</maven.doxia-module-markdown.version>
-    <plugin.source.version>2.2.1</plugin.source.version>
-    <plugin.surefire.version>2.17</plugin.surefire.version>
-    <plugin.surefire-report.version>2.17</plugin.surefire-report.version>
+    <plugin.source.version>3.0.1</plugin.source.version>
+    <plugin.surefire.version>3.0.0-M1</plugin.surefire.version>
+    <plugin.surefire-report.version>3.0.0-M1</plugin.surefire-report.version>
 
     <plugin.checkstyle.version>2.6</plugin.checkstyle.version>
     <plugin.cobertura.version>2.4</plugin.cobertura.version>
@@ -329,7 +329,8 @@
   </dependencyManagement>
 
   <modules>
-    <module>core</module>
+    <module>core-hst</module>
+    <module>core-platform</module>
     <module>handlebars</module>
     <module>thymeleaf</module>
   </modules>
@@ -348,7 +349,6 @@
         <configuration>
           <encoding>${project.build.sourceEncoding}</encoding>
           <skip>false</skip>
-          <aggregate>true</aggregate>
         </configuration>
         <reportSets>
           <reportSet>
@@ -356,6 +356,7 @@
             <reports>
               <report>javadoc</report>
               <report>test-javadoc</report>
+              <report>aggregate</report>
             </reports>
           </reportSet>
         </reportSets>

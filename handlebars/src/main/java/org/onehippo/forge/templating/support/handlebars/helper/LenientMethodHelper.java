@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Hippo B.V. (http://www.onehippo.com)
+ * Copyright 2018-2019 Bloomreach B.V. (http://www.bloomreach.com)
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ import com.github.jknack.handlebars.Helper;
 import com.github.jknack.handlebars.Options;
 
 /**
- * Lenient Method Helper allowing missing parameters, filling in a resonable empty value instead.
+ * Lenient Method Helper allowing missing parameters, filling in a reasonable empty value instead.
  */
 public class LenientMethodHelper implements Helper<Object> {
 

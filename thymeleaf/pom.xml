@@ -49,7 +49,7 @@
 
     <dependency>
       <groupId>org.onehippo.forge.templating-support</groupId>
-      <artifactId>templating-support-core</artifactId>
+      <artifactId>templating-support-core-hst</artifactId>
       <version>${project.version}</version>
     </dependency>
 
