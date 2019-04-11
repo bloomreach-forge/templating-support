@@ -72,6 +72,7 @@
     <extension.wagon-svn.version>1.9</extension.wagon-svn.version>
 
     <thymeleaf.version>3.0.11.RELEASE</thymeleaf.version>
+    <pebble.version>3.0.8</pebble.version>
   </properties>
 
   <licenses>
@@ -240,6 +241,12 @@
       </dependency>
 
       <dependency>
+        <groupId>io.pebbletemplates</groupId>
+        <artifactId>pebble</artifactId>
+        <version>${pebble.version}</version>
+      </dependency>
+
+      <dependency>
         <groupId>commons-lang</groupId>
         <artifactId>commons-lang</artifactId>
         <version>${commons-lang.version}</version>
@@ -333,6 +340,7 @@
     <module>core-platform</module>
     <module>handlebars</module>
     <module>thymeleaf</module>
+    <module>pebble</module>
   </modules>
 
   <reporting>

@@ -169,6 +169,15 @@
     <load-on-startup>200</load-on-startup>
   </servlet>
   <servlet>
+    <servlet-name>pebble</servlet-name>
+    <servlet-class>org.onehippo.forge.templating.support.pebble.servlet.PebbleHstTemplateServlet</servlet-class>
+    <init-param>
+      <param-name>cache.enabled</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <load-on-startup>200</load-on-startup>
+  </servlet>
+  <servlet>
     <servlet-name>TemplateComposerResourceServlet</servlet-name>
     <servlet-class>org.onehippo.cms7.utilities.servlet.ResourceServlet</servlet-class>
     <init-param>
@@ -217,6 +226,10 @@
   <servlet-mapping>
     <servlet-name>thymeleaf</servlet-name>
     <url-pattern>*.html</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>pebble</servlet-name>
+    <url-pattern>*.htm</url-pattern>
   </servlet-mapping>
 
   <servlet-mapping>
