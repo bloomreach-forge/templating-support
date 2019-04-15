@@ -1,2 +1,5 @@
+{# @pebvariable name="document" type="org.onehippo.forge.templating.support.demo.beans.EventsDocument" #}
 <H1>Hello form Pebble</H1>
+Document title: {{ document.title }}
+
 

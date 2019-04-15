@@ -26,12 +26,12 @@
         <@hst.include ref="main"/>
       </div>
       <div class="row">
-        <@hst.include ref="footer"/>
+        <@hst.include ref="footer-pebble"/>
         <@hst.include ref="footer-handlebars"/>
         <@hst.include ref="footer-thymeleaf"/>
         <@hst.include ref="footer-thymeleaf-servlet"/>
         <@hst.include ref="footer-thymeleaf-classpath"/>
-        <@hst.include ref="footer-pebble"/>
+        <@hst.include ref="footer"/>
       </div>
     </div>
     
