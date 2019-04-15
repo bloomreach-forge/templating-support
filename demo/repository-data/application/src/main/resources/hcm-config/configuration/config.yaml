@@ -4,7 +4,7 @@ definitions:
       watchedModules: [repository-data/webfiles]
       includedFiles: ['*.css', '*.eot', '*.ftl', '*.gif', '*.html', '*.ico', '*.jpeg',
         '*.jpg', '*.js', '*.json', '*.map', '*.otf', '*.png', '*.svg', '*.ttf', '*.woff',
-        '*.xml', '*.properties', '*.txt', '*.woff2', '*.hbs']
+        '*.xml', '*.properties', '*.txt', '*.woff2', '*.hbs', '*.peb']
     /hippo:configuration/hippo:domains/hippofolders/readonly:
       hipposys:groups:
         operation: add
