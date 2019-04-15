@@ -38,3 +38,6 @@ definitions:
       /blog-detail:
         jcr:primaryType: hst:template
         hst:renderpath: webfile:/freemarker/hstdefault/blog/blog-detail.ftl
+      /base-footer-pebble:
+        jcr:primaryType: hst:template
+        hst:renderpath: webfile:/pebble/templatingsupportdemo/base-footer-pebble.peb

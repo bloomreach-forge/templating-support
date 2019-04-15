@@ -37,3 +37,7 @@ definitions:
         jcr:primaryType: hst:component
         hst:componentclassname: org.onehippo.forge.templating.support.demo.components.DemoDataComponent
         hst:template: base-footer-thymeleaf-servlet
+      /footer-pebble:
+        jcr:primaryType: hst:component
+        hst:componentclassname: org.onehippo.forge.templating.support.demo.components.DemoDataComponent
+        hst:template: base-footer-pebble

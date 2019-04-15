@@ -16,30 +16,37 @@
 
 package org.onehippo.forge.templating.support.pebble.servlet;
 
-import com.mitchellbosecke.pebble.PebbleEngine;
-import com.mitchellbosecke.pebble.template.PebbleTemplate;
-import org.apache.commons.lang.BooleanUtils;
-import org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet;
-
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.lang.BooleanUtils;
+import org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet;
+import org.onehippo.forge.templating.support.pebble.servlet.loader.PebbleWebFileLoader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.mitchellbosecke.pebble.PebbleEngine;
+import com.mitchellbosecke.pebble.template.PebbleTemplate;
+
 public class PebbleHstTemplateServlet extends AbstractHstTemplateServlet {
-    
+
+    private static final Logger log = LoggerFactory.getLogger(PebbleHstTemplateServlet.class);
     private PebbleEngine engine;
 
     @Override
     protected void initializeTemplateEngine(final ServletConfig config) {
 
         final boolean cacheEnabled = BooleanUtils.toBoolean(config.getInitParameter(PARAM_CACHE_ENABLED));
+        final boolean autoEscape = BooleanUtils.toBoolean(config.getInitParameter(PARAM_AUTO_ESCAPE_ENABLED));
         engine = new PebbleEngine.Builder()
                 .cacheActive(cacheEnabled)
-                .autoEscaping(true)
+                .autoEscaping(autoEscape)
+                .loader(new PebbleWebFileLoader())
                 .extension(new PebbleHstExtension())
                 .build();
     }
@@ -57,9 +64,14 @@ public class PebbleHstTemplateServlet extends AbstractHstTemplateServlet {
     @Override
     protected void processTemplate(final HttpServletRequest request, final HttpServletResponse response, final String templatePath, final Object context) throws IOException {
         final PebbleTemplate template = engine.getTemplate(templatePath);
+        log.debug("Pebble template: {}", templatePath);
         if (template != null) {
-            @SuppressWarnings("unchecked") final Map<String, Object> ourContext = (Map<String, Object>) context;
+            @SuppressWarnings("unchecked")
+            final Map<String, Object> ourContext = (Map<String, Object>) context;
             template.evaluate(response.getWriter(), ourContext, request.getLocale());
+        } else {
+            // TODO remove, development only block
+            throw new IllegalArgumentException("template was null for: " + templatePath);
         }
     }
 }

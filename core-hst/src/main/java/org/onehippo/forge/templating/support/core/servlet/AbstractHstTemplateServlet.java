@@ -56,6 +56,8 @@ public abstract class AbstractHstTemplateServlet extends HttpServlet {
     public static final long serialVersionUID = 1L;
 
     public static final String PARAM_CACHE_ENABLED = "cache.enabled";
+    
+    public static final String PARAM_AUTO_ESCAPE_ENABLED = "auto.escape.enabled";
 
     private static Logger log = LoggerFactory.getLogger(AbstractHstTemplateServlet.class);
 
