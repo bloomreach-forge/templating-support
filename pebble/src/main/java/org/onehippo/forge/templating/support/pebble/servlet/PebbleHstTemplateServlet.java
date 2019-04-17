@@ -74,6 +74,12 @@ public class PebbleHstTemplateServlet extends AbstractHstTemplateServlet {
 
     @Override
     protected void processTemplate(final HttpServletRequest request, final HttpServletResponse response, final String templatePath, final Object context) throws IOException {
+     /*   engine = new PebbleEngine.Builder()
+                .cacheActive(false)
+                .autoEscaping(true)
+                .loader(new PebbleWebFileLoader())
+                .extension(new PebbleHstExtension())
+                .build();*/
         final PebbleTemplate template = engine.getTemplate(templatePath);
         log.debug("Pebble template: {}", templatePath);
         if (template != null) {

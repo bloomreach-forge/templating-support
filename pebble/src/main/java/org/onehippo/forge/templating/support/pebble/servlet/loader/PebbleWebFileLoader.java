@@ -39,19 +39,23 @@ public class PebbleWebFileLoader implements Loader<String> {
 
     @Override
     public Reader getReader(final String template) {
-        final String jcrTemplatePath = JcrTemplateSourceUtils.getWebFileJcrPath(template);
-
+        final String jcrTemplatePath = sanitize(JcrTemplateSourceUtils.getWebFileJcrPath(template));
+        
         try {
             final String sourceContent = JcrTemplateSourceUtils.getTemplateSourceContent(jcrTemplatePath);
             if (sourceContent == null) {
-                log.warn("Empty content for: {}", template);
+                log.warn("Empty content for: {}, {}", template, jcrTemplatePath);
                 return new StringReader("");
             }
             return new StringReader(sourceContent);
         } catch (RepositoryException e) {
-            log.warn("Cannot load template for {}.", template);
+            log.warn("Cannot load template for {}, {}", template, jcrTemplatePath);
         }
         return null;
+    }
+
+    private String sanitize(final String webFileJcrPath) {
+        return webFileJcrPath.replaceAll("\\.\\./","");
     }
 
     @Override
