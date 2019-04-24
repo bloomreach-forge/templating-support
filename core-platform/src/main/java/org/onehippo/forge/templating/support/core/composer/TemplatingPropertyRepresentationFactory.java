@@ -19,11 +19,16 @@ package org.onehippo.forge.templating.support.core.composer;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import java.util.Set;
+import java.util.TreeMap;
 
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
@@ -58,19 +63,76 @@ import static org.hippoecm.hst.pagecomposer.jaxrs.util.HstConfigurationUtils.get
 public class TemplatingPropertyRepresentationFactory implements PropertyRepresentationFactory {
 
     private static final Logger log = LoggerFactory.getLogger(TemplatingPropertyRepresentationFactory.class);
+
     private static final String SWITCH_TEMPLATE_RESOURCE_BUNDLE = "hippo:channelmanager.switch-template";
+
+    private Set<String> templateExtensions;
     private final static String SWITCH_TEMPLATE_I18N_KEY = "switch.template";
     private final static String CHOOSE_TEMPLATE_I18N_KEY = "choose.template";
     private final static String MISSING_TEMPLATE_I18N_KEY = "missing.template";
 
-    private Set<String> templateExtensions;
+    private static final TemplateDisplayNameComparator TEMPLATE_DISPLAY_NAME_COMPARATOR = new TemplateDisplayNameComparator();
 
     private enum TemplateParamWebFile {
         NOT_CONFIGURED,
         CONFIGURED_AND_EXISTS,
         CONFIGURED_BUT_NON_EXISTING
     }
-    
+
+    public static class TemplateDisplayNameComparator implements Comparator<String> {
+
+        @Override
+        public int compare(final String key1, final String key2) {
+
+            // no null check, if key1 or key2 is null, just NPE
+
+            final String compare1;
+            final boolean key1HasFtlSuffix;
+
+            final String extension = getExtension(key1, key2);
+            if (key1.endsWith(extension)) {
+                compare1 = key1.substring(0, key1.length() - extension.length());
+                key1HasFtlSuffix = true;
+            } else {
+                compare1 = key1;
+                key1HasFtlSuffix = false;
+            }
+            final String compare2;
+            final boolean key2HasFtlSuffix;
+            if (key2.endsWith(extension)) {
+                compare2 = key2.substring(0, key2.length() - extension.length());
+                key2HasFtlSuffix = true;
+            } else {
+                compare2 = key2;
+                key2HasFtlSuffix = false;
+            }
+
+            int compare = compare1.compareTo(compare2);
+            if (compare != 0) {
+                return compare;
+            }
+
+            if (key1HasFtlSuffix && key2HasFtlSuffix) {
+                return 0;
+            }
+
+            if (key1HasFtlSuffix) {
+                return 1;
+            }
+            return -1;
+        }
+
+        private String getExtension(final String key1, final String key2) {
+            if (key1 != null && key1.indexOf('.') != -1) {
+                return key1.substring(key1.lastIndexOf('.'));
+            }
+            if (key2 != null && key2.indexOf('.') != -1) {
+                return key2.substring(key2.lastIndexOf('.'));
+            }
+            return "";
+        }
+    }
+
     @Override
     public ContainerItemComponentPropertyRepresentation createProperty(final ParametersInfo parametersInfo,
                                                                        final Locale locale,
@@ -89,13 +151,12 @@ public class TemplatingPropertyRepresentationFactory implements PropertyRepresen
                 // containing the possible values.
 
                 // READ I18N files from REPOSITORY and NOT from filesystem because of future 'hot web file replacing'
-
                 String bundleName = getEditingPreviewVirtualHosts().getContextPath();
                 if (!bundleName.isEmpty()) {
                     bundleName = bundleName.substring(1);
                 }
                 final String renderPath = componentConfiguration.getRenderPath();
-                final int idx = renderPath.substring(renderPath.lastIndexOf('.'), renderPath.length()).length();
+                final int idx = renderPath.substring(renderPath.lastIndexOf('.')).length();
                 final String templateFreeMarkerPath = WebFileUtils.webFilePathToJcrPath(renderPath, bundleName);
 
                 final Session session = containerItemNode.getSession();
@@ -175,34 +236,39 @@ public class TemplatingPropertyRepresentationFactory implements PropertyRepresen
         return null;
     }
 
+    private ResourceBundle loadSwitchTemplateResourceBundle(final Locale locale) {
+        final Locale localeOrDefault;
+        if (locale == null) {
+            localeOrDefault = LocalizationService.DEFAULT_LOCALE;
+        } else {
+            localeOrDefault = locale;
+        }
 
-    private static ContainerItemComponentPropertyRepresentation createSwitchTemplateComponentPropertyRepresentation(
-            final ResourceBundle switchTemplateResourceBundle,
-            final String defaultTemplatePath,
-            final List<String> variantWebFilePaths,
-            final ResourceBundle variantsResourceBundle) {
-
-        final ContainerItemComponentPropertyRepresentation prop = new ContainerItemComponentPropertyRepresentation();
-        prop.setName(TEMPLATE_PARAM_NAME);
-        prop.setDefaultValue(defaultTemplatePath);
-        prop.setLabel(getResourceBundleValueOrDefault(switchTemplateResourceBundle, SWITCH_TEMPLATE_I18N_KEY));
-        prop.setType(ParameterType.VALUE_FROM_LIST);
-        prop.setGroupLabel(getResourceBundleValueOrDefault(switchTemplateResourceBundle, CHOOSE_TEMPLATE_I18N_KEY));
-
-        final String[] dropDownValues = variantWebFilePaths.toArray(new String[variantWebFilePaths.size()]);
-        prop.setDropDownListValues(dropDownValues);
-
-        String[] displayValues = new String[dropDownValues.length];
-        for (int i = 0; i < dropDownValues.length; i++) {
-            String variantName = StringUtils.substringAfterLast(dropDownValues[i], "/");
-            if (variantsResourceBundle != null && variantsResourceBundle.containsKey(variantName)) {
-                displayValues[i] = variantsResourceBundle.getString(variantName);
-            } else {
-                displayValues[i] = variantName;
+        final LocalizationService localizationService = HippoServiceRegistry.getService(LocalizationService.class);
+        if (localizationService != null) {
+            final org.onehippo.repository.l10n.ResourceBundle repositoryResourceBundle =
+                    localizationService.getResourceBundle(SWITCH_TEMPLATE_RESOURCE_BUNDLE, localeOrDefault);
+            if (repositoryResourceBundle != null) {
+                return repositoryResourceBundle.toJavaResourceBundle();
             }
         }
-        prop.setDropDownListDisplayValues(displayValues);
-        return prop;
+
+        log.warn("Could not load switch template resource bundle");
+
+        // the fallback to property files is for unit tests only
+        try {
+            return ResourceBundle.getBundle(TemplatingPropertyRepresentationFactory.class.getName(), localeOrDefault);
+        } catch (MissingResourceException e) {
+            return null;
+        }
+    }
+
+    private static boolean hasWebFileTemplate(final HstComponentConfiguration componentConfiguration, final Set<String> templateExtensions) {
+        final String renderPath = componentConfiguration.getRenderPath();
+        if (renderPath == null) {
+            return false;
+        }
+        return renderPath.startsWith(ContainerConstants.FREEMARKER_WEB_FILE_TEMPLATE_PROTOCOL) && validExtension(renderPath, templateExtensions);
     }
 
     /**
@@ -232,51 +298,43 @@ public class TemplatingPropertyRepresentationFactory implements PropertyRepresen
         return null;
     }
 
-
-    private ResourceBundle loadSwitchTemplateResourceBundle(final Locale locale) {
-        final Locale localeOrDefault;
-        if (locale == null) {
-            localeOrDefault = LocalizationService.DEFAULT_LOCALE;
-        } else {
-            localeOrDefault = locale;
-        }
-
-        final LocalizationService localizationService = HippoServiceRegistry.getService(LocalizationService.class);
-        if (localizationService != null) {
-            final org.onehippo.repository.l10n.ResourceBundle repositoryResourceBundle =
-                    localizationService.getResourceBundle(SWITCH_TEMPLATE_RESOURCE_BUNDLE, localeOrDefault);
-            if (repositoryResourceBundle != null) {
-                return repositoryResourceBundle.toJavaResourceBundle();
+    private static String getResourceBundleValueOrDefault(final ResourceBundle bundle, final String key) {
+        if (bundle != null) {
+            if (bundle.containsKey(key)) {
+                return bundle.getString(key);
             }
         }
-
-        log.warn("Could not load switch template resource bundle");
-
-        // the fallback to property files is for unit tests only
-        try {
-            return ResourceBundle.getBundle(SwitchTemplatePropertyRepresentationFactory.class.getName(), localeOrDefault);
-        } catch (MissingResourceException e) {
-            return null;
-        }
+        return key;
     }
 
-    private static boolean hasWebFileTemplate(final HstComponentConfiguration componentConfiguration, final Set<String> templateExtensions) {
-        final String renderPath = componentConfiguration.getRenderPath();
-        if (renderPath == null) {
-            return false;
-        }
-        return renderPath.startsWith(ContainerConstants.FREEMARKER_WEB_FILE_TEMPLATE_PROTOCOL) && validExtension(renderPath, templateExtensions);
-    }
+    private static ContainerItemComponentPropertyRepresentation createSwitchTemplateComponentPropertyRepresentation(
+            final ResourceBundle switchTemplateResourceBundle,
+            final String defaultTemplatePath,
+            final List<String> variantWebFilePaths,
+            final ResourceBundle variantsResourceBundle) {
 
-    private static boolean validExtension(final String path, final Set<String> templateExtensions) {
-        for (String templateExtension : templateExtensions) {
-            if (path.endsWith(templateExtension)) {
-                return true;
+        final ContainerItemComponentPropertyRepresentation prop = new ContainerItemComponentPropertyRepresentation();
+        prop.setName(TEMPLATE_PARAM_NAME);
+        prop.setDefaultValue(defaultTemplatePath);
+        prop.setLabel(getResourceBundleValueOrDefault(switchTemplateResourceBundle, SWITCH_TEMPLATE_I18N_KEY));
+        prop.setType(ParameterType.VALUE_FROM_LIST);
+        prop.setGroupLabel(getResourceBundleValueOrDefault(switchTemplateResourceBundle, CHOOSE_TEMPLATE_I18N_KEY));
+
+        final String[] dropDownValues = variantWebFilePaths.toArray(new String[variantWebFilePaths.size()]);
+        prop.setDropDownListValues(dropDownValues);
+
+        String[] displayValues = new String[dropDownValues.length];
+        for (int i = 0; i < dropDownValues.length; i++) {
+            String variantName = StringUtils.substringAfterLast(dropDownValues[i], "/");
+            if (variantsResourceBundle != null && variantsResourceBundle.containsKey(variantName)) {
+                displayValues[i] = variantsResourceBundle.getString(variantName);
+            } else {
+                displayValues[i] = variantName;
             }
         }
-        return false;
+        prop.setDropDownListDisplayValues(displayValues);
+        return prop;
     }
-
 
     private static void addMissingTemplateValueAndLabel(final String templateParamValue, final ResourceBundle switchTemplateResourceBundle,
                                                         final ContainerItemComponentPropertyRepresentation switchTemplateComponentProperty,
@@ -310,15 +368,46 @@ public class TemplatingPropertyRepresentationFactory implements PropertyRepresen
         }
     }
 
-    private static String getResourceBundleValueOrDefault(final ResourceBundle bundle, final String key) {
-        if (bundle != null) {
-            if (bundle.containsKey(key)) {
-                return bundle.getString(key);
-            }
+    public static void sortDropDownByDisplayValue(final ContainerItemComponentPropertyRepresentation switchTemplateComponentProperty) {
+        try {
+            Map<String, String> sortedMap = asKeySortedMap(switchTemplateComponentProperty.getDropDownListDisplayValues(),
+                    switchTemplateComponentProperty.getDropDownListValues());
+
+            switchTemplateComponentProperty.setDropDownListValues(sortedMap.values().toArray(new String[sortedMap.size()]));
+            switchTemplateComponentProperty.setDropDownListDisplayValues(sortedMap.keySet().toArray(new String[sortedMap.size()]));
+        } catch (IllegalArgumentException e) {
+            log.warn("Could not sort map: {}", e.toString());
         }
-        return key;
     }
 
+    /**
+     * @param keys   array of keys to sort on and which must be of equal length as <code>values</code>
+     * @param values arrays of values which must be of equal length as <code>keys</code>
+     * @return A {@link java.util.Map} of the <code>keys</code> and <code>values</code> sorted on <code>keys</code>
+     * @throws java.lang.IllegalArgumentException if <code>keys</code> length is not equal to <code>values</code> length
+     */
+    public static Map<String, String> asKeySortedMap(String[] keys, String[] values) {
+        if (keys.length != values.length) {
+            final String msg = String.format("Cannot return sorted map on keys when keys and values when arrays are of unequal length. " +
+                    "Cannot sort '%s' and '%s'", Arrays.toString(keys), Arrays.toString(values));
+            throw new IllegalArgumentException(msg);
+        }
+
+        final Map<String, String> sortedMap = new TreeMap<>(TEMPLATE_DISPLAY_NAME_COMPARATOR);
+        for (int i = 0; i < keys.length; i++) {
+            sortedMap.put(keys[i], values[i]);
+        }
+        return sortedMap;
+    }
+
+    private static boolean validExtension(final String path, final Set<String> templateExtensions) {
+        for (String templateExtension : templateExtensions) {
+            if (path.endsWith(templateExtension)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public Set<String> getTemplateExtensions() {
         return templateExtensions;
@@ -327,4 +416,5 @@ public class TemplatingPropertyRepresentationFactory implements PropertyRepresen
     public void setTemplateExtensions(final Set<String> templateExtensions) {
         this.templateExtensions = templateExtensions;
     }
+
 }

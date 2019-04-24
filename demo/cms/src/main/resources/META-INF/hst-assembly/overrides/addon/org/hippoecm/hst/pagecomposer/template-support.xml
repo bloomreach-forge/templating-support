@@ -23,12 +23,13 @@
   <bean id="pageComposerPropertyPresentationFactories" class="org.springframework.beans.factory.config.ListFactoryBean">
     <property name="sourceList">
       <list>
-        <bean class="org.hippoecm.hst.pagecomposer.jaxrs.property.SwitchTemplatePropertyRepresentationFactory"/>
         <bean class="org.onehippo.forge.templating.support.core.composer.TemplatingPropertyRepresentationFactory">
           <property name="templateExtensions">
             <set>
+              <value type="java.lang.String">.ftl</value>
               <value type="java.lang.String">.html</value>
               <value type="java.lang.String">.hbs</value>
+              <value type="java.lang.String">.peb</value>
             </set>
           </property>
         </bean>
