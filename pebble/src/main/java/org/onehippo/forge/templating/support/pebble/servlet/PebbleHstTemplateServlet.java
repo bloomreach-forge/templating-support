@@ -17,7 +17,6 @@
 package org.onehippo.forge.templating.support.pebble.servlet;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletConfig;
@@ -25,12 +24,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.BooleanUtils;
-import org.hippoecm.hst.container.RequestContextProvider;
 import org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet;
 import org.onehippo.forge.templating.support.pebble.servlet.context.DelegatingTransformer;
 import org.onehippo.forge.templating.support.pebble.servlet.context.HstDefineObjectsMapTransformer;
 import org.onehippo.forge.templating.support.pebble.servlet.context.PebbleHstContext;
 import org.onehippo.forge.templating.support.pebble.servlet.context.RequestAttributeMapTransformer;
+import org.onehippo.forge.templating.support.pebble.servlet.extensions.PebbleHstExtension;
 import org.onehippo.forge.templating.support.pebble.servlet.loader.PebbleWebFileLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

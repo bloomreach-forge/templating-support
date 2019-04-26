@@ -3,4 +3,7 @@
 <H1>Hello from Pebble</H1>
 Document title: {{ document.title }}
 
+<a href="{% hstLink path = "/site" %}">link</a>
+        
+
 

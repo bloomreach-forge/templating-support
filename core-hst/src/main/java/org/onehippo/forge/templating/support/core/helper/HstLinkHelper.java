@@ -45,6 +45,7 @@ public class HstLinkHelper {
     public String linkByPath(String path, boolean fullyQualified) {
         final HstRequestContext requestContext = RequestContextProvider.get();
 
+
         if (requestContext == null) {
             try {
                 return TagUtils.createPathInfoWithoutRequestContext(path, Collections.emptyMap(),
