@@ -19,6 +19,9 @@ package org.onehippo.forge.templating.support.pebble.servlet.extensions;
 import java.io.IOException;
 import java.io.Writer;
 
+import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.onehippo.forge.templating.support.core.helper.HstLinkHelper;
+
 import com.mitchellbosecke.pebble.extension.NodeVisitor;
 import com.mitchellbosecke.pebble.node.RenderableNode;
 import com.mitchellbosecke.pebble.node.expression.Expression;
@@ -38,7 +41,15 @@ public class PebbleHstLinkNode implements RenderableNode {
 
     @Override
     public void render(final PebbleTemplateImpl self, final Writer writer, final EvaluationContextImpl context) throws IOException {
-        writer.write((String) this.value.evaluate(self, context));
+        final String result;
+        final Object evaluate = this.value.evaluate(self, context);
+        if (evaluate instanceof HippoBean) {
+            result = HstLinkHelper.INSTANCE.linkByHippoBean((HippoBean) evaluate, false);
+
+        }else{
+            result = (String) evaluate;
+        }
+        writer.write(result);
         //context.getScopeChain().set(this.name, this.value.evaluate(self, context));
     }
 

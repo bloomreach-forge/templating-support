@@ -21,12 +21,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.mitchellbosecke.pebble.attributes.AttributeResolver;
 import com.mitchellbosecke.pebble.extension.AbstractExtension;
 import com.mitchellbosecke.pebble.extension.Function;
 import com.mitchellbosecke.pebble.tokenParser.TokenParser;
 
 public class PebbleHstExtension extends AbstractExtension {
 
+
+    @Override
+    public List<AttributeResolver> getAttributeResolver() {
+        final List<AttributeResolver> resolvers = new ArrayList<>();
+        resolvers.add(new PebbleHstAttributeResolver());
+        return resolvers;
+    }
 
     @Override
     public List<TokenParser> getTokenParsers() {

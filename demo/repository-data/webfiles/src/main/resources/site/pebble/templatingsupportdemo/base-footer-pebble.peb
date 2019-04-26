@@ -4,6 +4,7 @@
 Document title: {{ document.title }}
 
 <a href="{% hstLink path = "/site" %}">link</a>
-        
+<a href="{% hstLink path = document %}">link</a>
+
 
 
