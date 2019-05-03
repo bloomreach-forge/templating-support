@@ -30,9 +30,7 @@ public class PebbleHstAttributeResolver implements AttributeResolver {
     @Override
     public ResolvedAttribute resolve(final Object instance, final Object attributeNameValue, final Object[] argumentValues, final ArgumentsNode args, final EvaluationContextImpl context, final String filename, final int lineNumber) {
         if (instance instanceof HippoBean) {
-            final HstRequestContext ctx = RequestContextProvider.get();
-            // TODO
-            return new ResolvedAttribute("test");
+            return new ResolvedAttribute(instance);
         }
 
         return null;

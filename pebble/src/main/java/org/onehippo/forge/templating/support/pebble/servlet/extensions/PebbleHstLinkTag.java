@@ -16,15 +16,24 @@
 
 package org.onehippo.forge.templating.support.pebble.servlet.extensions;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.mitchellbosecke.pebble.error.ParserException;
 import com.mitchellbosecke.pebble.lexer.Token;
 import com.mitchellbosecke.pebble.lexer.TokenStream;
 import com.mitchellbosecke.pebble.node.RenderableNode;
+import com.mitchellbosecke.pebble.node.expression.ContextVariableExpression;
 import com.mitchellbosecke.pebble.node.expression.Expression;
+import com.mitchellbosecke.pebble.node.expression.LiteralStringExpression;
+import com.mitchellbosecke.pebble.node.expression.MapExpression;
 import com.mitchellbosecke.pebble.parser.Parser;
 import com.mitchellbosecke.pebble.tokenParser.TokenParser;
 
 public class PebbleHstLinkTag implements TokenParser {
-    
+
+    private static final Logger log = LoggerFactory.getLogger(PebbleHstLinkTag.class);
+
     @Override
     public String getTag() {
         return "hstLink";
@@ -36,16 +45,26 @@ public class PebbleHstLinkTag implements TokenParser {
         final int lineNumber = token.getLineNumber();
         // skip the "hstLink" token
         stream.next();
-
-        String name = parser.getExpressionParser().parseNewVariableName();
-
-        stream.expect(Token.Type.PUNCTUATION, "=");
-
-        Expression<?> value = parser.getExpressionParser().parseExpression();
-
+        final Expression<?> parsedExpression = parser.getExpressionParser().parseExpression();
         stream.expect(Token.Type.EXECUTE_END);
 
+        if (parsedExpression instanceof ContextVariableExpression) {
+            final ContextVariableExpression expression = (ContextVariableExpression) parsedExpression;
 
-        return new PebbleHstLinkNode(lineNumber, name, value);
+            return new PebbleHstLinkNode(lineNumber, expression);
+        } else if (parsedExpression instanceof MapExpression) {
+            final MapExpression mapExpression  = (MapExpression) parsedExpression;
+            return new PebbleHstLinkNode(lineNumber, mapExpression);
+        } else if (parsedExpression instanceof LiteralStringExpression) {
+            final LiteralStringExpression literalStringExpression= (LiteralStringExpression) parsedExpression;
+            return new PebbleHstLinkNode(lineNumber, literalStringExpression.getValue());
+        } else {
+            final String format = String.format("Unexpected expression '%1s'.", parsedExpression
+                    .getClass().getCanonicalName());
+            log.warn("{},{},{}", format, token.getLineNumber(), stream.getFilename());
+            return new PebbleHstLinkNode(lineNumber, "");
+
+        }
+
     }
 }

@@ -21,33 +21,59 @@ import java.io.Writer;
 
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.onehippo.forge.templating.support.core.helper.HstLinkHelper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.mitchellbosecke.pebble.extension.NodeVisitor;
 import com.mitchellbosecke.pebble.node.RenderableNode;
-import com.mitchellbosecke.pebble.node.expression.Expression;
+import com.mitchellbosecke.pebble.node.expression.ContextVariableExpression;
+import com.mitchellbosecke.pebble.node.expression.MapExpression;
 import com.mitchellbosecke.pebble.template.EvaluationContextImpl;
 import com.mitchellbosecke.pebble.template.PebbleTemplateImpl;
 
 public class PebbleHstLinkNode implements RenderableNode {
+    private static final Logger log = LoggerFactory.getLogger(PebbleHstLinkNode.class);
     private final int lineNumber;
-    private final String name;
-    private final Expression<?> value;
+    private final String path;
+    private final MapExpression value;
+    private final ContextVariableExpression expression;
 
-    public PebbleHstLinkNode(final int lineNumber, final String name, final Expression<?> value) {
+    public PebbleHstLinkNode(final int lineNumber, final MapExpression value) {
         this.lineNumber = lineNumber;
-        this.name = name;
         this.value = value;
+        this.expression = null;
+        this.path = null;
+    }
+
+    public PebbleHstLinkNode(final int lineNumber, final ContextVariableExpression expression) {
+        this.lineNumber = lineNumber;
+        this.value = null;
+        this.expression = expression;
+        this.path = null;
+    }
+
+    public PebbleHstLinkNode(final int lineNumber, final String value) {
+        this.lineNumber = lineNumber;
+        this.value = null;
+        this.expression = null;
+        this.path = value;
+
     }
 
     @Override
     public void render(final PebbleTemplateImpl self, final Writer writer, final EvaluationContextImpl context) throws IOException {
-        final String result;
-        final Object evaluate = this.value.evaluate(self, context);
+        String result = "";
+        Object evaluate = null;
+        if (expression != null) {
+            evaluate = expression.evaluate(self, context);
+        } else if (value != null) {
+            evaluate = value.evaluate(self, context);
+        }
         if (evaluate instanceof HippoBean) {
             result = HstLinkHelper.INSTANCE.linkByHippoBean((HippoBean) evaluate, false);
 
-        }else{
-            result = (String) evaluate;
+        } else if (path != null) {
+            result = HstLinkHelper.INSTANCE.linkByPath(path, false);
         }
         writer.write(result);
         //context.getScopeChain().set(this.name, this.value.evaluate(self, context));
