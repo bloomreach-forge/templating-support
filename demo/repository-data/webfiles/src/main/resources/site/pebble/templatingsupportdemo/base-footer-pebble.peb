@@ -11,6 +11,7 @@ Document title: {{ document.title }}
 <a href="{% hstRenderURL  %}">Render Url EMPTY</a>   <br/>
 <a href="{% hstRenderURL "foo=bar" %}">Render Url</a>     <br/>
 <a href="{% hstActionURL  %}">Action Url</a>     <br/>
+<a href="{% hstActionURL  "foo=bar&bar=test"%}">Action Url param</a>     <br/>
 
 
 
