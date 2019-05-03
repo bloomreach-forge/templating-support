@@ -4,8 +4,10 @@
 Document title: {{ document.title }}
 
 {#<a href="{% hstLink "/site" %}">link</a>#}
-<a href="{% hstLink document %}">Document link</a>
-<a href="{% hstLink "events" %}">Text link</a>
+<a href="{% hstLink  document %}">Document link</a> <br />
+<a href="{% hstLink "events" %}">Text link</a>   <br/>
+<a href="{% hstRenderURL  %}">Render Url EMPTY</a>   <br/>
+<a href="{% hstRenderURL "foo=bar" %}">Render Url</a>     <br/>
 
 
 

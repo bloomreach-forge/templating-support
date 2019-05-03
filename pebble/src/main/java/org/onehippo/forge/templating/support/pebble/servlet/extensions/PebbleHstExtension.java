@@ -40,6 +40,7 @@ public class PebbleHstExtension extends AbstractExtension {
     public List<TokenParser> getTokenParsers() {
         final List<TokenParser> parsers = new ArrayList<>();
         parsers.add(new PebbleHstLinkTag());
+        parsers.add(new PebbleHstRenderURLTag());
         return parsers;
     }
 
