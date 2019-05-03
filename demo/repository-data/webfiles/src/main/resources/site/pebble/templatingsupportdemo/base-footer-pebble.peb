@@ -10,7 +10,7 @@ Document title: {{ document.title }}
 <a href="{% hstLinkFull  document %}">Document link full</a> <br />
 <a href="{% hstRenderURL  %}">Render Url EMPTY</a>   <br/>
 <a href="{% hstRenderURL "foo=bar" %}">Render Url</a>     <br/>
+<a href="{% hstActionURL  %}">Action Url</a>     <br/>
 
 
 
-                                                                                     The quick brown fox jumps over the lazy dog
