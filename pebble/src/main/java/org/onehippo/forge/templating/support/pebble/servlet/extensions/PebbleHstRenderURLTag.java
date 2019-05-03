@@ -42,12 +42,13 @@ public class PebbleHstRenderURLTag implements TokenParser {
     public RenderableNode parse(final Token token, final Parser parser) {
         final TokenStream stream = parser.getStream();
         final int lineNumber = token.getLineNumber();
-        stream.next();
         final Token peek = stream.peek();
         if (peek.getType() == Token.Type.EXECUTE_END) {
+            stream.next();
             stream.expect(Token.Type.EXECUTE_END);
             return new PebbleHstRenderURLNode(lineNumber, "");
         }
+        stream.next();
         final Expression<?> parsedExpression = parser.getExpressionParser().parseExpression();
         stream.expect(Token.Type.EXECUTE_END);
         if (parsedExpression instanceof LiteralStringExpression) {

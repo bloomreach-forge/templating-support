@@ -35,28 +35,23 @@ public class PebbleHstLinkNode implements RenderableNode {
     private static final Logger log = LoggerFactory.getLogger(PebbleHstLinkNode.class);
     private final int lineNumber;
     private final String path;
-    private final MapExpression value;
+    private final boolean full;
     private final ContextVariableExpression expression;
 
-    public PebbleHstLinkNode(final int lineNumber, final MapExpression value) {
-        this.lineNumber = lineNumber;
-        this.value = value;
-        this.expression = null;
-        this.path = null;
-    }
 
-    public PebbleHstLinkNode(final int lineNumber, final ContextVariableExpression expression) {
+
+    public PebbleHstLinkNode(final int lineNumber, final ContextVariableExpression expression, final boolean full) {
         this.lineNumber = lineNumber;
-        this.value = null;
         this.expression = expression;
         this.path = null;
+        this.full = full;
     }
 
-    public PebbleHstLinkNode(final int lineNumber, final String value) {
+    public PebbleHstLinkNode(final int lineNumber, final String value, final boolean full) {
         this.lineNumber = lineNumber;
-        this.value = null;
         this.expression = null;
         this.path = value;
+        this.full = full;
 
     }
 
@@ -66,14 +61,12 @@ public class PebbleHstLinkNode implements RenderableNode {
         Object evaluate = null;
         if (expression != null) {
             evaluate = expression.evaluate(self, context);
-        } else if (value != null) {
-            evaluate = value.evaluate(self, context);
         }
         if (evaluate instanceof HippoBean) {
-            result = HstLinkHelper.INSTANCE.linkByHippoBean((HippoBean) evaluate, false);
+            result = HstLinkHelper.INSTANCE.linkByHippoBean((HippoBean) evaluate, full);
 
         } else if (path != null) {
-            result = HstLinkHelper.INSTANCE.linkByPath(path, false);
+            result = HstLinkHelper.INSTANCE.linkByPath(path, full);
         }
         writer.write(result);
         //context.getScopeChain().set(this.name, this.value.evaluate(self, context));

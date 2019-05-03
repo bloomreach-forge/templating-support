@@ -38,6 +38,12 @@ public class PebbleHstLinkTag implements TokenParser {
         return "hstLink";
     }
 
+
+
+    public boolean isFull() {
+        return false;
+    }
+
     @Override
     public RenderableNode parse(final Token token, final Parser parser) {
         final TokenStream stream = parser.getStream();
@@ -50,18 +56,15 @@ public class PebbleHstLinkTag implements TokenParser {
         if (parsedExpression instanceof ContextVariableExpression) {
             final ContextVariableExpression expression = (ContextVariableExpression) parsedExpression;
 
-            return new PebbleHstLinkNode(lineNumber, expression);
-        } else if (parsedExpression instanceof MapExpression) {
-            final MapExpression mapExpression = (MapExpression) parsedExpression;
-            return new PebbleHstLinkNode(lineNumber, mapExpression);
+            return new PebbleHstLinkNode(lineNumber, expression, isFull());
         } else if (parsedExpression instanceof LiteralStringExpression) {
             final LiteralStringExpression literalStringExpression = (LiteralStringExpression) parsedExpression;
-            return new PebbleHstLinkNode(lineNumber, literalStringExpression.getValue());
+            return new PebbleHstLinkNode(lineNumber, literalStringExpression.getValue(), isFull());
         } else {
             final String format = String.format("Unexpected expression '%1s'.", parsedExpression
                     .getClass().getCanonicalName());
             log.warn("{},{},{}", format, token.getLineNumber(), stream.getFilename());
-            return new PebbleHstLinkNode(lineNumber, "");
+            return new PebbleHstLinkNode(lineNumber, "", isFull());
 
         }
 
