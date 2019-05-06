@@ -17,9 +17,15 @@
 
 | Plugin Version        | Hippo CMS Release Version |
 |: --------------------:|:-------------------------:|
+| 1.2.x                 | 13.x                      |
 | 1.x                   | 12.x                      |
 
 ## Release Notes of 1.x
+### 1.0.2
+
+- Fixed [HIPFORGE-257](https://issues.onehippo.com/browse/HIPFORGE-257) [Templating Support] Upgrade for v13 compatibility
+
+
 ### 1.0.1
 
 - Fixed [HIPFORGE-238](https://issues.onehippo.com/browse/HIPFORGE-238) Thymeleaf: message parameters are not handled correctly
