@@ -20,6 +20,9 @@
 | 1.x                   | 12.x                      |
 
 ## Release Notes of 1.x
+### 1.0.1
+
+- Fixed [HIPFORGE-238](https://issues.onehippo.com/browse/HIPFORGE-238) Thymeleaf: message parameters are not handled correctly
 
 ### 1.0.0
 
