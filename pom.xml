@@ -56,11 +56,11 @@
     <plugin.install.version>2.5.2</plugin.install.version>
     <plugin.jar.version>3.1.0</plugin.jar.version>
     <plugin.javadoc.version>3.0.1</plugin.javadoc.version>
-    <plugin.project-info-reports.version>2.7</plugin.project-info-reports.version>
+    <plugin.project-info-reports.version>3.0.0</plugin.project-info-reports.version>
     <plugin.release.version>2.5.3</plugin.release.version>
     <plugin.resources.version>3.1.0</plugin.resources.version>
-    <plugin.site.version>3.6</plugin.site.version>
-    <maven.doxia-module-markdown.version>1.7</maven.doxia-module-markdown.version>
+    <plugin.site.version>3.7.1</plugin.site.version>
+    <maven.doxia-module-markdown.version>1.8</maven.doxia-module-markdown.version>
     <plugin.source.version>3.0.1</plugin.source.version>
     <plugin.surefire.version>3.0.0-M1</plugin.surefire.version>
     <plugin.surefire-report.version>3.0.0-M1</plugin.surefire-report.version>
