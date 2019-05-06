@@ -3,19 +3,19 @@ definitions:
     /hippo:namespaces/templatingsupportdemo/author:
       jcr:primaryType: hipposysedit:templatetype
       jcr:mixinTypes: ['editor:editable', 'mix:referenceable']
-      jcr:uuid: f87e6bba-45da-4905-b2aa-40897e8d4246
+      jcr:uuid: 8f2bf1c8-bd94-42d6-9cf1-617a406fa8ca
       /hipposysedit:nodetype:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: c60d5d62-1cc1-4cba-ad11-e7ae7b3390ac
+        jcr:uuid: d3586728-6e36-4e79-a7de-2b6dfa717502
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['hipposysedit:remodel', 'mix:referenceable']
-          jcr:uuid: 544cd39a-d7ae-4afc-ae1d-e396f90da4d7
+          jcr:uuid: 600d733e-f197-41fb-b181-1080ee1a19b7
           hipposysedit:node: true
           hipposysedit:supertype: ['templatingsupportdemo:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
-          hipposysedit:uri: http://www.onehippo.org/templatingsupportdemo/nt/1.0
+          hipposysedit:uri: http://www.templatingsupportdemo.com/templatingsupportdemo/nt/1.0
           /fullname:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -34,7 +34,7 @@ definitions:
             hipposysedit:primary: false
             hipposysedit:type: hippostd:html
             hipposysedit:validators: [required]
-          /photo:
+          /image:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
@@ -63,7 +63,7 @@ definitions:
         /hipposysedit:prototype:
           jcr:primaryType: templatingsupportdemo:author
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: fae3190a-8903-4c3c-b420-5f349c029822
+          jcr:uuid: d84bc7ae-df1f-489a-a453-5be4f1c13a8f
           hippo:related___pathreference: []
           hippostd:holder: holder
           hippostd:state: draft
@@ -129,9 +129,9 @@ definitions:
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-          /photo:
+          /image:
             jcr:primaryType: frontend:plugin
-            field: photo
+            field: image
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.left.item
             /cluster.options:

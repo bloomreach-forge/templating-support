@@ -26,6 +26,7 @@
         <@hst.include ref="main"/>
       </div>
       <div class="row">
+        <@hst.include ref="footer"/>
         <@hst.include ref="footer-handlebars"/>
         <@hst.include ref="footer-thymeleaf"/>
         <@hst.include ref="footer-thymeleaf-servlet"/>

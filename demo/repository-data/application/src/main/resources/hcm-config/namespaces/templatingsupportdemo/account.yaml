@@ -3,18 +3,18 @@ definitions:
     /hippo:namespaces/templatingsupportdemo/account:
       jcr:primaryType: hipposysedit:templatetype
       jcr:mixinTypes: ['editor:editable', 'mix:referenceable']
-      jcr:uuid: df78feaf-4d2f-451f-b7ae-ef27269e0173
+      jcr:uuid: 9b5ba3d9-d583-4389-8d4c-abc1e9cc7b5e
       /hipposysedit:nodetype:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: 1ac73cfd-4507-4f2a-8f80-46a3485b8759
+        jcr:uuid: 9a95a98b-add0-4c1f-bb24-a099ad0cca74
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['hipposysedit:remodel', 'mix:referenceable']
-          jcr:uuid: 9e1fd85b-f8dc-4e8d-a36e-31ce85d656b0
+          jcr:uuid: 74e8386a-e578-45d2-896e-462e85773075
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
-          hipposysedit:uri: http://www.onehippo.org/templatingsupportdemo/nt/1.0
+          hipposysedit:uri: http://www.templatingsupportdemo.com/templatingsupportdemo/nt/1.0
           /type:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false

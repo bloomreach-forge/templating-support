@@ -3,19 +3,19 @@ definitions:
     /hippo:namespaces/templatingsupportdemo/blogpost:
       jcr:primaryType: hipposysedit:templatetype
       jcr:mixinTypes: ['editor:editable', 'mix:referenceable']
-      jcr:uuid: 6e7ce078-8b53-4d78-a9ea-763e3507ed58
+      jcr:uuid: baa90c41-700b-4437-aa8c-a9a9fb9c7a3b
       /hipposysedit:nodetype:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: 7a25b150-48d3-4fad-bee3-42d305089e27
+        jcr:uuid: 701321b5-99cb-4609-a060-33a436cc742c
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['hipposysedit:remodel', 'mix:referenceable']
-          jcr:uuid: 823669ab-b5b3-42bb-bfd1-4fd7e3c26401
+          jcr:uuid: cd36d690-c755-4861-9e32-e4cc30d2f2c5
           hipposysedit:node: true
           hipposysedit:supertype: ['templatingsupportdemo:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
-          hipposysedit:uri: http://www.onehippo.org/templatingsupportdemo/nt/1.0
+          hipposysedit:uri: http://www.templatingsupportdemo.com/templatingsupportdemo/nt/1.0
           /publicationdate:
             jcr:primaryType: hipposysedit:field
             hipposysedit:multiple: false
@@ -74,11 +74,11 @@ definitions:
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: 4ff1c8d4-965f-4c6a-83b0-712d3378c812
+        jcr:uuid: 6ed6fc0b-a50c-4376-9525-8236872e8e94
         /hipposysedit:prototype:
           jcr:primaryType: templatingsupportdemo:blogpost
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 2e4177b0-943f-4e0d-89b5-009fdc55887f
+          jcr:uuid: 838aa0cc-aac9-4e96-bab3-0b6f2f555715
           hippo:related___pathreference: blogpost/hipposysedit:prototypes
           hippostd:holder: holder
           hippostd:state: draft
@@ -130,7 +130,7 @@ definitions:
             wicket.id: ${cluster.id}.right.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              nodetypes: templatingsupportdemo:author
+              nodetypes: ['templatingsupportdemo:author']
           /publicationdate:
             jcr:primaryType: frontend:plugin
             field: publicationdate

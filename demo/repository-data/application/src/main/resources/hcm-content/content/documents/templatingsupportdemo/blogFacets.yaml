@@ -1,6 +1,6 @@
 /content/documents/templatingsupportdemo/blogFacets:
   jcr:primaryType: hippofacnav:facetnavigation
-  hippo:docbase: 9838a8ac-260a-435a-9614-4176e33df0c3
+  hippo:docbase: 2cb6fd0a-ba77-46cf-859b-5386b4a2412f
   hippofacnav:facetnodenames: [Authors, Categories, Tags, Date]
   hippofacnav:facets: ['templatingsupportdemo:authornames', 'templatingsupportdemo:categories',
     'hippostd:tags', "templatingsupportdemo:publicationdate$[\n                {name:'Last\

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Hippo B.V. (http://www.onehippo.com)
+ * Copyright 2018-2019 Bloomreach B.V. (http://www.bloomreach.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,7 +54,6 @@ public class ThymeleafHstDialect extends AbstractProcessorDialect implements IEx
         processors.add(new ThymeleafHstRefItemAttribute(dialectPrefix));
         processors.add(new ThymeleafHstComponentRenderingURLAttribute(dialectPrefix));
         processors.add(new ThymeleafCmsManageContentTag(dialectPrefix));
-        processors.add(new ThymeleafCmsEditLinkAttribute(dialectPrefix));
         processors.add(new ThymeleafCmsEditMenuLinkTag(dialectPrefix));
         return processors;
     }

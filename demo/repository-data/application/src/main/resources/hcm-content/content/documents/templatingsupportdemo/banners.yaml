@@ -1,19 +1,20 @@
 /content/documents/templatingsupportdemo/banners:
   jcr:primaryType: hippostd:folder
   jcr:mixinTypes: ['hippotranslation:translated', 'mix:referenceable']
-  jcr:uuid: a06d52ef-6ea2-4f55-a988-ea373edd57b4
+  jcr:uuid: ecd4d3cc-8830-4ffa-bd4d-61ed94aaa568
   hippostd:foldertype: [new-banner-document, new-banner-folder]
-  hippotranslation:id: dfdfa9e9-1942-43e2-ad2b-dc9ed7b3aecc
+  hippotranslation:id: a9493796-d70a-4d05-a0f4-a89c63c2ae8f
   hippotranslation:locale: en
   /banner1:
     jcr:primaryType: hippo:handle
-    jcr:mixinTypes: ['mix:referenceable']
+    jcr:mixinTypes: ['hippo:versionInfo', 'mix:referenceable']
     jcr:uuid: 895fb1b6-410d-4972-9894-6b6a06d2b361
-    /banner1:
+    hippo:versionHistory: d37eaf64-40c0-4564-ae78-795071738ddc
+    /banner1[1]:
       jcr:primaryType: templatingsupportdemo:bannerdocument
       jcr:mixinTypes: ['mix:referenceable']
-      jcr:uuid: a72b3238-d2d6-49ea-96cc-b0831b16e3ff
-      hippo:availability: [live, preview]
+      jcr:uuid: 07446e01-513c-44f5-b1a0-19568ef79a66
+      hippo:availability: [live]
       hippostd:holder: admin
       hippostd:state: published
       hippostdpubwf:createdBy: admin
@@ -21,7 +22,63 @@
       hippostdpubwf:lastModificationDate: 2014-03-20T17:04:00+01:00
       hippostdpubwf:lastModifiedBy: admin
       hippostdpubwf:publicationDate: 2014-03-20T17:04:00+01:00
-      hippotranslation:id: 36a941a5-9997-46ac-8f58-2da561c06552
+      hippotranslation:id: 16d180a4-aa66-4b66-bae6-0816bb61de8d
+      hippotranslation:locale: en
+      templatingsupportdemo:title: Sample banner
+      /templatingsupportdemo:content:
+        jcr:primaryType: hippostd:html
+        hippostd:content: <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+          ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+          ex ea commodo consequat.</p>
+      /templatingsupportdemo:image:
+        jcr:primaryType: hippogallerypicker:imagelink
+        hippo:docbase: 9e440e6d-e93a-4d5f-913b-9c3b0867c812
+        hippo:facets: []
+        hippo:modes: []
+        hippo:values: []
+      /templatingsupportdemo:link:
+        jcr:primaryType: hippo:mirror
+        hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+    /banner1[2]:
+      jcr:primaryType: templatingsupportdemo:bannerdocument
+      jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+      jcr:uuid: e6e91980-2ecc-420c-b6e3-b4a3904dc7b4
+      hippo:availability: [preview]
+      hippostd:state: unpublished
+      hippostdpubwf:createdBy: admin
+      hippostdpubwf:creationDate: 2014-03-20T17:00:00+01:00
+      hippostdpubwf:lastModificationDate: 2014-03-20T17:04:00+01:00
+      hippostdpubwf:lastModifiedBy: admin
+      hippotranslation:id: 16d180a4-aa66-4b66-bae6-0816bb61de8d
+      hippotranslation:locale: en
+      templatingsupportdemo:title: Sample banner
+      /templatingsupportdemo:content:
+        jcr:primaryType: hippostd:html
+        hippostd:content: <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+          ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+          ex ea commodo consequat.</p>
+      /templatingsupportdemo:image:
+        jcr:primaryType: hippogallerypicker:imagelink
+        hippo:docbase: 9e440e6d-e93a-4d5f-913b-9c3b0867c812
+        hippo:facets: []
+        hippo:modes: []
+        hippo:values: []
+      /templatingsupportdemo:link:
+        jcr:primaryType: hippo:mirror
+        hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+    /banner1[3]:
+      jcr:primaryType: templatingsupportdemo:bannerdocument
+      jcr:mixinTypes: ['mix:referenceable']
+      jcr:uuid: 7772ece4-4a44-4cef-94e8-3126178de629
+      hippo:availability: []
+      hippostd:state: draft
+      hippostdpubwf:createdBy: admin
+      hippostdpubwf:creationDate: 2014-03-20T17:00:00+01:00
+      hippostdpubwf:lastModificationDate: 2019-04-11T12:53:58.984+02:00
+      hippostdpubwf:lastModifiedBy: admin
+      hippotranslation:id: 16d180a4-aa66-4b66-bae6-0816bb61de8d
       hippotranslation:locale: en
       templatingsupportdemo:title: Sample banner
       /templatingsupportdemo:content:
@@ -47,7 +104,7 @@
     /banner2:
       jcr:primaryType: templatingsupportdemo:bannerdocument
       jcr:mixinTypes: ['mix:referenceable']
-      jcr:uuid: 675b8271-78e6-47d4-81de-f3d3956558fa
+      jcr:uuid: bfe6144e-5bec-4396-91cf-dd13a11f0c5b
       hippo:availability: [live, preview]
       hippostd:holder: admin
       hippostd:state: published
@@ -56,7 +113,7 @@
       hippostdpubwf:lastModificationDate: 2014-03-20T17:04:00+01:00
       hippostdpubwf:lastModifiedBy: admin
       hippostdpubwf:publicationDate: 2014-03-20T17:04:00+01:00
-      hippotranslation:id: b42648ae-88d3-4313-a341-bcb0bc02a29b
+      hippotranslation:id: 066edf5b-c03b-4e06-8961-6f333a5af2ca
       hippotranslation:locale: en
       templatingsupportdemo:title: Sample banner 2
       /templatingsupportdemo:content:

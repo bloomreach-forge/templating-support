@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Hippo B.V. (http://www.onehippo.com)
+ * Copyright 2018-2019 Bloomreach B.V. (http://www.bloomreach.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,14 +16,14 @@
 
 package org.onehippo.forge.templating.support.thymeleaf.servlet.resolvers;
 
+import java.util.Map;
+
 import org.onehippo.forge.templating.support.thymeleaf.servlet.resources.ClasspathTemplateResource;
 import org.thymeleaf.IEngineConfiguration;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.TemplateResolution;
 
-import java.util.Map;
-
-import static org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet.*;
+import static org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet.CLASSPATH_TEMPLATE_PROTOCOL;
 
 public class ClasspathTemplateResolver extends ThymeleafTemplateResolver {
 

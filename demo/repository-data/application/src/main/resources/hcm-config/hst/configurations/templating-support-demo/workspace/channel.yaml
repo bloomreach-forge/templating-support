@@ -1,7 +1,0 @@
-definitions:
-  config:
-    /hst:hst/hst:configurations/templatingsupportdemo/hst:workspace/hst:channel:
-      .meta:residual-child-node-category: content
-      jcr:primaryType: hst:channel
-      hst:name: Templating Support Demo
-      hst:type: website
