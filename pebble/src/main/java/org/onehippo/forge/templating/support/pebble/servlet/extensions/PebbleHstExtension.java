@@ -44,6 +44,7 @@ public class PebbleHstExtension extends AbstractExtension {
         parsers.add(new PebbleHstRenderURLTag());
         parsers.add(new PebbleHstActionURLTag());
         parsers.add(new PebbleHstResourceURLTag());
+        parsers.add(new PebbleHstComponentRenderingURLTag());
         return parsers;
     }
 

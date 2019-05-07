@@ -13,6 +13,7 @@ Document title: {{ document.title }}
 <a href="{% hstActionURL  %}">Action Url</a>     <br/>
 <a href="{% hstActionURL  "foo=bar&bar=test"%}">Action Url param</a>     <br/>
 <a href="{% hstResourceURL "aResourceID"  %}">Resource id</a>     <br/>
-        
+<a href="{% componentRenderingURL   %}">componentRenderingURL</a>     <br/>
+
 
 
