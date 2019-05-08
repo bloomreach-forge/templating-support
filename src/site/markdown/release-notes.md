@@ -23,18 +23,18 @@
 
 ### 2.0.0
 
-<p class="smallnote">Release date: 8 May 2019</p>
+<p class="smallinfo">Release date: 8 May 2019</p>
 
 - [HIPFORGE-257](https://issues.onehippo.com/browse/HIPFORGE-257) Upgrade for version 13 compatibility
 
 
 ### 1.0.1
-<p class="smallnote">Release date: 29 November 2018</p>
+<p class="smallinfo">Release date: 29 November 2018</p>
 
 - [HIPFORGE-238](https://issues.onehippo.com/browse/HIPFORGE-238) Thymeleaf: message parameters are not handled correctly
 
 ### 1.0.0
-<p class="smallnote">Release date: 30 March 2018</p>
+<p class="smallinfo">Release date: 30 March 2018</p>
 
 - Initial release supporting [Handlebars.java](https://github.com/jknack/handlebars.java) and [Thymeleaf](https://www.thymeleaf.org/)
   for HST-2 templating.
