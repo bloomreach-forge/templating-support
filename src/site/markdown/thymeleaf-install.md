@@ -20,15 +20,15 @@ Make sure you have the following **repository** configuration under the **reposi
 
 ```
     <repository>
-      <id>hippo-maven2</id>
+      <id>hippo-maven2-forge</id>
       <name>Hippo Maven 2 Repository</name>
       <url>https://maven.onehippo.com/maven2-forge/</url>
     </repository>
 ```
 
-### Adding Dependency
+### Adding Dependencies
 
-In root ```pom.xml```, add a version property (see [release notes](release-notes.html) for the latest version):
+In the root ```pom.xml```, add a version property (see [release notes](release-notes.html) for the latest version):
 
 ```xml
     <properties>
@@ -36,7 +36,17 @@ In root ```pom.xml```, add a version property (see [release notes](release-notes
     </properties>
 ```
 
-In ```site/pom.xml```, add the following dependency:
+For a project on 13, add the following dependency in ```cms-dependencies/pom.xml```, :
+
+```xml
+    <dependency>
+      <groupId>org.onehippo.forge.templating-support</groupId>
+      <artifactId>templating-support-core-platform</artifactId>
+      <version>${forge.templating-support.version}</version>
+    </dependency>
+```
+
+Add the following dependency in ```site/pom.xml```:
 
 ```xml
     <dependency>
