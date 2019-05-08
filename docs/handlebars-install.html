@@ -100,15 +100,15 @@
 <div>
 <div>
 <pre class="source">    &lt;repository&gt;
-      &lt;id&gt;hippo-maven2&lt;/id&gt;
+      &lt;id&gt;hippo-maven2-forge&lt;/id&gt;
       &lt;name&gt;Hippo Maven 2 Repository&lt;/name&gt;
       &lt;url&gt;https://maven.onehippo.com/maven2-forge/&lt;/url&gt;
     &lt;/repository&gt;
 </pre></div></div>
 </div>
 <div class="section">
-<h3><a name="Adding_Dependency"></a>Adding Dependency</h3>
-<p>In root <tt>pom.xml</tt>, add a version property (see <a href="release-notes.html">release notes</a> for the latest version):</p>
+<h3><a name="Adding_Dependencies"></a>Adding Dependencies</h3>
+<p>In the root <tt>pom.xml</tt>, add a version property (see <a href="release-notes.html">release notes</a> for the latest version):</p>
 
 <div>
 <div>
@@ -117,7 +117,18 @@
     &lt;/properties&gt;
 </pre></div></div>
 
-<p>In <tt>site/pom.xml</tt>, add the following dependency:</p>
+<p>For a project on 13, add the following dependency in <tt>cms-dependencies/pom.xml</tt>, :</p>
+
+<div>
+<div>
+<pre class="source">    &lt;dependency&gt;
+      &lt;groupId&gt;org.onehippo.forge.templating-support&lt;/groupId&gt;
+      &lt;artifactId&gt;templating-support-core-platform&lt;/artifactId&gt;
+      &lt;version&gt;${forge.templating-support.version}&lt;/version&gt;
+    &lt;/dependency&gt;
+</pre></div></div>
+
+<p>Add the following dependency in <tt>site/pom.xml</tt>:</p>
 
 <div>
 <div>
