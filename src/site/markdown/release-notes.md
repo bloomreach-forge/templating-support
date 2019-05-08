@@ -1,7 +1,6 @@
-
-[//]: # (  Copyright 2015-2018 Hippo B.V. (http://www.onehippo.com)  )
+[//]: # (  Copyright 2018-2019 Hippo B.V. (http://www.onehippo.com)
 [//]: # (  )
-[//]: # (  Licensed under the Apache License, Version 2.0 (the "License");  )
+[//]: # (  Licensed under the Apache License, Version 2.0 (the "License")
 [//]: # (  you may not use this file except in compliance with the License.  )
 [//]: # (  You may obtain a copy of the License at  )
 [//]: # (  )
@@ -15,22 +14,27 @@
 
 ## Compatibility
 
-| Plugin Version        | Hippo CMS Release Version |
-|: --------------------:|:-------------------------:|
-| 1.2.x                 | 13.x                      |
-| 1.x                   | 12.x                      |
+| Plugin Version | Hippo CMS Release Version |
+|----------------|---------------------------|
+| 2.x            | 13.x                      |
+| 1.x            | 12.x                      |
 
 ## Release Notes of 1.x
-### 1.0.2
 
-- Fixed [HIPFORGE-257](https://issues.onehippo.com/browse/HIPFORGE-257) [Templating Support] Upgrade for v13 compatibility
+### 2.0.0
+
+<p class="smallnote">Release date: 8 May 2019</p>
+
+- [HIPFORGE-257](https://issues.onehippo.com/browse/HIPFORGE-257) Upgrade for version 13 compatibility
 
 
 ### 1.0.1
+<p class="smallnote">Release date: 29 November 2018</p>
 
-- Fixed [HIPFORGE-238](https://issues.onehippo.com/browse/HIPFORGE-238) Thymeleaf: message parameters are not handled correctly
+- [HIPFORGE-238](https://issues.onehippo.com/browse/HIPFORGE-238) Thymeleaf: message parameters are not handled correctly
 
 ### 1.0.0
+<p class="smallnote">Release date: 30 March 2018</p>
 
 - Initial release supporting [Handlebars.java](https://github.com/jknack/handlebars.java) and [Thymeleaf](https://www.thymeleaf.org/)
   for HST-2 templating.

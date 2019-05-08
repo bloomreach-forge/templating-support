@@ -1,7 +1,6 @@
-
-[//]: # (  Copyright 2018 Hippo B.V. (http://www.onehippo.com)  )
+[//]: # (  Copyright 2018-2019 Hippo B.V. (http://www.onehippo.com)
 [//]: # (  )
-[//]: # (  Licensed under the Apache License, Version 2.0 (the "License");  )
+[//]: # (  Licensed under the Apache License, Version 2.0 (the "License")
 [//]: # (  you may not use this file except in compliance with the License.  )
 [//]: # (  You may obtain a copy of the License at  )
 [//]: # (  )
@@ -29,6 +28,13 @@ Make sure you have the following **repository** configuration under the **reposi
 
 ### Adding Dependency
 
+In root ```pom.xml```, add a version property (see [release notes](release-notes.html) for the latest version):
+
+```xml
+    <properties>
+      <forge.templating-support.version>2.0.0</forge.templating-support.version>
+    </properties>
+```
 In ```site/pom.xml```, add the following dependency:
 
 ```xml
