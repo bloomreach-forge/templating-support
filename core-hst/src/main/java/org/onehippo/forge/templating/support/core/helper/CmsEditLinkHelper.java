@@ -225,7 +225,7 @@ public final class CmsEditLinkHelper {
     }
 
     private boolean invalidCmsRequest(final Object bean, final HstRequestContext requestContext) {
-        return requestContext == null || !requestContext.isCmsRequest() || bean == null;
+        return requestContext == null || !requestContext.isChannelManagerPreviewRequest() || bean == null;
     }
 
     private String getComponentValue(final String parameterName, final boolean isRelativePathParameter) {

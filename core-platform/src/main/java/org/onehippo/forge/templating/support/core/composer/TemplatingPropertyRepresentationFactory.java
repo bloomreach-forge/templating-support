@@ -38,6 +38,7 @@ import org.hippoecm.hst.pagecomposer.jaxrs.model.ContainerItemComponentPropertyR
 import org.hippoecm.hst.pagecomposer.jaxrs.model.ParameterType;
 import org.hippoecm.hst.pagecomposer.jaxrs.property.SwitchTemplatePropertyRepresentationFactory;
 import org.hippoecm.hst.pagecomposer.jaxrs.services.helpers.ContainerItemHelper;
+import org.hippoecm.hst.pagecomposer.jaxrs.util.AbstractHstComponentParameters;
 import org.hippoecm.hst.pagecomposer.jaxrs.util.HstComponentParameters;
 import org.hippoecm.hst.resourcebundle.ResourceBundleUtils;
 import org.hippoecm.hst.util.WebFileUtils;
@@ -65,25 +66,26 @@ public class TemplatingPropertyRepresentationFactory implements PropertyRepresen
 
     private Set<String> templateExtensions;
 
+
+
     private enum TemplateParamWebFile {
         NOT_CONFIGURED,
         CONFIGURED_AND_EXISTS,
         CONFIGURED_BUT_NON_EXISTING
     }
-    
+
+
     @Override
-    public ContainerItemComponentPropertyRepresentation createProperty(final ParametersInfo parametersInfo,
-                                                                       final Locale locale,
+    public ContainerItemComponentPropertyRepresentation createProperty(final Locale locale,
                                                                        final String contentPath,
                                                                        final String prefix,
                                                                        final Node containerItemNode,
-                                                                       final ContainerItemHelper containerItemHelper,
-                                                                       final HstComponentParameters componentParameters,
+                                                                       final HstComponentConfiguration componentConfiguration,
+                                                                       final AbstractHstComponentParameters componentParameters,
                                                                        final List<ContainerItemComponentPropertyRepresentation> properties) {
         String containerItemPath = null;
         try {
             containerItemPath = containerItemNode.getPath();
-            final HstComponentConfiguration componentConfiguration = containerItemHelper.getConfigObject(containerItemNode.getIdentifier());
             if (hasWebFileTemplate(componentConfiguration, getTemplateExtensions())) {
                 // if there are multiple templates available, we inject a switchTemplateComponentPropertyRepresentation
                 // containing the possible values.
@@ -156,7 +158,7 @@ public class TemplatingPropertyRepresentationFactory implements PropertyRepresen
                     switchTemplateComponentProperty.setValue(templateParamValue);
 
                     // the addMissingTemplateValueAndLabel is added *after* sorting since always most be on top
-                    sortDropDownByDisplayValue(switchTemplateComponentProperty);
+                    sortDropDownByDisplayValue(switchTemplateComponentProperty, getTemplateExtensions());
 
                     if (templateParamWebFile == TemplateParamWebFile.CONFIGURED_BUT_NON_EXISTING) {
                         addMissingTemplateValueAndLabel(templateParamValue, switchTemplateResourceBundle, switchTemplateComponentProperty, variantsResourceBundle);
