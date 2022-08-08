@@ -41,11 +41,11 @@
     <handlebars.version>4.1.2</handlebars.version>
 
     <commons-lang.version>2.6</commons-lang.version>
-    <commons-io.version>2.5</commons-io.version>
+    <commons-io.version>2.11.0</commons-io.version>
     <commons-collections.version>3.2.2</commons-collections.version>
 
     <spring-test.version>4.2.4.RELEASE</spring-test.version>
-    <lib.junit.version>4.12</lib.junit.version>
+    <lib.junit.version>4.13.1</lib.junit.version>
     <lib.easymock.version>3.4</lib.easymock.version>
     <lib.slf4j.version>1.7.25</lib.slf4j.version>
     <lib.log4j2.version>2.18.0</lib.log4j2.version>
