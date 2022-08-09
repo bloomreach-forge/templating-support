@@ -16,10 +16,17 @@
 
 | Plugin Version | Hippo CMS Release Version |
 |----------------|---------------------------|
+| 3.x            | 14.x                      |
 | 2.x            | 13.x                      |
 | 1.x            | 12.x                      |
 
 ## Release Notes of 1.x
+
+### 3.0.0
+
+<p class="smallinfo">Release date: 9 August 2022</p>
+
+- [HIPFORGE-428](https://issues.onehippo.com/browse/HIPFORGE-428) Upgrade for version 14 compatibility
 
 ### 2.0.0
 
