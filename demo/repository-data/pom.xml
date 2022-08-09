@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.onehippo.forge.templating-support</groupId>
     <artifactId>templating-support-demo</artifactId>
-    <version>2.0.1-SNAPSHOT</version>
+    <version>3.0.0</version>
   </parent>
 
   <name>demo Repository Data</name>

@@ -21,7 +21,7 @@
   <description>Templating Support</description>
   <groupId>org.onehippo.forge.templating-support</groupId>
   <artifactId>templating-support</artifactId>
-  <version>2.0.1-SNAPSHOT</version>
+  <version>3.0.0</version>
   <packaging>pom</packaging>
   <url>https://github.com/bloomreach-forge/templating-support</url>
 
