@@ -20,7 +20,7 @@
   <parent>
     <groupId>org.onehippo.forge.templating-support</groupId>
     <artifactId>templating-support</artifactId>
-    <version>3.0.0</version>
+    <version>3.0.1-SNAPSHOT</version>
   </parent>
 
   <name>Templating Support Handlebars</name>
