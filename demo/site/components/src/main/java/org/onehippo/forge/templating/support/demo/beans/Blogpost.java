@@ -1,6 +1,6 @@
 package org.onehippo.forge.templating.support.demo.beans;
 /*
- * Copyright 2014 Hippo B.V. (http://www.onehippo.com)
+ * Copyright 2014-2024 Bloomreach
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,15 +38,14 @@ public class Blogpost extends HippoDocument implements Authors {
     public static final String AUTHORS = "templatingsupportdemo:authors";
     public static final String TAGS = "hippostd:tags";
 
-
    @HippoEssentialsGenerated(internalName = "templatingsupportdemo:publicationdate")
     public Calendar getPublicationDate() {
-        return getProperty(PUBLICATION_DATE);
+        return getSingleProperty(PUBLICATION_DATE);
     }
 
     @HippoEssentialsGenerated(internalName = "templatingsupportdemo:authornames")
     public String[] getAuthorNames() {
-        return getProperty(AUTHOR_NAMES);
+        return getMultipleProperty(AUTHOR_NAMES);
     }
 
     public String getAuthor() {
@@ -57,10 +56,9 @@ public class Blogpost extends HippoDocument implements Authors {
         return null;
     }
 
-
     @HippoEssentialsGenerated(internalName = "templatingsupportdemo:title")
     public String getTitle() {
-        return getProperty(TITLE);
+        return getSingleProperty(TITLE);
     }
 
     @HippoEssentialsGenerated(internalName = "templatingsupportdemo:content")
@@ -70,12 +68,12 @@ public class Blogpost extends HippoDocument implements Authors {
 
     @HippoEssentialsGenerated(internalName = "templatingsupportdemo:introduction")
     public String getIntroduction() {
-        return getProperty(INTRODUCTION);
+        return getSingleProperty(INTRODUCTION);
     }
 
     @HippoEssentialsGenerated(internalName = "templatingsupportdemo:categories")
     public String[] getCategories() {
-        return getProperty(CATEGORIES);
+        return getMultipleProperty(CATEGORIES);
     }
 
     @Override

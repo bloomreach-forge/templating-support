@@ -1,6 +1,7 @@
 /content/documents/templatingsupportdemo/blogFacets:
+  .meta:order-before: banners
   jcr:primaryType: hippofacnav:facetnavigation
-  hippo:docbase: 2cb6fd0a-ba77-46cf-859b-5386b4a2412f
+  hippo:docbase: ce6ff557-d826-4573-b466-e68859f985e9
   hippofacnav:facetnodenames: [Authors, Categories, Tags, Date]
   hippofacnav:facets: ['templatingsupportdemo:authornames', 'templatingsupportdemo:categories',
     'hippostd:tags', "templatingsupportdemo:publicationdate$[\n                {name:'Last\

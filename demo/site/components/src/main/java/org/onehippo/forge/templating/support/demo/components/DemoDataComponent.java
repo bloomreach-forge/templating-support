@@ -33,7 +33,7 @@ public class DemoDataComponent extends CommonComponent {
         super.doBeforeRender(request, response);
         // add template data:
         final HstRequestContext context = RequestContextProvider.get();
-        final HippoBean document = getHippoBeanForPath("events/2019/04/breakfast", HippoBean.class);
+        final HippoBean document = getHippoBeanForPath("events/2024/10/breakfast", HippoBean.class);
         request.setAttribute("document", document);
         final User contextUser = new User("Context user");
         context.setAttribute("contextUser", contextUser);

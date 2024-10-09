@@ -8,5 +8,5 @@
       <p th:if="${item.publicationDate != null && item.publicationDate.time != null}" th:text="${#dates.format(item.publicationDate.time, 'dd-MMM-yyyy')}"></p>
       <p th:text="${item.introduction}"></p>
     </article>
-  <div th:if="${cparam.showPagination}" th:insert="/thymeleaf/include/pagination :: pagination"></div>
+  <div th:if="${cparam.showPagination}" th:insert="~{/thymeleaf/include/pagination :: pagination}"></div>
 </div>

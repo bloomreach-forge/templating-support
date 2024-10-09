@@ -7,4 +7,3 @@
   hst:parametervalues: ['templatingsupportdemo:blogpost', '', desc, 'on', 'off', '2',
     '']
   hst:template: blog-list
-  hst:xtype: hst.item

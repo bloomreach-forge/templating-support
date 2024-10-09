@@ -8,8 +8,8 @@
     <version>3.0.1-SNAPSHOT</version>
   </parent>
 
-  <name>demo Repository Data</name>
-  <description>demo Repository Data</description>
+  <name>templating-support-demo Repository Data</name>
+  <description>templating-support-demo Repository Data</description>
   <artifactId>templating-support-demo-repository-data</artifactId>
   <packaging>pom</packaging>
 
@@ -17,6 +17,7 @@
     <module>application</module>
     <module>development</module>
     <module>site</module>
+    <module>site-development</module>
     <module>webfiles</module>
   </modules>
 

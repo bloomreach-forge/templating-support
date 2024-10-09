@@ -1,16 +1,17 @@
 /content/documents/templatingsupportdemo/blog:
+  .meta:order-before: banners
   jcr:primaryType: hippostd:folder
   jcr:mixinTypes: ['hippotranslation:translated', 'mix:referenceable']
-  jcr:uuid: 2cb6fd0a-ba77-46cf-859b-5386b4a2412f
+  jcr:uuid: ce6ff557-d826-4573-b466-e68859f985e9
   hippostd:foldertype: [new-blog-folder, new-blogauthor-folder]
-  hippotranslation:id: 9ab5af7f-df36-4d1d-ab8b-b59422e8d40e
+  hippotranslation:id: 3002a14a-e1cf-4892-860f-008cf09ba25e
   hippotranslation:locale: en
   /authors:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippotranslation:translated', 'mix:referenceable']
-    jcr:uuid: b430a388-435d-4e6e-a1c7-a011cdf4e57c
+    jcr:uuid: d4da9e50-60e8-418e-b8a8-a92b16a3fb88
     hippostd:foldertype: [new-blogauthor-document, new-blogauthor-folder]
-    hippotranslation:id: d074f8c9-ee5b-4cf0-a8b4-1e3657046605
+    hippotranslation:id: 0d8924d2-710d-4411-bb7b-fd7b2bab70b7
     hippotranslation:locale: en
     /hippo-author:
       jcr:primaryType: hippo:handle
@@ -20,7 +21,7 @@
       /hippo-author:
         jcr:primaryType: templatingsupportdemo:author
         jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: 750ddc76-13b3-4f67-adc6-490eaaa46905
+        jcr:uuid: d6a74f05-790b-4ce9-8fcf-f84f7cdc3902
         hippo:availability: [live, preview]
         hippostd:holder: admin
         hippostd:state: published
@@ -29,7 +30,7 @@
         hippostdpubwf:lastModificationDate: 2014-02-27T16:37:00+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippostdpubwf:publicationDate: 2014-02-27T16:37:00+01:00
-        hippotranslation:id: d3b747da-31af-46c2-83de-33c53e606a2b
+        hippotranslation:id: a0100db5-74a2-4f6a-a661-931e4e1b3ff2
         hippotranslation:locale: en
         templatingsupportdemo:fullname: Hippo Author
         templatingsupportdemo:role: Owner
@@ -70,16 +71,16 @@
       /hippo-essentials-author:
         jcr:primaryType: templatingsupportdemo:author
         jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: 73edb924-39fd-43e9-aa14-2e22c5e485dc
+        jcr:uuid: 13bb0ccf-6566-4f3b-aac0-ccdd0a422569
         hippo:availability: [live, preview]
         hippostd:holder: admin
         hippostd:state: published
         hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2019-04-11T20:38:00+02:00
-        hippostdpubwf:lastModificationDate: 2019-04-11T20:38:00+02:00
+        hippostdpubwf:creationDate: 2024-10-07T15:46:00+02:00
+        hippostdpubwf:lastModificationDate: 2024-10-07T15:46:00+02:00
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2019-04-11T20:38:00+02:00
-        hippotranslation:id: 56bf1c41-e772-4957-baf9-07ae05bbeac0
+        hippostdpubwf:publicationDate: 2024-10-07T15:46:00+02:00
+        hippotranslation:id: 2a540f61-377e-46ad-ac34-0cc8b5df4da1
         hippotranslation:locale: en
         templatingsupportdemo:fullname: Hippo Essentials Author
         templatingsupportdemo:role: Owner
@@ -112,38 +113,38 @@
           jcr:primaryType: templatingsupportdemo:account
           templatingsupportdemo:link: https://twitter.com/onehippo
           templatingsupportdemo:type: twitter
-  /2019:
+  /2024:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippotranslation:translated', 'mix:referenceable']
-    jcr:uuid: a94ce5f8-3bb3-4e68-a6fe-401029383eda
+    jcr:uuid: 4c6d5009-4dd3-4405-b399-55b7df919f91
     hippostd:foldertype: [new-blog-document, new-blog-folder]
-    hippotranslation:id: bcecd9b1-0ac4-4aa6-9915-e45c509887bc
+    hippotranslation:id: 6cc70594-92f0-46f5-98b3-e8654ffa5bd4
     hippotranslation:locale: en
-    /04:
+    /10:
       jcr:primaryType: hippostd:folder
       jcr:mixinTypes: ['hippotranslation:translated', 'mix:referenceable']
-      jcr:uuid: a7a59dc1-631e-4d1e-a59e-e0be37221dc8
+      jcr:uuid: 499f6e18-23a7-41c3-8cfc-bbd5ffcda605
       hippostd:foldertype: [new-blog-document, new-blog-folder]
-      hippotranslation:id: 3196a45e-09e4-4d60-847a-bad9994d6517
+      hippotranslation:id: 0f98c640-0dd7-44e7-bb4f-858d11e1079c
       hippotranslation:locale: en
       /first-blog-post:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
-        jcr:uuid: a605a079-5032-4ecb-8fac-fd06e48c74f3
+        jcr:uuid: 89c4d228-9f7a-411f-a2d9-0ece5b3a52a4
         hippo:name: First blog post
         /first-blog-post:
           jcr:primaryType: templatingsupportdemo:blogpost
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 43c681d6-f96d-4c26-a7ea-d9427642ec46
+          jcr:uuid: a933bf8f-8903-4a37-969e-4345edd78b02
           hippo:availability: [live, preview]
           hippostd:holder: admin
           hippostd:state: published
           hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2019-04-11T20:38:00+02:00
-          hippostdpubwf:lastModificationDate: 2019-04-11T20:38:00+02:00
+          hippostdpubwf:creationDate: 2024-10-07T15:46:00+02:00
+          hippostdpubwf:lastModificationDate: 2024-10-07T15:46:00+02:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2019-04-11T20:38:00+02:00
-          hippotranslation:id: adb9dbd6-1e2c-41e8-85c3-6d6e6a08076c
+          hippostdpubwf:publicationDate: 2024-10-07T15:46:00+02:00
+          hippotranslation:id: 2673b098-600f-40f5-acab-d6bcc1587573
           hippotranslation:locale: en
           templatingsupportdemo:authornames: [Hippo Author]
           templatingsupportdemo:categories: [cms, life]
@@ -156,7 +157,7 @@
             the release of Letraset sheets containing Lorem Ipsum passages, and more
             recently with desktop publishing software like Aldus PageMaker including
             versions of Lorem Ipsum.
-          templatingsupportdemo:publicationdate: 2019-04-11T20:38:00+02:00
+          templatingsupportdemo:publicationdate: 2024-10-07T15:46:00+02:00
           templatingsupportdemo:title: First blog post
           /templatingsupportdemo:content:
             jcr:primaryType: hippostd:html
@@ -210,21 +211,21 @@
       /second-blog-post:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
-        jcr:uuid: 652957ea-e7ac-4443-b201-8be36d48fd2a
+        jcr:uuid: 01a330ca-6289-47e3-93de-59e914bb5dff
         hippo:name: Second blog post
         /second-blog-post:
           jcr:primaryType: templatingsupportdemo:blogpost
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 3539d797-07ea-4c32-a7ec-61f5ab35fe08
+          jcr:uuid: 883f1500-cbea-4cb7-ace4-97fd07ed0d81
           hippo:availability: [live, preview]
           hippostd:holder: admin
           hippostd:state: published
           hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2019-04-11T20:38:00+02:00
-          hippostdpubwf:lastModificationDate: 2019-04-11T20:38:00+02:00
+          hippostdpubwf:creationDate: 2024-10-07T15:46:00+02:00
+          hippostdpubwf:lastModificationDate: 2024-10-07T15:46:00+02:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2019-04-11T20:38:00+02:00
-          hippotranslation:id: de7ff4f6-d4e2-4e8f-9bbc-4fb29e4f08c3
+          hippostdpubwf:publicationDate: 2024-10-07T15:46:00+02:00
+          hippotranslation:id: 1f5caec4-43eb-4dbc-8f90-fddc5404e819
           hippotranslation:locale: en
           templatingsupportdemo:authornames: [Hippo Essentials Author]
           templatingsupportdemo:categories: [cms, life]
@@ -237,7 +238,7 @@
             the release of Letraset sheets containing Lorem Ipsum passages, and more
             recently with desktop publishing software like Aldus PageMaker including
             versions of Lorem Ipsum.
-          templatingsupportdemo:publicationdate: 2019-04-11T20:38:00+02:00
+          templatingsupportdemo:publicationdate: 2024-10-07T15:46:00+02:00
           templatingsupportdemo:title: Second blog post
           /templatingsupportdemo:content:
             jcr:primaryType: hippostd:html
@@ -291,21 +292,21 @@
       /third-blog-post:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
-        jcr:uuid: 10baa71e-0cc5-43ab-8981-1e6cb8424ae6
+        jcr:uuid: f340a972-1318-48e9-8932-58ea41b8f6fd
         hippo:name: Third blog post
         /third-blog-post:
           jcr:primaryType: templatingsupportdemo:blogpost
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 8d40ab3e-e962-4ea2-a9c1-c35204f21b00
+          jcr:uuid: 730a5d1c-9184-4cc8-a11d-dbd8585bf5ae
           hippo:availability: [live, preview]
           hippostd:holder: admin
           hippostd:state: published
           hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2019-04-11T20:38:00+02:00
-          hippostdpubwf:lastModificationDate: 2019-04-11T20:38:00+02:00
+          hippostdpubwf:creationDate: 2024-10-07T15:46:00+02:00
+          hippostdpubwf:lastModificationDate: 2024-10-07T15:46:00+02:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2019-04-11T20:38:00+02:00
-          hippotranslation:id: 8c846211-afe2-40cf-84c9-0cd3e1d2cb1a
+          hippostdpubwf:publicationDate: 2024-10-07T15:46:00+02:00
+          hippotranslation:id: 51278440-f98d-44e8-bb26-d3b6b5e38c0f
           hippotranslation:locale: en
           templatingsupportdemo:authornames: [Hippo Author]
           templatingsupportdemo:categories: [life, lorem, ipsum]
@@ -313,7 +314,7 @@
             duo at. Ad facilis pertinacia eam, nam melius facilisi volutpat ut, ea
             munere legere qualisque pri. Cu nisl disputationi has. Duo tollit putent
             cu.
-          templatingsupportdemo:publicationdate: 2019-04-11T20:38:00+02:00
+          templatingsupportdemo:publicationdate: 2024-10-07T15:46:00+02:00
           templatingsupportdemo:title: Third blog post
           /templatingsupportdemo:content:
             jcr:primaryType: hippostd:html
@@ -348,28 +349,28 @@
       /fourth-blog-post:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
-        jcr:uuid: 962c839c-7c46-4e13-ae38-ebf3d74a410c
+        jcr:uuid: b3de3f71-196a-4b01-b501-cb8be03560af
         hippo:name: Fourth blog post
         /fourth-blog-post:
           jcr:primaryType: templatingsupportdemo:blogpost
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 4a3c8e4e-7509-462d-b73c-12413accf4fe
+          jcr:uuid: 0a12ad6b-4fe6-4a42-99c5-1b1ab3b85602
           hippo:availability: [live, preview]
           hippostd:holder: admin
           hippostd:state: published
           hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2019-04-11T20:38:00+02:00
-          hippostdpubwf:lastModificationDate: 2019-04-11T20:38:00+02:00
+          hippostdpubwf:creationDate: 2024-10-07T15:46:00+02:00
+          hippostdpubwf:lastModificationDate: 2024-10-07T15:46:00+02:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2019-04-11T20:38:00+02:00
-          hippotranslation:id: e18d67ae-1f67-4b32-9d6d-52900a1a935b
+          hippostdpubwf:publicationDate: 2024-10-07T15:46:00+02:00
+          hippotranslation:id: e74d926c-114a-49aa-893e-4ac7b8d3ee39
           hippotranslation:locale: en
           templatingsupportdemo:authornames: [Hippo Author]
           templatingsupportdemo:categories: [ipsum]
           templatingsupportdemo:introduction: Aperiri insolens invenire vis id, ex
             vel rebum clita postulant. Fierent tractatos adversarium no eam, eam cu
             libris habemus placerat, partem accusata his ad. Ne vel inimicus referrentur.
-          templatingsupportdemo:publicationdate: 2019-04-11T20:38:00+02:00
+          templatingsupportdemo:publicationdate: 2024-10-07T15:46:00+02:00
           templatingsupportdemo:title: Fourth blog post
           /templatingsupportdemo:content:
             jcr:primaryType: hippostd:html
@@ -405,13 +406,13 @@
   /account-types:
     jcr:primaryType: hippo:handle
     jcr:mixinTypes: ['mix:referenceable']
-    jcr:uuid: 444943c6-cf83-46f5-9408-40dc88a0779c
+    jcr:uuid: c5d94082-abe0-4f6b-8448-7b64df24cc67
     /account-types:
       jcr:primaryType: selection:valuelist
       jcr:mixinTypes: ['hippotranslation:translated', 'mix:referenceable']
-      jcr:uuid: b8c7c6cf-5beb-4b8c-9eaf-f6731870e609
+      jcr:uuid: ec6a6f5d-ed09-43c7-ae66-e162d655f966
       hippo:availability: [live, preview]
-      hippotranslation:id: 90b7b568-0da4-4ad8-90cc-c2579220d6de
+      hippotranslation:id: f39be53c-0f27-46b2-b38d-cbb916bef5cc
       hippotranslation:locale: en
       /selection:listitem[1]:
         jcr:primaryType: selection:listitem
@@ -432,12 +433,12 @@
   /blog-categories:
     jcr:primaryType: hippo:handle
     jcr:mixinTypes: ['mix:referenceable']
-    jcr:uuid: 7088fb3f-8986-42ca-b8d6-a5eca9724506
+    jcr:uuid: 6f806cad-d080-4eb8-9449-c328e70e9fc0
     /blog-categories:
       jcr:primaryType: selection:valuelist
       jcr:mixinTypes: ['hippotranslation:translated', 'mix:referenceable']
-      jcr:uuid: fed715d5-becd-4fbd-9356-13fab693a144
-      hippotranslation:id: 7cdb5c36-31b2-46d2-a52e-0081fb4c9794
+      jcr:uuid: 60ca80a6-41c9-465a-8243-2a919c1d6820
+      hippotranslation:id: d9610c82-7cbb-4bdc-a65e-24dc206aa241
       hippotranslation:locale: en
       /selection:listitem[1]:
         jcr:primaryType: selection:listitem

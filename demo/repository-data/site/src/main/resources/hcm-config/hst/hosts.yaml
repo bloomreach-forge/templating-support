@@ -12,3 +12,4 @@ definitions:
           jcr:primaryType: hst:mount
           hst:homepage: root
           hst:mountpoint: /hst:templatingsupportdemo/hst:sites/templatingsupportdemo
+          hst:pagemodelapi: resourceapi

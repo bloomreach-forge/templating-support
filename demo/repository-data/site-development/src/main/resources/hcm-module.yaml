@@ -1,0 +1,6 @@
+site: templating-support-demo
+group: templating-support-demo
+project: templating-support-demo
+module:
+  name: templating-support-demo-repository-data-site-development
+  after: templating-support-demo-repository-data-site

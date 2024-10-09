@@ -9,8 +9,8 @@
   </parent>
   <artifactId>templating-support-demo-site</artifactId>
   <packaging>pom</packaging>
-  <name>demo Site</name>
-  <description>demo Site</description>
+  <name>templating-support-demo Site</name>
+  <description>templating-support-demo Site</description>
 
   <modules>
     <module>components</module>

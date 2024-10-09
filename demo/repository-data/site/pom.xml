@@ -8,8 +8,8 @@
     <version>3.0.1-SNAPSHOT</version>
   </parent>
 
-  <name>demo Repository Data For Site</name>
-  <description>demo Repository Data For Site</description>
+  <name>templating-support-demo Repository Data For Site</name>
+  <description>templating-support-demo Repository Data For Site</description>
   <artifactId>templating-support-demo-repository-data-site</artifactId>
 
   <build>

@@ -16,5 +16,5 @@
 <div class="text-center" xmlns:th="http://www.thymeleaf.org">
   <link rel="stylesheet" th:href="@{files/thymeleaf-classpath.css}" type="text/css"/>
   <span class="thymeleaf-classpath" th:text="${user != null} ? 'Hello from thmeleaf classpath: '+ ${user.name} : 'hello anonymous from thymeleaf classpath'"></span>
-  <div th:insert="fragment/thymeleaf-footer-fragment :: footerFragment"></div>
+  <div th:insert="~{fragment/thymeleaf-footer-fragment :: footerFragment}"></div>
 </div>

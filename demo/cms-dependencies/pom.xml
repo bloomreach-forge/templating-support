@@ -8,9 +8,16 @@
   </parent>
   <artifactId>templating-support-demo-cms-dependencies</artifactId>
   <packaging>pom</packaging>
-  <name>demo CMS Dependencies</name>
-  <description>demo CMS Dependencies</description>
+  <name>templating-support-demo CMS Dependencies</name>
+  <description>templating-support-demo CMS Dependencies</description>
   <dependencies>
+
+    <!--Install templating support-->
+    <dependency>
+      <groupId>org.onehippo.forge.templating-support</groupId>
+      <artifactId>templating-support-core-platform</artifactId>
+      <version>${forge.templating-support.version}</version>
+    </dependency>
 
     <dependency>
       <groupId>org.onehippo.forge.templating-support</groupId>
@@ -40,17 +47,9 @@
       <groupId>org.onehippo.cms7</groupId>
       <artifactId>hippo-plugin-selections-addon-repository</artifactId>
     </dependency>
-
-    <!--Install templating support-->
-    <dependency>
-      <groupId>org.onehippo.forge.templating-support</groupId>
-      <artifactId>templating-support-core-platform</artifactId>
-      <version>${forge.templating-support.version}</version>
-    </dependency>
     <dependency>
       <groupId>org.onehippo.cms7</groupId>
       <artifactId>hippo-essentials-components-cms</artifactId>
     </dependency>
-
   </dependencies>
 </project>

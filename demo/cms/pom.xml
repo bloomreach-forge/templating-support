@@ -9,8 +9,8 @@
   </parent>
   <artifactId>templating-support-demo-cms</artifactId>
   <packaging>war</packaging>
-  <name>demo CMS</name>
-  <description>demo CMS</description>
+  <name>templating-support-demo CMS</name>
+  <description>templating-support-demo CMS</description>
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>
@@ -36,7 +36,7 @@
       </plugin>
       <plugin>
         <groupId>org.codehaus.cargo</groupId>
-        <artifactId>cargo-maven2-plugin</artifactId>
+        <artifactId>cargo-maven3-plugin</artifactId>
         <configuration>
           <configuration>
             <type>runtime</type>

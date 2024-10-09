@@ -9,10 +9,22 @@
   </parent>
   <artifactId>templating-support-demo-webapp</artifactId>
   <packaging>war</packaging>
-  <name>demo Site Webapp</name>
-  <description>demo Site Webapp</description>
+  <name>templating-support-demo Site Webapp</name>
+  <description>templating-support-demo Site Webapp</description>
 
   <dependencies>
+    <!--Install templating support-->
+    <dependency>
+      <groupId>org.onehippo.forge.templating-support</groupId>
+      <artifactId>templating-support-handlebars</artifactId>
+      <version>${forge.templating-support.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.onehippo.forge.templating-support</groupId>
+      <artifactId>templating-support-thymeleaf</artifactId>
+      <version>${forge.templating-support.version}</version>
+    </dependency>
+
     <dependency>
       <groupId>org.onehippo.forge.templating-support</groupId>
       <artifactId>templating-support-demo-repository-data-site</artifactId>
@@ -31,18 +43,6 @@
     <dependency>
       <groupId>org.onehippo.cms7.hst.toolkit-resources.addon</groupId>
       <artifactId>hst-addon-hcm-site</artifactId>
-      <version>${hippo.hst.version}</version>
-    </dependency>
-    <!--Install templating support-->
-    <dependency>
-      <groupId>org.onehippo.forge.templating-support</groupId>
-      <artifactId>templating-support-handlebars</artifactId>
-      <version>${forge.templating-support.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.onehippo.forge.templating-support</groupId>
-      <artifactId>templating-support-thymeleaf</artifactId>
-      <version>${forge.templating-support.version}</version>
     </dependency>
   </dependencies>
 
@@ -64,7 +64,7 @@
     <plugins>
       <plugin>
         <groupId>org.codehaus.cargo</groupId>
-        <artifactId>cargo-maven2-plugin</artifactId>
+        <artifactId>cargo-maven3-plugin</artifactId>
         <configuration>
           <configuration>
             <type>runtime</type>

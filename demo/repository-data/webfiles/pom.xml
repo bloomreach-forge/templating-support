@@ -8,8 +8,8 @@
     <version>3.0.1-SNAPSHOT</version>
   </parent>
 
-  <name>demo Repository Data Web Files</name>
-  <description>demo Repository Data Web Files</description>
+  <name>templating-support-demo Repository Data Web Files</name>
+  <description>templating-support-demo Repository Data Web Files</description>
   <artifactId>templating-support-demo-repository-data-webfiles</artifactId>
 
   <dependencies>

@@ -3,5 +3,5 @@ definitions:
     /hst:hst/hst:configurations/templatingsupportdemo/hst:workspace/hst:channel:
       .meta:residual-child-node-category: content
       jcr:primaryType: hst:channel
-      hst:name: demo
+      hst:name: templating-support-demo
       hst:type: website

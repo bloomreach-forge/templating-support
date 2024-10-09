@@ -3,4 +3,3 @@
   hst:componentclassname: org.onehippo.cms7.essentials.components.EssentialsContentComponent
   hst:label: Blog Detail
   hst:template: blog-detail
-  hst:xtype: hst.item

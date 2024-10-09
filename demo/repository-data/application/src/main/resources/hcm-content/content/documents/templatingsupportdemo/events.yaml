@@ -1,35 +1,34 @@
 /content/documents/templatingsupportdemo/events:
-  .meta:order-before: banners
   jcr:primaryType: hippostd:folder
   jcr:mixinTypes: ['hippotranslation:translated', 'mix:referenceable']
-  jcr:uuid: 6e7a495b-3541-4938-8bee-817aea410975
+  jcr:uuid: 33b40ab6-3de5-49ae-84a3-fcea93685b90
   hippostd:foldertype: [new-events-document, new-events-folder]
-  hippotranslation:id: 0307f0b1-b22c-40d5-bc85-718bd9f9934b
+  hippotranslation:id: 492e6330-d926-4b27-a254-07ebaf692528
   hippotranslation:locale: en
-  /2019:
+  /2024:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippotranslation:translated', 'mix:referenceable']
-    jcr:uuid: 35b86bf9-af4a-4a80-8713-31ffe8d1fbbb
+    jcr:uuid: 50468422-b4d8-4a8d-9dab-6426c8bc47b1
     hippostd:foldertype: [new-events-document, new-events-folder]
-    hippotranslation:id: d32019c3-6e52-46b5-9c45-d102830d32fc
+    hippotranslation:id: eefecf57-f711-473b-b5cb-764bba758b68
     hippotranslation:locale: en
-    /04:
+    /10:
       jcr:primaryType: hippostd:folder
       jcr:mixinTypes: ['hippotranslation:translated', 'mix:referenceable']
-      jcr:uuid: d7271d53-b672-486a-85c4-4fbc1b387c3a
+      jcr:uuid: eb6d9128-b1b6-462b-8426-039537a28b94
       hippostd:foldertype: [new-events-document, new-events-folder]
-      hippotranslation:id: fc9f719e-1014-4279-aa87-08f632cb8309
+      hippotranslation:id: 72b773df-67fd-4497-b728-55c392641d5e
       hippotranslation:locale: en
       /breakfast:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: b8f5eb45-7200-452a-b26e-3118a0dc60b8
         hippo:name: Breakfast
-        hippo:versionHistory: ee547557-739f-4362-8a03-12323fa9d6e0
+        hippo:versionHistory: fb6b7939-bbe7-42f8-93d7-26d8af1ba3ec
         /breakfast[1]:
           jcr:primaryType: templatingsupportdemo:eventsdocument
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 54a31b92-4485-41d0-956b-83dc84f65d48
+          jcr:uuid: 53c08d69-9723-43cd-b2f8-4af786f16837
           hippo:availability: [live]
           hippostd:holder: admin
           hippostd:state: published
@@ -38,11 +37,11 @@
           hippostdpubwf:lastModificationDate: 2013-11-12T11:11:00+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippostdpubwf:publicationDate: 2013-11-12T12:16:00+01:00
-          hippotranslation:id: c0214bc0-545b-4116-aba1-2cd712ea9a57
+          hippotranslation:id: d5032d03-2de6-4276-b38a-68ec95228082
           hippotranslation:locale: en
           templatingsupportdemo:date: 2013-11-12T08:00:00+01:00
           templatingsupportdemo:documenttype: event
-          templatingsupportdemo:enddate: 2020-04-10T09:57:00+02:00
+          templatingsupportdemo:enddate: 2025-10-07T15:47:00+02:00
           templatingsupportdemo:introduction: Start the day with a nice breakfast.
           templatingsupportdemo:location: Room 101
           templatingsupportdemo:title: Breakfast
@@ -65,18 +64,18 @@
         /breakfast[2]:
           jcr:primaryType: templatingsupportdemo:eventsdocument
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-          jcr:uuid: bda6074f-ead3-4a3a-bb99-3c3dc02823eb
+          jcr:uuid: 245504ea-60d7-470c-82b5-609eb78050a7
           hippo:availability: [preview]
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2013-11-12T11:00:00+01:00
           hippostdpubwf:lastModificationDate: 2013-11-12T11:11:00+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: c0214bc0-545b-4116-aba1-2cd712ea9a57
+          hippotranslation:id: d5032d03-2de6-4276-b38a-68ec95228082
           hippotranslation:locale: en
           templatingsupportdemo:date: 2013-11-12T08:00:00+01:00
           templatingsupportdemo:documenttype: event
-          templatingsupportdemo:enddate: 2020-04-10T09:57:00+02:00
+          templatingsupportdemo:enddate: 2025-10-07T15:47:00+02:00
           templatingsupportdemo:introduction: Start the day with a nice breakfast.
           templatingsupportdemo:location: Room 101
           templatingsupportdemo:title: Breakfast
@@ -99,18 +98,20 @@
         /breakfast[3]:
           jcr:primaryType: templatingsupportdemo:eventsdocument
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 1ac63480-9a82-4c3d-b6f2-094dc77354a8
+          jcr:uuid: c0eca496-e39a-4880-947f-1df4125591ba
           hippo:availability: []
+          hippostd:retainable: false
           hippostd:state: draft
+          hippostd:transferable: false
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2013-11-12T11:00:00+01:00
-          hippostdpubwf:lastModificationDate: 2019-04-11T17:07:47.121+02:00
+          hippostdpubwf:lastModificationDate: 2024-10-08T19:45:55.496+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: c0214bc0-545b-4116-aba1-2cd712ea9a57
+          hippotranslation:id: d5032d03-2de6-4276-b38a-68ec95228082
           hippotranslation:locale: en
           templatingsupportdemo:date: 2013-11-12T08:00:00+01:00
           templatingsupportdemo:documenttype: event
-          templatingsupportdemo:enddate: 2020-04-10T09:57:00+02:00
+          templatingsupportdemo:enddate: 2025-10-07T15:47:00+02:00
           templatingsupportdemo:introduction: Start the day with a nice breakfast.
           templatingsupportdemo:location: Room 101
           templatingsupportdemo:title: Breakfast
@@ -138,7 +139,7 @@
         /introduction-speech:
           jcr:primaryType: templatingsupportdemo:eventsdocument
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 19dc9ab8-a034-4ab1-96bd-2dce17a8cd7c
+          jcr:uuid: d2eb3e32-2061-44f8-af73-b3d0d2ba62b3
           hippo:availability: [live, preview]
           hippostd:holder: admin
           hippostd:state: published
@@ -147,11 +148,11 @@
           hippostdpubwf:lastModificationDate: 2013-11-12T11:16:00+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippostdpubwf:publicationDate: 2013-11-12T12:16:00+01:00
-          hippotranslation:id: 21dc54c8-1c21-471b-b897-b68e1e186c7d
+          hippotranslation:id: dae3ce73-b5c4-4db1-aa9d-a34da98c9555
           hippotranslation:locale: en
           templatingsupportdemo:date: 2013-11-12T10:00:00+01:00
           templatingsupportdemo:documenttype: event
-          templatingsupportdemo:enddate: 2020-04-10T09:57:00+02:00
+          templatingsupportdemo:enddate: 2025-10-07T15:47:00+02:00
           templatingsupportdemo:introduction: After breakfast there will be an introductory
             speech.
           templatingsupportdemo:location: Room 400
@@ -179,7 +180,7 @@
         /workshop:
           jcr:primaryType: templatingsupportdemo:eventsdocument
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 262349bc-1664-43bb-a791-dbd2a8e46e06
+          jcr:uuid: 3bec6e20-be85-4005-aa0c-45c01951dd72
           hippo:availability: [live, preview]
           hippostd:holder: admin
           hippostd:state: published
@@ -188,11 +189,11 @@
           hippostdpubwf:lastModificationDate: 2013-11-12T11:18:00+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippostdpubwf:publicationDate: 2013-11-12T12:16:00+01:00
-          hippotranslation:id: a7aa18c2-fc2c-4295-8b20-8e75c69c53d5
+          hippotranslation:id: cf7514cc-1ad3-43e9-87ab-2ee0bfe8ebd3
           hippotranslation:locale: en
           templatingsupportdemo:date: 2013-11-12T13:00:00+01:00
           templatingsupportdemo:documenttype: event
-          templatingsupportdemo:enddate: 2020-04-10T09:57:00+02:00
+          templatingsupportdemo:enddate: 2025-10-07T15:47:00+02:00
           templatingsupportdemo:introduction: Workshop starts at 1:00
           templatingsupportdemo:location: Room 600
           templatingsupportdemo:title: Workshop
