@@ -24,7 +24,7 @@
 ## Release Notes of 4.x
 ### 4.0.0
 
-<p class="smallinfo">Release date: XX October 2024</p>
+<p class="smallinfo">Release date: 11 October 2024</p>
 
 - [FORGE-539](https://issues.onehippo.com/browse/FORGE-539) Upgrade for version 16 compatibility
 

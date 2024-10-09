@@ -20,7 +20,7 @@
   <parent>
     <groupId>org.onehippo.forge.templating-support</groupId>
     <artifactId>templating-support</artifactId>
-    <version>3.0.1-SNAPSHOT</version>
+    <version>4.0.0</version>
   </parent>
 
   <name>Templating Support Core HST</name>
