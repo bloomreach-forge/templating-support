@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2019 Bloomreach B.V. (http://www.bloomreach.com)
+ * Copyright 2018-2024 Bloomreach B.V. (http://www.bloomreach.com)
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,10 +26,10 @@ import org.springframework.mock.web.MockServletContext;
 
 import javax.jcr.observation.Event;
 import javax.jcr.observation.EventIterator;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -103,11 +103,11 @@ public class AbstractHstTemplateServletTest {
         assertEquals("/a/b/c.html", servlet1.getTemplatePath(request));
 
         // when the request comes by dispatching to the servlet through include servlet path.
-        request.setAttribute("javax.servlet.include.servlet_path", "/d/e/f.html");
+        request.setAttribute("jakarta.servlet.include.servlet_path", "/d/e/f.html");
         assertEquals("/d/e/f.html", servlet1.getTemplatePath(request));
 
         // when the request comes by dispatching to the servlet through include path info.
-        request.setAttribute("javax.servlet.include.path_info", "/g/h/i.html");
+        request.setAttribute("jakarta.servlet.include.path_info", "/g/h/i.html");
         assertEquals("/g/h/i.html", servlet1.getTemplatePath(request));
     }
 

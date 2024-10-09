@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2019 Bloomreach B.V. (http://www.bloomreach.com)
+ * Copyright 2018-2024 Bloomreach B.V. (http://www.bloomreach.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ import org.thymeleaf.context.WebEngineContext;
 import org.thymeleaf.engine.TemplateData;
 import org.thymeleaf.linkbuilder.ILinkBuilder;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -78,7 +78,7 @@ public class HstThymeleafLinkBuilder implements ILinkBuilder {
     }
 
     private String createLink(final WebEngineContext ctx, final String path) {
-        final HttpServletRequest servletRequest = ctx.getRequest();
+        final HttpServletRequest servletRequest = ((HttpServletRequest)ctx.getVariable("hstRequest"));
         final HstRequestContext reqContext = HstRequestUtils.getHstRequestContext(servletRequest);
         final HstLinkCreator creator = reqContext.getHstLinkCreator();
         final HstLink link = creator.create(path, reqContext.getResolvedMount().getMount());

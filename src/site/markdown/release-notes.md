@@ -1,4 +1,4 @@
-[//]: # (  Copyright 2018-2019 Hippo B.V. (http://www.onehippo.com)
+[//]: # (  Copyright 2018-2024 Bloomreach B.V. (https://www.bloomreach.com)
 [//]: # (  )
 [//]: # (  Licensed under the Apache License, Version 2.0 (the "License")
 [//]: # (  you may not use this file except in compliance with the License.  )
@@ -16,11 +16,19 @@
 
 | Plugin Version | Hippo CMS Release Version |
 |----------------|---------------------------|
+| 4.x            | 16.x                      |
 | 3.x            | 14.x                      |
 | 2.x            | 13.x                      |
 | 1.x            | 12.x                      |
 
-## Release Notes of 1.x
+## Release Notes of 4.x
+### 4.0.0
+
+<p class="smallinfo">Release date: XX October 2024</p>
+
+- [FORGE-539](https://issues.onehippo.com/browse/FORGE-539) Upgrade for version 16 compatibility
+
+## Release Notes of 3.x
 
 ### 3.0.0
 
@@ -28,12 +36,15 @@
 
 - [HIPFORGE-428](https://issues.onehippo.com/browse/HIPFORGE-428) Upgrade for version 14 compatibility
 
+## Release Notes of 2.x
+
 ### 2.0.0
 
 <p class="smallinfo">Release date: 8 May 2019</p>
 
 - [HIPFORGE-257](https://issues.onehippo.com/browse/HIPFORGE-257) Upgrade for version 13 compatibility
-
+ 
+## Release Notes of 1.x
 
 ### 1.0.1
 <p class="smallinfo">Release date: 29 November 2018</p>
