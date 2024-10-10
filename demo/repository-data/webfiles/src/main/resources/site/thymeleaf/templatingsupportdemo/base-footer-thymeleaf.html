@@ -47,15 +47,14 @@
  </pre>
 
 
-
-  <pre th:if="${hstRequestContext.cmsRequest}">
+  <pre th:if="${hstRequestContext.channelManagerPreviewRequest}">
     Manage content: <hst:manageContent hst:hippobean="${document}" />
     Cms Edit menu : <hst:cmseditmenu hst:menu="${menu}" />
   </pre>
   <link rel="stylesheet" th:href="@{files/thymeleaf-webfiles.css}" type="text/css"/>
   <span class="thymeleaf-web-files" th:text="${user != null} ? 'Hello from thymeleaf webfiles: '+ ${user.name} : 'hello anonymous from thymeleaf webfiles'"></span>
   <h3><span class="thymeleaf-web-files" th:text="${hstRequestContext.getAttribute('contextUser') != null} ? 'Hello from thymeleaf webfiles: '+ ${hstRequestContext.getAttribute('contextUser').name} : 'hello anonymous from thymeleaf webfiles'"></span></h3>
-  <div th:insert="fragment/thymeleaf-footer-fragment :: footerFragment"></div>
+  <div th:insert="~{fragment/thymeleaf-footer-fragment :: footerFragment}"></div>
   <h2>Some html content:</h2>
   <div hst:html="${document.content}"></div>
   <h2>Some html content as tag:</h2>

@@ -1,4 +1,4 @@
-[//]: # (  Copyright 2018-2019 Hippo B.V. (http://www.onehippo.com)
+[//]: # (  Copyright 2018-2024 Bloomreach B.V. (https://www.bloomreach.com)
 [//]: # (  )
 [//]: # (  Licensed under the Apache License, Version 2.0 (the "License")
 [//]: # (  you may not use this file except in compliance with the License.  )
@@ -18,11 +18,11 @@
 
 Make sure you have the following **repository** configuration under the **repositories** section in the root ```pom.xml```.
 
-```
+```xml
     <repository>
-      <id>hippo-maven2-forge</id>
-      <name>Hippo Maven 2 Repository</name>
-      <url>https://maven.onehippo.com/maven2-forge/</url>
+      <id>bloomreach-maven2-forge</id>
+      <name>Bloomreach Maven 2 Repository</name>
+      <url>https://maven.bloomreach.com/repository/maven2-forge/</url>
     </repository>
 ```
 
@@ -32,7 +32,7 @@ In the root ```pom.xml```, add a version property (see [release notes](release-n
 
 ```xml
     <properties>
-      <forge.templating-support.version>2.0.0</forge.templating-support.version>
+      <forge.templating-support.version>4.0.0</forge.templating-support.version>
     </properties>
 ```
 
@@ -81,7 +81,7 @@ In ```site/src/main/webapp/WEB-INF/web.xml```, add the following:
 
 ### Configure WebFiles to Include **.html** File Extension
 
-Add ```*.html``` in **Included Files** in webfiles configuration. See [https://www.onehippo.org/library/concepts/web-files/web-files-configuration.html](https://www.onehippo.org/library/concepts/web-files/web-files-configuration.html).
+Add ```*.html``` in **Included Files** in webfiles configuration. See [https://xmdocumentation.bloomreach.com/library/concepts/web-files/web-files-configuration.html](https://xmdocumentation.bloomreach.com/library/concepts/web-files/web-files-configuration.html).
 
 ### Switch Template Support
 

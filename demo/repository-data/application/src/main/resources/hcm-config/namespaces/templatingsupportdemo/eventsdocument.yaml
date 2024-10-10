@@ -3,19 +3,20 @@ definitions:
     /hippo:namespaces/templatingsupportdemo/eventsdocument:
       jcr:primaryType: hipposysedit:templatetype
       jcr:mixinTypes: ['editor:editable', 'mix:referenceable']
-      jcr:uuid: 6456f013-475d-4aff-b66a-1067549047ce
+      jcr:uuid: a35b085b-6850-4646-a6dd-165d253c72e8
       /hipposysedit:nodetype:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: b5e5ff80-6518-4361-b465-095d7bf58e10
+        jcr:uuid: dc43bc2c-7787-432d-99b1-e967978e27b6
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['hipposysedit:remodel', 'mix:referenceable']
-          jcr:uuid: f1fef823-f2cb-444a-9f12-2f7cd899f2e8
+          jcr:uuid: a4ac5a54-7164-43d8-b635-570fa93e6327
           hipposysedit:node: true
           hipposysedit:supertype: ['templatingsupportdemo:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
           hipposysedit:uri: http://www.templatingsupportdemo.com/templatingsupportdemo/nt/1.0
+          hipposysedit:validators: ['templatingsupportdemo:events-sequential-dates']
           /title:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -77,7 +78,7 @@ definitions:
         /hipposysedit:prototype:
           jcr:primaryType: templatingsupportdemo:eventsdocument
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 3623172c-5066-44d8-9d7f-e522d5156a49
+          jcr:uuid: df61a2dd-580b-4009-b61c-438fb2361dbc
           hippo:related___pathreference: []
           hippostd:holder: holder
           hippostd:state: draft

@@ -3,6 +3,7 @@
 <#-- @ftlvariable name="document" type="org.onehippo.forge.templating.support.demo.beans.Banner" -->
 <#if document??>
 <div>
+  <#if hst.isNodeType(document.node, 'templatingsupportdemo:bannerdocument')>
   <a href="<@hst.link hippobean=document.link />">
     <figure style="position: relative">
       <@hst.manageContent hippobean=document parameterName="document" rootPath="banners"/>
@@ -15,12 +16,18 @@
       </figcaption>
     </figure>
   </a>
+  <#elseif editMode>
+    <figure style="position: relative">
+      <@hst.manageContent documentTemplateQuery="new-banner-document" parameterName="document" rootPath="banners"/>
+      <img src="<@hst.link path='/images/essentials/catalog-component-icons/banner.svg'/>"> Selected document "${document.node.path}" is not of the correct type, please select or create a Banner document.
+    </figure>
+  </#if>
 </div>
 <#elseif editMode>
 <div>
   <figure style="position: relative">
-    <@hst.manageContent templateQuery="new-banner-document" parameterName="document" rootPath="banners"/>
-    <img src="<@hst.link path='/images/essentials/catalog-component-icons/banner.png'/>"> Click to edit Banner
+    <@hst.manageContent documentTemplateQuery="new-banner-document" parameterName="document" rootPath="banners"/>
+    <img src="<@hst.link path='/images/essentials/catalog-component-icons/banner.svg'/>"> Click to edit Banner
   </figure>
 </div>
 </#if>

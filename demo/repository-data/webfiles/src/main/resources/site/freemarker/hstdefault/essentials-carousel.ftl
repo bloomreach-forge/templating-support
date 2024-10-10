@@ -29,7 +29,12 @@
                     <#assign active = ''/>
                 </#if>
                 <div class="item${active}">
-                  <@hst.manageContent hippobean=item/>
+                  <#-- button to edit shown item -->
+                  <#if configuredItems?? && configuredItems?has_content>
+                    <@hst.manageContent hippobean=item parameterName="document${configuredItems[item_index]}" rootPath="banners"/>
+                  <#else>
+                    <@hst.manageContent hippobean=item/>
+                  </#if>
                   <img src="<@hst.link hippobean=item.image />" alt="${item.title?html}"/>
                     <div class="carousel-caption">
                         <#if item.link??>
@@ -60,6 +65,14 @@
             }
           </script>
         </#if>
+        <#-- buttons for still available items -->
+        <#if editMode && freeItems?? && freeItems?has_content>
+          <div>
+            <#list freeItems as number>
+              <div class="has-new-content-button item-button"><@hst.manageContent documentTemplateQuery="new-banner-document" parameterName="document${number}" rootPath="banners"/></div>
+            </#list>
+          </div>
+        </#if>
     </div>
 
     <@hst.headContribution category="htmlHead">
@@ -86,11 +99,16 @@
             .carousel-inner > .item > img {
                 margin: 0 auto;
             }
+          
+            /* order CC-buttons next to each other */
+            .item-button {
+              float: left;
+            }
         </style>
     </@hst.headContribution>
 
     <@hst.headContribution category="htmlBodyEnd">
-        <script type="text/javascript" src="<@hst.webfile path="/js/jquery-2.1.0.min.js"/>"></script>
+        <script type="text/javascript" src="<@hst.webfile path="/js/jquery-3.5.1.min.js"/>"></script>
     </@hst.headContribution>
 
     <@hst.headContribution category="htmlBodyEnd">
@@ -99,9 +117,9 @@
 
 <#elseif editMode>
   <div>
-    <img src="<@hst.link path='/images/essentials/catalog-component-icons/carousel.png'/>"> Click to edit Carousel
+    <img src="<@hst.link path='/images/essentials/catalog-component-icons/carousel.svg'/>"> Click to edit Carousel
   </div>
   <div class="has-new-content-button">
-    <@hst.manageContent templateQuery="new-banner-document" parameterName="document1" rootPath="banners"/>
+    <@hst.manageContent documentTemplateQuery="new-banner-document" parameterName="document1" rootPath="banners"/>
   </div>
 </#if>

@@ -7,4 +7,3 @@
   hst:parametervalues: ['on', 'templatingsupportdemo:eventsdocument', '', desc, 'off',
     'on', '', '10', 'templatingsupportdemo:enddate']
   hst:template: eventslist-main-eventslist
-  hst:xtype: hst.item

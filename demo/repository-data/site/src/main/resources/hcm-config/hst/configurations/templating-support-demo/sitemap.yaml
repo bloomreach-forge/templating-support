@@ -15,19 +15,6 @@ definitions:
         hst:componentconfigurationid: hst:pages/pagenotfound
         hst:pagetitle: Not Found Page
         hst:refId: pagenotfound
-      /events:
-        jcr:primaryType: hst:sitemapitem
-        hst:componentconfigurationid: hst:pages/eventslist
-        hst:pagetitle: List of Events
-        hst:relativecontentpath: events
-        /_any_.html:
-          jcr:primaryType: hst:sitemapitem
-          hst:componentconfigurationid: hst:pages/eventspage
-          hst:relativecontentpath: ${parent}/${1}
-        /_any_:
-          jcr:primaryType: hst:sitemapitem
-          hst:componentconfigurationid: hst:pages/eventslist
-          hst:relativecontentpath: ${parent}/${1}
       /blog:
         jcr:primaryType: hst:sitemapitem
         hst:componentconfigurationid: hst:pages/bloglist
@@ -55,3 +42,16 @@ definitions:
             jcr:primaryType: hst:sitemapitem
             hst:componentconfigurationid: hst:pages/bloglist
             hst:relativecontentpath: ${parent}/${1}
+      /events:
+        jcr:primaryType: hst:sitemapitem
+        hst:componentconfigurationid: hst:pages/eventslist
+        hst:pagetitle: List of Events
+        hst:relativecontentpath: events
+        /_any_.html:
+          jcr:primaryType: hst:sitemapitem
+          hst:componentconfigurationid: hst:pages/eventspage
+          hst:relativecontentpath: ${parent}/${1}
+        /_any_:
+          jcr:primaryType: hst:sitemapitem
+          hst:componentconfigurationid: hst:pages/eventslist
+          hst:relativecontentpath: ${parent}/${1}

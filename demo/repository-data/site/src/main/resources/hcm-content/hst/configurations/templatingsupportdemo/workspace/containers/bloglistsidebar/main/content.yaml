@@ -5,4 +5,3 @@
   hst:parameternames: [facetPath, showPagination, pageSize]
   hst:parametervalues: [blogFacets, 'on', '10']
   hst:template: blog-facet
-  hst:xtype: hst.item

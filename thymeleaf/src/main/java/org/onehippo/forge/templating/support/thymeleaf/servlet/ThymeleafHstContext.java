@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2019 Bloomreach B.V. (http://www.bloomreach.com)
+ * Copyright 2018-2024 Bloomreach B.V. (http://www.bloomreach.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,11 +24,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.thymeleaf.context.AbstractContext;
 import org.thymeleaf.context.IWebContext;
+import org.thymeleaf.web.IWebExchange;
+import org.thymeleaf.web.servlet.JakartaServletWebApplication;
 
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import static org.hippoecm.hst.tag.DefineObjectsTag.*;
 
@@ -39,12 +41,14 @@ public class ThymeleafHstContext extends AbstractContext implements IWebContext 
     private final HttpServletRequest request;
     private final HttpServletResponse response;
     private final ServletContext servletContext;
+    private final IWebExchange exchange;
 
 
     public ThymeleafHstContext(final HttpServletRequest request, final HttpServletResponse response, final ServletContext servletContext) {
         this.request = request;
         this.response = response;
         this.servletContext = servletContext;
+        this.exchange = JakartaServletWebApplication.buildApplication(servletContext).buildExchange(request,response);
         defineHstObjects();
     }
 
@@ -80,5 +84,8 @@ public class ThymeleafHstContext extends AbstractContext implements IWebContext 
         return this.servletContext;
     }
 
-
+    @Override
+    public IWebExchange getExchange() {
+        return this.exchange;
+    }
 }

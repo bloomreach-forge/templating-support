@@ -1,14 +1,5 @@
 definitions:
   config:
-    /hst:hst/hst:configurations/hst:default/hst:templates/eventslist-main-eventslist:
-      jcr:primaryType: hst:template
-      hst:renderpath: webfile:/freemarker/hstdefault/eventslist-main-eventslist.ftl
-    /hst:hst/hst:configurations/hst:default/hst:templates/essentials-carousel:
-      jcr:primaryType: hst:template
-      hst:renderpath: webfile:/freemarker/hstdefault/essentials-carousel.ftl
-    /hst:hst/hst:configurations/hst:default/hst:templates/essentials-banner:
-      jcr:primaryType: hst:template
-      hst:renderpath: webfile:/freemarker/hstdefault/essentials-banner.ftl
     /hst:hst/hst:configurations/hst:default/hst:templates/blog-author-posts:
       jcr:primaryType: hst:template
       hst:renderpath: webfile:/freemarker/hstdefault/blog/blog-author-posts.ftl
@@ -18,3 +9,12 @@ definitions:
     /hst:hst/hst:configurations/hst:default/hst:templates/blog-list:
       jcr:primaryType: hst:template
       hst:renderpath: webfile:/freemarker/hstdefault/blog/blog-list.ftl
+    /hst:hst/hst:configurations/hst:default/hst:templates/essentials-carousel:
+      jcr:primaryType: hst:template
+      hst:renderpath: webfile:/freemarker/hstdefault/essentials-carousel.ftl
+    /hst:hst/hst:configurations/hst:default/hst:templates/essentials-banner:
+      jcr:primaryType: hst:template
+      hst:renderpath: webfile:/freemarker/hstdefault/essentials-banner.ftl
+    /hst:hst/hst:configurations/hst:default/hst:templates/eventslist-main-eventslist:
+      jcr:primaryType: hst:template
+      hst:renderpath: webfile:/freemarker/hstdefault/eventslist-main-eventslist.ftl

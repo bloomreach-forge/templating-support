@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2019 Bloomreach B.V. (http://www.bloomreach.com)
+ * Copyright 2018-2024 Bloomreach B.V. (http://www.bloomreach.com)
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 package org.onehippo.forge.templating.support.handlebars.servlet;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.apache.commons.collections.Transformer;
 

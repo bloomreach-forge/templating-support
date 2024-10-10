@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2019 Bloomreach B.V. (http://www.bloomreach.com)
+ * Copyright 2018-2024 Bloomreach B.V. (http://www.bloomreach.com)
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,10 +33,10 @@ import org.onehippo.forge.templating.support.core.helper.*;
 import org.onehippo.forge.templating.support.core.servlet.AbstractHstTemplateServlet;
 import org.onehippo.forge.templating.support.handlebars.util.HandlebarsHelperRegistrationUtils;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;

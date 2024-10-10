@@ -29,12 +29,12 @@ definitions:
       /base-footer-thymeleaf-servlet:
         jcr:primaryType: hst:template
         hst:renderpath: /thymeleaf/base-footer-thymeleaf.html
-      /eventspage-main:
-        jcr:primaryType: hst:template
-        hst:renderpath: webfile:/freemarker/hstdefault/eventspage-main.ftl
       /blog-main:
         jcr:primaryType: hst:template
         hst:renderpath: webfile:/freemarker/templatingsupportdemo/blog/blog-main.ftl
       /blog-detail:
         jcr:primaryType: hst:template
         hst:renderpath: webfile:/freemarker/hstdefault/blog/blog-detail.ftl
+      /eventspage-main:
+        jcr:primaryType: hst:template
+        hst:renderpath: webfile:/freemarker/hstdefault/eventspage-main.ftl

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2019 Bloomreach B.V. (http://www.bloomreach.com)
+ * Copyright 2018-2024 Bloomreach B.V. (http://www.bloomreach.com)
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,12 +19,12 @@ import org.hippoecm.hst.core.container.ContainerConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -176,10 +176,10 @@ public abstract class AbstractHstTemplateServlet extends HttpServlet {
     }
 
     private String getTemplatePathInfo(HttpServletRequest request) {
-        String includeServletPath = (String) request.getAttribute("javax.servlet.include.servlet_path");
+        String includeServletPath = (String) request.getAttribute("jakarta.servlet.include.servlet_path");
 
         if (includeServletPath != null) {
-            String includePathInfo = (String) request.getAttribute("javax.servlet.include.path_info");
+            String includePathInfo = (String) request.getAttribute("jakarta.servlet.include.path_info");
             return includePathInfo == null ? includeServletPath : includePathInfo;
         }
 

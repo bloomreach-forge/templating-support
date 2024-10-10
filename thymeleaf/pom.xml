@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright 2018-2019 Hippo B.V. (http://www.onehippo.com)
+  Copyright 2018-2024 Hippo B.V. (http://www.onehippo.com)
 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@
   <parent>
     <groupId>org.onehippo.forge.templating-support</groupId>
     <artifactId>templating-support</artifactId>
-    <version>3.0.0</version>
+    <version>4.0.0</version>
   </parent>
 
   <name>Templating Support Thymeleaf</name>
@@ -30,8 +30,8 @@
   <dependencies>
 
     <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
+      <groupId>jakarta.servlet</groupId>
+      <artifactId>jakarta.servlet-api</artifactId>
       <scope>provided</scope>
     </dependency>
 
@@ -122,13 +122,13 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>javax.servlet.jsp</groupId>
-      <artifactId>jsp-api</artifactId>
+      <groupId>jakarta.servlet.jsp</groupId>
+      <artifactId>jakarta.servlet.jsp-api</artifactId>
       <scope>provided</scope>
     </dependency>
       <dependency>
-        <groupId>org.apache.taglibs</groupId>
-        <artifactId>taglibs-standard-spec</artifactId>
+        <groupId>com.bloomreach.xm</groupId>
+        <artifactId>taglibs-standard-spec-jakarta</artifactId>
       </dependency>
 
   </dependencies>

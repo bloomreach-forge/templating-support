@@ -1,77 +1,5 @@
 definitions:
   config:
-    /hippo:configuration/hippo:translations/hippo:types/templatingsupportdemo:eventsdocument:
-      jcr:primaryType: hipposys:resourcebundles
-      /en:
-        jcr:primaryType: hipposys:resourcebundle
-        jcr:name: Event
-        templatingsupportdemo:content: Content
-        templatingsupportdemo:date: Start date
-        templatingsupportdemo:enddate: End date
-        templatingsupportdemo:image: Image
-        templatingsupportdemo:introduction: Introduction
-        templatingsupportdemo:location: Location
-        templatingsupportdemo:title: Title
-      /nl:
-        jcr:primaryType: hipposys:resourcebundle
-        jcr:name: Evenement
-        templatingsupportdemo:content: Inhoud
-        templatingsupportdemo:date: Startdatum
-        templatingsupportdemo:enddate: Einddatum
-        templatingsupportdemo:image: Afbeelding
-        templatingsupportdemo:introduction: Introductie
-        templatingsupportdemo:location: Locatie
-        templatingsupportdemo:title: Titel
-      /fr:
-        jcr:primaryType: hipposys:resourcebundle
-        jcr:name: Événement
-        templatingsupportdemo:content: Contenu
-        templatingsupportdemo:date: Date de début
-        templatingsupportdemo:enddate: Date de fin
-        templatingsupportdemo:image: Image
-        templatingsupportdemo:introduction: Introduction
-        templatingsupportdemo:location: Lieu
-        templatingsupportdemo:title: Titre
-      /de:
-        jcr:primaryType: hipposys:resourcebundle
-        jcr:name: Event
-        templatingsupportdemo:content: Inhalt
-        templatingsupportdemo:date: Startdatum
-        templatingsupportdemo:enddate: Enddatum
-        templatingsupportdemo:image: Abbildung
-        templatingsupportdemo:introduction: Einführung
-        templatingsupportdemo:location: Standort
-        templatingsupportdemo:title: Titel
-    /hippo:configuration/hippo:translations/hippo:types/templatingsupportdemo:bannerdocument:
-      jcr:primaryType: hipposys:resourcebundles
-      /en:
-        jcr:primaryType: hipposys:resourcebundle
-        jcr:name: Banner
-        templatingsupportdemo:content: Content
-        templatingsupportdemo:image: Image
-        templatingsupportdemo:link: Link
-        templatingsupportdemo:title: Title
-      /nl:
-        jcr:primaryType: hipposys:resourcebundle
-        jcr:name: Banner
-        templatingsupportdemo:content: Inhoud
-        templatingsupportdemo:image: Afbeelding
-        templatingsupportdemo:link: Link
-        templatingsupportdemo:title: Titel
-      /fr:
-        jcr:primaryType: hipposys:resourcebundle
-        jcr:name: Bannière
-        templatingsupportdemo:content: Contenu
-        templatingsupportdemo:image: Image
-        templatingsupportdemo:link: Lien
-        templatingsupportdemo:title: Titre
-      /de:
-        jcr:primaryType: hipposys:resourcebundle
-        jcr:name: Banner
-        templatingsupportdemo:content: Inhalt
-        templatingsupportdemo:image: Abbildung
-        templatingsupportdemo:link: Link
-        templatingsupportdemo:title: Titel
     /hippo:configuration/hippo:translations/hippo:types/templatingsupportdemo:blogpost:
       jcr:primaryType: hipposys:resourcebundles
       /en:
@@ -190,3 +118,75 @@ definitions:
         templatingsupportdemo:link: Link
         templatingsupportdemo:link#hint: Externer Link zum Konto
         templatingsupportdemo:type: Art
+    /hippo:configuration/hippo:translations/hippo:types/templatingsupportdemo:bannerdocument:
+      jcr:primaryType: hipposys:resourcebundles
+      /en:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: Banner
+        templatingsupportdemo:content: Content
+        templatingsupportdemo:image: Image
+        templatingsupportdemo:link: Link
+        templatingsupportdemo:title: Title
+      /nl:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: Banner
+        templatingsupportdemo:content: Inhoud
+        templatingsupportdemo:image: Afbeelding
+        templatingsupportdemo:link: Link
+        templatingsupportdemo:title: Titel
+      /fr:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: Bannière
+        templatingsupportdemo:content: Contenu
+        templatingsupportdemo:image: Image
+        templatingsupportdemo:link: Lien
+        templatingsupportdemo:title: Titre
+      /de:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: Banner
+        templatingsupportdemo:content: Inhalt
+        templatingsupportdemo:image: Abbildung
+        templatingsupportdemo:link: Link
+        templatingsupportdemo:title: Titel
+    /hippo:configuration/hippo:translations/hippo:types/templatingsupportdemo:eventsdocument:
+      jcr:primaryType: hipposys:resourcebundles
+      /en:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: Event
+        templatingsupportdemo:content: Content
+        templatingsupportdemo:date: Start date
+        templatingsupportdemo:enddate: End date
+        templatingsupportdemo:image: Image
+        templatingsupportdemo:introduction: Introduction
+        templatingsupportdemo:location: Location
+        templatingsupportdemo:title: Title
+      /nl:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: Evenement
+        templatingsupportdemo:content: Inhoud
+        templatingsupportdemo:date: Startdatum
+        templatingsupportdemo:enddate: Einddatum
+        templatingsupportdemo:image: Afbeelding
+        templatingsupportdemo:introduction: Introductie
+        templatingsupportdemo:location: Locatie
+        templatingsupportdemo:title: Titel
+      /fr:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: Événement
+        templatingsupportdemo:content: Contenu
+        templatingsupportdemo:date: Date de début
+        templatingsupportdemo:enddate: Date de fin
+        templatingsupportdemo:image: Image
+        templatingsupportdemo:introduction: Introduction
+        templatingsupportdemo:location: Lieu
+        templatingsupportdemo:title: Titre
+      /de:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: Event
+        templatingsupportdemo:content: Inhalt
+        templatingsupportdemo:date: Startdatum
+        templatingsupportdemo:enddate: Enddatum
+        templatingsupportdemo:image: Abbildung
+        templatingsupportdemo:introduction: Einführung
+        templatingsupportdemo:location: Standort
+        templatingsupportdemo:title: Titel

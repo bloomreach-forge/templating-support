@@ -3,15 +3,15 @@ definitions:
     /hippo:namespaces/templatingsupportdemo/blogpost:
       jcr:primaryType: hipposysedit:templatetype
       jcr:mixinTypes: ['editor:editable', 'mix:referenceable']
-      jcr:uuid: baa90c41-700b-4437-aa8c-a9a9fb9c7a3b
+      jcr:uuid: 706a125f-b880-4cba-8242-a66017d75b3b
       /hipposysedit:nodetype:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: 701321b5-99cb-4609-a060-33a436cc742c
+        jcr:uuid: c82674de-0e5f-42ab-8381-04cf6b9909b7
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['hipposysedit:remodel', 'mix:referenceable']
-          jcr:uuid: cd36d690-c755-4861-9e32-e4cc30d2f2c5
+          jcr:uuid: c280ccf6-6c90-47b8-90cf-aebc55148605
           hipposysedit:node: true
           hipposysedit:supertype: ['templatingsupportdemo:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -31,7 +31,7 @@ definitions:
             hipposysedit:path: templatingsupportdemo:title
             hipposysedit:primary: false
             hipposysedit:type: String
-            hipposysedit:validators: [non-empty, required]
+            hipposysedit:validators: [required]
           /introduction:
             jcr:primaryType: hipposysedit:field
             hipposysedit:multiple: false
@@ -74,11 +74,11 @@ definitions:
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: 6ed6fc0b-a50c-4376-9525-8236872e8e94
+        jcr:uuid: 8808547b-36d4-47c4-8df8-4126c6e99c30
         /hipposysedit:prototype:
           jcr:primaryType: templatingsupportdemo:blogpost
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 838aa0cc-aac9-4e96-bab3-0b6f2f555715
+          jcr:uuid: b48af830-040d-4889-9a99-49e4b66dc6f4
           hippo:related___pathreference: blogpost/hipposysedit:prototypes
           hippostd:holder: holder
           hippostd:state: draft

@@ -1,7 +1,7 @@
 package org.onehippo.forge.templating.support.demo.beans;
 
 /*
- * Copyright 2014-2018 Hippo B.V. (http://www.onehippo.com)
+ * Copyright 2014-2024 Bloomreach
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ public class Author extends HippoDocument implements AuthorEntry {
 
     @HippoEssentialsGenerated(internalName = "templatingsupportdemo:fullname")
     public String getFullName() {
-        return  getProperty(FULL_NAME);
+        return getSingleProperty(FULL_NAME);
     }
 
     @HippoEssentialsGenerated(internalName = "templatingsupportdemo:content")
@@ -48,7 +48,7 @@ public class Author extends HippoDocument implements AuthorEntry {
 
     @HippoEssentialsGenerated(internalName = "templatingsupportdemo:role")
     public String getRole() {
-        return getProperty(ROLE);
+        return getSingleProperty(ROLE);
     }
 
     @HippoEssentialsGenerated(internalName = "templatingsupportdemo:image")

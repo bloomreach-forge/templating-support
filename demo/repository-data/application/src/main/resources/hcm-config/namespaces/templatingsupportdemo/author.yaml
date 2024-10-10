@@ -3,15 +3,15 @@ definitions:
     /hippo:namespaces/templatingsupportdemo/author:
       jcr:primaryType: hipposysedit:templatetype
       jcr:mixinTypes: ['editor:editable', 'mix:referenceable']
-      jcr:uuid: 8f2bf1c8-bd94-42d6-9cf1-617a406fa8ca
+      jcr:uuid: 88369e45-e82b-454f-8089-34b977417934
       /hipposysedit:nodetype:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: d3586728-6e36-4e79-a7de-2b6dfa717502
+        jcr:uuid: 27161e4b-e008-4dd6-b006-a90266d893f9
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['hipposysedit:remodel', 'mix:referenceable']
-          jcr:uuid: 600d733e-f197-41fb-b181-1080ee1a19b7
+          jcr:uuid: 14b59f52-2711-459d-a6e4-a1c022bbf44c
           hipposysedit:node: true
           hipposysedit:supertype: ['templatingsupportdemo:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -24,7 +24,7 @@ definitions:
             hipposysedit:path: templatingsupportdemo:fullname
             hipposysedit:primary: false
             hipposysedit:type: String
-            hipposysedit:validators: [non-empty, required]
+            hipposysedit:validators: [required]
           /content:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -63,7 +63,7 @@ definitions:
         /hipposysedit:prototype:
           jcr:primaryType: templatingsupportdemo:author
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: d84bc7ae-df1f-489a-a453-5be4f1c13a8f
+          jcr:uuid: 7fab2fda-27fe-4fe5-b1cc-4876eeec5ebb
           hippo:related___pathreference: []
           hippostd:holder: holder
           hippostd:state: draft

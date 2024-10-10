@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2019 Bloomreach B.V. (http://www.bloomreach.com)
+ * Copyright 2018-2024 Bloomreach B.V. (http://www.bloomreach.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,9 +20,9 @@ import org.onehippo.forge.templating.support.core.servlet.TemplateRequestContext
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.servlet.ServletRequest;
-import javax.servlet.jsp.jstl.core.Config;
-import javax.servlet.jsp.jstl.fmt.LocalizationContext;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.jsp.jstl.core.Config;
+import jakarta.servlet.jsp.jstl.fmt.LocalizationContext;
 import java.util.ResourceBundle;
 
 /**

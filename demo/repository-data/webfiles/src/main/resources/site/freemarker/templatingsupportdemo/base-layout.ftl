@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="<@hst.webfile  path="/css/bootstrap.css"/>" type="text/css"/>
-    <#if hstRequest.requestContext.cmsRequest>
+    <#if hstRequest.requestContext.channelManagerPreviewRequest>
       <link rel="stylesheet" href="<@hst.webfile  path="/css/cms-request.css"/>" type="text/css"/>
     </#if>
     <@hst.headContributions categoryExcludes="htmlBodyEnd, scripts" xhtml=true/>
@@ -20,7 +20,6 @@
         <div class="col-md-6 col-md-offset-3">
           <@hst.include ref="menu"/>
         </div>
-        
       </div>
       <div class="row">
         <@hst.include ref="main"/>
@@ -33,7 +32,6 @@
         <@hst.include ref="footer-thymeleaf-classpath"/>
       </div>
     </div>
-    
     <@hst.headContributions categoryIncludes="htmlBodyEnd, scripts" xhtml=true/>
   </body>
 </html>

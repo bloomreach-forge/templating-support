@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2019 Bloomreach B.V. (http://www.bloomreach.com)
+ * Copyright 2018-2024 Bloomreach B.V. (http://www.bloomreach.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,10 +24,11 @@ import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.context.WebEngineContext;
 import org.thymeleaf.messageresolver.AbstractMessageResolver;
 import org.thymeleaf.messageresolver.StandardMessageResolver;
+import org.thymeleaf.web.IWebRequest;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.jsp.jstl.core.Config;
-import javax.servlet.jsp.jstl.fmt.LocalizationContext;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.jsp.jstl.core.Config;
+import jakarta.servlet.jsp.jstl.fmt.LocalizationContext;
 
 import java.text.MessageFormat;
 import java.util.Locale;
@@ -46,7 +47,7 @@ public class HstMessageResolver extends AbstractMessageResolver {
     @Override
     public String resolveMessage(final ITemplateContext context, final Class<?> origin, final String key, final Object[] messageParameters) {
         final WebEngineContext ctx = (WebEngineContext) context;
-        final HttpServletRequest request = ctx.getRequest();
+        final HttpServletRequest request = (HttpServletRequest)ctx.getVariable("hstRequest");
         final LocalizationContext locCtx = (LocalizationContext) Config.get(RequestContextProvider.get().getServletRequest(), Config.FMT_LOCALIZATION_CONTEXT);
         String message = getMessage(key, locCtx);
         if (message != null) {

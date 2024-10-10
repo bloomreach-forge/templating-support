@@ -2,8 +2,8 @@
   .meta:order-before: administration
   jcr:primaryType: hippostd:folder
   jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:referenceable']
-  jcr:uuid: 8bf8350b-2aae-415f-afc6-8124bdc1f7b3
-  hippo:name: demo
+  jcr:uuid: 7a44b536-61aa-456b-bc48-d67550b73ad3
+  hippo:name: templating-support-demo
   hippostd:foldertype: [new-translated-folder, new-document]
   hippotranslation:id: 996bcac5-86cf-49b5-a7a3-16a74863e814
   hippotranslation:locale: en

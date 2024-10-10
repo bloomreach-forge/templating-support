@@ -1,4 +1,4 @@
 /hst:hst/hst:configurations/templatingsupportdemo/hst:workspace/hst:sitemenus/main/home:
-  .meta:order-before: events
+  .meta:order-before: blog
   jcr:primaryType: hst:sitemenuitem
   hst:referencesitemapitem: root

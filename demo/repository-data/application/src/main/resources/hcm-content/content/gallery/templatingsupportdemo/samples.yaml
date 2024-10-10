@@ -1,8 +1,7 @@
 /content/gallery/templatingsupportdemo/samples:
-  .meta:order-before: banners
   jcr:primaryType: hippogallery:stdImageGallery
   jcr:mixinTypes: ['mix:referenceable']
-  jcr:uuid: e998e73e-704e-4583-95a8-3b8da4e2e3c7
+  jcr:uuid: ba9232f6-e41c-459a-ad16-f6cb409f8d5a
   hippostd:foldertype: [new-image-folder]
   hippostd:gallerytype: ['hippogallery:imageset']
   /blue-199261_150.jpg:
@@ -12,7 +11,7 @@
     /blue-199261_150.jpg:
       jcr:primaryType: hippogallery:imageset
       jcr:mixinTypes: ['mix:referenceable']
-      jcr:uuid: 6a78b3b6-418f-4165-a5b2-53b281b2dcf9
+      jcr:uuid: 278d2546-ddc6-4106-b441-14c571257708
       hippo:availability: [live, preview]
       hippogallery:description: Description for blue-199261_150.jpg
       hippogallery:filename: blue-199261_150.jpg
@@ -41,7 +40,7 @@
     /coffee-206142_150.jpg:
       jcr:primaryType: hippogallery:imageset
       jcr:mixinTypes: ['mix:referenceable']
-      jcr:uuid: 48057712-23f0-4abf-9f7b-1c5ac6735d6f
+      jcr:uuid: b4d802b6-083d-404d-96f0-32d4840cc412
       hippo:availability: [live, preview]
       hippogallery:description: Description for coffee-206142_150.jpg
       hippogallery:filename: coffee-206142_150.jpg
@@ -70,7 +69,7 @@
     /pencils-199883_150.jpg:
       jcr:primaryType: hippogallery:imageset
       jcr:mixinTypes: ['mix:referenceable']
-      jcr:uuid: c885cbe6-f48b-45c5-8079-dda6c68fb818
+      jcr:uuid: 1f03805a-ac5d-4fc4-8db9-be05d135828a
       hippo:availability: [live, preview]
       hippogallery:description: Description for pencils-199883_150.jpg
       hippogallery:filename: pencils-199883_150.jpg

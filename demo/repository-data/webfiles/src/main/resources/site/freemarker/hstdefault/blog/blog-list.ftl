@@ -1,6 +1,7 @@
 <#include "../../include/imports.ftl">
 
 <#-- @ftlvariable name="pageable" type="org.onehippo.cms7.essentials.components.paging.Pageable" -->
+<@hst.setBundle basename="essentials.blog"/>
 <#if pageable??>
 <div>
   <#list pageable.items as item>
@@ -12,8 +13,12 @@
         <p><@fmt.formatDate value=item.publicationDate.time type="both" dateStyle="medium" timeStyle="short"/></p>
       </#if>
       <p>${item.introduction?html}</p>
+      <p><a href="${link}"><@fmt.message key="blog.read.post" var="msg"/>${msg?html}</a></p>
     </article>
   </#list>
+  <div class="has-new-content-button">
+    <@hst.manageContent documentTemplateQuery="new-blog-document" folderTemplateQuery="new-blog-folder" rootPath="blog" defaultPath="${currentYear}/${currentMonth}"/>
+  </div>
   <#if cparam.showPagination>
     <#include "../../include/pagination.ftl">
   </#if>
@@ -21,6 +26,6 @@
 <#-- @ftlvariable name="editMode" type="java.lang.Boolean"-->
 <#elseif editMode>
 <div>
-  <img src="<@hst.link path='/images/essentials/catalog-component-icons/blog-list.png'/>"> Click to edit Blog List
+  <img src="<@hst.link path='/images/essentials/catalog-component-icons/blog-list.svg'/>"> Click to edit Blog List
 </div>
 </#if>

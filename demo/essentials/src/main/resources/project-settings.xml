@@ -5,7 +5,7 @@
     <cmsModule>cms</cmsModule>
     <confirmParams>false</confirmParams>
     <developmentSubModule>development</developmentSubModule>
-    <enterprise>true</enterprise>
+    <enterprise>false</enterprise>
     <extraTemplates>true</extraTemplates>
     <hstRoot>/hst:templatingsupportdemo</hstRoot>
     <projectNamespace>templatingsupportdemo</projectNamespace>

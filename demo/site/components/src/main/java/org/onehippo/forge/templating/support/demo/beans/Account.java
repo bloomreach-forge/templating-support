@@ -1,6 +1,6 @@
 package org.onehippo.forge.templating.support.demo.beans;
 /*
- * Copyright 2014 Hippo B.V. (http://www.onehippo.com)
+ * Copyright 2014-2024 Bloomreach
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,12 +27,12 @@ public class Account extends HippoCompound {
 
     @HippoEssentialsGenerated(internalName = "templatingsupportdemo:type")
     public String getType() {
-        return getProperty(TYPE);
+        return getSingleProperty(TYPE);
     }
 
     @HippoEssentialsGenerated(internalName = "templatingsupportdemo:link")
     public String getLink() {
-        return getProperty(LINK);
+        return getSingleProperty(LINK);
     }
 
 }
