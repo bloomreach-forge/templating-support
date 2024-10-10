@@ -87,7 +87,7 @@ You can build the module locally first in the project root folder.
 $ mvn clean install
 ```
 
-And you can build and run the [demo](demo) project:
+And you can build and run the [demo](https://github.com/bloomreach-forge/templating-support/tree/develop/demo) project:
 
 ```bash
 $ cd demo
